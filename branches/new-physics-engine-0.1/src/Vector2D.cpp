@@ -1,5 +1,13 @@
 #include "Vector2D.h"
 
+void Vector2D::Clear() {
+	x = y = 0.0f;
+}
+
+Vector2D::Vector2D() : x(0.0f), y(0.0f) {}
+Vector2D::Vector2D(float _x, float _y) : x(_x), y(_y) {}
+Vector2D::~Vector2D() {}
+
 // calculate the sum of the forces
 // acting on this vector at 1/60th 
 // of a second later.  we store things
@@ -25,9 +33,4 @@
 	return GetPosition();
 }*/
 
-void Vector2D::
 
-void Vector2D::Vector2D() : x(0.0f), y(0.0f) {}
-void Vector2D::Vector2D(float _x, float _y) : x(_x), y(_y) {}
-
-virtual Vector2D::~Vector2D();
