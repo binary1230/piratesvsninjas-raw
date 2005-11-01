@@ -1,21 +1,10 @@
-#include "vec.h"
-
-void vec::Clear() {
-	position = 0;
-	velocity = 0;
-	acceleration = 0;
-	forces.resize(0);
-}
-
-void vec::Attach(Force* x) {
-	forces.push_back(x);	
-}
+#include "Vector2D.h"
 
 // calculate the sum of the forces
 // acting on this vector at 1/60th 
 // of a second later.  we store things
 // internally as float, but return ints
-int vec::CalcNextStep() {
+/*int vec::CalcNextStep() {
 
 	int i, max = forces.size();
 	
@@ -34,12 +23,11 @@ int vec::CalcNextStep() {
 	
 	// 4) return the new position
 	return GetPosition();
-}
+}*/
 
-// return a truncated version of the position
-int vec::GetPosition() {
-		return (int)nearbyintf(position);
-}
+void Vector2D::
 
-vec::vec() : v_decay(1.00), forces(0) {}
-vec::~vec() {}
+void Vector2D::Vector2D() : x(0.0f), y(0.0f) {}
+void Vector2D::Vector2D(float _x, float _y) : x(_x), y(_y) {}
+
+virtual Vector2D::~Vector2D();
