@@ -30,8 +30,8 @@ class Object : public GameBase {
 		//! Current force (not always used)
 		Vector2D force;
 		
-		BITMAP* bitmap;						
-		bool bitmap_is_deleteable;	
+		BITMAP* bitmap;
+		bool bitmap_is_deleteable;
 		
 	public:
 		virtual bool Init(GameState* _game_state) = 0;
