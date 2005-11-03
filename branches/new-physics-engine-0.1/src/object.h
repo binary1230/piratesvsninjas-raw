@@ -21,10 +21,17 @@ typedef vector<Object*> ObjectList;
 class Object : public GameBase {
 				
 	protected:
-		int x, y;
+		//! Current position
+		Vector2D pos;
+
+		//! Current velocity (not always used)
+		Vector2D vel;
+
+		//! Current force (not always used)
+		Vector2D force;
 		
-		BITMAP* bitmap;						// this object's sprite
-		bool bitmap_is_deleteable;	// whether to delete the sprite or not on deletion
+		BITMAP* bitmap;						
+		bool bitmap_is_deleteable;	
 		
 	public:
 		virtual bool Init(GameState* _game_state) = 0;
