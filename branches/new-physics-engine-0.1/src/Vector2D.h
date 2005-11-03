@@ -8,7 +8,6 @@
 using namespace std;
 
 class Vector2D;
-class Force;
 
 //! A fudge value.  You can't compare two floats
 //! directly, we just want to know if they are close.
@@ -59,6 +58,16 @@ class Vector2D {
 		inline Vector2D Vector2D::operator*(float n) const {
 			return Vector2D(x*n, y*n);
 		}
+
+		//! Compute the dot product
+		inline float dot(Vector2D v) const {
+		   return (x * v->x) + (y * v->y) + (z * v->z);
+		}
+		
+		//! Compute the cross product
+		/*inline Vector2D cross(Vector2D v) const {
+
+		}*/
 		
 		Vector2D();
 		Vector2D(float _x, float _y);
