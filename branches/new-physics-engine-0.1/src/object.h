@@ -16,6 +16,7 @@ typedef vector<Object*> ObjectList;
 
 #include "globals.h"
 #include "gameBase.h"
+#include "vector2D.h"
 
 class Object : public GameBase {
 				
