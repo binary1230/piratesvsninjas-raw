@@ -1,21 +1,22 @@
-#include "test1.h"
+#include "test_vector2D.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_Vector2D );
 
-void Test_Vector2D::setUp() {
-	float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
-					-0.00001f, 100000.0f, -100000.0f };
-
-	testing_set = set;
-	count = sizeof(set) / sizeof(float);
+// test Clear()
+void Test_Vector2D::testClear() {
+	Vector2D v;
+	v.SetX(3.0f);
+	v.SetY(3.0f);
+	v.Clear();
+	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
 }
 
+// test strict equality for the same numbers
 void Test_Vector2D::testOperatorEquals() {
 	Vector2D v1, v2;
 	int i;
 
-	// test strict equality for the same numbers
 	for (i = 0; i < count; i++) {
 			v1.SetX(testing_set[i]);	
 			v1.SetY(testing_set[i]);
@@ -26,8 +27,13 @@ void Test_Vector2D::testOperatorEquals() {
 			CPPUNIT_ASSERT(v1 == v2);
 			CPPUNIT_ASSERT(v2 == v1);
 	}
+}
 
-	// test fuzzy equality
+// test fuzzy equality
+void Test_Vector2D::testOperatorEqualsFuzzy() {
+	Vector2D v1, v2;
+	int i;
+
 	for (i = 0; i < count; i++) {
 		v1.SetX(testing_set[i]);	
 		v1.SetY(testing_set[i]);
@@ -40,6 +46,7 @@ void Test_Vector2D::testOperatorEquals() {
 	}
 }
 
+// test basic methods with different values
 void Test_Vector2D::testGetSet() {
 	Vector2D v;
 	int i;
@@ -54,6 +61,14 @@ void Test_Vector2D::testGetSet() {
 		v.SetY(y);
 		CPPUNIT_ASSERT_EQUAL(y, v.GetY());
 	}
+}
+
+void Test_Vector2D::setUp() {
+float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
+				-0.00001f, 100000.0f, -100000.0f };
+
+testing_set = set;
+count = sizeof(set) / sizeof(float);
 }
 
 void Test_Vector2D::tearDown() {
