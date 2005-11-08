@@ -27,13 +27,14 @@ class Vector2D {
 
 		inline float GetX() const {return x;}
 	 	inline float GetY() const {return y;}
-		inline float SetX(float _x) {x=_x;}
-	 	inline float SetY(float _y) {y=_y;}
+		inline void SetX(float _x) {x=_x;}
+	 	inline void SetY(float _y) {y=_y;}
 		
 		//! Assign a vector's values to this vector
-		inline bool Vector2D::operator=(const Vector2D &v) {
+		inline Vector2D Vector2D::operator=(const Vector2D &v) {
 			x = v.GetX();
 			y = v.GetY();
+			return *this;
 		}
 	
 		//! Add two vectors

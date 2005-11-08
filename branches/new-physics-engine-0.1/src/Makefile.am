@@ -1,9 +1,13 @@
+SUBDIRS = tests
+
 bin_PROGRAMS = ninjas
 
 # AM_CXXFLAGS = -Wall
 
 # LDFLAGS = -ggdb -lm
 # ninjas_LDFLAGS = @LDFLAGS@
+
+ninjas_CXXFLAGS = -Wall
 
 headers = \
 globals.h timer.h \
