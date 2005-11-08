@@ -11,6 +11,8 @@ class Test_Vector2D : public CppUnit::TestFixture {
 				CPPUNIT_TEST( testClear );
 				CPPUNIT_TEST( testOperatorEquals ); 
 				CPPUNIT_TEST( testOperatorEqualsFuzzy ); 
+				CPPUNIT_TEST( testOperatorPlus ); 
+				CPPUNIT_TEST( testOperatorMinus ); 
 				CPPUNIT_TEST_SUITE_END(); 
 				
 				float *testing_set;
@@ -20,11 +22,12 @@ class Test_Vector2D : public CppUnit::TestFixture {
 				void setUp(); 
 				void tearDown(); 
 				
-				void testAccessors(); 
-				void testOperatorEquals(); 
-				void testOperatorEqualsFuzzy();
 				void testGetSet(); 
 				void testClear();
+				void testOperatorEquals(); 
+				void testOperatorEqualsFuzzy();
+				void testOperatorPlus();
+				void testOperatorMinus();
 }; 
 
 #endif // Test_Vector2D_H 

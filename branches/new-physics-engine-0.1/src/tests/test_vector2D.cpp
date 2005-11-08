@@ -12,6 +12,32 @@ void Test_Vector2D::testClear() {
 	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
 }
 
+void Test_Vector2D::testOperatorPlus() {
+	Vector2D v1, v2, v_result, v_expected;
+	
+	v1.SetX(1.0f);	v1.SetY(2.0f);
+	v2.SetX(1.0f);	v2.SetY(2.0f);
+	v_expected.SetX(2.0f);	v_expected.SetY(4.0f);
+
+	v_result = v1 + v2;
+
+	CPPUNIT_ASSERT(v_result == v_expected);
+	CPPUNIT_ASSERT(v_result.GetX() == 2.0f && v_result.GetY() == 4.0f);
+}
+
+void Test_Vector2D::testOperatorMinus() {
+	Vector2D v1, v2, v_result, v_expected;
+	
+	v1.SetX(3.0f);	v1.SetY(4.0f);
+	v2.SetX(1.0f);	v2.SetY(-4.0f);
+	v_expected.SetX(2.0f);	v_expected.SetY(8.0f);
+
+	v_result = v1 - v2;
+
+	CPPUNIT_ASSERT(v_result == v_expected);
+	CPPUNIT_ASSERT(v_result.GetX() == 2.0f && v_result.GetY() == 8.0f);
+}
+
 // test strict equality for the same numbers
 void Test_Vector2D::testOperatorEquals() {
 	Vector2D v1, v2;
