@@ -14,10 +14,12 @@ VERSION_EXTRA="-rc1"
 VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_FIX$VERSION_EXTRA"
 
 AC_PROG_CXX
+AC_PROG_CC
 AC_PROG_INSTALL
 
 AC_LANG(C++)
 
+AM_PATH_CPPUNIT(1.9.6)
 dnl XXX todo:
 
 dnl Test for subversion presence, if so, use the subversion revision number
@@ -125,4 +127,4 @@ AC_CHECK_HEADERS([allegro.h])
 #AC_SUBST(SDL_LIBS)
 #AC_SUBST(SDL_DEFS)
 
-AC_OUTPUT(Makefile src/Makefile src/Doxyfile)
+AC_OUTPUT(Makefile src/Makefile src/Doxyfile tests/Makefile)
