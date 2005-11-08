@@ -19,16 +19,14 @@ class ObjectPlayer;
 #include "force.h"
 #include "forceGravity.h"
 #include "forceInput.h"
-#include "vec.h"
+#include "vector2D.h"
 
 // directions
-#define _dX 0
-#define _dY 1
 
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
-		vec vectors[2];		// vectors for X and Y
+		// vec vectors[2];		// vectors for X and Y
 				
 	public:
 		void Update();

@@ -19,39 +19,43 @@ class Vector2D;
 // #include "force.h"
 
 class Vector2D {
+	protected:
+		float x, y;
+		
 	public:
-		float x,y;
-
 		void Clear();
 
-		int GetX();
-		int GetY();
+		inline float GetX() const {return x;}
+	 	inline float GetY() const {return y;}
+		inline float SetX(float _x) {x=_x;}
+	 	inline float SetY(float _y) {y=_y;}
 		
 		//! Assign a vector's values to this vector
-		inline bool Vector2D::operator=(Vector2D v) const {
-				x = v.x;
-				y = v.y;
+		inline bool Vector2D::operator=(const Vector2D &v) {
+			x = v.GetX();
+			y = v.GetY();
 		}
 	
 		//! Add two vectors
-		inline Vector2D Vector2D::operator+(Vector2D v) const {
-			return Vector2D(x + v.x, y + v.y);
+		inline Vector2D Vector2D::operator+(const Vector2D &v) const {
+			return Vector2D(x + v.GetX(), y + v.GetY());
 		}
 
 		//! Subtract two vectors
-		inline Vector2D Vector2D::operator-(Vector2D v) const {
-			return Vector2D(x - v.x, y - v.y);
+		inline Vector2D Vector2D::operator-(const Vector2D &v) const {
+			return Vector2D(x - v.GetX(), y - v.GetY());
 		}
 		
 		//! Compare two vectors
-		inline bool Vector2D::operator==(Vector2D v) const {
-			return (x - v.x < TOLERANCE && x - v.x > -TOLERANCE
-							y - v.y < TOLERANCE && y - v.y > -TOLERANCE)
+		inline bool Vector2D::operator==(const Vector2D &v) const {
+			return (x - v.GetX() < TOLERANCE && x - v.GetX() > -TOLERANCE &&
+							y - v.GetY() < TOLERANCE && y - v.GetY() > -TOLERANCE);
 		}
 		
 		//! Compare two vectors
-		inline bool Vector2D::operator!=(Vector2D v) const {
-			return (!(this == v));
+		inline bool Vector2D::operator!=(const Vector2D &v) const {
+				return (x - v.GetX() > TOLERANCE || x - v.GetX() < -TOLERANCE ||
+								y - v.GetY() > TOLERANCE || y - v.GetY() < -TOLERANCE);
 		}
 
 		//! Scalar product (vector * number)
@@ -60,8 +64,8 @@ class Vector2D {
 		}
 
 		//! Compute the dot product
-		inline float dot(Vector2D v) const {
-		   return (x * v->x) + (y * v->y) + (z * v->z);
+		inline float dot(const Vector2D &v) const {
+			return (x * v.GetX()) + (y * v.GetY());
 		}
 		
 		//! Compute the cross product

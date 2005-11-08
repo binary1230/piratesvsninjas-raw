@@ -1,4 +1,4 @@
-#include "Vector2D.h"
+#include "vector2D.h"
 
 void Vector2D::Clear() {
 	x = y = 0.0f;

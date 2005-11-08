@@ -11,7 +11,7 @@ gameOptions.h gameState.h gameBase.h window.h physSimulation.h \
 input.h inputLiveHandler.h inputRecord.h inputPlayback.h \
 object.h objectFactory.h objectIDs.h \
 objectPlayer.h objectRadiusBlock.h objectBackground.h \
-vector2d.h force.h forceGravity.h forceInput.h \
+vector2D.h force.h forceGravity.h forceInput.h \
 platform.h basename.h
 
 ninjas_SOURCES = \
@@ -20,7 +20,7 @@ gameOptions.cpp gameState.cpp main.cpp gameBase.cpp physSimulation.cpp \
 input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp \
-timer.cpp vector2d.cpp window.cpp \
+timer.cpp vector2D.cpp window.cpp \
 platform.cpp basename.cpp \
 $(headers)
 

@@ -4,24 +4,24 @@
 #include "gameState.h"
 
 int Object::GetX() {
-	return pos.x;
+	return (int)pos.GetX();
 }
 
 int Object::GetY() {
-	return pos.y;
+	return (int)pos.GetY();
 }
 
 void Object::SetX(int _x) {
-	pos.x = _x;
+	pos.SetX((float)_x);
 }
 
 void Object::SetY(int _y) {
-	pos.y = _y;
+	pos.SetY((float)_y);
 }
 
 void Object::SetXY(int _x, int _y) {
-	pos.x = _x;
-	pos.y = _y;
+	pos.SetX((float)_x);
+	pos.SetY((float)_y);
 }
 
 int Object::GetWidth() {
@@ -37,7 +37,7 @@ void Object::Draw() {
 }
 
 void Object::DrawAtOffset(int _x, int _y) {	
-	draw_sprite(game_state->GetDrawingSurface(), bitmap, pos.x + _x, pos.y + _y);
+	draw_sprite(game_state->GetDrawingSurface(), bitmap, GetX() + _x, GetY() + _y);
 }
 
 void Object::Update() {

@@ -1,7 +1,7 @@
 #include "objectPlayer.h"
 
 void PlayerObject::Update() {	
-	int w = game_state->Width(), h = game_state->Height();
+	/*int w = game_state->Width(), h = game_state->Height();
 	BITMAP* dst_bitmap = game_state->GetDrawingSurface();
 
 	x = vectors[_dX].CalcNextStep();
@@ -30,12 +30,12 @@ void PlayerObject::Update() {
 	if (x > w - bitmap->w) {
 			vectors[_dX].position = x = w - bitmap->w;
 			vectors[_dX].velocity = -vectors[_dX].velocity;
-	}
+	}*/
 }
 
 void PlayerObject::Draw() {
 	
-	bool flip = false;
+	/*bool flip = false;
 	
 	if (vectors[_dX].acceleration == 0) {
 		if (vectors[_dX].velocity > 0) {
@@ -49,19 +49,20 @@ void PlayerObject::Draw() {
 		draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, x, y);
 	else 
 		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
+		*/
 }
 
 // XXX fairly sure this code never gets called, ever
 void PlayerObject::SetXY(int _x, int _y) {
-	x = _dX; 
+/*	x = _dX; 
 	y = _dY;
 	vectors[_dY].position = (float)y;
 	vectors[_dX].position = (float)x;
-	fprintf(stderr, "setting them!\n");
+	fprintf(stderr, "setting them!\n");*/
 }
 
 bool PlayerObject::Init(GameState* _game_state) {
-	Force* force;
+/*	Force* force;
 
 	SetGameState(_game_state);
 
@@ -81,6 +82,7 @@ bool PlayerObject::Init(GameState* _game_state) {
 	vectors[_dY].Attach(force);
 
 	return true;
+	*/
 }
 
 PlayerObject::PlayerObject() {
