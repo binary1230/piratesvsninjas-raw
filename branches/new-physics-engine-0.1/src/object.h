@@ -47,16 +47,20 @@ class Object : public GameBase {
 		
 		void SetBitmapIsDeleteable(bool _is_deletable);
 		bool GetBitmapIsDeleteable();
-
-		int GetX();
-		int GetY();
-		virtual void SetX(int _x);
-		virtual void SetY(int _y);
-		virtual void SetXY(int _x, int _y);
 		
-		int GetWidth();
-		int GetHeight();
+		inline int GetX() 					{ return (int)pos.GetX(); }
+		inline int GetY() 					{ return (int)pos.GetY(); }
+		inline void SetX(int _x) 		{ pos.SetX((float)_x); }
+		inline void SetY(int _y) 		{ pos.SetY((float)_y);	}
+		
+		inline void SetXY(int _x, int _y) {
+				pos.SetX((float)_x);	
+				pos.SetY((float)_y);
+		}
 
+		inline int GetWidth() { return bitmap->w; }
+		inline int GetHeight() {	return bitmap->h; }
+		
 		Object();
 		virtual ~Object();
 };

@@ -3,35 +3,6 @@
 // Putting this here is a nasty hack to avoid weird dependency loops
 #include "gameState.h"
 
-int Object::GetX() {
-	return (int)pos.GetX();
-}
-
-int Object::GetY() {
-	return (int)pos.GetY();
-}
-
-void Object::SetX(int _x) {
-	pos.SetX((float)_x);
-}
-
-void Object::SetY(int _y) {
-	pos.SetY((float)_y);
-}
-
-void Object::SetXY(int _x, int _y) {
-	pos.SetX((float)_x);
-	pos.SetY((float)_y);
-}
-
-int Object::GetWidth() {
-	return bitmap->w;
-}
-
-int Object::GetHeight() {
-	return bitmap->h;
-}
-
 void Object::Draw() {
 	DrawAtOffset(0,0);
 }

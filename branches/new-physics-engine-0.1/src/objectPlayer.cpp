@@ -1,6 +1,9 @@
 #include "objectPlayer.h"
 
 void PlayerObject::Update() {	
+	
+	SetXY(20,30);
+
 	/*int w = game_state->Width(), h = game_state->Height();
 	BITMAP* dst_bitmap = game_state->GetDrawingSurface();
 
@@ -50,6 +53,8 @@ void PlayerObject::Draw() {
 	else 
 		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
 		*/
+	
+	draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, GetX(), GetY());
 }
 
 // XXX fairly sure this code never gets called, ever
@@ -62,11 +67,14 @@ void PlayerObject::SetXY(int _x, int _y) {
 }
 
 bool PlayerObject::Init(GameState* _game_state) {
-/*	Force* force;
+	/*Force* force;*/
 
 	SetGameState(_game_state);
+	pos.Clear();
+	vel.Clear();
+	force.Clear();
 
-	assert(GetGameState() != NULL);
+	/*assert(GetGameState() != NULL);
 
 	vectors[_dX].Clear();
 	vectors[_dY].Clear();
@@ -83,6 +91,7 @@ bool PlayerObject::Init(GameState* _game_state) {
 
 	return true;
 	*/
+	return true;
 }
 
 PlayerObject::PlayerObject() {
