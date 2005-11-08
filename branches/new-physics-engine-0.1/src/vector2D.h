@@ -63,9 +63,15 @@ class Vector2D {
 		inline Vector2D Vector2D::operator*(float n) const {
 			return Vector2D(x*n, y*n);
 		}
+		
+		//! Scalar product (vector * number)
+		//XXX need to add exception handling for DIVIDE by ZERO
+		inline Vector2D Vector2D::operator/(float n) const {
+			return Vector2D(x/n, y/n);
+		}
 
 		//! Compute the dot product
-		inline float dot(const Vector2D &v) const {
+		inline float Dot(const Vector2D &v) const {
 			return (x * v.GetX()) + (y * v.GetY());
 		}
 		

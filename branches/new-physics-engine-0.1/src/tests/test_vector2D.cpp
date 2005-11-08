@@ -1,9 +1,11 @@
 #include "test_vector2D.h"
 
+//! Unit tests for Vector2D class
+
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_Vector2D );
 
-// test Clear()
+//! Test Clear Function
 void Test_Vector2D::testClear() {
 	Vector2D v;
 	v.SetX(3.0f);
@@ -12,6 +14,7 @@ void Test_Vector2D::testClear() {
 	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
 }
 
+//! Test addition
 void Test_Vector2D::testOperatorPlus() {
 	Vector2D v1, v2, v_result, v_expected;
 	
@@ -25,6 +28,7 @@ void Test_Vector2D::testOperatorPlus() {
 	CPPUNIT_ASSERT(v_result.GetX() == 2.0f && v_result.GetY() == 4.0f);
 }
 
+//! Test subtraction
 void Test_Vector2D::testOperatorMinus() {
 	Vector2D v1, v2, v_result, v_expected;
 	
@@ -38,7 +42,35 @@ void Test_Vector2D::testOperatorMinus() {
 	CPPUNIT_ASSERT(v_result.GetX() == 2.0f && v_result.GetY() == 8.0f);
 }
 
-// test strict equality for the same numbers
+//! Test multiplication
+void Test_Vector2D::testOperatorMultiply() {
+	Vector2D v1, v_result, v_expected;
+	
+	v1.SetX(1.0f);	v1.SetY(2.0f);
+	float x = 2.0f;
+	v_expected.SetX(2.0f);	v_expected.SetY(4.0f);
+
+	v_result = v1 * x;
+
+	CPPUNIT_ASSERT(v_result == v_expected);
+	CPPUNIT_ASSERT(v_result.GetX() == 2.0f && v_result.GetY() == 4.0f);
+}
+
+//! Test division
+void Test_Vector2D::testOperatorDivide() {
+	Vector2D v1, v_result, v_expected;
+	
+	v1.SetX(2.0f);	v1.SetY(4.0f);
+	float x = 2.0f;
+	v_expected.SetX(1.0f);	v_expected.SetY(2.0f);
+
+	v_result = v1 / x;
+
+	CPPUNIT_ASSERT(v_result == v_expected);
+	CPPUNIT_ASSERT(v_result.GetX() == 1.0f && v_result.GetY() == 2.0f);
+}
+
+//! Test strict equality 
 void Test_Vector2D::testOperatorEquals() {
 	Vector2D v1, v2;
 	int i;
@@ -55,7 +87,7 @@ void Test_Vector2D::testOperatorEquals() {
 	}
 }
 
-// test fuzzy equality
+//! Test equality operator with a small offset
 void Test_Vector2D::testOperatorEqualsFuzzy() {
 	Vector2D v1, v2;
 	int i;
@@ -72,7 +104,7 @@ void Test_Vector2D::testOperatorEqualsFuzzy() {
 	}
 }
 
-// test basic methods with different values
+//! Test basic methods 
 void Test_Vector2D::testGetSet() {
 	Vector2D v;
 	int i;
@@ -89,13 +121,23 @@ void Test_Vector2D::testGetSet() {
 	}
 }
 
-void Test_Vector2D::setUp() {
-float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
-				-0.00001f, 100000.0f, -100000.0f };
-
-testing_set = set;
-count = sizeof(set) / sizeof(float);
+void Test_Vector2D::testDotProduct() {
+	Vector2D v1(12.0f, 11.0f);
+	Vector2D v2(14.0f, 13.0f);
+	float dot_expected = (v1.GetX() * v2.GetX()) + (v1.GetY() * v2.GetY());
+	float dot_result = v1.Dot(v2);
+	CPPUNIT_ASSERT_EQUAL( dot_expected, dot_result );
 }
 
+//! Setup the tests
+void Test_Vector2D::setUp() {
+	float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
+									-0.00001f, 100000.0f, -100000.0f };
+
+	testing_set = set;
+	count = sizeof(set) / sizeof(float);
+}
+
+//! Teardown the tests
 void Test_Vector2D::tearDown() {
 }

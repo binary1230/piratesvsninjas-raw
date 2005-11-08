@@ -13,6 +13,9 @@ class Test_Vector2D : public CppUnit::TestFixture {
 				CPPUNIT_TEST( testOperatorEqualsFuzzy ); 
 				CPPUNIT_TEST( testOperatorPlus ); 
 				CPPUNIT_TEST( testOperatorMinus ); 
+				CPPUNIT_TEST( testOperatorMultiply ); 
+				CPPUNIT_TEST( testOperatorDivide ); 
+				CPPUNIT_TEST( testDotProduct );
 				CPPUNIT_TEST_SUITE_END(); 
 				
 				float *testing_set;
@@ -28,6 +31,9 @@ class Test_Vector2D : public CppUnit::TestFixture {
 				void testOperatorEqualsFuzzy();
 				void testOperatorPlus();
 				void testOperatorMinus();
+				void testOperatorMultiply();
+				void testOperatorDivide();
+				void testDotProduct();
 }; 
 
 #endif // Test_Vector2D_H 
