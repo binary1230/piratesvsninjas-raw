@@ -127,4 +127,4 @@ AC_CHECK_HEADERS([allegro.h])
 #AC_SUBST(SDL_LIBS)
 #AC_SUBST(SDL_DEFS)
 
-AC_OUTPUT(Makefile src/Makefile src/Doxyfile tests/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/Doxyfile src/tests/Makefile)

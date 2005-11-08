@@ -1,4 +1,4 @@
-SUBDIRS = src tests
+SUBDIRS = src 
 
 EXTRA_DATA = data
 EXTRA_DIST = docs $(EXTRA_DATA)
