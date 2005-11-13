@@ -33,8 +33,6 @@ class PlayerObject : public Object {
 		void Draw();
 		void SetInputHandler(BaseInput* handler);
 
-		void SetXY(int, int);
-
 		bool Init(GameState* _game_state);
 
 		PlayerObject();

@@ -8,7 +8,7 @@ void Object::Draw() {
 }
 
 void Object::DrawAtOffset(int _x, int _y) {	
-	draw_sprite(game_state->GetDrawingSurface(), bitmap, GetX() + _x, GetY() + _y);
+	draw_sprite(game_state->GetDrawingSurface(), bitmap, GetX()+_x, GetY()+_y);
 }
 
 void Object::Update() {

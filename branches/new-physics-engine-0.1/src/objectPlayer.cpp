@@ -1,12 +1,18 @@
 #include "objectPlayer.h"
 
-void PlayerObject::Update() {	
+// 
+void PlayerObject::ApplyForce() {
+	// force += 
+}
+
+void PlayerObject::Update() {
 	
-	SetXY(20,30);
-
+	Solve();
+				
 	/*int w = game_state->Width(), h = game_state->Height();
-	BITMAP* dst_bitmap = game_state->GetDrawingSurface();
-
+	BITMAP* dst_bitmap = game_state->GetDrawingSurface();*/
+	
+	/*
 	x = vectors[_dX].CalcNextStep();
 	y = -vectors[_dY].CalcNextStep();
 
@@ -38,38 +44,27 @@ void PlayerObject::Update() {
 
 void PlayerObject::Draw() {
 	
-	/*bool flip = false;
+	bool flip = false;
 	
-	if (vectors[_dX].acceleration == 0) {
+	/*if (vectors[_dX].acceleration == 0) {
 		if (vectors[_dX].velocity > 0) {
 			flip = true;
 		}
 	} else if (vectors[_dX].acceleration > 0) {
 		flip = true;
-	} 
+	} */
 
 	if (flip)
-		draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, x, y);
+		draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, GetX(), GetY());
 	else 
-		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
-		*/
-	
-	draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, GetX(), GetY());
-}
-
-// XXX fairly sure this code never gets called, ever
-void PlayerObject::SetXY(int _x, int _y) {
-/*	x = _dX; 
-	y = _dY;
-	vectors[_dY].position = (float)y;
-	vectors[_dX].position = (float)x;
-	fprintf(stderr, "setting them!\n");*/
+		draw_sprite(game_state->GetDrawingSurface(), bitmap, GetX(), GetY());
 }
 
 bool PlayerObject::Init(GameState* _game_state) {
 	/*Force* force;*/
 
 	SetGameState(_game_state);
+	
 	pos.Clear();
 	vel.Clear();
 	force.Clear();
