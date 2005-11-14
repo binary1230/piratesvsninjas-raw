@@ -10,7 +10,7 @@ void Test_Vector2D::testConstructors() {
 	Vector2D v;
 	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
 	Vector2D v1(1.1f, 2.2f);
-	CPPUNIT_ASSERT(v.GetX() == 1.1f && v.GetY() == 2.2f);
+	CPPUNIT_ASSERT(v1.GetX() == 1.1f && v1.GetY() == 2.2f);
 }
 
 //! Test Clear Function
