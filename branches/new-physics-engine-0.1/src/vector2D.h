@@ -42,6 +42,18 @@ class Vector2D {
 			return Vector2D(x + v.GetX(), y + v.GetY());
 		}
 
+		//! Add another vector to this one
+		inline void Vector2D::operator+=(const Vector2D &v) {
+			x += v.GetX();
+			y += v.GetY();
+		}
+
+		//! Subtract another vector from this one
+		inline void Vector2D::operator-=(const Vector2D &v) {
+			x -= v.GetX();
+			y -= v.GetY();
+		}
+
 		//! Subtract two vectors
 		inline Vector2D Vector2D::operator-(const Vector2D &v) const {
 			return Vector2D(x - v.GetX(), y - v.GetY());

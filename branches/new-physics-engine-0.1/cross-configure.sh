@@ -19,7 +19,7 @@
 
 # --------------------------------------------------------------
 # set the following variables (you don't _have_ to set them all,
-# but weird things can happen if you do)
+# but weird things can happen if you don't)
 
 # should contain cross compiled 'allegro-config'
 WIN32_PATH=~/i586/bin

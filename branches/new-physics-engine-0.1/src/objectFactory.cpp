@@ -10,6 +10,10 @@ Object* ObjectFactory::CreateObject(uint id) {
 	RadiusBlockObject *rblock;
 	PlayerObject *player;
 	BackgroundObject *bg;
+	ObjectProperties props;
+
+	props.ignores_gravity = 1;
+	props.ignores_user_input = 1;
 	
 	switch (id) {
 		case OBJECT_ID_BACKGROUND:
@@ -27,6 +31,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 					bg->SetBitmapIsDeleteable(true);
 					bg->SetBitmap(bmp);
 					bg->SetXY(0,0);
+					bg->SetProperties(props);
 					
 				} else {
 					fprintf(stderr, "ObjectFactory: Failed to load Player's bitmap - %s.\n", get_correct_path("data/back.tga"));
@@ -64,6 +69,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 					rblock->SetXY(Rand(0, SCREEN_SIZE_X), Rand(0, SCREEN_SIZE_Y));
 					rblock->SetTheta(Rand(0,360));
 					rblock->SetRadius(Rand(20,300));
+					rblock->SetProperties(props);
 					
 				} else {
 					fprintf(stderr, "ObjectFactory: Failed to load Player's bitmap - %s.\n", get_correct_path("data/back.tga"));
@@ -83,7 +89,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 			new_obj = rblock;
 			break;
 			
-		case OBJECT_ID_MOUSE_BLOCK:
+		case OBJECT_ID_PLAYER:
 			
 			player = new PlayerObject();
 
@@ -98,6 +104,10 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 					player->SetBitmapIsDeleteable(true);
 					player->SetBitmap(bmp);
+
+					props.ignores_user_input = 0;
+					props.ignores_gravity = 0;
+					player->SetProperties(props);
 					
 				} else {
 					fprintf(stderr, "ObjectFactory: Failed to create Sonic sprite's bitmap.\n");

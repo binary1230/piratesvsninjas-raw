@@ -8,6 +8,9 @@ int PhysSimulation::Init(GameState* gs) {
 		fprintf(stderr, "ERROR: InitSystem: failed to init objectFactory!\n");
 		return -1;
 	}
+
+	objects.clear();
+	forces.clear();
 	
 	return Load();
 }
@@ -63,7 +66,7 @@ void PhysSimulation::ResetForNextFrame() {
 
 //! Solve for next frame
 void PhysSimulation::Solve() {
-	int i, max_o, max_f;
+	int i, j, max_o, max_f;
 	
 	max_o = objects.size();
 	max_f = forces.size();
@@ -114,7 +117,7 @@ int PhysSimulation::Load() {
 		objects.push_back(new_obj);
 	}
 	
-	new_obj = objectFactory->CreateObject(OBJECT_ID_MOUSE_BLOCK);
+	new_obj = objectFactory->CreateObject(OBJECT_ID_PLAYER);
 	if (!new_obj)
 		return -1;
 

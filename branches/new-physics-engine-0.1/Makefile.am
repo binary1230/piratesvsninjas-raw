@@ -1,7 +1,7 @@
-SUBDIRS = src 
+SUBDIRS = src
 
-EXTRA_DATA = data
-EXTRA_DIST = docs $(EXTRA_DATA)
+DATA_DIR = data
+EXTRA_DIST = docs $(DATA_DIR)
 
 # create the MAC OSX Bundle
 dist_macosx: $(DISTFILES)
@@ -10,7 +10,7 @@ dist_macosx: $(DISTFILES)
 	mkdir dist/darwin/ninjas.app/PkgInfo
 	mkdir dist/darwin/ninjas.app/Resources
 	cp src/ninjas dist/darwin/ninjas.app/Contents/MacOS
-	cp -r $(EXTRA_DATA) dist/darwin/ninjas.app/Resources
+	cp -r $(DATA_DIR) dist/darwin/ninjas.app/Resources
 
 # create the windows .zip file
 dist_win32: $(DISTFILES) 
@@ -20,7 +20,7 @@ dist_win32: $(DISTFILES)
 	cp src/ninjas.exe dist/win32/ninjas-engine-$(VERSION)
 	cp LICENSE README dist/win32/ninjas-engine-$(VERSION)
 	cp dist/win32/common/* dist/win32/ninjas-engine-$(VERSION)
-	cp -r $(EXTRA_DATA) dist/win32/ninjas-engine-$(VERSION)
+	cp -r $(DATA_DIR) dist/win32/ninjas-engine-$(VERSION)
 	
 	zip -r dist/win32/ninjas-engine-$(VERSION).zip dist/win32/ninjas-engine-$(VERSION) -x \*.svn\*
 	

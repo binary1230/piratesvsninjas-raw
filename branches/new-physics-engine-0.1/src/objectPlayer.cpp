@@ -1,14 +1,7 @@
 #include "objectPlayer.h"
 
-// 
-void PlayerObject::ApplyForce() {
-	// force += 
-}
-
 void PlayerObject::Update() {
-	
-	Solve();
-				
+
 	/*int w = game_state->Width(), h = game_state->Height();
 	BITMAP* dst_bitmap = game_state->GetDrawingSurface();*/
 	
@@ -64,11 +57,7 @@ bool PlayerObject::Init(GameState* _game_state) {
 	/*Force* force;*/
 
 	SetGameState(_game_state);
-	
-	pos.Clear();
-	vel.Clear();
-	force.Clear();
-
+	ResetForNextFrame();
 	/*assert(GetGameState() != NULL);
 
 	vectors[_dX].Clear();

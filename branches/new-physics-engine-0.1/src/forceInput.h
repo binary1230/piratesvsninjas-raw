@@ -16,7 +16,7 @@ class ForceInput;
 
 class ForceInput : public Force {
 	public:
-		float GetAcceleration();
+		Vector2D GetAcceleration();
 
 		ForceInput();
 		virtual ~ForceInput();

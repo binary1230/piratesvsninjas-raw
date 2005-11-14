@@ -5,6 +5,14 @@
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_Vector2D );
 
+//! Test constructors
+void Test_Vector2D::testConstructors() {
+	Vector2D v;
+	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
+	Vector2D v1(1.1f, 2.2f);
+	CPPUNIT_ASSERT(v.GetX() == 1.1f && v.GetY() == 2.2f);
+}
+
 //! Test Clear Function
 void Test_Vector2D::testClear() {
 	Vector2D v;
@@ -12,6 +20,34 @@ void Test_Vector2D::testClear() {
 	v.SetY(3.0f);
 	v.Clear();
 	CPPUNIT_ASSERT(v.GetX() == 0.0f && v.GetY() == 0.0f);
+}
+
+//! Test += operator
+void Test_Vector2D::testOperatorPlusEquals() {
+	Vector2D v1, v2, v_expected;
+	
+	v1.SetX(-1.0f);	v1.SetY(2.0f);
+	v2.SetX(-1.0f);	v2.SetY(2.0f);
+	v_expected.SetX(-2.0f);	v_expected.SetY(4.0f);
+
+	v2 += v1;
+
+	CPPUNIT_ASSERT(v2 == v_expected);
+	CPPUNIT_ASSERT(v2.GetX() == -2.0f && v2.GetY() == 4.0f);
+}
+
+//! Test -= operator
+void Test_Vector2D::testOperatorMinusEquals() {
+	Vector2D v1, v2, v_expected;
+	
+	v1.SetX(2.0f);	v1.SetY(-2.0f);
+	v2.SetX(1.0f);	v2.SetY(2.0f);
+	v_expected.SetX(-1.0f);	v_expected.SetY(4.0f);
+
+	v2 -= v1;
+
+	CPPUNIT_ASSERT(v2 == v_expected);
+	CPPUNIT_ASSERT(v2.GetX() == -1.0f && v2.GetY() == 4.0f);
 }
 
 //! Test addition
@@ -121,6 +157,7 @@ void Test_Vector2D::testGetSet() {
 	}
 }
 
+//! Test the dot product
 void Test_Vector2D::testDotProduct() {
 	Vector2D v1(12.0f, 11.0f);
 	Vector2D v2(14.0f, 13.0f);
@@ -129,15 +166,15 @@ void Test_Vector2D::testDotProduct() {
 	CPPUNIT_ASSERT_EQUAL( dot_expected, dot_result );
 }
 
-//! Setup the tests
+//! INIT: Setup the tests
 void Test_Vector2D::setUp() {
-	float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
+	static float set[] = {	0.0f, -1.0f, 1.0f, 5.0f, -5.0f, 0.00001f, 
 									-0.00001f, 100000.0f, -100000.0f };
 
 	testing_set = set;
 	count = sizeof(set) / sizeof(float);
 }
 
-//! Teardown the tests
+//! CLEANUP: Teardown the tests
 void Test_Vector2D::tearDown() {
 }

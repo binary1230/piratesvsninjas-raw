@@ -28,6 +28,9 @@ class PhysSimulation : GameBase {
 			//! Loads a simulation (eventually from a file)
 			int Load();
 
+			void ResetForNextFrame();
+			void Solve();
+			void UpdateObjects();
 		public:
 
 			int Init(GameState* gs);

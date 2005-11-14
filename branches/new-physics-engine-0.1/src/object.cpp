@@ -34,6 +34,21 @@ void Object::Shutdown() {
 	bitmap = NULL;
 }
 
+void Object::ApplyForce(Force* f) {
+	// ignore certain types of forces
+	if (	(properties.ignores_gravity && f->GetType() == FORCE_GRAVITY) ||
+				(properties.ignores_user_input && f->GetType() == FORCE_INPUT) )
+		return;
+	else
+		force += f->GetAcceleration();
+}
+
+void Object::ResetForNextFrame() {
+	pos.Clear();
+	vel.Clear();
+	force.Clear();
+}
+
 Object::Object() : 
 bitmap(NULL), bitmap_is_deleteable(false)  {}
 Object::~Object() {}

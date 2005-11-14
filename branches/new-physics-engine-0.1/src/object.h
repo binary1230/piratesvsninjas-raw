@@ -17,7 +17,15 @@ typedef vector<Object*> ObjectList;
 #include "globals.h"
 #include "gameBase.h"
 #include "vector2D.h"
+#include "force.h"
 
+//! A bit mask of various properties of an object
+struct ObjectProperties {
+	unsigned ignores_gravity : 1;	
+	unsigned ignores_user_input : 1;
+};
+
+//! An in-game object, can be affected by physical forces
 class Object : public GameBase {
 				
 	protected:
@@ -30,6 +38,10 @@ class Object : public GameBase {
 		//! Current force (not always used)
 		Vector2D force;
 		
+		//! Object properties
+		struct ObjectProperties properties;
+		
+		//! Bitmap to draw when this object is drawn
 		BITMAP* bitmap;
 		bool bitmap_is_deleteable;
 		
@@ -39,7 +51,7 @@ class Object : public GameBase {
 		
 		virtual void Update() = 0;
 		virtual void Draw() = 0;
-
+		
 		void DrawAtOffset(int x, int y);	// Draw this object at its coordinates
 																			// plus this offset.
 		
@@ -60,6 +72,12 @@ class Object : public GameBase {
 
 		inline int GetWidth() { return bitmap->w; }
 		inline int GetHeight() {	return bitmap->h; }
+	
+		void ResetForNextFrame();
+		void ApplyForce(Force* f);
+		
+		inline struct ObjectProperties GetProperties() {return properties;};
+		inline void SetProperties(struct ObjectProperties p) {properties = p;};
 		
 		Object();
 		virtual ~Object();

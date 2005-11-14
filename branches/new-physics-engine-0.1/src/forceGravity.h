@@ -12,7 +12,7 @@ class Force;
 
 class ForceGravity : public Force {
 	public:
-		float GetAcceleration();
+		Vector2D GetAcceleration();
 
 		ForceGravity();
 		virtual ~ForceGravity();
