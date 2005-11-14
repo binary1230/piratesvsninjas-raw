@@ -11,7 +11,10 @@ class PhysSimulation;
 #include "gameBase.h"
 #include "objectFactory.h"
 #include "object.h"
+#include "forceFactory.h"
 #include "force.h"
+#include "forceInput.h"
+#include "forceGravity.h"
 
 //! Represents a physical simulation
 class PhysSimulation : GameBase {
@@ -24,6 +27,9 @@ class PhysSimulation : GameBase {
 		
 			//! Creates new objects
 			ObjectFactory *objectFactory;
+
+			//! Creates new forces
+			ForceFactory *forceFactory;
 		
 			//! Loads a simulation (eventually from a file)
 			int Load();

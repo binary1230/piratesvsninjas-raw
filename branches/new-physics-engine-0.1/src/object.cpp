@@ -8,7 +8,13 @@ void Object::Draw() {
 }
 
 void Object::DrawAtOffset(int _x, int _y) {	
-	draw_sprite(game_state->GetDrawingSurface(), bitmap, GetX()+_x, GetY()+_y);
+	int x = int(pos.GetX()) + _x;
+	int y = game_state->Height() - int(pos.GetY()) + _y;
+	
+	if (flip_x) 
+		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
+	else
+		draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, x, y);
 }
 
 void Object::Update() {
@@ -36,19 +42,26 @@ void Object::Shutdown() {
 
 void Object::ApplyForce(Force* f) {
 	// ignore certain types of forces
-	if (	(properties.ignores_gravity && f->GetType() == FORCE_GRAVITY) ||
-				(properties.ignores_user_input && f->GetType() == FORCE_INPUT) )
+	if (	(!properties.feels_gravity && f->GetType() == FORCE_GRAVITY) ||
+				(!properties.feels_user_input && f->GetType() == FORCE_INPUT) ||
+				(!properties.feels_friction && f->GetType() == FORCE_FRICTION) )
 		return;
 	else
-		force += f->GetAcceleration();
+		force += f->GetAcceleration(this);
 }
 
 void Object::ResetForNextFrame() {
-	pos.Clear();
-	vel.Clear();
 	force.Clear();
 }
 
-Object::Object() : 
-bitmap(NULL), bitmap_is_deleteable(false)  {}
+//! Solve for new position based on velocity
+Vector2D Object::Solve() {
+	Vector2D newpos = pos;
+	vel += force / mass;
+	newpos += vel;
+	return newpos;
+}
+
+Object::Object() : bitmap(NULL), bitmap_is_deleteable(false), 
+									 flip_x(false), mass(1.0f)  {}
 Object::~Object() {}

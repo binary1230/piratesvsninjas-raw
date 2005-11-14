@@ -12,8 +12,8 @@ Object* ObjectFactory::CreateObject(uint id) {
 	BackgroundObject *bg;
 	ObjectProperties props;
 
-	props.ignores_gravity = 1;
-	props.ignores_user_input = 1;
+	props.feels_gravity = 0;
+	props.feels_user_input = 0;
 	
 	switch (id) {
 		case OBJECT_ID_BACKGROUND:
@@ -30,7 +30,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 					bg->SetBitmapIsDeleteable(true);
 					bg->SetBitmap(bmp);
-					bg->SetXY(0,0);
+					bg->SetXY(0, game_state->Height());
 					bg->SetProperties(props);
 					
 				} else {
@@ -104,9 +104,13 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 					player->SetBitmapIsDeleteable(true);
 					player->SetBitmap(bmp);
+					player->SetX(20);
+					player->SetY(80);
+					player->SetMass(5.0f);
 
-					props.ignores_user_input = 0;
-					props.ignores_gravity = 0;
+					props.feels_user_input = 1;
+					props.feels_gravity = 1;
+					props.feels_friction = 0;
 					player->SetProperties(props);
 					
 				} else {

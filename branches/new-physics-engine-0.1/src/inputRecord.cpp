@@ -58,7 +58,7 @@ void InputRecord::Update() {
 		// Output any differences between the old keys and the new keys to a file
 		if ( demofile && (old_key[i] != game_key[i]) ) {
 				if (!keys_changed) {
-						fprintf(demofile, "%u", frame_counter);
+						fprintf(demofile, "%lu", frame_counter);
 						keys_changed = true;
 				}
 

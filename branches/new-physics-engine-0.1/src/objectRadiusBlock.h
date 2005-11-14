@@ -24,8 +24,10 @@ class RadiusBlockObject : public Object {
 		void Update();
 		void Draw();
 
-		void SetTheta(float angle);
-		void SetRadius(int r);
+		inline void SetTheta(float angle) { theta = angle; }
+		inline float GetTheta() { return theta; }
+		inline void SetRadius(int r) { radius = r; }
+		inline float GetRadius() { return radius; }
 
 		RadiusBlockObject();
 		~RadiusBlockObject();

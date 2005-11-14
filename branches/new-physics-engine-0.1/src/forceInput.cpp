@@ -1,6 +1,6 @@
 #include "forceInput.h"
 
-Vector2D ForceInput::GetAcceleration() {
+Vector2D ForceInput::GetAcceleration(Object* obj) {
 				
 	if (!GetGameState()) {
 			fprintf(stderr, "Gamestate is NULL??\n");

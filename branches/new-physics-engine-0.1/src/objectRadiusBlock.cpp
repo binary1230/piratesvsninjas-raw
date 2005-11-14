@@ -14,13 +14,5 @@ void RadiusBlockObject::Draw() {
 								int(cosf(theta) * radius) );
 }
 
-void RadiusBlockObject::SetTheta(float angle) {
-	theta = angle;
-}
-
-void RadiusBlockObject::SetRadius(int r) {
-	radius = r;
-}
-
 RadiusBlockObject::RadiusBlockObject() : theta(0.0f) {}
 RadiusBlockObject::~RadiusBlockObject() {}

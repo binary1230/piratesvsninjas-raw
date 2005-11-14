@@ -16,7 +16,6 @@ class BackgroundObject : public Object {
 		bool Init(GameState* _game_state);
 
 		void Update();
-		void Draw();
 
 		BackgroundObject();
 		~BackgroundObject();

@@ -16,11 +16,13 @@ typedef vector<Force*> ForceList;
 #include "globals.h"
 #include "gameBase.h"
 #include "vector2D.h"
+#include "object.h"
 
 enum ForceType {
 	FORCE_GRAVITY,
 	FORCE_INPUT,
 	FORCE_SIMPLE_CIRCLE,
+	FORCE_FRICTION
 };
 
 class Force : public GameBase {
@@ -28,8 +30,8 @@ class Force : public GameBase {
 		ForceType type;
 				
 	public:
-		void Init(GameState* _game_state);
-		virtual Vector2D GetAcceleration() = 0;
+		bool Init(GameState* _game_state);
+		virtual Vector2D GetAcceleration(Object* obj) = 0;
 		
 		void Shutdown();
 

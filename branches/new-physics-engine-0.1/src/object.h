@@ -21,8 +21,9 @@ typedef vector<Object*> ObjectList;
 
 //! A bit mask of various properties of an object
 struct ObjectProperties {
-	unsigned ignores_gravity : 1;	
-	unsigned ignores_user_input : 1;
+	unsigned feels_gravity : 1;	
+	unsigned feels_user_input : 1;
+	unsigned feels_friction : 1;
 };
 
 //! An in-game object, can be affected by physical forces
@@ -44,13 +45,23 @@ class Object : public GameBase {
 		//! Bitmap to draw when this object is drawn
 		BITMAP* bitmap;
 		bool bitmap_is_deleteable;
+
+		//! Whether to flip the sprite when drawing
+		bool flip_x;
+		bool flip_y;
+
+		//! Object's Physical Mass
+		float mass;
+
+		//! Solve for the new position of this object
+		Vector2D Solve();
 		
 	public:
 		virtual bool Init(GameState* _game_state) = 0;
 		virtual void Shutdown();
 		
 		virtual void Update() = 0;
-		virtual void Draw() = 0;
+		virtual void Draw();
 		
 		void DrawAtOffset(int x, int y);	// Draw this object at its coordinates
 																			// plus this offset.
@@ -69,15 +80,18 @@ class Object : public GameBase {
 				pos.SetX((float)_x);	
 				pos.SetY((float)_y);
 		}
-
+		
 		inline int GetWidth() { return bitmap->w; }
 		inline int GetHeight() {	return bitmap->h; }
 	
 		void ResetForNextFrame();
 		void ApplyForce(Force* f);
 		
-		inline struct ObjectProperties GetProperties() {return properties;};
-		inline void SetProperties(struct ObjectProperties p) {properties = p;};
+		inline float GetMass() 					{ return mass; }
+		inline void SetMass(float m) 		{ mass = m; }
+		
+		inline struct ObjectProperties GetProperties() { return properties; }
+		inline void SetProperties(struct ObjectProperties p) { properties = p;}
 		
 		Object();
 		virtual ~Object();

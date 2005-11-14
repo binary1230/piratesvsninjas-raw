@@ -30,7 +30,7 @@ class PlayerObject : public Object {
 				
 	public:
 		void Update();
-		void Draw();
+		// void Draw();
 		void SetInputHandler(BaseInput* handler);
 
 		bool Init(GameState* _game_state);
