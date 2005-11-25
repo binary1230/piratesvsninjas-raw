@@ -33,11 +33,11 @@ class Object : public GameBase {
 		//! Current position
 		Vector2D pos;
 
-		//! Current velocity (not always used)
+		//! Current velocity 
 		Vector2D vel;
 
-		//! Current force (not always used)
-		Vector2D force;
+		//! Current force
+		Vector2D accel;
 		
 		//! Object properties
 		struct ObjectProperties properties;

@@ -26,15 +26,12 @@ class ObjectPlayer;
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
-		// vec vectors[2];		// vectors for X and Y
 				
 	public:
 		void Update();
-		// void Draw();
-		void SetInputHandler(BaseInput* handler);
 
 		bool Init(GameState* _game_state);
-
+		
 		PlayerObject();
 		~PlayerObject();
 };

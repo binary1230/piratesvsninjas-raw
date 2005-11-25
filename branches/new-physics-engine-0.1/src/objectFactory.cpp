@@ -106,7 +106,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 					player->SetBitmap(bmp);
 					player->SetX(20);
 					player->SetY(80);
-					player->SetMass(3.0f);
+					player->SetMass(2.0f);
 
 					props.feels_user_input = 1;
 					props.feels_gravity = 1;

@@ -23,8 +23,13 @@ typedef unsigned int uint;
 
 #define SCREEN_SIZE_X	320
 #define SCREEN_SIZE_Y 200
-//
+
 // full version string 
 #define VERSION_STRING PACKAGE"-"VERSION
+
+// sort of a hackish thing
+// the fps (not ever changed)
+// timestep is 1/FPS
+#define TIMESTEP 1/60
 
 #endif // GLOBALS_H

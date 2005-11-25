@@ -40,25 +40,27 @@ void Object::Shutdown() {
 	bitmap = NULL;
 }
 
-void Object::ApplyForce(Force* f) {
+void Object::ApplyForce(Force* force) {
 	// ignore certain types of forces
-	if (	(!properties.feels_gravity && f->GetType() == FORCE_GRAVITY) ||
-				(!properties.feels_user_input && f->GetType() == FORCE_INPUT) ||
-				(!properties.feels_friction && f->GetType() == FORCE_FRICTION) )
+	if (	(!properties.feels_gravity && force->GetType() == FORCE_GRAVITY) ||
+				(!properties.feels_user_input && force->GetType() == FORCE_INPUT) ||
+				(!properties.feels_friction && force->GetType() == FORCE_FRICTION) )
 		return;
 	else
-		force += f->GetAcceleration(this);
+		accel += force->GetForce(this) / mass;
 }
 
 void Object::ResetForNextFrame() {
-	force.Clear();
+	accel.Clear();
 }
 
 //! Solve for new position based on velocity
 Vector2D Object::Solve() {
 	Vector2D newpos = pos;
-	vel += force / mass;
+
+	vel += accel;
 	newpos += vel;
+
 	return newpos;
 }
 

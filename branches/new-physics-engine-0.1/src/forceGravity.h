@@ -11,10 +11,13 @@ class Force;
 #include "force.h"
 
 class ForceGravity : public Force {
+	protected:
+		float gravitational_constant;
+		
 	public:
-		Vector2D GetAcceleration(Object*);
+		Vector2D GetForce(Object*);
 
-		ForceGravity();
+		ForceGravity(float _magnitude = -9.81f);
 		virtual ~ForceGravity();
 };
 

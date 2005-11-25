@@ -31,10 +31,11 @@ class Force : public GameBase {
 				
 	public:
 		bool Init(GameState* _game_state);
-		virtual Vector2D GetAcceleration(Object* obj) = 0;
-		
 		void Shutdown();
-
+		
+		//! Compute the vector of the force that this Force creates
+		virtual Vector2D GetForce(Object* obj) = 0;
+		
 		inline ForceType GetType() {return type;};
 		// inline void SetType(ForceType t) {type = t;};
 
