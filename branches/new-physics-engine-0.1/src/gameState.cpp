@@ -30,7 +30,7 @@ int GameState::InitSystem() {
 
 		window = new Window();
 		if ( !window ||	window->Init(this, 640, 480, 
-										options->IsFullscreen()) < 0 ) {
+										options->IsFullscreen(), options->GraphicsMode()) < 0 ) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init window!\n");
 			return -1;
 		}
@@ -160,6 +160,7 @@ void GameState::Update() {
 
 //! Loop through and draw all game objects.
 void GameState::Draw() {
+	window->Clear();
 	simulation->Draw();
 	window->Flip();
 }

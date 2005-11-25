@@ -77,9 +77,25 @@ int Window::Init(	GameState* _game_state,
 	return 0;
 }
 
+void Window::Clear() {
+	switch (mode) {
+		case MODE_PAGEFLIPPING:
+			clear_bitmap(page[active_page]);
+			break;
+		case MODE_DOUBLEBUFFERING:
+			clear_bitmap(backbuf);
+			break;
+		case MODE_NOBUFFERING:
+			clear_bitmap(screen);
+			break;
+		default:
+			fprintf(stderr, "ERROR: Unkown buffering mode %u\n", mode);
+	}
+}
+
 // draws the backbuffer to the screen and erases the backbuffer
 void Window::Flip() {
-	
+	vsync();
 	if (mode == MODE_PAGEFLIPPING) {
 		show_video_bitmap(page[active_page]);
 	
@@ -88,18 +104,11 @@ void Window::Flip() {
 		else 
 			active_page = 1;
 	
-		clear_bitmap(page[active_page]);
 		drawing_surface = page[active_page];
-		
 	} else if (mode == MODE_DOUBLEBUFFERING) {
-
 		blit(backbuf, screen, 0, 0, 0, 0, width, height);
-		clear_bitmap(backbuf);
-		
 	} else if (mode == MODE_NOBUFFERING) {
-		
-		// no need to do any blitting, just clear the screen
-		clear_bitmap(screen);
+		// do nothing	
 	}
 }
 

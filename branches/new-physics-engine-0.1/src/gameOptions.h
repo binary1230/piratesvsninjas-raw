@@ -22,6 +22,8 @@ class GameOptions {
 		bool record_demo;
 		bool playback_demo;
 		char* demo_filename;
+
+		int graphics_mode;
 		
 	public:
 		void PrintOptions(char* arg0);
@@ -35,6 +37,7 @@ class GameOptions {
 		inline char* GetDemoFilename() {return demo_filename;};
 		inline bool RecordDemo() {return record_demo;};
 		inline bool PlaybackDemo() {return playback_demo;};
+		inline int GraphicsMode() {return graphics_mode;};
 
 		GameOptions();
 		~GameOptions();

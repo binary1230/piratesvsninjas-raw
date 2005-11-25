@@ -53,6 +53,7 @@ class Window : public GameBase {
 		void Shutdown();
 
 		inline BITMAP* GetDrawingSurface() {return drawing_surface;};
+		void Clear();
 		void Flip();
 
 		inline uint Width() {return width;};
