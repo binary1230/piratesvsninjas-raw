@@ -1,6 +1,6 @@
 #include "objectPlayer.h"
 
-#define JUMP_VELOCITY 10.0f
+#define JUMP_VELOCITY 12.0f
 
 void PlayerObject::Update() {
 

@@ -76,7 +76,7 @@ int GameState::InitTimers() {
 	install_timer();
 	LOCK_VARIABLE(outstanding_updates);
 	LOCK_FUNCTION((void*)Timer);
-	return install_int_ex(Timer, BPS_TO_TIMER(60));
+	return install_int_ex(Timer, BPS_TO_TIMER(FPS));
 }
 
 //! Initialize game objects
@@ -105,6 +105,7 @@ int GameState::RunGame(GameOptions* _options) {
 			else if (options->PlaybackDemo())
 				input->BeginPlayback();
 			
+			outstanding_updates = 0;	// remember, the timer has been rolling.
 			MainLoop();
 
 			// XXX SHOULD NOT TEST option->is_xxx should TEST input->is_xxx()
@@ -135,6 +136,9 @@ void GameState::MainLoop() {
 		while (outstanding_updates > 0) {
 			Update();
 			outstanding_updates--;
+			if (outstanding_updates) {
+				fprintf(stderr, "outstanding updates - %i.\n", outstanding_updates);
+			}
 		}
 		Draw();
 

@@ -30,6 +30,7 @@ typedef unsigned int uint;
 // sort of a hackish thing
 // the fps (not ever changed)
 // timestep is 1/FPS
-#define TIMESTEP 1/60
+#define FPS 30
+#define TIMESTEP 1/FPS
 
 #endif // GLOBALS_H
