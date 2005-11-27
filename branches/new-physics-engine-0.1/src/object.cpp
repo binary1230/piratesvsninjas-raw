@@ -11,6 +11,7 @@ void Object::DrawAtOffset(int _x, int _y) {
 	int x = int(pos.GetX()) + _x;
 	int y = game_state->Height() - int(pos.GetY()) + _y;
 	
+	
 	if (flip_x) 
 		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
 	else

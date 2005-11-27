@@ -27,7 +27,6 @@ typedef unsigned int uint;
 // full version string 
 #define VERSION_STRING PACKAGE"-"VERSION
 
-// sort of a hackish thing
 // the fps (not ever changed)
 // timestep is 1/FPS
 #define FPS 30

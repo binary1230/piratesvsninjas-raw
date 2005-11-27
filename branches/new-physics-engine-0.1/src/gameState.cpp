@@ -136,9 +136,6 @@ void GameState::MainLoop() {
 		while (outstanding_updates > 0) {
 			Update();
 			outstanding_updates--;
-			if (outstanding_updates) {
-				fprintf(stderr, "outstanding updates - %i.\n", outstanding_updates);
-			}
 		}
 		Draw();
 
