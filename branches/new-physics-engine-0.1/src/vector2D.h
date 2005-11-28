@@ -76,6 +76,13 @@ class Vector2D {
 			return Vector2D(x*n, y*n);
 		}
 		
+		//! Subtract another vector from this one
+		inline void Vector2D::operator*=(float n) {
+			x *= n;
+			y *= n;
+		}
+
+
 		//! Scalar product (vector * number)
 		//XXX need to add exception handling for DIVIDE by ZERO
 		inline Vector2D Vector2D::operator/(float n) const {

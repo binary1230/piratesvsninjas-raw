@@ -18,7 +18,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 	switch (id) {
 		case OBJECT_ID_BACKGROUND:
 			
-			bg = new BackgroundObject();
+			bg = new BackgroundObject(1.0f);
 			if ( bg && bg->Init(GetGameState()) ) {
 							
 				PALETTE pal;
@@ -106,7 +106,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 					player->SetBitmap(bmp);
 					player->SetX(20);
 					player->SetY(80);
-					player->SetMass(20.0f);
+					player->SetMass(1.0f);
 
 					props.feels_user_input = 1;
 					props.feels_gravity = 1;

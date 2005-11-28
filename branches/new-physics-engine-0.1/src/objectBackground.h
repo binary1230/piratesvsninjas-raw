@@ -11,13 +11,16 @@ class BackgroundObject;
 
 class BackgroundObject : public Object {
 	protected:
+		float scroll_offset;
+		float speed;
 				
 	public:
 		bool Init(GameState* _game_state);
 
 		void Update();
+		void Draw();
 
-		BackgroundObject();
+		BackgroundObject(float _speed = 0.5);
 		~BackgroundObject();
 };
 

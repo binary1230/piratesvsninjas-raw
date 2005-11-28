@@ -1,6 +1,7 @@
 #include "objectPlayer.h"
 
-#define JUMP_VELOCITY 13.0f
+#define JUMP_VELOCITY 5.0f
+#define DRAG 0.9f
 
 void PlayerObject::Update() {
 
@@ -29,7 +30,9 @@ void PlayerObject::Update() {
 		// Then we can jump.
 		if (game_state->GetKey(GAMEKEY_JUMP)) {
 			vel.SetY(JUMP_VELOCITY);
-	  }	
+	  }	else {
+			vel *= DRAG;
+		}
 	}
 
 	// figure out whether to flip the sprite or not
