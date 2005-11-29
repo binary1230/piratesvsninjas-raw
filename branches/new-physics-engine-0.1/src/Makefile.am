@@ -17,7 +17,8 @@ object.h objectFactory.h objectIDs.h \
 objectPlayer.h objectRadiusBlock.h objectBackground.h \
 vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
-platform.h basename.h
+platform.h basename.h resourceLoader.h \
+StdString.h 
 
 ninjas_SOURCES = \
 force.cpp forceGravity.cpp forceInput.cpp forceFactory.cpp \
@@ -26,7 +27,7 @@ input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp \
 timer.cpp vector2D.cpp window.cpp \
-platform.cpp basename.cpp \
+platform.cpp basename.cpp resourceLoader.cpp \
 $(headers)
 
 # EXTRA_DIST = dir1 dir2
