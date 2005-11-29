@@ -1,6 +1,6 @@
 #include "forceInput.h"
 
-#define MAGNITUDE 3.0f
+#define MAGNITUDE 10.0f
 
 Vector2D ForceInput::GetForce(Object* obj) {
 				
