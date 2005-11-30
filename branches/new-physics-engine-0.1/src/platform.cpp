@@ -49,7 +49,7 @@ char* get_correct_path(const char* filename) {
 #include <CoreServices/CoreServices.h>
 #endif 
 
-//! Returns something like '/Applications/Ninjas.app/' on Darwin, else ""
+//! Returns something like '/Applications/Ninjas.app/' on Darwin, else "./"
 const char* get_current_working_dir() {
 #ifdef PLATFORM_DARWIN 
 		CFBundleRef mainBundle = CFBundleGetMainBundle();
@@ -57,6 +57,6 @@ const char* get_current_working_dir() {
 		CFStringRef cfStr = CFURLCopyPath(url);
 		return CFStringGetCStringPtr(cfStr, CFStringGetSystemEncoding());
 #else
-		return "";
+		return "./";
 #endif // PLATFORM_DARWIN
 }

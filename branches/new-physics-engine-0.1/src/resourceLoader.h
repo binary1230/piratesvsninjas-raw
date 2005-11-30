@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <vector>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <allegro.h>
 using namespace std;
 
 #include "gameBase.h"
@@ -21,15 +26,29 @@ class ResourceLoader : public GameBase {
 		void Shutdown();
 		
 		//! Set the search path
-		//! Takes at least one path
-		void SetSearchPath(char* _path, ...);
+		void SetSearchPath(const char* path, ...);
 
 		//! Append a new path to the search path
-		void AppendToSearchPath(char* _path);
+		void AppendToSearchPath(const char* path);
 
-		//! Get the absolute path of this resource in the
-		//! search path
-		CString GetPathOf(char* filename);
+		//! Reset search paths
+		void ResetPaths();
+
+		//! This function either returns a full to a file path which 
+		//! is guaranteed to exist, or returns "" if one can't be found
+		//! in the current search path
+		CString ResourceLoader::GetPathOf(const char* filename);
+
+		//! Returns true if the file exists.
+		bool FileExists(const char* file);
+
+		//! Opens a bitmap file, or returns NULL on failure
+		//! This function looks in the current search path
+		//! it also outputs the palette in *pal
+		BITMAP* OpenBitmap(const char* file, PALETTE* pal);
+
+		//! Returns the current working directory
+		CString GetCurrentWorkingDir();
 
 		ResourceLoader();
 		~ResourceLoader();
