@@ -17,11 +17,13 @@ class ObjectFactory;
 #include "gameBase.h"
 
 #include "platform.h"
+#include "resourceLoader.h"
 
 // THIS CLASS IS BAD.
 // It will be rewritten, for now it JUST WORKS.
 class ObjectFactory : GameBase {
 	protected:
+		ResourceLoader* resourceLoader;
 
 	public:
 		int Init(GameState* _game_state);

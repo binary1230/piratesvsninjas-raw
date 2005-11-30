@@ -22,7 +22,8 @@ Object* ObjectFactory::CreateObject(uint id) {
 			if ( bg && bg->Init(GetGameState()) ) {
 							
 				PALETTE pal;
-				BITMAP* bmp = load_bitmap(get_correct_path("data/back.tga"), pal);
+				// BITMAP* bmp = load_bitmap(get_correct_path("data/back.tga"), pal);
+				BITMAP* bmp = resourceLoader->OpenBitmap("data/back.tga", &pal);
 				
 				if (bmp) {
 
@@ -147,10 +148,21 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 int ObjectFactory::Init(GameState* _game_state) {
 	SetGameState(_game_state);
+	resourceLoader = new ResourceLoader();
+	if (!resourceLoader || resourceLoader->Init(GetGameState()) == -1)
+		return -1;
+
+	resourceLoader->AppendToSearchPath("../");
+
 	return 0;
 }
 
 void ObjectFactory::Shutdown() {
+	if (resourceLoader) {
+		resourceLoader->Shutdown();
+		free(resourceLoader);
+		resourceLoader = NULL;
+	}
 }
 
 ObjectFactory::ObjectFactory() {}
