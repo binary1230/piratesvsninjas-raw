@@ -9,7 +9,6 @@
 
 #include "globals.h"
 
-//! XXX STUPID HACKS FOR NOW
 char* get_correct_path(const char* filename);
 const char* get_current_working_dir();
 
