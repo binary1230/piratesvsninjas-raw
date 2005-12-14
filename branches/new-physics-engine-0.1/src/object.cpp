@@ -2,6 +2,7 @@
 
 // Putting this here is a nasty hack to avoid weird dependency loops
 #include "gameState.h"
+#include "force.h"
 
 void Object::Draw() {
 	DrawAtOffset(0,0);
@@ -10,7 +11,6 @@ void Object::Draw() {
 void Object::DrawAtOffset(int _x, int _y) {	
 	int x = int(pos.GetX()) + _x;
 	int y = game_state->Height() - int(pos.GetY()) + _y;
-	
 	
 	if (flip_x) 
 		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);

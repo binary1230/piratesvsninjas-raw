@@ -114,7 +114,7 @@ int PhysSimulation::Load() {
 				
 	Object* new_obj;
 	
-	int i, max = 5;
+	int i, max = 30;
 
 	// -- Create some random objects --
 	objects.clear();

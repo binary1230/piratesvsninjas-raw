@@ -29,7 +29,7 @@ int GameState::InitSystem() {
 		SetRandomSeed(42);
 
 		window = new Window();
-		if ( !window ||	window->Init(this, 640, 480, 
+		if ( !window ||	window->Init(this, SCREEN_SIZE_X, SCREEN_SIZE_Y, 
 										options->IsFullscreen(), options->GraphicsMode()) < 0 ) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init window!\n");
 			return -1;

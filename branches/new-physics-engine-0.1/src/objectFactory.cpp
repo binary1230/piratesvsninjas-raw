@@ -1,4 +1,10 @@
 #include "objectFactory.h"
+#include "object.h"
+#include "objectIDs.h"
+
+#include "objectPlayer.h"
+#include "objectRadiusBlock.h"
+#include "objectBackground.h"
 
 // XXX NASTY!! SO BADLY WRITTEN, CLEAN IT UP
 // break this up into smaller functions.. COME ON MORON!!X0r.
@@ -22,12 +28,9 @@ Object* ObjectFactory::CreateObject(uint id) {
 			if ( bg && bg->Init(GetGameState()) ) {
 							
 				PALETTE pal;
-				// BITMAP* bmp = load_bitmap(get_correct_path("data/back.tga"), pal);
 				BITMAP* bmp = resourceLoader->OpenBitmap("data/back.tga", &pal);
 				
 				if (bmp) {
-
-					set_palette(pal);
 
 					bg->SetBitmapIsDeleteable(true);
 					bg->SetBitmap(bmp);
@@ -97,7 +100,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 			if ( player && player->Init(GetGameState()) ) {
 							
 				PALETTE pal;
-				BITMAP* bmp = load_bitmap(get_correct_path("data/kenshin.tga"), pal);
+				BITMAP* bmp = load_bitmap(get_correct_path("data/mmx_still.bmp"), pal);
 				
 				if (bmp) {
 
@@ -140,11 +143,6 @@ Object* ObjectFactory::CreateObject(uint id) {
 	
 	return new_obj;
 }
-
-/*void ObjectFactory::DeleteObject(Object* obj) {
-	obj->Delete();
-	delete obj;
-}*/
 
 int ObjectFactory::Init(GameState* _game_state) {
 	SetGameState(_game_state);

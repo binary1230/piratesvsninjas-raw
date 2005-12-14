@@ -8,10 +8,7 @@ class ForceFactory;
 
 #include "globals.h"
 #include "gameBase.h"
-
 #include "force.h"
-#include "forceInput.h"
-#include "forceGravity.h"
 
 #include "platform.h"
 

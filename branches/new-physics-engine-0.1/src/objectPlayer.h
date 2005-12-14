@@ -21,8 +21,6 @@ class ObjectPlayer;
 #include "forceInput.h"
 #include "vector2D.h"
 
-// directions
-
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;

@@ -6,6 +6,7 @@
 #define OBJECT_H
 
 class Object;
+class Force;
 
 #include <allegro.h>
 #include <stdio.h>
@@ -15,9 +16,10 @@ using namespace std;
 typedef vector<Object*> ObjectList;
 
 #include "globals.h"
-#include "gameBase.h"
 #include "vector2D.h"
-#include "force.h"
+#include "gameBase.h"
+#include "objectFactory.h"
+// #include "force.h"
 
 //! A bit mask of various properties of an object
 struct ObjectProperties {
@@ -95,6 +97,9 @@ class Object : public GameBase {
 		
 		Object();
 		virtual ~Object();
+
+		// for the class factory, allow it to access our private members
+		friend Object* ObjectFactory::CreateObject(uint id);
 };
 
 #endif // OBJECT_H

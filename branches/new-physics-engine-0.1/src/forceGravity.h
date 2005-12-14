@@ -9,6 +9,7 @@ class Force;
 
 #include "globals.h"
 #include "force.h"
+#include "object.h"
 
 class ForceGravity : public Force {
 	protected:

@@ -20,7 +20,7 @@ class BackgroundObject : public Object {
 		void Update();
 		void Draw();
 
-		BackgroundObject(float _speed = 0.5);
+		BackgroundObject(float _speed = 0.2);
 		~BackgroundObject();
 };
 

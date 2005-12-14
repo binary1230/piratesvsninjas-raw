@@ -56,7 +56,7 @@ BITMAP* ResourceLoader::OpenBitmap(const char* filename, PALETTE* pal) {
 	CString file = GetPathOf(filename);
 	
 	if (file.length() != 0)
-		bmp = load_tga(file, *pal);
+		bmp = load_bitmap(file, *pal);
 	
 	return bmp;
 }

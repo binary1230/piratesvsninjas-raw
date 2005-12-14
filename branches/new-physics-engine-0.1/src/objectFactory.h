@@ -5,19 +5,15 @@
 #include <stdio.h>
 
 class ObjectFactory;
+class Object;
 
 #include "globals.h"
-#include "object.h"
-#include "objectIDs.h"
-
-#include "objectPlayer.h"
-#include "objectRadiusBlock.h"
-#include "objectBackground.h"
-
 #include "gameBase.h"
 
 #include "platform.h"
 #include "resourceLoader.h"
+
+#include "objectIDs.h"
 
 // THIS CLASS IS BAD.
 // It will be rewritten, for now it JUST WORKS.

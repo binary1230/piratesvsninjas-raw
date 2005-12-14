@@ -1,4 +1,7 @@
 #include "forceFactory.h"
+#include "force.h"
+#include "forceInput.h"
+#include "forceGravity.h"
 
 // XXX NASTY!! SO BADLY WRITTEN, CLEAN IT UP
 Force* ForceFactory::CreateForce(ForceType type) {
