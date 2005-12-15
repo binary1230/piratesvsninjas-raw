@@ -119,7 +119,7 @@ int PhysSimulation::Load() {
 	// -- Create some random objects --
 	objects.clear();
 	
-	new_obj = objectFactory->CreateObject(OBJECT_ID_BACKGROUND);
+	/*new_obj = objectFactory->CreateObject(OBJECT_ID_BACKGROUND);
 	if (!new_obj)
 		return -1;
 	
@@ -131,7 +131,7 @@ int PhysSimulation::Load() {
 			return -1;
 
 		objects.push_back(new_obj);
-	}
+	}*/
 	
 	new_obj = objectFactory->CreateObject(OBJECT_ID_PLAYER);
 	if (!new_obj)

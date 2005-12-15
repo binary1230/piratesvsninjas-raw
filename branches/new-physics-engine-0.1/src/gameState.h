@@ -8,21 +8,13 @@
 using namespace std;
 
 class GameState;
+class GameOptions;
+class BaseInput;
+class Window;
+class PhysSimulation;
 
 #include "globals.h"
-#include "gameOptions.h"
 #include "timer.h"
-#include "input.h"
-#include "inputLiveHandler.h"
-#include "inputRecord.h"
-#include "inputPlayback.h"
-// #include "object.h"
-// #include "objectFactory.h"
-#include "window.h"
-#include "physSimulation.h"
-
-class Window;
-
 //! Represents the current state of the game.
 
 //! This is the 'main object' for the game - the centrally
@@ -76,25 +68,19 @@ class GameState {
 
 		void Update();
 		void Draw();
-
 				
 	public:
 		int RunGame(GameOptions *_options);
 
-		// no one uses these (rv90)
-		// inline GameOptions* 	GetGameOptions() 		{ return options; };
-		// inline ObjectFactory*	GetObjectFactory()	{ return objectFactory; };
+ 		void SetRandomSeed(int);
+		int GetRandomSeed();
 
-		inline void SetRandomSeed(int val)		{ random_seed = val; srand(val); };
-		inline int GetRandomSeed()						{ return random_seed; };
-
-		//! Get status of a key
-		inline bool GetKey(uint which_key)				{ return input->Key(which_key); };
-
-		//! Get drawing surface (essentially the screen)
 		BITMAP* GetDrawingSurface();
+		bool GetKey(uint which_key);
+		
 		uint Width();
 		uint Height();
+
 
 		GameState();
 		~GameState();

@@ -1,4 +1,7 @@
 #include "forceInput.h"
+#include "globals.h"
+#include "input.h"
+#include "gameState.h"
 
 #define MAGNITUDE 10.0f
 

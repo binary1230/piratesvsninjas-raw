@@ -1,28 +1,26 @@
 #include "object.h"
-
-// Putting this here is a nasty hack to avoid weird dependency loops
 #include "gameState.h"
 #include "force.h"
+#include "globals.h"
+#include "gameBase.h"
+#include "animation.h"
+
+int Object::GetWidth() { return currentAnimation->Width(); }
+int Object::GetHeight() {	return currentAnimation->Height(); }
 
 void Object::Draw() {
 	DrawAtOffset(0,0);
 }
 
-void Object::DrawAtOffset(int _x, int _y) {	
-	int x = int(pos.GetX()) + _x;
-	int y = game_state->Height() - int(pos.GetY()) + _y;
-	
-	if (flip_x) 
-		draw_sprite(game_state->GetDrawingSurface(), bitmap, x, y);
-	else
-		draw_sprite_h_flip(game_state->GetDrawingSurface(), bitmap, x, y);
+void Object::DrawAtOffset(int x, int y) {
+	if (currentAnimation)
+		currentAnimation->DrawAt(
+										(int)pos.GetX() + x, 
+										game_state->Height() - (int)pos.GetY() + y, 
+										flip_x);
 }
 
-void Object::Update() {
-	// nothing to update for regular objects
-}
-
-void Object::SetBitmap(BITMAP* _bitmap) {
+/*void Object::SetBitmap(BITMAP* _bitmap) {
 	bitmap = _bitmap;
 }
 				
@@ -32,14 +30,7 @@ void Object::SetBitmapIsDeleteable(bool _bitmap_is_deleteable) {
 
 bool Object::GetBitmapIsDeleteable() {
 	return bitmap_is_deleteable;
-}
-
-void Object::Shutdown() {
-	if (bitmap_is_deleteable) 
-		destroy_bitmap(bitmap);
-
-	bitmap = NULL;
-}
+}*/
 
 void Object::ApplyForce(Force* force) {
 	// ignore certain types of forces
@@ -65,6 +56,13 @@ Vector2D Object::Solve() {
 	return newpos;
 }
 
-Object::Object() : bitmap(NULL), bitmap_is_deleteable(false), 
-									 flip_x(false), mass(1.0f)  {}
+void Object::Shutdown() {
+}
+
+Object::Object() {
+	currentAnimation = NULL;
+	flip_x = false; 
+	mass = 1.0f;
+}
+
 Object::~Object() {}

@@ -14,10 +14,8 @@ class Object;
 
 typedef vector<Force*> ForceList;
 
-#include "globals.h"
 #include "gameBase.h"
 #include "vector2D.h"
-// #include "object.h"
 
 enum ForceType {
 	FORCE_GRAVITY,

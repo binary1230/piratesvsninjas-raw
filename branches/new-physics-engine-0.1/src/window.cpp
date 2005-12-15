@@ -100,7 +100,6 @@ void Window::Clear() {
 
 // draws the backbuffer to the screen and erases the backbuffer
 void Window::Flip() {
-	vsync();
 	if (mode == MODE_PAGEFLIPPING) {
 		show_video_bitmap(page[active_page]);
 	
@@ -111,6 +110,7 @@ void Window::Flip() {
 	
 		drawing_surface = page[active_page];
 	} else if (mode == MODE_DOUBLEBUFFERING) {
+		vsync();
 		blit(backbuf, screen, 0, 0, 0, 0, width, height);
 	} else if (mode == MODE_NOBUFFERING) {
 		// do nothing	

@@ -1,5 +1,6 @@
 #include "gameOptions.h"
 #include "basename.h"
+#include "globals.h"
 
 void GameOptions::PrintBanner() {
 		fprintf(stderr, 

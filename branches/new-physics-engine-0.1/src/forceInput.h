@@ -6,13 +6,10 @@
 
 #include <allegro.h>
 
-class Force;
 class ForceInput;
+class Object;
 
-#include "globals.h"
 #include "force.h"
-#include "input.h"
-#include "gameState.h"
 
 class ForceInput : public Force {
 	public:

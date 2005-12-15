@@ -18,6 +18,7 @@ objectPlayer.h objectRadiusBlock.h objectBackground.h \
 vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
 platform.h basename.h resourceLoader.h \
+animation.h \
 StdString.h 
 
 ninjas_SOURCES = \
@@ -28,6 +29,7 @@ object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp \
 timer.cpp vector2D.cpp window.cpp \
 platform.cpp basename.cpp resourceLoader.cpp \
+animation.cpp \
 $(headers)
 
 # EXTRA_DIST = dir1 dir2

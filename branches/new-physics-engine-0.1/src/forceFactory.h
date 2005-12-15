@@ -4,17 +4,15 @@
 #include <allegro.h>
 #include <stdio.h>
 
-class ForceFactory;
+class Force;
+class GameState;
 
-#include "globals.h"
 #include "gameBase.h"
 #include "force.h"
 
-#include "platform.h"
-
 // THIS CLASS IS BAD.
 // It will be rewritten, for now it JUST WORKS.
-class ForceFactory : GameBase {
+class ForceFactory : public GameBase {
 	protected:
 
 	public:

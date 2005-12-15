@@ -1,27 +1,92 @@
 #include "objectFactory.h"
+
+#include "platform.h"
+#include "resourceLoader.h"
 #include "object.h"
 #include "objectIDs.h"
-
 #include "objectPlayer.h"
 #include "objectRadiusBlock.h"
 #include "objectBackground.h"
+#include "animation.h"
 
-// XXX NASTY!! SO BADLY WRITTEN, CLEAN IT UP
-// break this up into smaller functions.. COME ON MORON!!X0r.
-// ALSO, tons of memory leaks.  We will break this thing down
-//  For now it 'just works'
-Object* ObjectFactory::CreateObject(uint id) {
-	
-	Object* new_obj = NULL;
-	RadiusBlockObject *rblock;
-	PlayerObject *player;
-	BackgroundObject *bg;
+/* XXX TODO:
+ * - NASTY!! SO BADLY WRITTEN, CLEAN IT UP
+ * - width/height autocalc
+ * - animation adding.
+ * - read in all hardcoded stuff from DATA files.
+ * - break this up into smaller functions
+ * - For now it 'just works'
+ *
+ * This is the ugliest code.. EVAR, it ALL needs to be redone.
+ * Soon this will all be replaced with a nice XML parser factory thing.
+ */
+
+/*
+Object* ObjectFactory::CreateBackgroundObject() {
 	ObjectProperties props;
-
-	props.feels_gravity = 0;
-	props.feels_user_input = 0;
+	BackgroundObject* obj = new BackGroundObject(1.0f);
 	
-	switch (id) {
+	if (!obj)
+		return NULL;
+
+	props.feels_user_input = 0;
+	props.feels_gravity = 0;
+	props.feels_friction = 0;
+	obj->SetProperties(props);
+
+	obj->SetXY(0, game_state->Height());
+
+	obj->currentAnimation = NULL;
+	
+	return obj;
+}
+
+Object* ObjectFactory::CreateRadiusBlockObject() {
+	ObjectProperties props;
+	RadiusBlockObject* obj = new RadiusBlockObject();
+	
+	if (!obj)
+		return NULL;
+
+	props.feels_user_input = 0;
+	props.feels_gravity = 0;
+	props.feels_friction = 0;
+	obj->SetProperties(props);
+
+	obj->SetXY(Rand(0, SCREEN_SIZE_X), Rand(0, SCREEN_SIZE_Y));
+	obj->SetTheta(Rand(0,360));
+	obj->SetRadius(Rand(20,300));
+
+	obj->currentAnimation = NULL;
+	
+	return obj;
+}*/
+
+Object* ObjectFactory::CreateObject(uint id) {
+
+	Object* obj = NULL;
+	
+	switch(id) {
+					
+		case OBJECT_ID_BACKGROUND:
+			obj = BackgroundObject::New(GetGameState());
+			break;
+			
+		case OBJECT_ID_PLAYER:
+			obj = PlayerObject::New(GetGameState());
+			break;
+			
+		case OBJECT_ID_RADIUS_BLOCK:
+			obj = RadiusBlockObject::New(GetGameState());
+			break;
+			
+		default:
+			fprintf(stderr, "ObjectFactory: Unknown Object ID passed: %i\n", id);
+	}
+
+	return obj;
+	
+	/*switch (id) {
 		case OBJECT_ID_BACKGROUND:
 			
 			bg = new BackgroundObject(1.0f);
@@ -32,8 +97,6 @@ Object* ObjectFactory::CreateObject(uint id) {
 				
 				if (bmp) {
 
-					bg->SetBitmapIsDeleteable(true);
-					bg->SetBitmap(bmp);
 					bg->SetXY(0, game_state->Height());
 					bg->SetProperties(props);
 					
@@ -68,8 +131,6 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 					set_palette(pal);
 
-					rblock->SetBitmapIsDeleteable(true);
-					rblock->SetBitmap(bmp);
 					rblock->SetXY(Rand(0, SCREEN_SIZE_X), Rand(0, SCREEN_SIZE_Y));
 					rblock->SetTheta(Rand(0,360));
 					rblock->SetRadius(Rand(20,300));
@@ -100,14 +161,12 @@ Object* ObjectFactory::CreateObject(uint id) {
 			if ( player && player->Init(GetGameState()) ) {
 							
 				PALETTE pal;
-				BITMAP* bmp = load_bitmap(get_correct_path("data/mmx_still.bmp"), pal);
+				BITMAP* bmp = load_bitmap(get_correct_path("data/wait1.bmp"), pal);
 				
 				if (bmp) {
 
 					set_palette(pal);
 
-					player->SetBitmapIsDeleteable(true);
-					player->SetBitmap(bmp);
 					player->SetX(20);
 					player->SetY(80);
 					player->SetMass(1.0f);
@@ -142,6 +201,7 @@ Object* ObjectFactory::CreateObject(uint id) {
 	}
 	
 	return new_obj;
+	*/
 }
 
 int ObjectFactory::Init(GameState* _game_state) {
@@ -150,6 +210,7 @@ int ObjectFactory::Init(GameState* _game_state) {
 	if (!resourceLoader || resourceLoader->Init(GetGameState()) == -1)
 		return -1;
 
+	// XXX doesn't work yet, resourceLoader's fault.
 	resourceLoader->AppendToSearchPath("../");
 
 	return 0;

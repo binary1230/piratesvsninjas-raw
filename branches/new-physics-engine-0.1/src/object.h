@@ -1,12 +1,14 @@
 // Object
 // Base class for all objects displayable on the screen
 // 
-// TODO Replace BITMAP* sprite with animation class
+// TODO: Replace BITMAP* sprite with animation class
+// TODO: Free all animations that are loaded.
 #ifndef OBJECT_H
 #define OBJECT_H
 
 class Object;
 class Force;
+class Animation;
 
 #include <allegro.h>
 #include <stdio.h>
@@ -15,11 +17,8 @@ using namespace std;
 
 typedef vector<Object*> ObjectList;
 
-#include "globals.h"
-#include "vector2D.h"
 #include "gameBase.h"
-#include "objectFactory.h"
-// #include "force.h"
+#include "vector2D.h"
 
 //! A bit mask of various properties of an object
 struct ObjectProperties {
@@ -30,8 +29,11 @@ struct ObjectProperties {
 
 //! An in-game object, can be affected by physical forces
 class Object : public GameBase {
-				
 	protected:
+
+		//! Width/height of this object
+		int width, height;
+					
 		//! Current position
 		Vector2D pos;
 
@@ -44,9 +46,15 @@ class Object : public GameBase {
 		//! Object properties
 		struct ObjectProperties properties;
 		
-		//! Bitmap to draw when this object is drawn
-		BITMAP* bitmap;
-		bool bitmap_is_deleteable;
+		//! XXX OLD Bitmap to draw when this object is drawn
+		// BITMAP* bitmap;
+		// bool bitmap_is_deleteable;
+
+		//! Points to the current animation
+		Animation* currentAnimation;
+
+		//! Array of all loaded animations
+		vector<Animation*> animations;
 
 		//! Whether to flip the sprite when drawing
 		bool flip_x;
@@ -68,10 +76,10 @@ class Object : public GameBase {
 		void DrawAtOffset(int x, int y);	// Draw this object at its coordinates
 																			// plus this offset.
 		
-		void SetBitmap(BITMAP* _bitmap);
+		// void SetBitmap(BITMAP* _bitmap);
 		
-		void SetBitmapIsDeleteable(bool _is_deletable);
-		bool GetBitmapIsDeleteable();
+		// void SetBitmapIsDeleteable(bool _is_deletable);
+		// bool GetBitmapIsDeleteable();
 		
 		inline int GetX() 					{ return (int)pos.GetX(); }
 		inline int GetY() 					{ return (int)pos.GetY(); }
@@ -83,8 +91,9 @@ class Object : public GameBase {
 				pos.SetY((float)_y);
 		}
 		
-		inline int GetWidth() { return bitmap->w; }
-		inline int GetHeight() {	return bitmap->h; }
+		//XXX probably needs to be changed.
+		int GetWidth(); 
+		int GetHeight(); 
 	
 		void ResetForNextFrame();
 		void ApplyForce(Force* f);
@@ -97,9 +106,6 @@ class Object : public GameBase {
 		
 		Object();
 		virtual ~Object();
-
-		// for the class factory, allow it to access our private members
-		friend Object* ObjectFactory::CreateObject(uint id);
 };
 
 #endif // OBJECT_H

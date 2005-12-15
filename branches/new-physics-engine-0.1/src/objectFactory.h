@@ -6,12 +6,10 @@
 
 class ObjectFactory;
 class Object;
+class ResourceLoader;
 
 #include "globals.h"
 #include "gameBase.h"
-
-#include "platform.h"
-#include "resourceLoader.h"
 
 #include "objectIDs.h"
 
@@ -21,6 +19,10 @@ class ObjectFactory : GameBase {
 	protected:
 		ResourceLoader* resourceLoader;
 
+		Object* CreatePlayerObject();
+		Object* CreateBackgroundObject();
+		Object* CreateRadiusBlockObject();
+		
 	public:
 		int Init(GameState* _game_state);
 		void Shutdown();

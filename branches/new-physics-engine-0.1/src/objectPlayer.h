@@ -11,19 +11,17 @@
 using namespace std;
 
 class ObjectPlayer;
+class Animation;
+class GameState;
+class BaseInput;
+class Animation;
 
-#include "globals.h"
 #include "object.h"
-#include "input.h"
-#include "inputLiveHandler.h"
-#include "force.h"
-#include "forceGravity.h"
-#include "forceInput.h"
-#include "vector2D.h"
 
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
+		vector<Animation*> animations;
 				
 	public:
 		void Update();
@@ -32,6 +30,8 @@ class PlayerObject : public Object {
 		
 		PlayerObject();
 		~PlayerObject();
+		
+		static Object* New(GameState*);
 };
 
 #endif // PLAYER_OBJECT_H

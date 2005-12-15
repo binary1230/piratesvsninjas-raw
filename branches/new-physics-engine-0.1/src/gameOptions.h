@@ -8,10 +8,6 @@
 #include <unistd.h>
 #include <string.h>
 
-class GameOptions;
-
-#include "globals.h"
-
 class GameOptions {
 	protected:
 		bool is_valid;

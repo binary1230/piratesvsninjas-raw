@@ -1,7 +1,26 @@
 #include "gameState.h"
 
-//! Get the drawing surface (effectively the screen)
-// THIS FUNCTION CAN'T BE INLINED (easily) due to dependency wack-ness
+#include "gameOptions.h"
+#include "input.h"
+#include "inputLiveHandler.h"
+#include "inputRecord.h"
+#include "inputPlayback.h"
+#include "window.h"
+#include "physSimulation.h"
+
+void GameState::SetRandomSeed(int val) { 
+		random_seed = val; 
+		srand(val); 
+};
+
+int GameState::GetRandomSeed() { 
+		return random_seed; 
+};
+
+bool GameState::GetKey(uint which_key)	{ 
+	return input->Key(which_key); 
+};
+
 BITMAP* GameState::GetDrawingSurface() { 
 	return window->GetDrawingSurface(); 
 };

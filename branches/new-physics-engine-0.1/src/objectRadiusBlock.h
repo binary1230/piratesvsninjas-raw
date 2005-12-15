@@ -9,8 +9,8 @@
 #include <stdio.h>
 
 class RadiusBlockObject;
+class GameState;
 
-#include "globals.h"
 #include "object.h"
 
 class RadiusBlockObject : public Object {
@@ -31,6 +31,9 @@ class RadiusBlockObject : public Object {
 
 		RadiusBlockObject();
 		~RadiusBlockObject();
+			
+		//! Factory method to create a new radius block object
+		static Object* New(GameState*);
 };
 
 #endif // RadiusBlockObject_H   
