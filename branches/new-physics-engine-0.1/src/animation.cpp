@@ -15,6 +15,7 @@ bool Animation::Init(GameState* _gameState) {
 	currentFrame = NULL;
 	elapsed_time = 0;
 	freeze_animation = false;
+	speed_multiplier = 1;
 	return true;
 }
 
@@ -48,7 +49,7 @@ void Animation::Update() {
 	elapsed_time++;
 
 	// if it's time to advance to the next frame..
-	if (elapsed_time >= currentFrame->duration) {
+	if (elapsed_time >= currentFrame->duration * speed_multiplier) {
 		elapsed_time = 0;
 		
 		// NOTE: if no currentFrame->nextFrame, NEVER advance until reset

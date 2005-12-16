@@ -35,11 +35,16 @@ class Animation : public GameBase {
 															//! has been up 
 	
 		bool freeze_animation;		//! True if we do not advance the animation
+
+		int speed_multiplier;			//! Factor to multiply the current animation 
+															//! speed by. (e.g 2 = 2x as slow)
 		
 	public:
 		//! Draw current frame at specified X,Y
 		void DrawAt(int _x, int _y, bool flip_x = false);	
 		void Update();
+
+		void SetSpeedMultiplier(int m) {speed_multiplier = m;};
 
 		void ResetAnimation();		//! Set the animation back to the first frame
 

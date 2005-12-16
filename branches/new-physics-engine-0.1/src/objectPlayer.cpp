@@ -11,7 +11,7 @@
 #include "animation.h"
 
 #define JUMP_VELOCITY 7.0f
-#define DRAG 0.9f
+#define DRAG 0.95f
 
 // our animations 
 #define PLAYER_WALKING 0
@@ -52,10 +52,19 @@ void PlayerObject::Update() {
 			vel *= DRAG;	
 			
 			// If on floor, do we draw the standing sprite?
-			if (vel.GetX() < 0.2f) {
+			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < 0.2f) {
+				vel.SetX(0);
 				currentAnimation = animations[PLAYER_STANDING];
 			} else {
 				currentAnimation = animations[PLAYER_WALKING];
+
+				// alter the speed of the animation based on the velocity
+				if (vel.GetX() < 2.0f)
+					currentAnimation->SetSpeedMultiplier(2);
+				else if (vel.GetX() < 0.5f)
+					currentAnimation->SetSpeedMultiplier(3);
+				else
+					currentAnimation->SetSpeedMultiplier(1);
 			}
 		}
 	} else {
@@ -64,15 +73,16 @@ void PlayerObject::Update() {
 	}
 
 	// figure out whether to flip the sprite or not
-	flip_x = false;
-
 	if (accel.GetX() == 0.0f) {
-		if (vel.GetX() > 0.0f) {
+		if (vel.GetX() > 0.0f)
 			flip_x = true;
-		}
+		else if (vel.GetX() < 0.0f)
+			flip_x = false;
 	} else if (accel.GetX() > 0.0f) {
 		flip_x = true;
-	} 
+	} else {
+		flip_x = false;
+	}
 }
 
 bool PlayerObject::Init(GameState* _game_state) {
@@ -107,7 +117,7 @@ Object* PlayerObject::New(GameState* gameState) {
 	
 	anim = obj->animations[PLAYER_WALKING] = new Animation();
 	anim->Init(gameState);
-	duration = 3;
+	duration = 4;
 	anim->PushImage("data/run1.bmp", duration);
 	anim->PushImage("data/run2.bmp", duration);
 	anim->PushImage("data/run3.bmp", duration);
