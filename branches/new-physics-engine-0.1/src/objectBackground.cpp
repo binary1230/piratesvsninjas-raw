@@ -1,6 +1,7 @@
 #include "objectBackground.h"
 #include "globals.h"
 #include "gameState.h"
+#include "animation.h"
 
 void BackgroundObject::Update() {
 	scroll_offset -= speed;
@@ -38,6 +39,13 @@ Object* BackgroundObject::New(GameState* gameState) {
 	obj->SetXY(0, obj->game_state->Height());
 
 	obj->currentAnimation = NULL;
+	obj->animations.resize(1);
+	obj->animations[0] = new Animation();
+	obj->currentAnimation = obj->animations[0];
+	obj->currentAnimation->Init(gameState);
+
+	int duration = 60;
+	obj->currentAnimation->PushImage("data/back.bmp", duration);
 	
 	return obj;
 }

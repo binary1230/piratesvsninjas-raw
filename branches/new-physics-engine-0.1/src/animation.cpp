@@ -69,12 +69,14 @@ void Animation::ResetAnimation() {
 
 //! Free memory associated with this animation
 void Animation::Shutdown() {
-	for (uint i = 0; i < frames.size(); i++) 
+	int i, max = frames.size();
+	for (i = 0; i < max; i++) 
 		if (frames[i]->bitmap_is_deleteable)
 			destroy_bitmap(frames[i]->bmp);
 }
 
-//! XXX TEMPORARY ONLY for testing
+//! Kind of wanky, add another frame to this animation
+//! Use for temporary loading routines, need to rethink this one.
 bool Animation::PushImage(char* file, int duration) {
 	AnimFrame *f = new AnimFrame();
 
@@ -83,6 +85,7 @@ bool Animation::PushImage(char* file, int duration) {
 		fprintf(stderr, "Can't load file: '%s' - not adding to animation\n", file);
 		return false;
 	}
+	f->bitmap_is_deleteable = true;
 	f->duration = duration;
 	f->x_offset = 0;
 	f->y_offset = 0;

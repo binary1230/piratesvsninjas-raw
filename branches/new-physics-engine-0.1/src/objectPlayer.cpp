@@ -10,7 +10,7 @@
 #include "vector2D.h"
 #include "animation.h"
 
-#define JUMP_VELOCITY 7.0f
+#define JUMP_VELOCITY 8.0f
 #define DRAG 0.95f
 
 // our animations 
@@ -52,7 +52,7 @@ void PlayerObject::Update() {
 			vel *= DRAG;	
 			
 			// If on floor, do we draw the standing sprite?
-			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < 0.2f) {
+			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < 0.3f) {
 				vel.SetX(0);
 				currentAnimation = animations[PLAYER_STANDING];
 			} else {
@@ -94,6 +94,7 @@ PlayerObject::PlayerObject() {}
 PlayerObject::~PlayerObject() {}
 
 // Factory method, creates new PlayerObjects
+// XXX needs to be cleaned/abstracted
 Object* PlayerObject::New(GameState* gameState) {
 	ObjectProperties props;
 	PlayerObject* obj = new PlayerObject();
@@ -129,9 +130,9 @@ Object* PlayerObject::New(GameState* gameState) {
 	
 	anim = obj->animations[PLAYER_STANDING] = new Animation();
 	anim->Init(gameState);
-	duration = 2;
+	duration = 4;
 	anim->PushImage("data/wait1.bmp", duration);
-	anim->PushImage("data/wait2.bmp", duration * 8);
+	anim->PushImage("data/wait2.bmp", duration * 6);
 
 	anim = obj->animations[PLAYER_JUMPING] = new Animation();
 	anim->Init(gameState);

@@ -57,6 +57,16 @@ Vector2D Object::Solve() {
 }
 
 void Object::Shutdown() {
+	if (animations.size() > 0) {
+		int i, max = animations.size();
+		for (i = 0; i < max; i++) {
+			animations[i]->Shutdown();
+			delete animations[i];
+			animations[i] = NULL;
+		}
+		animations.clear();
+	}
+	currentAnimation = NULL;
 }
 
 Object::Object() {

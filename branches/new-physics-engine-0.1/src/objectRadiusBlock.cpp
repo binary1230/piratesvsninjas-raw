@@ -4,6 +4,7 @@
 #include "animation.h"
 
 void RadiusBlockObject::Update() {
+	if (currentAnimation) currentAnimation->Update();
 	theta += RADIUS_BLOCK_SPEED;
 }
 
@@ -19,12 +20,14 @@ void RadiusBlockObject::Draw() {
 
 RadiusBlockObject::RadiusBlockObject() : theta(0.0f) {}
 RadiusBlockObject::~RadiusBlockObject() {}
-		
+
+// Factory method, creates new RadiusBlockObjects
+// XXX animation stuff needs to be abstracted
 Object* RadiusBlockObject::New(GameState* gameState) {
 	ObjectProperties props;
 	RadiusBlockObject* obj = new RadiusBlockObject();
-	
-	if (!obj || !obj->Init(gameState))
+
+	if (!obj || !obj->Init(gameState) )
 		return NULL;
 
 	props.feels_user_input = 0;
@@ -36,7 +39,14 @@ Object* RadiusBlockObject::New(GameState* gameState) {
 	obj->SetTheta(Rand(0,360));
 	obj->SetRadius(Rand(20,300));
 
-	obj->currentAnimation = NULL;
-	
+	obj->animations.resize(1);
+	obj->animations[0] = new Animation();
+	obj->currentAnimation = obj->animations[0];
+	obj->currentAnimation->Init(gameState);
+
+	int duration = 6;
+	obj->currentAnimation->PushImage("data/fly1.bmp", duration);
+	obj->currentAnimation->PushImage("data/fly2.bmp", duration);
+
 	return obj;
 }

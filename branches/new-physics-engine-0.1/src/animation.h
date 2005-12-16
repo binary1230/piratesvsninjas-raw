@@ -1,9 +1,6 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-//XXX add Get/Set Speed methods (think: running faster)
-
-//! Animation class for objects
 #include <allegro.h>
 #include <stdio.h>
 #include <vector>
@@ -25,9 +22,14 @@ struct AnimFrame {
 
 //! The animation class
 //! Holds sprites and displays them in a preset order and timing
+//! 
+//! This class holds a specific series of images that an object can use.
+//! Typically, objects have a few different 'animations', for example,
+//! a player object might have 2 animations - a walking and jumping animation
+//! EACH of these would be seperate instances of the animation class.
 class Animation : public GameBase {
 	protected:
-		vector<struct AnimFrame*> frames;
+		vector<struct AnimFrame*> frames;	//! Collection of frames in this animation
 		AnimFrame* currentFrame;	//! Points to the current frame we are drawing
 
 		int elapsed_time;					//! The elapsed amount of game frames that 
@@ -40,10 +42,11 @@ class Animation : public GameBase {
 															//! speed by. (e.g 2 = 2x as slow)
 		
 	public:
-		//! Draw current frame at specified X,Y
 		void DrawAt(int _x, int _y, bool flip_x = false);	
 		void Update();
 
+		//! The speed multiplier can slow down the animation speed.
+		//! Higher values result in a slower animation
 		void SetSpeedMultiplier(int m) {speed_multiplier = m;};
 
 		void ResetAnimation();		//! Set the animation back to the first frame
