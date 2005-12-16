@@ -11,9 +11,7 @@
 
 class InputRecord;
 
-#include "globals.h"
 #include "input.h"
-#include "gameState.h"
 
 //! Live input 
 

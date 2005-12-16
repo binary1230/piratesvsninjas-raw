@@ -1,4 +1,6 @@
 #include "window.h"
+#include "gameState.h"
+#include "globals.h"
 
 int Window::Init(	GameState* _game_state, 
 									uint _width, uint _height, 

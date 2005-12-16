@@ -17,7 +17,6 @@
 
 class BaseInput;
 
-#include "globals.h"
 #include "gameBase.h"
 
 //! The logical game keys (e.g. JUMP, FIRE, etc)

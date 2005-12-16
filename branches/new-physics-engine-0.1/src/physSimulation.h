@@ -2,28 +2,25 @@
 #define PHYS_SYSTEM_H
 
 #include <vector>
-
 using namespace std;
 
 class PhysSimulation;
+class GameState;
+class Force;
+class Object;
+class ObjectFactory;
+class ForceFactory;
 
-#include "globals.h"
 #include "gameBase.h"
-#include "objectFactory.h"
-#include "object.h"
-#include "forceFactory.h"
-#include "force.h"
-#include "forceInput.h"
-#include "forceGravity.h"
 
 //! Represents a physical simulation
 class PhysSimulation : GameBase {
 		protected:		
 			//! Collection of all drawable objects
-			ObjectList objects;
+			vector<Object*> objects;
 
 			//! Collection of forces
-			ForceList forces;
+			vector<Force*> forces;
 		
 			//! Creates new objects
 			ObjectFactory *objectFactory;

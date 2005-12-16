@@ -8,7 +8,6 @@ class ForceGravity;
 class Force;
 class Object;
 
-#include "globals.h"
 #include "force.h"
 
 class ForceGravity : public Force {

@@ -1,5 +1,15 @@
 #include "physSimulation.h"
 
+#include "xmlParser.h"
+#include "globals.h"
+#include "objectFactory.h"
+#include "object.h"
+#include "objectIDs.h"
+#include "forceFactory.h"
+#include "force.h"
+#include "forceInput.h"
+#include "forceGravity.h"
+
 int PhysSimulation::Init(GameState* gs) {
 	SetGameState(gs);
 
@@ -112,8 +122,9 @@ void PhysSimulation::Update() {
 //! For now, we just create some random objects + forces for a demo
 int PhysSimulation::Load() {
 				
-	Object* new_obj;
 	
+				
+	Object* new_obj;
 	int i, max = 30;
 
 	// -- Create some random objects --

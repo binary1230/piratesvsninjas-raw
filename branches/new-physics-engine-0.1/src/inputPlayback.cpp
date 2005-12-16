@@ -1,4 +1,6 @@
 #include "inputPlayback.h"
+#include "globals.h"
+#include "gameState.h"
 
 int InputPlayback::Init(GameState* _game_state, char* _demo_file) {
 	SetGameState(_game_state);

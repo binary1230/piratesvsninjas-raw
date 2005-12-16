@@ -1,5 +1,6 @@
 #include "objectFactory.h"
 
+#include "globals.h"
 #include "platform.h"
 #include "resourceLoader.h"
 #include "object.h"
@@ -8,6 +9,7 @@
 #include "objectRadiusBlock.h"
 #include "objectBackground.h"
 #include "animation.h"
+#include "objectIDs.h"
 
 /* XXX TODO:
  * - NASTY!! SO BADLY WRITTEN, CLEAN IT UP

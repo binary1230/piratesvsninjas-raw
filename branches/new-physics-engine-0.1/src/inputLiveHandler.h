@@ -11,7 +11,6 @@
 
 class InputLive;
 
-#include "globals.h"
 #include "input.h"
 
 //! Live input 

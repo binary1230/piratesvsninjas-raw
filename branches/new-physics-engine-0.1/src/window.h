@@ -5,10 +5,8 @@
 #include <allegro.h>
 #include <stdio.h>
 
-// class Window;
+class GameState;
 
-#include "globals.h"
-#include "gameState.h"
 #include "gameBase.h"
 
 // Modes for creating the display

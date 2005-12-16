@@ -9,11 +9,9 @@
 #include <allegro.h>
 #include <stdio.h>
 
-class InputPlayback;
+class GameState;
 
-#include "globals.h"
 #include "input.h"
-#include "gameState.h"
 
 //! Playback recorded input
 

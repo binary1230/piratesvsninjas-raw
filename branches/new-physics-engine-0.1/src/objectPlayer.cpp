@@ -12,6 +12,7 @@
 
 #define JUMP_VELOCITY 8.0f
 #define DRAG 0.95f
+#define MIN_VELOCITY 0.3f
 
 // our animations 
 #define PLAYER_WALKING 0
@@ -52,7 +53,7 @@ void PlayerObject::Update() {
 			vel *= DRAG;	
 			
 			// If on floor, do we draw the standing sprite?
-			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < 0.3f) {
+			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < MIN_VELOCITY) {
 				vel.SetX(0);
 				currentAnimation = animations[PLAYER_STANDING];
 			} else {

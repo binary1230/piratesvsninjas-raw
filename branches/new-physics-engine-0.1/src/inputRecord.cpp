@@ -1,4 +1,6 @@
 #include "inputRecord.h"
+#include "globals.h"
+#include "gameState.h"
 
 int InputRecord::Init(GameState* _game_state, char* _demo_file) {
 

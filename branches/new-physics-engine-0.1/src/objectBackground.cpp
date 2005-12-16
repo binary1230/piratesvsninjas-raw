@@ -37,7 +37,7 @@ Object* BackgroundObject::New(GameState* gameState) {
 	obj->SetProperties(props);
 
 	obj->SetXY(0, obj->game_state->Height());
-
+	
 	obj->currentAnimation = NULL;
 	obj->animations.resize(1);
 	obj->animations[0] = new Animation();

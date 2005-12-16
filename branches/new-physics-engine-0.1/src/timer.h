@@ -3,8 +3,6 @@
 
 #include <allegro.h>
 
-#include "globals.h"
-
 extern volatile int outstanding_updates;
 void Timer();
 

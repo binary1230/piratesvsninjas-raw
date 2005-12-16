@@ -8,10 +8,7 @@ class ObjectFactory;
 class Object;
 class ResourceLoader;
 
-#include "globals.h"
 #include "gameBase.h"
-
-#include "objectIDs.h"
 
 // THIS CLASS IS BAD.
 // It will be rewritten, for now it JUST WORKS.

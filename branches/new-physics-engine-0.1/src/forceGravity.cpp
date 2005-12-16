@@ -1,4 +1,5 @@
 #include "forceGravity.h"
+#include "globals.h"
 #include "object.h"
 
 /* note: if you are trying to figure out the engine, this file is pretty easy
