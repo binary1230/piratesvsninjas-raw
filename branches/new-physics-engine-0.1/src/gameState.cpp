@@ -7,17 +7,26 @@
 #include "inputPlayback.h"
 #include "window.h"
 #include "physSimulation.h"
+#include "gameMode.h"
+#include "resourceLoader.h"
+
+// XXX todo:  mode switching code is VERY hackish and bad.
+//            need to fix that.
+
+int GameState::LoadConfig(char* xml_filename) {
+	return 0;
+}
 
 void GameState::SetRandomSeed(int val) { 
 		random_seed = val; 
 		srand(val); 
 };
 
-int GameState::GetRandomSeed() { 
+int GameState::GetRandomSeed() const { 
 		return random_seed; 
 };
 
-bool GameState::GetKey(uint which_key)	{ 
+bool GameState::GetKey(uint which_key) const	{ 
 	return input->Key(which_key); 
 };
 
@@ -25,28 +34,46 @@ BITMAP* GameState::GetDrawingSurface() {
 	return window->GetDrawingSurface(); 
 };
 
-uint GameState::Width() {
+uint GameState::ScreenWidth() const {
 	return window->Width();
 }
 
-uint GameState::Height() {
+uint GameState::ScreenHeight() const {
 	return window->Height();
+}
+
+void GameState::SignalEndCurrentMode() {
+		end_current_mode = true;
 }
 
 //! Initialize game systems - main function
 
 //! This is the first init function, it needs to initialize
-//! Allegro, the window, the input subsystem, and the simulation
+//! Allegro, the window, the input subsystem, and the default game mode
 //! BE CAREFUL, things need to be done IN ORDER here.
 int GameState::InitSystem() {
-
+				
 		exit_game = false;
+		end_current_mode = false;
 
-		allegro_init();
-		InitTimers();
+		allegro_init();			// must be called FIRST
+		InitTimers();				// must be called SECOND
 
 		SetRandomSeed(42);
+		
+		resourceLoader = new ResourceLoader();
+		if (!resourceLoader || resourceLoader->Init(this) < 0) {
+			fprintf(stderr, "ERROR: InitSystem: failed to create resourceLoader!\n");
+			return -1;
+		}
 
+		resourceLoader->AppendToSearchPath("../");
+
+		if (LoadConfig("data/default.xml") == -1) {
+			fprintf(stderr, "ERROR: InitSystem: failed to load configuration!\n");
+			return -1;
+		}
+		
 		window = new Window();
 		if ( !window ||	window->Init(this, SCREEN_SIZE_X, SCREEN_SIZE_Y, 
 										options->IsFullscreen(), options->GraphicsMode()) < 0 ) {
@@ -58,9 +85,12 @@ int GameState::InitSystem() {
 			fprintf(stderr, "ERROR: InitSystem: failed to init input subsystem!\n");
 			return -1;
 		}
-		
-		simulation = new PhysSimulation();
-		if ( !simulation || simulation->Init(this) < 0) {
+
+		// Initialize the default "game mode" (e.g. menu, simulation, etc)
+		modes.resize(1);
+		currentMode = modes[0] = new PhysSimulation();
+		currentModeIndex = 0;
+		if ( !modes[0] || modes[0]->Init(this) < 0) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init simulation!\n");
 			return -1;
 		}
@@ -69,6 +99,7 @@ int GameState::InitSystem() {
 }
 
 //! Init input subsystems
+// a little hackish... just a bit.
 int GameState::InitInput() {
 				
 	// init the right kind of class based on
@@ -79,7 +110,6 @@ int GameState::InitInput() {
 		input = new InputPlayback();
 	else
 		input = new InputLive();
-
 	
 	if ( !input || !input->Init(this, options->GetDemoFilename()) < 0 ) {
 		return -1;
@@ -89,7 +119,6 @@ int GameState::InitInput() {
 }
 
 //! Init game timers
-
 //! This MUST be called BEFORE any other allegro initializations.
 int GameState::InitTimers() {
 	install_timer();
@@ -97,12 +126,6 @@ int GameState::InitTimers() {
 	LOCK_FUNCTION((void*)Timer);
 	return install_int_ex(Timer, BPS_TO_TIMER(FPS));
 }
-
-//! Initialize game objects
-
-//! Uses the objectFactory to create some random objects.
-//int GameState::InitSimulation() {
-//}
 
 //! The 'main' function for the game
 
@@ -124,7 +147,7 @@ int GameState::RunGame(GameOptions* _options) {
 			else if (options->PlaybackDemo())
 				input->BeginPlayback();
 			
-			outstanding_updates = 0;	// remember, the timer has been rolling.
+			outstanding_updates = 0;	// reset our timer to 0.
 			MainLoop();
 
 			// XXX SHOULD NOT TEST option->is_xxx should TEST input->is_xxx()
@@ -153,10 +176,10 @@ void GameState::MainLoop() {
 		// before we can draw, in order to keep the game the same speed
 		// no matter the speed of the computer
 		while (outstanding_updates > 0) {
-			Update();
+			Update();	// mode signals handled here
 			outstanding_updates--;
 		}
-		Draw();
+		if (!exit_game) Draw();
 
 		// wait for 1/60th sec to elapse (if we're on a fast computer)
 		while (outstanding_updates <= 0);
@@ -164,24 +187,22 @@ void GameState::MainLoop() {
 }
 
 //! Update all game status
-
-//! Call update on all objects to let them know
-//! how much time has passed.
 void GameState::Update() {
 	input->Update();
-	simulation->Update();
+	currentMode->Update();
 
-	if (input->Key(GAMEKEY_EXIT)) {
-		exit_game = true;
+	// see if we were signalled
+	if (end_current_mode) {
+		EndCurrentMode();
+		if (exit_game)
+			return;
 	}
 }
 
-//! Draw all game objects
-
-//! Loop through and draw all game objects.
+//! Draw the current mode
 void GameState::Draw() {
 	window->Clear();
-	simulation->Draw();
+	currentMode->Draw();
 	window->Flip();
 }
 
@@ -190,11 +211,16 @@ void GameState::Draw() {
 //! Clean up everything we allocated
 void GameState::Shutdown() {
 
-	if (simulation) {
-		simulation->Shutdown();
-		delete simulation;
-		simulation = NULL;
+	int i, max = modes.size();
+	for (i = 0; i < max; i++) {
+		if (modes[i]) {
+			modes[i]->Shutdown();
+			delete modes[i];
+			modes[i] = NULL;
+		}
 	}
+
+	currentMode = NULL;
 				
 	if (input) {
 		input->Shutdown();
@@ -212,12 +238,62 @@ void GameState::Shutdown() {
 	allegro_exit();
 }
 
-//! Destory all game objects
+//! Exits the current mode and deletes it, free its memory
+//! Exits the game if it is the last mode left.
 
-//! Clean up everything we allocated
-//void GameState::DestroyObjects() {
-//}
+// XXX stop whining and use iterators.  this is messier than it needs to be
+// XXX probably need a modeList class to handle this messiness.
+// XXX should we remove currentMode->next too?  that memory will be freed
+//     on shutdown() though...
+void GameState::EndCurrentMode() {
+	if (currentMode) {
+										
+		// get the prev mode (will be NULL if this is the last mode in the game)
+		GameMode* parent = currentMode->GetParentMode();
+					
+		// kill this mode
+		currentMode->Shutdown();
+		currentMode = parent;
+					
+		// delete + remove it from the modes list
+		delete modes[currentModeIndex];
+		modes.erase(	modes.begin()+currentModeIndex,
+									modes.begin()+currentModeIndex + 1);
+	}
+
+	// if there is no more current mode, exit the game
+	if (!currentMode) {
+		SignalExit();
+	}
+
+	end_current_mode = false;
+}
+
+//! Switches to the next mode if it exists. If not, does nothing.
+//! Returns false if there is no next mode (usually an error)
+bool GameState::SwitchToNextMode() {
+	if (currentMode) {
+		GameMode* next = currentMode->GetNextMode();
+		if (next)
+			currentMode = next;
+		else 
+			return false;
+	}
+	return true;
+}
+
+//! Switches the current mode to its parent if it exists. If it does
+//! not exist, exit the game.
+void GameState::SwitchToParentMode() {
+	if (currentMode) {
+		GameMode* parent = currentMode->GetParentMode();
+		if (parent)
+			currentMode = parent;
+		else 
+			SignalExit();
+	}
+}
 
 GameState::GameState() : 
-window(NULL), input(NULL), simulation(NULL) {}
+window(NULL), input(NULL), currentMode(NULL) {}
 GameState::~GameState() {}

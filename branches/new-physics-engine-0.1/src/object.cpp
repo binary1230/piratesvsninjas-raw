@@ -16,7 +16,7 @@ void Object::DrawAtOffset(int x, int y) {
 	if (currentAnimation)
 		currentAnimation->DrawAt(
 										(int)pos.GetX() + x, 
-										game_state->Height() - (int)pos.GetY() + y, 
+										game_state->ScreenHeight() - (int)pos.GetY() + y, 
 										flip_x);
 }
 

@@ -2,6 +2,7 @@
 
 #include "globals.h"
 #include "animation.h"
+#include "gameState.h"
 
 void RadiusBlockObject::Update() {
 	if (currentAnimation) currentAnimation->Update();
@@ -35,7 +36,8 @@ Object* RadiusBlockObject::New(GameState* gameState) {
 	props.feels_friction = 0;
 	obj->SetProperties(props);
 
-	obj->SetXY(Rand(0, SCREEN_SIZE_X), Rand(0, SCREEN_SIZE_Y));
+	obj->SetXY( Rand(0, gameState->ScreenWidth()), 
+							Rand(0, gameState->ScreenHeight()) );
 	obj->SetTheta(Rand(0,360));
 	obj->SetRadius(Rand(20,300));
 

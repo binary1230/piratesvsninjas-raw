@@ -24,7 +24,7 @@ void PlayerObject::Update() {
 
 	currentAnimation->Update();
 				
-	int w = game_state->Width();
+	int w = game_state->ScreenWidth();
 
 	// Compute the new position
 	pos = Solve();

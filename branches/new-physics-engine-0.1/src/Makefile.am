@@ -11,7 +11,8 @@ ninjas_CXXFLAGS = -Wall
 
 headers = \
 globals.h timer.h \
-gameOptions.h gameState.h gameBase.h window.h physSimulation.h \
+gameOptions.h gameState.h gameBase.h window.h \
+gameMode.h physSimulation.h \
 input.h inputLiveHandler.h inputRecord.h inputPlayback.h \
 object.h objectFactory.h objectIDs.h \
 objectPlayer.h objectRadiusBlock.h objectBackground.h \
@@ -23,7 +24,8 @@ StdString.h xmlParser.h
 
 ninjas_SOURCES = \
 force.cpp forceGravity.cpp forceInput.cpp forceFactory.cpp \
-gameOptions.cpp gameState.cpp main.cpp gameBase.cpp physSimulation.cpp \
+gameOptions.cpp gameState.cpp main.cpp gameBase.cpp \
+gameMode.cpp physSimulation.cpp \
 input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp \

@@ -9,6 +9,8 @@
 #include "force.h"
 #include "forceInput.h"
 #include "forceGravity.h"
+#include "input.h"
+#include "gameState.h"
 
 int PhysSimulation::Init(GameState* gs) {
 	SetGameState(gs);
@@ -103,9 +105,8 @@ void PhysSimulation::Solve() {
 }
 
 //! Update all objects
-void PhysSimulation::UpdateObjects() {
+void PhysSimulation::UpdateObjects() {			
 	int i, max = objects.size();
-
 	for (i = 0; i < max; i++) {
 		objects[i]->Update();
 	}
@@ -113,6 +114,15 @@ void PhysSimulation::UpdateObjects() {
 
 //! Master update for the Physics simulation
 void PhysSimulation::Update() {
+	
+	// If they pressed the 'exit' key (typically ESCAPE)
+	// Then end the physics simulation
+	if (GetGameState()->GetKey(GAMEKEY_EXIT)) {
+		GetGameState()->SignalEndCurrentMode();
+		return;
+	}
+
+	// Do the physics simulation
 	ResetForNextFrame();
 	Solve();
 	UpdateObjects();
@@ -121,8 +131,6 @@ void PhysSimulation::Update() {
 //! Eventually, load the initial state from a map file
 //! For now, we just create some random objects + forces for a demo
 int PhysSimulation::Load() {
-				
-	
 				
 	Object* new_obj;
 	int i, max = 30;

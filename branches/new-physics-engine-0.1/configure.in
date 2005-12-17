@@ -33,8 +33,15 @@ if test -e ".svn"; then
 fi
 
 dnl Test if we're running on Mac, if we are, we need a tiny bit
-dnl of MAC carbon code for the package.  (this needs to be updated
-dnl if we ever find a way to cross compile FROM linux TO darwin)
+dnl of MAC carbon code for the package.  
+dnl
+dnl NEEDS FIXING - 'uname -s' tests the platform we are RUNNING on,
+dnl  NOT the platform we are building for.  Most of the time these are
+dnl  the same, but during cross compiles they are not.
+dnl
+dnl For example, cross compiling from Mac->Linux would currently make
+dnl our script think that we are building FOR MacOSX.
+
 AC_PATH_PROG(WHICH_UNAME, uname, no)
 if test "$WHICH_UNAME"; then
 	OUR_PLATFORM=`uname -s`

@@ -12,9 +12,10 @@ class ObjectFactory;
 class ForceFactory;
 
 #include "gameBase.h"
+#include "gameMode.h"
 
 //! Represents a physical simulation
-class PhysSimulation : GameBase {
+class PhysSimulation : public GameMode {
 		protected:		
 			//! Collection of all drawable objects
 			vector<Object*> objects;

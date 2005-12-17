@@ -14,6 +14,7 @@ void ResourceLoader::Shutdown() {
 	paths.clear();
 }
 
+// XXXX using '..' doesn't work yet, (allegro's load_bitmap()'s fault)
 void ResourceLoader::AppendToSearchPath(const char* path) {
 	if (path && path[0])
 		paths.push_back(path);
@@ -26,7 +27,7 @@ void ResourceLoader::ResetPaths() {
 
 //! Returns either the full path to a real file,
 //! or an empty CString
-CString ResourceLoader::GetPathOf(const char* filename) {
+CString ResourceLoader::GetPathOf(const char* filename) const {
 	
 	const CString seperator = "/";
 	CString fullpath;
@@ -41,7 +42,7 @@ CString ResourceLoader::GetPathOf(const char* filename) {
 }
 
 //! Returns true if a file exists, false otherwise
-bool ResourceLoader::FileExists(const char* file) {
+bool ResourceLoader::FileExists(const char* file) const {
 	struct stat sb;
 	
 	if (stat(file, &sb) == -1)
@@ -51,7 +52,7 @@ bool ResourceLoader::FileExists(const char* file) {
 }
 
 //! Opens a bitmap, utilizes the search paths
-BITMAP* ResourceLoader::OpenBitmap(const char* filename, PALETTE* pal) {
+BITMAP* ResourceLoader::OpenBitmap(const char* filename, PALETTE* pal) const {
 	BITMAP* bmp = NULL;
 	CString file = GetPathOf(filename);
 	
@@ -83,9 +84,9 @@ ResourceLoader::~ResourceLoader() {
 //! This function will attempt to use the MacOSX way first, and if
 //! that fails, will just run the relative path way as fallback.
 
-//! Returns something like '/Applications/Ninjas.app/Resources' on Mac, 
+//! Returns something like "/Applications/Ninjas.app/Resources" on Mac, 
 //! if not on Mac, it just returns "./"
-CString ResourceLoader::GetCurrentWorkingDir() {
+CString ResourceLoader::GetCurrentWorkingDir() const {
 #ifdef PLATFORM_DARWIN 
 		CFBundleRef mainBundle = CFBundleGetMainBundle();
 		CFURLRef url = CFBundleCopyBundleURL(mainBundle);

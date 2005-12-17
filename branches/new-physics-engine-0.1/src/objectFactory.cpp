@@ -1,15 +1,11 @@
 #include "objectFactory.h"
 
 #include "globals.h"
-#include "platform.h"
-#include "resourceLoader.h"
 #include "object.h"
 #include "objectIDs.h"
 #include "objectPlayer.h"
 #include "objectRadiusBlock.h"
 #include "objectBackground.h"
-#include "animation.h"
-#include "objectIDs.h"
 
 /* XXX TODO:
  * - NASTY!! SO BADLY WRITTEN, CLEAN IT UP
@@ -20,6 +16,9 @@
  *
  * This is the ugliest code.. EVAR, it ALL needs to be redone.
  * Soon this will all be replaced with a nice XML parser factory thing.
+ *
+ * UPDATE: some of the nastiness is now gone, replaced with XML
+ * goodness.
  */
 Object* ObjectFactory::CreateObject(uint id) {
 
@@ -48,22 +47,11 @@ Object* ObjectFactory::CreateObject(uint id) {
 
 int ObjectFactory::Init(GameState* _game_state) {
 	SetGameState(_game_state);
-	resourceLoader = new ResourceLoader();
-	if (!resourceLoader || resourceLoader->Init(GetGameState()) == -1)
-		return -1;
-
-	// XXX '..' doesn't work yet, resourceLoader's fault.
-	resourceLoader->AppendToSearchPath("../");
-
 	return 0;
 }
 
 void ObjectFactory::Shutdown() {
-	if (resourceLoader) {
-		resourceLoader->Shutdown();
-		free(resourceLoader);
-		resourceLoader = NULL;
-	}
+	SetGameState(NULL);
 }
 
 ObjectFactory::ObjectFactory() {}

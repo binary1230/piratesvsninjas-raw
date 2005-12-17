@@ -36,7 +36,7 @@ Object* BackgroundObject::New(GameState* gameState) {
 	props.feels_friction = 0;
 	obj->SetProperties(props);
 
-	obj->SetXY(0, obj->game_state->Height());
+	obj->SetXY(0, obj->game_state->ScreenHeight());
 	
 	obj->currentAnimation = NULL;
 	obj->animations.resize(1);

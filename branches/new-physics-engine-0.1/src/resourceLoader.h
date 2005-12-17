@@ -37,18 +37,18 @@ class ResourceLoader : public GameBase {
 		//! This function either returns a full to a file path which 
 		//! is guaranteed to exist, or returns "" if one can't be found
 		//! in the current search path
-		CString ResourceLoader::GetPathOf(const char* filename);
+		CString ResourceLoader::GetPathOf(const char* filename) const;
 
 		//! Returns true if the file exists.
-		bool FileExists(const char* file);
+		bool FileExists(const char* file) const;
 
 		//! Opens a bitmap file, or returns NULL on failure
 		//! This function looks in the current search path
 		//! it also outputs the palette in *pal
-		BITMAP* OpenBitmap(const char* file, PALETTE* pal);
+		BITMAP* OpenBitmap(const char* file, PALETTE* pal) const;
 
 		//! Returns the current working directory
-		CString GetCurrentWorkingDir();
+		CString GetCurrentWorkingDir() const;
 
 		ResourceLoader();
 		~ResourceLoader();

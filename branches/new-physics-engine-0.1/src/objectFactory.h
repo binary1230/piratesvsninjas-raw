@@ -14,8 +14,6 @@ class ResourceLoader;
 // It will be rewritten, for now it JUST WORKS.
 class ObjectFactory : GameBase {
 	protected:
-		ResourceLoader* resourceLoader;
-
 		Object* CreatePlayerObject();
 		Object* CreateBackgroundObject();
 		Object* CreateRadiusBlockObject();
