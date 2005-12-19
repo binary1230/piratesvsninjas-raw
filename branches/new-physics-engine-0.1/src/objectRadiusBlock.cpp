@@ -3,20 +3,19 @@
 #include "globals.h"
 #include "animation.h"
 #include "gameState.h"
+#include "physSimulation.h"
 
 void RadiusBlockObject::Update() {
 	if (currentAnimation) currentAnimation->Update();
 	theta += RADIUS_BLOCK_SPEED;
+	pos.SetX( int(sinf(theta) * radius) ); 
+	pos.SetY( int(cosf(theta) * radius) );
 }
 
 bool RadiusBlockObject::Init(GameState *_game_state) {
 	SetGameState(_game_state);
+	SetupCachedVariables();
 	return true;
-}
-
-void RadiusBlockObject::Draw() {
-	DrawAtOffset(	int(sinf(theta) * radius) , 
-								int(cosf(theta) * radius) );
 }
 
 RadiusBlockObject::RadiusBlockObject() : theta(0.0f) {}
@@ -36,8 +35,8 @@ Object* RadiusBlockObject::New(GameState* gameState) {
 	props.feels_friction = 0;
 	obj->SetProperties(props);
 
-	obj->SetXY( Rand(0, gameState->ScreenWidth()), 
-							Rand(0, gameState->ScreenHeight()) );
+	obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
+							Rand(0, obj->simulation->GetHeight() ) );
 	obj->SetTheta(Rand(0,360));
 	obj->SetRadius(Rand(20,300));
 

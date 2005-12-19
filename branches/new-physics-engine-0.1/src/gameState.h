@@ -13,6 +13,7 @@ class BaseInput;
 class Window;
 class GameMode;
 class ResourceLoader;
+class PhysSimulation;
 
 #include "globals.h"
 #include "timer.h"
@@ -43,6 +44,9 @@ class GameState {
 
 		//! Points to one of the game modes in 'modes' array
 		GameMode *currentMode;
+
+		//! Points to the active physics simulation (if there is one)
+		PhysSimulation* physSimulation;
 		
 		int InitSystem();								//! Initialize all game related stuff
 		
@@ -116,6 +120,9 @@ class GameState {
 		
 		//! The current mode calls this to signal it wants to end
 		void SignalEndCurrentMode();
+
+		//! Returns the currently active physics simulation (if there is one)
+		PhysSimulation* GetPhysSimulation();
 
 		GameState();
 		~GameState();

@@ -9,6 +9,7 @@
 #include "forceInput.h"
 #include "vector2D.h"
 #include "animation.h"
+#include "physSimulation.h"
 
 #define JUMP_VELOCITY 8.0f
 #define DRAG 0.95f
@@ -20,11 +21,17 @@
 #define PLAYER_JUMPING 2
 #define PLAYER_MAX_ANIMATIONS 3
 
+#define FLOOR_HEIGHT 21
+
+// XXX the physics is all hardcoded in here for now
+// eventually, ALL collision stuff will be taken care
+// of by the objects outside this one.
 void PlayerObject::Update() {
 
 	currentAnimation->Update();
 				
-	int w = game_state->ScreenWidth();
+	int w = simulation->GetWidth();
+	int floor_height = FLOOR_HEIGHT + GetHeight();
 
 	// Compute the new position
 	pos = Solve();
@@ -33,18 +40,18 @@ void PlayerObject::Update() {
 	if (pos.GetX() < 0) {
 		vel.SetX(-vel.GetX());
 		pos.SetX(0);
-	} else if (pos.GetX() > w - GetWidth()) {
+	} else if (pos.GetX() > (w - GetWidth()) ) {
 		vel.SetX(-vel.GetX());
 		pos.SetX(w - GetWidth());
 	}
 
 	// See if we hit the floor
-	if (pos.GetY() < GetHeight()) {
-			pos.SetY(GetHeight());
+	if (pos.GetY() < floor_height) {
+			pos.SetY(floor_height);
 	}
 
 	// If we're on the floor.. 
-	if (pos.GetY() == GetHeight()) {
+	if (pos.GetY() == floor_height) {
 					
 		// Then we can jump.
 		if (game_state->GetKey(GAMEKEY_JUMP)) {
@@ -88,6 +95,7 @@ void PlayerObject::Update() {
 
 bool PlayerObject::Init(GameState* _game_state) {
 	SetGameState(_game_state);
+	SetupCachedVariables();
 	return true;
 }
 

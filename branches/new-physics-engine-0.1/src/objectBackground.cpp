@@ -2,18 +2,32 @@
 #include "globals.h"
 #include "gameState.h"
 #include "animation.h"
+#include "physSimulation.h"
 
 void BackgroundObject::Update() {
-	scroll_offset -= speed;
+	// scroll_offset -= speed;
+	pos.SetX(0);
 }
 
 void BackgroundObject::Draw() {
-	DrawAtOffset( int(scroll_offset) % GetWidth(), 0 );
-	DrawAtOffset( int(scroll_offset) % GetWidth() + GetWidth(), 0 );
+				
+	// We want to wrap the background around the level.  Compute the offset
+	int camera_left = simulation->GetCameraLeft();
+	int camera_top  = simulation->GetCameraTop();
+	int offset_x = (int(scroll_offset) - camera_left) % GetWidth();
+	int offset_y = -camera_top % GetHeight();
+	
+	// Draw it twice, repeating
+	/*DrawAtOffset( offset_x - camera_left , offset_y - camera_top );
+	DrawAtOffset( offset_x + GetWidth() - camera_left, 
+								offset_y - camera_top);*/
+	DrawAtOffset( offset_x , offset_y );
+	DrawAtOffset( offset_x + GetWidth(), offset_y );
 }
 
 bool BackgroundObject::Init(GameState *_game_state) {
 		SetGameState(_game_state);
+		SetupCachedVariables();
 		return true;
 }
 
@@ -49,5 +63,3 @@ Object* BackgroundObject::New(GameState* gameState) {
 	
 	return obj;
 }
-
-

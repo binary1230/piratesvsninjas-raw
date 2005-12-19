@@ -9,6 +9,7 @@
 class Object;
 class Force;
 class Animation;
+class PhysSimulation;
 
 #include <allegro.h>
 #include <stdio.h>
@@ -33,6 +34,12 @@ class Object : public GameBase {
 
 		//! Width/height of this object
 		int width, height;
+
+		//! CACHED level width and height
+		int level_width, level_height;
+		
+		//! CACHED simulation this object is a part of
+		PhysSimulation* simulation;
 					
 		//! Current position
 		Vector2D pos;
@@ -91,11 +98,14 @@ class Object : public GameBase {
 				pos.SetY((float)_y);
 		}
 		
-		//XXX probably needs to be changed.
+		//! Get width/height of this object
 		int GetWidth(); 
 		int GetHeight(); 
 	
+		//! Physics: reset this object's physics stuff for next frame
 		void ResetForNextFrame();
+
+		//! Apply a force to this object
 		void ApplyForce(Force* f);
 		
 		inline float GetMass() 					{ return mass; }
@@ -103,6 +113,9 @@ class Object : public GameBase {
 		
 		inline struct ObjectProperties GetProperties() { return properties; }
 		inline void SetProperties(struct ObjectProperties p) { properties = p;}
+
+		//! Setup some commonly used variables
+		void SetupCachedVariables();
 		
 		Object();
 		virtual ~Object();

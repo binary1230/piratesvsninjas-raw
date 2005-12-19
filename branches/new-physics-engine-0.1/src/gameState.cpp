@@ -13,17 +13,21 @@
 // XXX todo:  mode switching code is VERY hackish and bad.
 //            need to fix that.
 
+PhysSimulation* GameState::GetPhysSimulation() {
+	return physSimulation;					
+}
+
 int GameState::LoadConfig(char* xml_filename) {
 	return 0;
 }
 
 void GameState::SetRandomSeed(int val) { 
-		random_seed = val; 
-		srand(val); 
+	random_seed = val; 
+	srand(val); 
 };
 
 int GameState::GetRandomSeed() const { 
-		return random_seed; 
+	return random_seed; 
 };
 
 bool GameState::GetKey(uint which_key) const	{ 
@@ -88,7 +92,7 @@ int GameState::InitSystem() {
 
 		// Initialize the default "game mode" (e.g. menu, simulation, etc)
 		modes.resize(1);
-		currentMode = modes[0] = new PhysSimulation();
+		currentMode = modes[0] = physSimulation = new PhysSimulation();
 		currentModeIndex = 0;
 		if ( !modes[0] || modes[0]->Init(this) < 0) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init simulation!\n");
@@ -294,6 +298,10 @@ void GameState::SwitchToParentMode() {
 	}
 }
 
-GameState::GameState() : 
-window(NULL), input(NULL), currentMode(NULL) {}
+GameState::GameState() {
+	window = NULL; 
+	input = NULL;  
+	currentMode = NULL; 
+	physSimulation = NULL;
+}
 GameState::~GameState() {}

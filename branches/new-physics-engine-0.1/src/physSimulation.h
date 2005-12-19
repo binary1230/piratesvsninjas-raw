@@ -14,7 +14,7 @@ class ForceFactory;
 #include "gameBase.h"
 #include "gameMode.h"
 
-//! Represents a physical simulation
+//! Represents a physical simulation (the main game levels)
 class PhysSimulation : public GameMode {
 		protected:		
 			//! Collection of all drawable objects
@@ -28,6 +28,16 @@ class PhysSimulation : public GameMode {
 
 			//! Creates new forces
 			ForceFactory *forceFactory;
+
+			//! Width and height of the entire level
+			//! (usually much bigger than screen width/height)
+			int width, height;
+
+			//! Top Left corner of camera
+			int camera_left, camera_top;
+
+			//! Which object the camera should follow
+			Object* camera_follow;
 		
 			//! Loads a simulation (eventually from a file)
 			int Load();
@@ -36,12 +46,18 @@ class PhysSimulation : public GameMode {
 			void Solve();
 			void UpdateObjects();
 		public:
-
 			int Init(GameState* gs);
 			void Shutdown();
 
 			void Draw();
 			void Update();
+
+			int GetWidth() {return width;};
+			int GetHeight() {return height;};
+
+			int GetCameraLeft() {return camera_left;};
+			int GetCameraTop() {return camera_top;};
+			void ComputeNewCamera();
 
 			PhysSimulation();
 			~PhysSimulation();

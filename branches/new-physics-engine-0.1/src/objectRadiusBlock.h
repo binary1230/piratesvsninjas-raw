@@ -22,7 +22,6 @@ class RadiusBlockObject : public Object {
 		bool Init(GameState* _game_state);
 
 		void Update();
-		void Draw();
 
 		inline void SetTheta(float angle) { theta = angle; }
 		inline float GetTheta() { return theta; }

@@ -4,33 +4,33 @@
 #include "globals.h"
 #include "gameBase.h"
 #include "animation.h"
+#include "physSimulation.h"
 
 int Object::GetWidth() { return currentAnimation->Width(); }
 int Object::GetHeight() {	return currentAnimation->Height(); }
 
-void Object::Draw() {
-	DrawAtOffset(0,0);
+//! Cache some commonly used stuff
+void Object::SetupCachedVariables() {
+	simulation = GetGameState()->GetPhysSimulation();
+	level_width  = simulation->GetWidth();
+	level_height = simulation->GetHeight();
 }
 
-void Object::DrawAtOffset(int x, int y) {
+void Object::Draw() {
+	// takes into account the camera here
+	DrawAtOffset(-simulation->GetCameraLeft(), -simulation->GetCameraTop());
+}
+
+void Object::DrawAtOffset(int x, int y) {	
+
+	int real_y = game_state->ScreenHeight() - (int)pos.GetY() + y;
+	
 	if (currentAnimation)
 		currentAnimation->DrawAt(
 										(int)pos.GetX() + x, 
-										game_state->ScreenHeight() - (int)pos.GetY() + y, 
+										real_y, 
 										flip_x);
 }
-
-/*void Object::SetBitmap(BITMAP* _bitmap) {
-	bitmap = _bitmap;
-}
-				
-void Object::SetBitmapIsDeleteable(bool _bitmap_is_deleteable) {
-	bitmap_is_deleteable = _bitmap_is_deleteable;
-}
-
-bool Object::GetBitmapIsDeleteable() {
-	return bitmap_is_deleteable;
-}*/
 
 void Object::ApplyForce(Force* force) {
 	// ignore certain types of forces
@@ -48,12 +48,12 @@ void Object::ResetForNextFrame() {
 
 //! Solve for new position based on velocity
 Vector2D Object::Solve() {
-	Vector2D newpos = pos;
+	// Vector2D newpos = pos;
 
 	vel += accel;
-	newpos += vel;
+	pos += vel;
 
-	return newpos;
+	return pos;
 }
 
 void Object::Shutdown() {
@@ -73,6 +73,7 @@ Object::Object() {
 	currentAnimation = NULL;
 	flip_x = false; 
 	mass = 1.0f;
+	simulation = NULL;
 }
 
 Object::~Object() {}

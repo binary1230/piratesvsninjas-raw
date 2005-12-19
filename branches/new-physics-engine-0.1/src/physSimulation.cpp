@@ -33,6 +33,34 @@ int PhysSimulation::Init(GameState* gs) {
 	return Load();
 }
 
+// camera threshold in pixels
+#define CAM_THRESHOLD 40
+
+void PhysSimulation::ComputeNewCamera() {
+	int ox = camera_follow->GetX();
+	//int oy = camera_follow->GetY();
+	int ow = camera_follow->GetWidth();
+	//int oh = camera_follow->GetHeight();
+
+	int sw = GetGameState()->ScreenWidth();
+
+	if (ox - camera_left < CAM_THRESHOLD)
+		camera_left = ox - CAM_THRESHOLD;
+	else if ( (camera_left + sw) - (ox + ow) < CAM_THRESHOLD )
+		camera_left = ox + ow + CAM_THRESHOLD - sw;
+									
+	// if	he's too high up, move up
+	//if (oy - camera_top < CAM_THRESHOLD) {
+	//	camera_top = oy - 40;
+	//}
+	// XXX COMPLETE THIS
+	//fprintf(stderr, "nx=%i, w = %i\n", camera_left, sw);
+	
+	// XXX better done as min/max
+	if (camera_left < 0) camera_left = 0;
+	if (camera_left > width) camera_left = width;
+}
+
 void PhysSimulation::Shutdown() {
 	int i, max;
 
@@ -126,6 +154,9 @@ void PhysSimulation::Update() {
 	ResetForNextFrame();
 	Solve();
 	UpdateObjects();
+		
+	// Calc where to put the camera now
+	ComputeNewCamera();
 }
 
 //! Eventually, load the initial state from a map file
@@ -135,15 +166,22 @@ int PhysSimulation::Load() {
 	Object* new_obj;
 	int i, max = 30;
 
+	// long level, same height as screen though
+	width=320 * 8;
+	height=240;
+	camera_left = 0; camera_top = 0;
+
 	// -- Create some random objects --
 	objects.clear();
 	
+	// Create the background
 	new_obj = objectFactory->CreateObject(OBJECT_ID_BACKGROUND);
 	if (!new_obj)
 		return -1;
 	
 	objects.push_back(new_obj);
 
+	// Create a bunch of "radius blocks" (they move in a circle)
 	for (i = 0; i < max; i++) {
 		new_obj = objectFactory->CreateObject(OBJECT_ID_RADIUS_BLOCK);
 		if (!new_obj)
@@ -152,11 +190,15 @@ int PhysSimulation::Load() {
 		objects.push_back(new_obj);
 	}
 	
+	// Create the main player
 	new_obj = objectFactory->CreateObject(OBJECT_ID_PLAYER);
 	if (!new_obj)
 		return -1;
 
 	objects.push_back(new_obj);
+	
+	// Follow the player object
+	camera_follow = new_obj;
 
 	// -- Create some forces --
 	
