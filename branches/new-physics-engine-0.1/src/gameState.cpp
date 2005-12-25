@@ -9,6 +9,7 @@
 #include "physSimulation.h"
 #include "gameMode.h"
 #include "resourceLoader.h"
+#include "xmlParser.h"
 
 // XXX todo:  mode switching code is VERY hackish and bad.
 //            need to fix that.
@@ -17,8 +18,48 @@ PhysSimulation* GameState::GetPhysSimulation() {
 	return physSimulation;					
 }
 
-int GameState::LoadConfig(char* xml_filename) {
-	return 0;
+/* THE XML PLAN
+ *
+ * GameState -> Reads Master config file (wherever that is)   xMaster
+ *
+ *  Parse stupid options (which game, etc).
+ * 
+ *  Gets the name of the initial game mode XML file.
+ *  Loads it.  ->   xMode
+ *  Figures out the type of the mode to load, loads it. ( xMode->getAttribute("type"); )
+ *  Passes xMode to the new mode. 
+ *
+ * */
+
+// Parse the master XML file
+// returns: XMLNode of first GameMode to load
+// XXX currently xmlParser just DIES if it can't load the XML files/corrupted file
+XMLNode GameState::LoadXMLConfig(CString xml_filename) {
+				
+	xGame = XMLNode::openFileHelper( xml_filename.c_str(), "game" );
+	
+	XMLNode xInfo = xGame.getChildNode("info");
+
+	// xInfo.getChildNode("map_version").getAttribute("name");
+	
+	// print out some cosmetic stuff.
+	fprintf(stderr, 
+		"Level Info: requires engine version '%s'\n"
+		"Level Info: map version '%s'\n"
+		"Level Info: map author '%s'\n"
+		"Level Info: Description: '%s'\n",
+		xInfo.getChildNode("requires_engine_version").getText(),
+		xInfo.getChildNode("game_version").getText(),
+		xInfo.getChildNode("author").getText(),
+		xInfo.getText() );
+
+	// Get the filename of the XML file which contains our first mode
+	CString mode_xml_filename = xGame.getChildNode("initial_mode_file").getText();
+
+	// Open that file
+	XMLNode xMode = XMLNode::openFileHelper( mode_xml_filename.c_str(), "gameMode" );
+
+	return xMode;
 }
 
 void GameState::SetRandomSeed(int val) { 
@@ -73,10 +114,8 @@ int GameState::InitSystem() {
 
 		resourceLoader->AppendToSearchPath("../");
 
-		if (LoadConfig("data/default.xml") == -1) {
-			fprintf(stderr, "ERROR: InitSystem: failed to load configuration!\n");
-			return -1;
-		}
+		// just DIES if it can't load this file (bad)
+		XMLNode xMode = LoadXMLConfig("data/default.xml");
 		
 		window = new Window();
 		if ( !window ||	window->Init(this, SCREEN_SIZE_X, SCREEN_SIZE_Y, 
@@ -90,15 +129,28 @@ int GameState::InitSystem() {
 			return -1;
 		}
 
-		// Initialize the default "game mode" (e.g. menu, simulation, etc)
-		modes.resize(1);
-		currentMode = modes[0] = physSimulation = new PhysSimulation();
+		if (LoadGameMode(xMode) == -1) {
+			fprintf(stderr, "ERROR: InitSystem: failed to init default game mode!\n");
+			return -1;
+		}
+		currentMode = modes[0];
 		currentModeIndex = 0;
-		if ( !modes[0] || modes[0]->Init(this) < 0) {
+				
+		return 0;
+}
+
+//! Initialize a "game mode" (e.g. menu, simulation, etc)
+int GameState::LoadGameMode(XMLNode xMode) {
+		GameMode* mode;
+				
+		mode = physSimulation = new PhysSimulation();
+		if ( !mode || mode->Init(this) < 0) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init simulation!\n");
 			return -1;
 		}
-					
+
+		modes.push_back(mode);
+
 		return 0;
 }
 

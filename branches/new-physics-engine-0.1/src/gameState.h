@@ -17,6 +17,8 @@ class PhysSimulation;
 
 #include "globals.h"
 #include "timer.h"
+#include "StdString.h"
+#include "xmlParser.h"
 
 //! Represents the current state of the game.
 
@@ -28,6 +30,9 @@ class GameState {
 	protected:	
 		//! Holds options which were parsed from the command line
 		GameOptions *options;
+	
+		//! Holds current game XML file
+		XMLNode xGame;
 		
 		//! Loads things and knows about path handling
 		ResourceLoader* resourceLoader;
@@ -52,7 +57,13 @@ class GameState {
 		
 		int InitTimers();								//! Init game timing
 		int InitInput();								//! Init input subsystems
-		int LoadConfig(char* xml_filename);	//! Load game config from XML file
+
+		//! Load master game config from an XML file, return an XMLNode which is
+		//! the first game Mode's config we should now load.
+		XMLNode LoadXMLConfig(CString xml_filename);
+		
+		//! Load a game mode from an XML config file
+		int LoadGameMode(XMLNode);
 
 		//! Load the default configuration (if no config file can be found)
 		int LoadDefaultConfig();				

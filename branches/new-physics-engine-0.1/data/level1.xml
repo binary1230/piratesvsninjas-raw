@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- best viewed with tabs set to 2 spaces -->
+
+<gameMode type="simulation" name="Level 1 - Sonic Desert Run">
+
+	<description>
+		The first level of the game - VIVA Sonic Desert Run!
+		<engine_version>0.2-beta</engine_version>
+		<map_version>0.2-beta</map_version>
+		<author>Dominic Cerquetti</author>
+	</description>
+	
+	<objectDefinitions>
+	
+		<object name="Sonic" type="Player">
+			<description>Sonic The Hedgehog (C) 1992(?) SEGA. Will not be in this game ever.</description>
+			<animations default="standing">
+			
+				<animation name="walking">
+					<frames show_in_order="1" repeat="1">
+						<img name="data/run1.bmp" duration="4" />
+						<img name="data/run2.bmp" duration="4" />
+						<img name="data/run3.bmp" duration="4" />
+						<img name="data/run4.bmp" duration="4" />
+						<img name="data/run5.bmp" duration="4" />
+						<img name="data/run6.bmp" duration="4" />
+						<img name="data/run7.bmp" duration="4" />
+						<img name="data/run8.bmp" duration="4" />
+					</frames>
+				</animation>
+				
+				<animation name="standing">
+					<frames show_in_order="1" repeat="1">
+						<img name="data/wait1.bmp" duration="4" />
+						<img name="data/wait2.bmp" duration="4" />
+					</frames>
+				</animation>
+	
+				<animation name="jumping">
+					<frames show_in_order="1" repeat="1">
+						<img name="data/spin1.bmp" duration="3" />
+						<img name="data/spin2.bmp" duration="3" />
+						<img name="data/spin3.bmp" duration="3" />
+						<img name="data/spin4.bmp" duration="3" />
+					</frames>
+				</animation>
+			</animations>
+			<properties>
+				<force type="gravity" affected="1" />
+				<force type="input" affected="1" />
+				<force type="friction" affected="1" />
+ 				<jump-velocity value="8.0f" />
+				<drag value="0.95f" />
+				<min-velocity value="0.3f" />
+			</properties>
+	
+		</object>
+	
+		<object name="background" type="Background">
+			<animations default="still_background">
+				<animation name="still_background">
+					<frames show_in_order="1" repeat="0">
+						<img name="data/back.bmp" duration="1" />
+					</frames>
+				</animation>
+			</animations>
+			<properties>
+				<scroll>false</scroll>
+				<force type="gravity" affected="0" />
+				<force type="input" affected="0" />
+				<force type="friction" affected="0" />
+			</properties>
+		</object>
+	
+		<object name="tails" type="RadiusBlock">
+			<animations default="flying">
+				<animation name="flying">
+					<frames show_in_order="1" repeat="1">
+						<img name="data/fly1.bmp" duration="4" />
+						<img name="data/fly2.bmp" duration="4" />
+					</frames>
+				</animation>
+			</animations>
+			<properties>
+				<force type="gravity" affected="0" />
+				<force type="input" affected="0" />
+				<force type="friction" affected="0" />
+				<theta 	type="random" min="0" max="360" />
+				<radius type="random" min="20" max="300" />
+				<position type="random" />
+				</properties>
+		</object>
+	</objectDefinitions>
+		
+	<map>
+		<object type="player">
+			<position type="fixed">
+				<x>20</x> 
+				<y>80</y> 
+			</position>
+			<input controller="1">
+		</object>
+	
+		<object type="tails">
+			<position type="random" />
+		</object>
+	
+		<object type="background" />
+	</map>
+
+</gameMode>

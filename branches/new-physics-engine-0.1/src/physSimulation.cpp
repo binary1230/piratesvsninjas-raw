@@ -38,24 +38,23 @@ int PhysSimulation::Init(GameState* gs) {
 
 void PhysSimulation::ComputeNewCamera() {
 	int ox = camera_follow->GetX();
-	//int oy = camera_follow->GetY();
 	int ow = camera_follow->GetWidth();
-	//int oh = camera_follow->GetHeight();
-
 	int sw = GetGameState()->ScreenWidth();
+	/*int oy = camera_follow->GetY();
+	int oh = camera_follow->GetHeight();
+	int sh = GetGameState()->ScreenHeight();*/
 
 	if (ox - camera_left < CAM_THRESHOLD)
 		camera_left = ox - CAM_THRESHOLD;
 	else if ( (camera_left + sw) - (ox + ow) < CAM_THRESHOLD )
 		camera_left = ox + ow + CAM_THRESHOLD - sw;
-									
-	// if	he's too high up, move up
-	//if (oy - camera_top < CAM_THRESHOLD) {
-	//	camera_top = oy - 40;
-	//}
-	// XXX COMPLETE THIS
-	//fprintf(stderr, "nx=%i, w = %i\n", camera_left, sw);
-	
+								
+	// XXX needs testing, should work OK.
+	/*if (oy - camera_top < CAM_THRESHOLD)
+		camera_top = oy - CAM_THRESHOLD;
+	else if ( (camera_top + sh) - (ox + ow) < CAM_THRESHOLD )
+		camera_top = oy + oh + CAM_THRESHOLD - sh;*/
+
 	// XXX better done as min/max
 	if (camera_left < 0) camera_left = 0;
 	if (camera_left > width) camera_left = width;
