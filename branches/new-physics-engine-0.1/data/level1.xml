@@ -3,21 +3,26 @@
 
 <gameMode type="simulation" name="Level 1 - Sonic Desert Run">
 
-	<description>
+	<info>
 		The first level of the game - VIVA Sonic Desert Run!
-		<engine_version>0.2-beta</engine_version>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
-	</description>
+	</info>
+
+	<properties>
+		<width>2560</width>
+		<height>240</height>
+		<camera_left>0</camera_left>
+		<camera_top>0</camera_top>
+	</properties>
 	
 	<objectDefinitions>
 	
-		<object name="Sonic" type="Player">
-			<description>Sonic The Hedgehog (C) 1992(?) SEGA. Will not be in this game ever.</description>
+		<objectDef name="sonic" type="Player">
 			<animations default="standing">
 			
 				<animation name="walking">
-					<frames show_in_order="1" repeat="1">
+					<frames>
 						<img name="data/run1.bmp" duration="4" />
 						<img name="data/run2.bmp" duration="4" />
 						<img name="data/run3.bmp" duration="4" />
@@ -27,41 +32,49 @@
 						<img name="data/run7.bmp" duration="4" />
 						<img name="data/run8.bmp" duration="4" />
 					</frames>
+					<show_in_order />
+					<repeat />
 				</animation>
 				
 				<animation name="standing">
-					<frames show_in_order="1" repeat="1">
+					<frames>
 						<img name="data/wait1.bmp" duration="4" />
-						<img name="data/wait2.bmp" duration="4" />
+						<img name="data/wait2.bmp" duration="24" />
 					</frames>
+					<show_in_order />
+					<repeat />
 				</animation>
 	
 				<animation name="jumping">
-					<frames show_in_order="1" repeat="1">
+					<frames>
 						<img name="data/spin1.bmp" duration="3" />
 						<img name="data/spin2.bmp" duration="3" />
 						<img name="data/spin3.bmp" duration="3" />
 						<img name="data/spin4.bmp" duration="3" />
 					</frames>
+					<show_in_order />
+					<repeat />
 				</animation>
 			</animations>
 			<properties>
 				<force type="gravity" affected="1" />
 				<force type="input" affected="1" />
 				<force type="friction" affected="1" />
- 				<jump-velocity value="8.0f" />
-				<drag value="0.95f" />
-				<min-velocity value="0.3f" />
+ 				<jumpVelocity>	8.0f	</jumpVelocity>
+				<drag>					0.95f	</drag>
+				<minVelocity>		0.3f	</minVelocity>
+				<mass>					1.0f	</mass>
 			</properties>
+		</objectDef>
 	
-		</object>
-	
-		<object name="background" type="Background">
+		<objectDef name="background" type="Background">
 			<animations default="still_background">
 				<animation name="still_background">
-					<frames show_in_order="1" repeat="0">
+					<frames repeat /="0">
 						<img name="data/back.bmp" duration="1" />
 					</frames>
+					<show_in_order />
+					<repeat />
 				</animation>
 			</animations>
 			<properties>
@@ -70,15 +83,17 @@
 				<force type="input" affected="0" />
 				<force type="friction" affected="0" />
 			</properties>
-		</object>
+		</objectDef>
 	
-		<object name="tails" type="RadiusBlock">
+		<objectDef name="tails" type="RadiusBlock">
 			<animations default="flying">
 				<animation name="flying">
-					<frames show_in_order="1" repeat="1">
+					<frames>
 						<img name="data/fly1.bmp" duration="4" />
 						<img name="data/fly2.bmp" duration="4" />
 					</frames>
+					<show_in_order />
+					<repeat />
 				</animation>
 			</animations>
 			<properties>
@@ -88,24 +103,27 @@
 				<theta 	type="random" min="0" max="360" />
 				<radius type="random" min="20" max="300" />
 				<position type="random" />
-				</properties>
-		</object>
+			</properties>
+		</objectDef>
 	</objectDefinitions>
-		
+	
 	<map>
-		<object type="player">
+		<!-- TODO: LAYERS -->
+		<object objectDef="background" />
+	
+		<object objectDef="tails">
+			<position type="random" />
+		</object>	
+
+		<object objectDef="sonic">
 			<position type="fixed">
 				<x>20</x> 
 				<y>80</y> 
 			</position>
-			<input controller="1">
+			<input controller="1" />
+			<cameraFollow />
 		</object>
 	
-		<object type="tails">
-			<position type="random" />
-		</object>
-	
-		<object type="background" />
 	</map>
 
 </gameMode>

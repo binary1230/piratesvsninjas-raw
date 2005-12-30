@@ -9,4 +9,11 @@
 #define OBJECT_ID_PLAYER 2
 #define OBJECT_ID_BACKGROUND 3
 
+
+// OBJECT animation ID's
+#define PLAYER_WALKING 0
+#define PLAYER_STANDING 1
+#define PLAYER_JUMPING 2
+#define PLAYER_MAX_ANIMATIONS 3
+
 #endif // OBJECT_IDS_H

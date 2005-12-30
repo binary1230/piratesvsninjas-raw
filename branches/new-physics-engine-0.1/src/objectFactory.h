@@ -3,12 +3,17 @@
 
 #include <allegro.h>
 #include <stdio.h>
+#include <vector>
+
+using namespace std;
 
 class ObjectFactory;
 class Object;
 class ResourceLoader;
 
 #include "gameBase.h"
+#include "xmlParser.h"
+#include "StdString.h"
 
 // THIS CLASS IS BAD.
 // It will be rewritten, for now it JUST WORKS.
@@ -22,8 +27,12 @@ class ObjectFactory : GameBase {
 		int Init(GameState* _game_state);
 		void Shutdown();
 
-		Object* CreateObject(uint id);
+		// Object* CreateObject(uint id);
+		// Object* CreateObject(XMLNode type);
+		Object* CreateObject(XMLNode &xObjectDef, XMLNode &xObject);
 		void DeleteObject(Object*);
+
+		int LoadObjectsFromXML(XMLNode, vector<Object*> &);
 		
 		ObjectFactory();
 		~ObjectFactory();

@@ -1,11 +1,16 @@
 #include "animation.h"
 #include "gameState.h"
 
+#include <map>
+using namespace std;
+
 // XXX factory method memory leak
 // XXX memory leak if Init fails, anim never gets freed
 // EVERYTHING allocated like this (and objects) need to be fixed
 
-Animation::Animation() {}
+Animation::Animation() {
+	currentFrame = NULL;
+}
 Animation::~Animation() {}
 
 //! Initialize the animation
@@ -24,10 +29,8 @@ void Animation::DrawAt(int _x, int _y, bool flip_x) {
 	//if (!GetGameState())
 	// 	fprintf(stderr, "NO GAME STATE!\n");
 
-	if (!currentFrame) {
-	  fprintf(stderr, "NO CURRENT FRAME!\n");
-		return;
-	}
+	assert(currentFrame != NULL);
+	assert(currentFrame->bmp != NULL);
 				
 	int x = _x + currentFrame->x_offset;
 	int y = _y + currentFrame->y_offset;
@@ -77,7 +80,8 @@ void Animation::Shutdown() {
 
 //! Kind of wanky, add another frame to this animation
 //! Use for temporary loading routines, need to rethink this one.
-bool Animation::PushImage(char* file, int duration) {
+//! Returns false on error
+bool Animation::PushImage(const char* file, const int duration) {
 	AnimFrame *f = new AnimFrame();
 
 	f->bmp = load_bitmap(file, NULL);
@@ -103,43 +107,42 @@ bool Animation::PushImage(char* file, int duration) {
 	return true;
 }
 
-// XXX buggy-ass parsing code.  NEEEEED XML.
-/*Animation* Animation::New(GameState* gameState, char* file, int id) {
-	
+//! Static helper method to create new animations from XML
+//! XXX Does not currently support frames out of order and
+//! other wackiness.  soon enough, my young apprentice - soon enough.
+Animation* Animation::New(GameState* gameState, XMLNode &xAnim) {
 	Animation* anim = new Animation();
-	int lineno = -1;
-	char buf[1024];
-	bool not_eof;
+	int duration;
+	CString filename;
 	
-	if (!anim) goto end;
-	if (!anim->Init(gameState)) goto error_init;
-	
-	FILE* f = fopen(file, "r");
-	if (!f) goto error_file;
-
-	// read each from the file until we get to the line we want or EOF.
-	while (fgets(buf, 1024, f) && lineno != id) {
-		lineno++;
-	}
-
-	if (lineno != id) goto not_found;
-
-	
-						
-	// sucess
-	close(f);
-	return anim;
-
-	not_found:
-		fprintf(stderr, "requested animation ID %i not found!\n", id);
-
-	// failures
-	error_file:
-		close(f);
-	
-	error_init:
-		free anim;
-	
-	end:
+	if (!anim || !anim->Init(gameState) )
 		return NULL;
-}*/
+
+	XMLNode xFrames, xImg;
+	int i, iterator, max;
+	
+	xFrames = xAnim.getChildNode("frames");
+	max = xFrames.nChildNode("img");
+		
+	// fprintf(stderr, "--- max=%i\n", max);
+
+	// loop through each <img> tag
+	for (i=iterator=0; i<max; i++) {
+					
+		xImg = xFrames.getChildNode("img", &iterator);
+		
+		sscanf(xImg.getAttribute("duration"), "%i", &duration);
+		filename = xImg.getAttribute("name");
+		
+		// fprintf(stderr, "--- f=%s, d=%i\n", filename.c_str(), duration);
+
+		// Create the frame
+		if (!anim->PushImage(filename, duration)) {
+			anim->Shutdown();
+			free(anim);
+			return NULL;
+		}
+	}
+	
+	return anim;
+}

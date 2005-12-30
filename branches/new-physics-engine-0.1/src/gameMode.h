@@ -4,6 +4,7 @@
 class GameState;
 
 #include "gameBase.h"
+#include "xmlParser.h"
 
 //! GameMode class
 //! Base class for all "modes" of the game
@@ -20,7 +21,7 @@ class GameMode : public GameBase {
 			GameMode* parent; // mode to go to on gameState->ExitMode()
 
 		public:
-			virtual int Init(GameState* gs) = 0;
+			virtual int Init(GameState*, XMLNode) = 0;
 			virtual void Shutdown() = 0;
 
 			virtual void Draw() = 0;

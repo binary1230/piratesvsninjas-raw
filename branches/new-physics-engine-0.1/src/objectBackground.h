@@ -8,6 +8,7 @@ class BackgroundObject;
 class GameState;
 
 #include "object.h"
+#include "xmlParser.h"
 
 class BackgroundObject : public Object {
 	protected:
@@ -23,7 +24,7 @@ class BackgroundObject : public Object {
 		BackgroundObject(float _speed = 0.2);
 		~BackgroundObject();
 
-		static Object* New(GameState* gameState);
+		static Object* New(GameState* gameState, XMLNode &xDef);
 };
 
 #endif // BackgroundObject_H   

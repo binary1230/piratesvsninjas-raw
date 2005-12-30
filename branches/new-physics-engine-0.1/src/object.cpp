@@ -4,7 +4,9 @@
 #include "globals.h"
 #include "gameBase.h"
 #include "animation.h"
+#include "animations.h"
 #include "physSimulation.h"
+#include "xmlParser.h"
 
 int Object::GetWidth() { return currentAnimation->Width(); }
 int Object::GetHeight() {	return currentAnimation->Height(); }
@@ -18,18 +20,18 @@ void Object::SetupCachedVariables() {
 
 void Object::Draw() {
 	// takes into account the camera here
+	assert(simulation != NULL);
 	DrawAtOffset(-simulation->GetCameraLeft(), -simulation->GetCameraTop());
 }
 
 void Object::DrawAtOffset(int x, int y) {	
 
-	int real_y = game_state->ScreenHeight() - (int)pos.GetY() + y;
+	// have to take into account Y coords are flipped on the screen
+	int screen_y = game_state->ScreenHeight() - (int)pos.GetY() + y;
+	int screen_x = (int)pos.GetX() + x;
 	
 	if (currentAnimation)
-		currentAnimation->DrawAt(
-										(int)pos.GetX() + x, 
-										real_y, 
-										flip_x);
+		currentAnimation->DrawAt(screen_x, screen_y, flip_x);
 }
 
 void Object::ApplyForce(Force* force) {
@@ -74,6 +76,45 @@ Object::Object() {
 	flip_x = false; 
 	mass = 1.0f;
 	simulation = NULL;
+}
+
+// A static helper function to load animations
+bool Object::LoadAnimations(XMLNode &xDef) {
+	int i, iterator, max;
+	AnimationMapping animation_lookup = GetPlayerAnimationMappings();
+	animations.resize(PLAYER_MAX_ANIMATIONS);
+	Animation* anim = NULL;
+	CString anim_name;
+	XMLNode xAnim, xAnims;
+	
+	xAnims = xDef.getChildNode("animations");
+	max = xAnims.nChildNode("animation");
+
+	for (i=iterator=0; i<max; i++) {
+		xAnim = xAnims.getChildNode("animation", &iterator);
+		anim_name = xAnim.getAttribute("name");
+		
+		anim = Animation::New(GetGameState(), xAnim);
+
+		if (!anim) {
+			return false;
+		} else {
+			animations[animation_lookup[anim_name]] = anim;
+			
+			//fprintf(stderr, "--- animation '%s' is index #%i\n", anim_name.c_str(), 
+			//								animation_lookup[anim_name] );
+		}
+	}
+
+	// set the default animation XXX error check? how?
+	CString default_name;
+	int default_index; 
+
+	default_name = xAnims.getAttribute("default");
+	default_index = animation_lookup[default_name];
+	currentAnimation = animations[default_index];
+
+	return true;
 }
 
 Object::~Object() {}

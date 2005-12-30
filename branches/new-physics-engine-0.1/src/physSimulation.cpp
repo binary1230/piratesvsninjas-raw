@@ -12,7 +12,10 @@
 #include "input.h"
 #include "gameState.h"
 
-int PhysSimulation::Init(GameState* gs) {
+#include <map>
+using namespace std;
+
+int PhysSimulation::Init(GameState* gs, XMLNode xMode) {
 	SetGameState(gs);
 
 	objectFactory = new ObjectFactory();
@@ -30,13 +33,16 @@ int PhysSimulation::Init(GameState* gs) {
 	objects.clear();
 	forces.clear();
 	
-	return Load();
+	return Load(xMode);
 }
 
 // camera threshold in pixels
 #define CAM_THRESHOLD 40
 
 void PhysSimulation::ComputeNewCamera() {
+	
+	assert(camera_follow);
+				
 	int ox = camera_follow->GetX();
 	int ow = camera_follow->GetWidth();
 	int sw = GetGameState()->ScreenWidth();
@@ -158,18 +164,14 @@ void PhysSimulation::Update() {
 	ComputeNewCamera();
 }
 
-//! Eventually, load the initial state from a map file
-//! For now, we just create some random objects + forces for a demo
-int PhysSimulation::Load() {
-				
+//! Load the objects from an XML file
+/*int PhysSimulation::LoadObjects(XMLNode xMode) {
 	Object* new_obj;
-	int i, max = 30;
 
-	// long level, same height as screen though
-	width=320 * 8;
-	height=240;
-	camera_left = 0; camera_top = 0;
-
+	XMLNode xMap = xMode.getChildNode("map").get;
+	XMLNode xObjs = xMode.getChildNode("objectDefinitions");
+	
+	
 	// -- Create some random objects --
 	objects.clear();
 	
@@ -198,11 +200,115 @@ int PhysSimulation::Load() {
 	
 	// Follow the player object
 	camera_follow = new_obj;
+}*/
 
-	// -- Create some forces --
+//! MASTER LOAD FUNCTION:
+//! Load the simulation from data in an XML file
+int PhysSimulation::Load(XMLNode &xMode) {			
+
+	LoadHeaderFromXML(xMode);
 	
-	Force* new_force = NULL;
+	objects.clear();
+	LoadObjectsFromXML(xMode);
+	
 	forces.clear();
+	LoadForcesFromXML(xMode);
+	
+	if (!camera_follow) {
+		fprintf(stderr, "ERROR: No <cameraFollow> found, cannot proceed.\n");
+		return -1;
+	}
+	
+	return 0;	
+}
+
+// loads misc junk from the XML file
+int PhysSimulation::LoadHeaderFromXML(XMLNode &xMode) {
+	XMLNode xInfo = xMode.getChildNode("info");
+
+	fprintf(stderr, " Loading Level: '%s'\n", xInfo.getText() );
+
+	XMLNode xProps = xMode.getChildNode("properties");
+
+	// get width/height/camera xy
+	sscanf(xProps.getChildNode("width").getText(), "%i", &width);
+	sscanf(xProps.getChildNode("height").getText(), "%i", &height);
+	sscanf(xProps.getChildNode("camera_left").getText(), "%i", &camera_left);
+	sscanf(xProps.getChildNode("camera_top").getText(), "%i", &camera_top);
+
+	return 0;
+}
+
+//! Helper function for physSimulation to load objects from a map file
+//! Post: Objects vector populated with all objects from the map file
+int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
+
+	// XXX this function needs to be split UP.
+
+	// How we read the map structure.
+	// 1) put all objectDefinitions into a hash table
+	// 2) look up the "map" node
+	// 3) foreach object we find there:
+	// 4) look up its "objectDefinition"
+	// 5) Create a new object with that objectDefinition
+	// 6) free hash table
+
+  int i, max, iterator = 0;  
+	XMLNode xMap, xObject, xObjs, xObjectDef;		// various XML containers
+	Object* obj;
+	CString objDefName, objName;		
+	map<CString, XMLNode> objectDefs; 
+	
+	camera_follow = NULL;
+
+	// 1) put all objectDefinitions into a hash table
+	xObjs = xMode.getChildNode("objectDefinitions");
+	max = xObjs.nChildNode("objectDef");
+
+	iterator = 0;
+	for (i=0; i < max; i++) {
+		xObjectDef = xObjs.getChildNode("objectDef", &iterator);
+		objName = xObjectDef.getAttribute("name");
+		objectDefs[objName] = xObjectDef;
+	}
+	
+	// 1) loop through each <object> we find under <map>
+	xMap = xMode.getChildNode("map");
+	max = xMap.nChildNode("object");
+	
+	iterator = 0;
+  for (i=0; i < max; i++) {
+		xObject = xMap.getChildNode("object", &iterator);
+		objDefName = xObject.getAttribute("objectDef");
+		obj = objectFactory->CreateObject(objectDefs[objDefName], xObject);
+
+		if (!obj) {
+			fprintf(stderr, "ERROR: Can't find objectDef '%s'\n", objDefName.c_str());
+			return -1;
+		} else {
+
+			// see if we make the camera follow this object
+			if (xObject.nChildNode("cameraFollow") == 1) {
+				if (!camera_follow) {
+					camera_follow = obj;
+				} else {
+					fprintf(stderr, "ERROR: multiple camera targets in map\n");
+					return -1;
+				}
+			}
+			
+			objects.push_back(obj);
+		}
+	}
+	
+	return 0;
+}
+
+// loads the forces from the XML file
+int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {
+	
+	// XXX need to actually load from XML instead of hardcoding...
+	Force* new_force = NULL;
 
 	if ( (new_force = forceFactory->CreateForce(FORCE_GRAVITY)) )
 		forces.push_back(new_force);
@@ -214,7 +320,7 @@ int PhysSimulation::Load() {
 	else
 		return -1;
 
-	return 0;	
+	return 0;
 }
 
 PhysSimulation::PhysSimulation() : objects(0), forces(0) {}

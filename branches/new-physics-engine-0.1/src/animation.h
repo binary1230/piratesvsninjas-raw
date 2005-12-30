@@ -4,9 +4,14 @@
 #include <allegro.h>
 #include <stdio.h>
 #include <vector>
+#include <map>
 using namespace std;
 
 #include "gameBase.h"
+#include "xmlParser.h"
+#include "StdString.h"
+
+typedef map<const CString, uint> AnimationMapping;
 
 //! An animation frame.  Each animation is an array of these.
 struct AnimFrame {
@@ -55,7 +60,7 @@ class Animation : public GameBase {
 		void Shutdown();					//! Cleanup this animation
 
 		//! Used in constructing a new animation, pushes this image onto it.
-		bool PushImage(char* filename, int duration);
+		bool PushImage(const char* filename, const int duration);
 
 		int Width() {return frames[0]->bmp->w;};
 		int Height() {return frames[0]->bmp->h;};
@@ -64,7 +69,7 @@ class Animation : public GameBase {
 		~Animation();
 
 		//! Static factory method
-		// static Animation* New(GameState*, char* file, uint id);
+		static Animation* New(GameState* gameState, XMLNode &xAnim);
 };
 
 #endif // ANIMATION_H

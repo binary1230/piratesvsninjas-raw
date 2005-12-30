@@ -38,7 +38,7 @@ BackgroundObject::BackgroundObject(float _speed) {
 
 BackgroundObject::~BackgroundObject() {}
 
-Object* BackgroundObject::New(GameState* gameState) {
+Object* BackgroundObject::New(GameState* gameState, XMLNode &xDef) {
 	ObjectProperties props;
 	BackgroundObject* obj = new BackgroundObject(1.0f);
 	

@@ -17,11 +17,16 @@ class BaseInput;
 class Animation;
 
 #include "object.h"
+#include "xmlParser.h"
 
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
 		vector<Animation*> animations;
+
+		float jump_velocity;
+		float min_velocity;
+		float drag;
 				
 	public:
 		void Update();
@@ -31,7 +36,7 @@ class PlayerObject : public Object {
 		PlayerObject();
 		~PlayerObject();
 		
-		static Object* New(GameState*);
+		static Object* New(GameState* gameState, XMLNode &xDef);
 };
 
 #endif // PLAYER_OBJECT_H

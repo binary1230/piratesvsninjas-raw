@@ -12,6 +12,7 @@ class RadiusBlockObject;
 class GameState;
 
 #include "object.h"
+#include "xmlParser.h"
 
 class RadiusBlockObject : public Object {
 	protected:
@@ -32,7 +33,7 @@ class RadiusBlockObject : public Object {
 		~RadiusBlockObject();
 			
 		//! Factory method to create a new radius block object
-		static Object* New(GameState*);
+		static Object* New(GameState* gameState, XMLNode &xDef);
 };
 
 #endif // RadiusBlockObject_H   

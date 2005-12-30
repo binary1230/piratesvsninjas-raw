@@ -38,15 +38,20 @@ class PhysSimulation : public GameMode {
 
 			//! Which object the camera should follow
 			Object* camera_follow;
-		
-			//! Loads a simulation (eventually from a file)
-			int Load();
 
+			//! Physics functions
 			void ResetForNextFrame();
 			void Solve();
 			void UpdateObjects();
+		
+			//! Sets up simulation from an XML file
+			int Load(XMLNode&);
+			int LoadHeaderFromXML(XMLNode&);
+			int LoadObjectsFromXML(XMLNode&);
+			int LoadForcesFromXML(XMLNode&);
+
 		public:
-			int Init(GameState* gs);
+			int Init(GameState*, XMLNode);
 			void Shutdown();
 
 			void Draw();

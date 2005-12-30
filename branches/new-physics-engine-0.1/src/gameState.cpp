@@ -11,43 +11,26 @@
 #include "resourceLoader.h"
 #include "xmlParser.h"
 
-// XXX todo:  mode switching code is VERY hackish and bad.
-//            need to fix that.
-
-PhysSimulation* GameState::GetPhysSimulation() {
-	return physSimulation;					
-}
-
-/* THE XML PLAN
- *
- * GameState -> Reads Master config file (wherever that is)   xMaster
- *
- *  Parse stupid options (which game, etc).
- * 
- *  Gets the name of the initial game mode XML file.
- *  Loads it.  ->   xMode
- *  Figures out the type of the mode to load, loads it. ( xMode->getAttribute("type"); )
- *  Passes xMode to the new mode. 
- *
- * */
+// XXX 	todo: mode switching code is VERY hackish and bad.
+//      			need to fix that.
+// 			todo: clean up, shouldn't pass XMLNode, should pass XMLNode*
 
 // Parse the master XML file
 // returns: XMLNode of first GameMode to load
-// XXX currently xmlParser just DIES if it can't load the XML files/corrupted file
 XMLNode GameState::LoadXMLConfig(CString xml_filename) {
 				
+	// XXX currently xmlParser just DIES if it can't load the XML files/corrupted file
 	xGame = XMLNode::openFileHelper( xml_filename.c_str(), "game" );
 	
 	XMLNode xInfo = xGame.getChildNode("info");
 
 	// xInfo.getChildNode("map_version").getAttribute("name");
 	
-	// print out some cosmetic stuff.
 	fprintf(stderr, 
-		"Level Info: requires engine version '%s'\n"
-		"Level Info: map version '%s'\n"
-		"Level Info: map author '%s'\n"
-		"Level Info: Description: '%s'\n",
+		" Mod Info: requires engine version '%s'\n"
+		" Mod Info: map version '%s'\n"
+		" Mod Info: map author '%s'\n"
+		" Mod Info: Description: '%s'\n",
 		xInfo.getChildNode("requires_engine_version").getText(),
 		xInfo.getChildNode("game_version").getText(),
 		xInfo.getChildNode("author").getText(),
@@ -55,41 +38,45 @@ XMLNode GameState::LoadXMLConfig(CString xml_filename) {
 
 	// Get the filename of the XML file which contains our first mode
 	CString mode_xml_filename = xGame.getChildNode("initial_mode_file").getText();
+	
+	fprintf(stderr, 
+		" Mod Info: default map filename '%s'\n",
+		mode_xml_filename.c_str());
 
-	// Open that file
+	// Open that file, return the node
 	XMLNode xMode = XMLNode::openFileHelper( mode_xml_filename.c_str(), "gameMode" );
 
 	return xMode;
 }
 
-void GameState::SetRandomSeed(int val) { 
-	random_seed = val; 
-	srand(val); 
-};
+//! Initialize a "game mode" (e.g. menu, simulation, etc)
+int GameState::LoadGameMode(XMLNode xMode) {
+		GameMode* mode;
+			
+		// Get the mode type from the XML file
+		CString nodeType = xMode.getAttribute("type");
 
-int GameState::GetRandomSeed() const { 
-	return random_seed; 
-};
+		// TODO: Is it worth making a "mode factory" for this?
+		if (nodeType == "simulation") {
+						
+			mode = physSimulation = new PhysSimulation();
+			if ( !mode || mode->Init(this, xMode) < 0) {
+				fprintf(stderr, "ERROR: InitSystem: failed to init simulation!\n");
+				return -1;
+			}
+	
+		} else {
+			mode = NULL;
+		}
 
-bool GameState::GetKey(uint which_key) const	{ 
-	return input->Key(which_key); 
-};
-
-BITMAP* GameState::GetDrawingSurface() { 
-	return window->GetDrawingSurface(); 
-};
-
-uint GameState::ScreenWidth() const {
-	return window->Width();
+		if (mode) {
+			modes.push_back(mode);
+			return 0;
+		} else {
+			return -1;
+		}
 }
 
-uint GameState::ScreenHeight() const {
-	return window->Height();
-}
-
-void GameState::SignalEndCurrentMode() {
-		end_current_mode = true;
-}
 
 //! Initialize game systems - main function
 
@@ -97,15 +84,21 @@ void GameState::SignalEndCurrentMode() {
 //! Allegro, the window, the input subsystem, and the default game mode
 //! BE CAREFUL, things need to be done IN ORDER here.
 int GameState::InitSystem() {
+		
+		fprintf(stderr, "[Beginning Game Init]\n");
 				
 		exit_game = false;
 		end_current_mode = false;
 
+		fprintf(stderr, "[init: allegro]\n");
 		allegro_init();			// must be called FIRST
+		
+		fprintf(stderr, "[init: timers]\n");
 		InitTimers();				// must be called SECOND
 
 		SetRandomSeed(42);
 		
+		fprintf(stderr, "[init: resourceLoader]\n");
 		resourceLoader = new ResourceLoader();
 		if (!resourceLoader || resourceLoader->Init(this) < 0) {
 			fprintf(stderr, "ERROR: InitSystem: failed to create resourceLoader!\n");
@@ -115,8 +108,10 @@ int GameState::InitSystem() {
 		resourceLoader->AppendToSearchPath("../");
 
 		// just DIES if it can't load this file (bad)
+		fprintf(stderr, "[init: xml config]\n");
 		XMLNode xMode = LoadXMLConfig("data/default.xml");
 		
+		fprintf(stderr, "[init: window]\n");
 		window = new Window();
 		if ( !window ||	window->Init(this, SCREEN_SIZE_X, SCREEN_SIZE_Y, 
 										options->IsFullscreen(), options->GraphicsMode()) < 0 ) {
@@ -124,33 +119,22 @@ int GameState::InitSystem() {
 			return -1;
 		}
 
+		fprintf(stderr, "[init: input subsystem]\n");
 		if (InitInput() == -1) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init input subsystem!\n");
 			return -1;
 		}
 
+		fprintf(stderr, "[init: default game mode]\n");
 		if (LoadGameMode(xMode) == -1) {
 			fprintf(stderr, "ERROR: InitSystem: failed to init default game mode!\n");
 			return -1;
 		}
 		currentMode = modes[0];
 		currentModeIndex = 0;
+		
+		fprintf(stderr, "[init complete]\n");
 				
-		return 0;
-}
-
-//! Initialize a "game mode" (e.g. menu, simulation, etc)
-int GameState::LoadGameMode(XMLNode xMode) {
-		GameMode* mode;
-				
-		mode = physSimulation = new PhysSimulation();
-		if ( !mode || mode->Init(this) < 0) {
-			fprintf(stderr, "ERROR: InitSystem: failed to init simulation!\n");
-			return -1;
-		}
-
-		modes.push_back(mode);
-
 		return 0;
 }
 
@@ -177,6 +161,7 @@ int GameState::InitInput() {
 //! Init game timers
 //! This MUST be called BEFORE any other allegro initializations.
 int GameState::InitTimers() {
+	fprintf(stderr, "[Init: Timers]\n");
 	install_timer();
 	LOCK_VARIABLE(outstanding_updates);
 	LOCK_FUNCTION((void*)Timer);
@@ -196,7 +181,7 @@ int GameState::RunGame(GameOptions* _options) {
 			fprintf(stderr, "ERROR: Failed to init game!\n");
 			return -1;	
 		} else {
-	
+
 			// XXX SHOULD NOT TEST option->is_xxx should TEST input->is_xxx()
 			if (options->RecordDemo())
 				input->BeginRecording();
@@ -292,6 +277,7 @@ void GameState::Shutdown() {
 	}
 		
 	allegro_exit();
+	fprintf(stderr, "[Exiting]");	
 }
 
 //! Exits the current mode and deletes it, free its memory
@@ -348,6 +334,39 @@ void GameState::SwitchToParentMode() {
 		else 
 			SignalExit();
 	}
+}
+
+PhysSimulation* GameState::GetPhysSimulation() {
+	return physSimulation;					
+}
+
+void GameState::SetRandomSeed(int val) { 
+	random_seed = val; 
+	srand(val); 
+};
+
+int GameState::GetRandomSeed() const { 
+	return random_seed; 
+};
+
+bool GameState::GetKey(uint which_key) const	{ 
+	return input->Key(which_key); 
+};
+
+BITMAP* GameState::GetDrawingSurface() { 
+	return window->GetDrawingSurface(); 
+};
+
+uint GameState::ScreenWidth() const {
+	return window->Width();
+}
+
+uint GameState::ScreenHeight() const {
+	return window->Height();
+}
+
+void GameState::SignalEndCurrentMode() {
+		end_current_mode = true;
 }
 
 GameState::GameState() {

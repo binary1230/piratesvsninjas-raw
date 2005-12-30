@@ -26,7 +26,7 @@ bool BaseInput::Key(uint gameKey) {
 }
 
 void BaseInput::LoadDefaultKeyMappings() {
-	fprintf(stderr, "BaseInput: Using default key mappings!\n");
+	fprintf(stderr, " BaseInput: Using default key mappings!\n");
 	
 	gamekey_to_realkey[GAMEKEY_JUMP] = DEFAULT_GAMEKEY_JUMP;
 	gamekey_to_realkey[GAMEKEY_EXIT] = DEFAULT_GAMEKEY_EXIT;

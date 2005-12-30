@@ -9,17 +9,12 @@
 #include "forceInput.h"
 #include "vector2D.h"
 #include "animation.h"
+#include "animations.h"
 #include "physSimulation.h"
 
-#define JUMP_VELOCITY 8.0f
-#define DRAG 0.95f
-#define MIN_VELOCITY 0.3f
-
-// our animations 
-#define PLAYER_WALKING 0
-#define PLAYER_STANDING 1
-#define PLAYER_JUMPING 2
-#define PLAYER_MAX_ANIMATIONS 3
+#define DEFAULT_JUMP_VELOCITY 8.0f
+#define DEFAULT_DRAG 0.95f
+#define DEFAULT_MIN_VELOCITY 0.3f
 
 #define FLOOR_HEIGHT 21
 
@@ -28,6 +23,7 @@
 // of by the objects outside this one.
 void PlayerObject::Update() {
 
+	assert(currentAnimation != NULL);
 	currentAnimation->Update();
 				
 	int w = simulation->GetWidth();
@@ -55,12 +51,12 @@ void PlayerObject::Update() {
 					
 		// Then we can jump.
 		if (game_state->GetKey(GAMEKEY_JUMP)) {
-			vel.SetY(JUMP_VELOCITY);
+			vel.SetY(jump_velocity);
 	  }	else {
-			vel *= DRAG;	
+			vel *= drag;	
 			
 			// If on floor, do we draw the standing sprite?
-			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < MIN_VELOCITY) {
+			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < min_velocity) {
 				vel.SetX(0);
 				currentAnimation = animations[PLAYER_STANDING];
 			} else {
@@ -99,11 +95,56 @@ bool PlayerObject::Init(GameState* _game_state) {
 	return true;
 }
 
-PlayerObject::PlayerObject() {}
+PlayerObject::PlayerObject() {
+	jump_velocity = DEFAULT_JUMP_VELOCITY;
+	min_velocity = DEFAULT_MIN_VELOCITY;
+	mass = 1.0f;
+	drag = DEFAULT_DRAG;
+}
 PlayerObject::~PlayerObject() {}
 
-// Factory method, creates new PlayerObjects
-// XXX needs to be cleaned/abstracted
+//! Factory method, creates new PlayerObjects from XML files
+//! NOTE: this only takes an ObjectDefinition XML fragment,
+//! it does not take the Object XML fragment.
+Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
+	
+	// ObjectProperties props;
+	PlayerObject* obj = new PlayerObject();
+	int i, max, iterator = 0;
+
+	XMLNode xProps;
+
+	// init the object
+	if (!obj || !obj->Init(gameState) )
+		return NULL;
+
+	// load the animations
+	obj->LoadAnimations(xDef);
+	
+		// END OF MOVED STUFF.
+	
+	//fprintf(stderr, "--- default_str = %s\n", xAnims.getAttribute("default"));
+	//fprintf(stderr, "--- def = %i, current = %x\n", def, obj->currentAnimation);
+
+	// get the object properties
+	xProps = xDef.getChildNode("properties");
+
+	sscanf(xProps.getChildNode("jumpVelocity").getText(), 
+									"%f", &obj->jump_velocity);
+	sscanf(xProps.getChildNode("minVelocity").getText(), 
+									"%f", &obj->min_velocity);
+	sscanf(xProps.getChildNode("drag").getText(), 
+									"%f", &obj->drag);
+	sscanf(xProps.getChildNode("mass").getText(), 
+									"%f", &obj->mass);
+	
+	return obj;
+}
+
+// --------------------------------------------------------------
+// XXX OLD METHOD, HARDCODED 
+// --------------------------------------------------------------
+/* Factory method, creates new PlayerObjects
 Object* PlayerObject::New(GameState* gameState) {
 	ObjectProperties props;
 	PlayerObject* obj = new PlayerObject();
@@ -154,4 +195,6 @@ Object* PlayerObject::New(GameState* gameState) {
 	obj->currentAnimation = obj->animations[PLAYER_STANDING];	
 	
 	return obj;
-}
+}*/
+
+
