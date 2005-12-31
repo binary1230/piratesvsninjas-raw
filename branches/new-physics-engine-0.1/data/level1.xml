@@ -4,9 +4,9 @@
 <gameMode type="simulation" name="Level 1 - Sonic Desert Run">
 
 	<info>
-		The first level of the game - VIVA Sonic Desert Run!
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
+		<description>Sonic Desert Run</description>
 	</info>
 
 	<properties>
@@ -57,9 +57,9 @@
 				</animation>
 			</animations>
 			<properties>
-				<force type="gravity" affected="1" />
-				<force type="input" affected="1" />
-				<force type="friction" affected="1" />
+				<affectedByGravity />
+				<affectedByInput1 />
+				<affectedByFriction />
  				<jumpVelocity>	8.0f	</jumpVelocity>
 				<drag>					0.95f	</drag>
 				<minVelocity>		0.3f	</minVelocity>
@@ -79,9 +79,6 @@
 			</animations>
 			<properties>
 				<scroll>false</scroll>
-				<force type="gravity" affected="0" />
-				<force type="input" affected="0" />
-				<force type="friction" affected="0" />
 			</properties>
 		</objectDef>
 	
@@ -97,10 +94,7 @@
 				</animation>
 			</animations>
 			<properties>
-				<force type="gravity" affected="0" />
-				<force type="input" affected="0" />
-				<force type="friction" affected="0" />
-				<theta 	type="random" min="0" max="360" />
+				<theta type="random" min="0" max="360" />
 				<radius type="random" min="20" max="300" />
 				<position type="random" />
 			</properties>

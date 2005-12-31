@@ -110,9 +110,6 @@ Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
 	
 	// ObjectProperties props;
 	PlayerObject* obj = new PlayerObject();
-	int i, max, iterator = 0;
-
-	XMLNode xProps;
 
 	// init the object
 	if (!obj || !obj->Init(gameState) )
@@ -120,81 +117,26 @@ Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
 
 	// load the animations
 	obj->LoadAnimations(xDef);
-	
-		// END OF MOVED STUFF.
-	
-	//fprintf(stderr, "--- default_str = %s\n", xAnims.getAttribute("default"));
-	//fprintf(stderr, "--- def = %i, current = %x\n", def, obj->currentAnimation);
 
 	// get the object properties
-	xProps = xDef.getChildNode("properties");
+	obj->LoadProperties(xDef);
 
-	sscanf(xProps.getChildNode("jumpVelocity").getText(), 
-									"%f", &obj->jump_velocity);
-	sscanf(xProps.getChildNode("minVelocity").getText(), 
-									"%f", &obj->min_velocity);
-	sscanf(xProps.getChildNode("drag").getText(), 
-									"%f", &obj->drag);
-	sscanf(xProps.getChildNode("mass").getText(), 
-									"%f", &obj->mass);
-	
 	return obj;
 }
 
-// --------------------------------------------------------------
-// XXX OLD METHOD, HARDCODED 
-// --------------------------------------------------------------
-/* Factory method, creates new PlayerObjects
-Object* PlayerObject::New(GameState* gameState) {
-	ObjectProperties props;
-	PlayerObject* obj = new PlayerObject();
+bool PlayerObject::LoadProperties(XMLNode &xDef) {
+	XMLNode xProps = xDef.getChildNode("properties");
 
-	if (!obj || !obj->Init(gameState) )
-		return NULL;
-
-	props.feels_user_input = 1;
-	props.feels_gravity = 1;
-	props.feels_friction = 0;
-	obj->SetProperties(props);
-
-	obj->SetX(20);
-	obj->SetY(80);
-	obj->SetMass(1.0f);
+	sscanf(xProps.getChildNode("jumpVelocity").getText(), 
+									"%f", &jump_velocity);
+	sscanf(xProps.getChildNode("minVelocity").getText(), 
+									"%f", &min_velocity);
+	sscanf(xProps.getChildNode("drag").getText(), 
+									"%f", &drag);
+	sscanf(xProps.getChildNode("mass").getText(), 
+									"%f", &mass);	
 	
-	Animation* anim;
-	obj->animations.resize(PLAYER_MAX_ANIMATIONS);
-
-	int duration;
-	
-	anim = obj->animations[PLAYER_WALKING] = new Animation();
-	anim->Init(gameState);
-	duration = 4;
-	anim->PushImage("data/run1.bmp", duration);
-	anim->PushImage("data/run2.bmp", duration);
-	anim->PushImage("data/run3.bmp", duration);
-	anim->PushImage("data/run4.bmp", duration);
-	anim->PushImage("data/run5.bmp", duration);
-	anim->PushImage("data/run6.bmp", duration);
-	anim->PushImage("data/run7.bmp", duration);
-	anim->PushImage("data/run8.bmp", duration);
-	
-	anim = obj->animations[PLAYER_STANDING] = new Animation();
-	anim->Init(gameState);
-	duration = 4;
-	anim->PushImage("data/wait1.bmp", duration);
-	anim->PushImage("data/wait2.bmp", duration * 6);
-
-	anim = obj->animations[PLAYER_JUMPING] = new Animation();
-	anim->Init(gameState);
-	duration = 3;
-	anim->PushImage("data/spin1.bmp", duration);
-	anim->PushImage("data/spin2.bmp", duration);
-	anim->PushImage("data/spin3.bmp", duration);
-	anim->PushImage("data/spin4.bmp", duration);
-
-	obj->currentAnimation = obj->animations[PLAYER_STANDING];	
-	
-	return obj;
-}*/
-
-
+	properties.feels_gravity = 		xProps.nChildNode("affectedByGravity"); 
+	properties.feels_user_input =	xProps.nChildNode("affectedByInput1"); 
+	properties.feels_friction =		xProps.nChildNode("affectedByFriction"); 
+}

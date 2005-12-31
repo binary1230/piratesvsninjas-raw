@@ -82,11 +82,12 @@ Object::Object() {
 bool Object::LoadAnimations(XMLNode &xDef) {
 	int i, iterator, max;
 	AnimationMapping animation_lookup = GetPlayerAnimationMappings();
-	animations.resize(PLAYER_MAX_ANIMATIONS);
 	Animation* anim = NULL;
 	CString anim_name;
 	XMLNode xAnim, xAnims;
 	
+	animations.resize(PLAYER_MAX_ANIMATIONS);
+
 	xAnims = xDef.getChildNode("animations");
 	max = xAnims.nChildNode("animation");
 
@@ -114,6 +115,9 @@ bool Object::LoadAnimations(XMLNode &xDef) {
 	default_index = animation_lookup[default_name];
 	currentAnimation = animations[default_index];
 
+	//fprintf(stderr, "--- default_str = %s\n", xAnims.getAttribute("default"));
+	// fprintf(stderr, "--- def = %i, current = %x\n", default_index, currentAnimation);
+	// fprintf(stderr, " --- size = %i\n", animations.size());
 	return true;
 }
 

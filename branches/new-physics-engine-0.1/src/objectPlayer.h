@@ -22,21 +22,23 @@ class Animation;
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
-		vector<Animation*> animations;
+		// vector<Animation*> animations;
 
 		float jump_velocity;
 		float min_velocity;
 		float drag;
 				
 	public:
-		void Update();
-
 		bool Init(GameState* _game_state);
+		
+		bool LoadProperties(XMLNode &xDef);		//! Load object properties from XML
+		
+		void Update();
+			
+		static Object* New(GameState* gameState, XMLNode &xDef);
 		
 		PlayerObject();
 		~PlayerObject();
-		
-		static Object* New(GameState* gameState, XMLNode &xDef);
 };
 
 #endif // PLAYER_OBJECT_H

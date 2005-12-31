@@ -226,7 +226,7 @@ int PhysSimulation::Load(XMLNode &xMode) {
 int PhysSimulation::LoadHeaderFromXML(XMLNode &xMode) {
 	XMLNode xInfo = xMode.getChildNode("info");
 
-	fprintf(stderr, " Loading Level: '%s'\n", xInfo.getText() );
+	fprintf(stderr, " Loading Level: '%s'\n", xInfo.getChildNode("description").getText() );
 
 	XMLNode xProps = xMode.getChildNode("properties");
 
