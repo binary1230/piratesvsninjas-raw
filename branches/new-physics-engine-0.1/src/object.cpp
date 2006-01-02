@@ -37,7 +37,7 @@ void Object::DrawAtOffset(int x, int y) {
 void Object::ApplyForce(Force* force) {
 	// ignore certain types of forces
 	if (	(!properties.feels_gravity && force->GetType() == FORCE_GRAVITY) ||
-				(!properties.feels_user_input && force->GetType() == FORCE_INPUT) ||
+				(!properties.feels_user_input && force->GetType() == FORCE_INPUT1) ||
 				(!properties.feels_friction && force->GetType() == FORCE_FRICTION) )
 		return;
 	else

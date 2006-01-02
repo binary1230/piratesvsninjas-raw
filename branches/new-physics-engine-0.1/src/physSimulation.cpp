@@ -214,11 +214,6 @@ int PhysSimulation::Load(XMLNode &xMode) {
 	forces.clear();
 	LoadForcesFromXML(xMode);
 	
-	if (!camera_follow) {
-		fprintf(stderr, "ERROR: No <cameraFollow> found, cannot proceed.\n");
-		return -1;
-	}
-	
 	return 0;	
 }
 
@@ -261,7 +256,7 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 	
 	camera_follow = NULL;
 
-	// 1) put all objectDefinitions into a hash table
+	// 1) put all objectDefinitions from the XML into a hash table
 	xObjs = xMode.getChildNode("objectDefinitions");
 	max = xObjs.nChildNode("objectDef");
 
@@ -272,7 +267,7 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 		objectDefs[objName] = xObjectDef;
 	}
 	
-	// 1) loop through each <object> we find under <map>
+	// 2) loop through each <object> we find under <map>
 	xMap = xMode.getChildNode("map");
 	max = xMap.nChildNode("object");
 	
@@ -280,6 +275,8 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
   for (i=0; i < max; i++) {
 		xObject = xMap.getChildNode("object", &iterator);
 		objDefName = xObject.getAttribute("objectDef");
+
+		// create the object from the objectDefinition
 		obj = objectFactory->CreateObject(objectDefs[objDefName], xObject);
 
 		if (!obj) {
@@ -287,7 +284,6 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 			return -1;
 		} else {
 
-			// see if we make the camera follow this object
 			if (xObject.nChildNode("cameraFollow") == 1) {
 				if (!camera_follow) {
 					camera_follow = obj;
@@ -299,6 +295,11 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 			
 			objects.push_back(obj);
 		}
+	}
+	
+	if (!camera_follow) {
+		fprintf(stderr, "ERROR: No <cameraFollow> found, cannot proceed.\n");
+		return -1;
 	}
 	
 	return 0;
@@ -315,7 +316,7 @@ int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {
 	else
 		return -1;
 	
-	if ( (new_force = forceFactory->CreateForce(FORCE_INPUT)) )
+	if ( (new_force = forceFactory->CreateForce(FORCE_INPUT1)) )
 		forces.push_back(new_force);
 	else
 		return -1;

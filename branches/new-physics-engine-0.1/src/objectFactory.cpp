@@ -34,7 +34,7 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 
 	Object* obj = NULL;
 
-	// this shouldn't go here.
+	// XXX this shouldn't go here.
 	// maps strings of object types to numeric ID's.
 	map<const CString, uint> types;
 	types["RadiusBlock"] 	= OBJECT_ID_RADIUS_BLOCK;

@@ -70,7 +70,7 @@
 		<objectDef name="background" type="Background">
 			<animations default="still_background">
 				<animation name="still_background">
-					<frames repeat /="0">
+					<frames>
 						<img name="data/back.bmp" duration="1" />
 					</frames>
 					<show_in_order />
@@ -78,7 +78,7 @@
 				</animation>
 			</animations>
 			<properties>
-				<scroll>false</scroll>
+				<!-- <scroll /> -->
 			</properties>
 		</objectDef>
 	
@@ -114,7 +114,7 @@
 				<x>20</x> 
 				<y>80</y> 
 			</position>
-			<input controller="1" />
+			<inputController>1</inputController>
 			<cameraFollow />
 		</object>
 	

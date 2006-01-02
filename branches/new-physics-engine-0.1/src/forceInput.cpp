@@ -25,7 +25,7 @@ Vector2D ForceInput::GetForce(Object* obj) {
 }
 
 ForceInput::ForceInput() {
-	type = FORCE_INPUT;
+	type = FORCE_INPUT1;
 }
 
 ForceInput::~ForceInput() {}

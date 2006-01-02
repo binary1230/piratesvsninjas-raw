@@ -13,7 +13,7 @@ Force* ForceFactory::CreateForce(ForceType type) {
 	ForceGravity* gravityForce;
 	
 	switch (type) {
-		case FORCE_INPUT:
+		case FORCE_INPUT1:
 	
 			inputForce = new ForceInput();
 			if ( inputForce && inputForce->Init(GetGameState()) ) {

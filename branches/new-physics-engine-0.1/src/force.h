@@ -19,7 +19,7 @@ typedef vector<Force*> ForceList;
 
 enum ForceType {
 	FORCE_GRAVITY,
-	FORCE_INPUT,
+	FORCE_INPUT1,
 	FORCE_SIMPLE_CIRCLE,
 	FORCE_FRICTION
 };

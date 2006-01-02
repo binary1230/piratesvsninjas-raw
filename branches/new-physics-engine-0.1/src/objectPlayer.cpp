@@ -106,6 +106,7 @@ PlayerObject::~PlayerObject() {}
 //! Factory method, creates new PlayerObjects from XML files
 //! NOTE: this only takes an ObjectDefinition XML fragment,
 //! it does not take the Object XML fragment.
+//XXX memory leaks on failures here.
 Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
 	
 	// ObjectProperties props;
@@ -116,10 +117,12 @@ Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
 		return NULL;
 
 	// load the animations
-	obj->LoadAnimations(xDef);
+	if (!obj->LoadAnimations(xDef))
+		return NULL;
 
 	// get the object properties
-	obj->LoadProperties(xDef);
+	if (!obj->LoadProperties(xDef))
+		return NULL;
 
 	return obj;
 }
@@ -139,4 +142,6 @@ bool PlayerObject::LoadProperties(XMLNode &xDef) {
 	properties.feels_gravity = 		xProps.nChildNode("affectedByGravity"); 
 	properties.feels_user_input =	xProps.nChildNode("affectedByInput1"); 
 	properties.feels_friction =		xProps.nChildNode("affectedByFriction"); 
+
+	return true;
 }
