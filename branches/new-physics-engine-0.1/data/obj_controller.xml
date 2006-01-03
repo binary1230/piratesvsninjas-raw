@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<objectDef name="controller" type="ControllerDisplay">
+	<images>
+		<base>controller.bmp</base>
+		
+		<btnLeft>c_left.bmp		<x>13</x>	<y>37</y>	</btnLeft>
+		<btnRight>c_right.bmp	<x>40</x>	<y>20</y> </btnRight>
+		<btnTop>c_top.bmp			<x>34</x>	<y>18</y> </btnTop>
+		<btnBot>c_bot.bmp			<x>34</x>	<y>18</y> </btnBot>
+		
+		<btn1>c_btn.bmp				<x>130</x>	<y>60</y>	</btn1>
+		<btn2>c_btn.bmp				<x>153</x>	<y>36</y>	</btn2>
+		<btn3>c_btn.bmp				<x>130</x>	<y>13</y>	</btn3>
+		<btn4>c_btn.bmp				<x>106</x>	<y>36</y>	</btn4>
+	</images>
+</objectDef>
