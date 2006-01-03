@@ -19,8 +19,9 @@
 // returns: XMLNode of first GameMode to load
 XMLNode GameState::LoadXMLConfig(CString xml_filename) {
 				
-	// XXX currently xmlParser just DIES if it can't load the XML files/corrupted file
-	xGame = XMLNode::openFileHelper( xml_filename.c_str(), "game" );
+	// XXX currently xmlParser just DIES if it can't load 
+	// the XML files or on corrupted file
+	xGame = XMLNode::openFileHelper(xml_filename.c_str(), "game");
 	
 	XMLNode xInfo = xGame.getChildNode("info");
 

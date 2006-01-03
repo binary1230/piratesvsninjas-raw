@@ -2,6 +2,7 @@
 #define PHYS_SYSTEM_H
 
 #include <vector>
+#include <map>
 using namespace std;
 
 class PhysSimulation;
@@ -13,6 +14,13 @@ class ForceFactory;
 
 #include "gameBase.h"
 #include "gameMode.h"
+#include "StdString.h"
+#include "xmlParser.h"
+
+// Maps an object definition name to an XMLNode 
+// (e.g. maps "bad_guy_1" to its corresponding XML data)
+// only used for parsing XML
+typedef map<const CString, XMLNode> ObjectDefMapping;
 
 //! Represents a physical simulation (the main game levels)
 class PhysSimulation : public GameMode {
@@ -45,10 +53,12 @@ class PhysSimulation : public GameMode {
 			void UpdateObjects();
 		
 			//! Sets up simulation from an XML file
+			//XXX should be moved into a friend factory class
 			int Load(XMLNode&);
 			int LoadHeaderFromXML(XMLNode&);
 			int LoadObjectsFromXML(XMLNode&);
 			int LoadForcesFromXML(XMLNode&);
+			int LoadObjectDefsFromXML(XMLNode&, ObjectDefMapping&);
 
 		public:
 			int Init(GameState*, XMLNode);

@@ -164,44 +164,6 @@ void PhysSimulation::Update() {
 	ComputeNewCamera();
 }
 
-//! Load the objects from an XML file
-/*int PhysSimulation::LoadObjects(XMLNode xMode) {
-	Object* new_obj;
-
-	XMLNode xMap = xMode.getChildNode("map").get;
-	XMLNode xObjs = xMode.getChildNode("objectDefinitions");
-	
-	
-	// -- Create some random objects --
-	objects.clear();
-	
-	// Create the background
-	new_obj = objectFactory->CreateObject(OBJECT_ID_BACKGROUND);
-	if (!new_obj)
-		return -1;
-	
-	objects.push_back(new_obj);
-
-	// Create a bunch of "radius blocks" (they move in a circle)
-	for (i = 0; i < max; i++) {
-		new_obj = objectFactory->CreateObject(OBJECT_ID_RADIUS_BLOCK);
-		if (!new_obj)
-			return -1;
-
-		objects.push_back(new_obj);
-	}
-	
-	// Create the main player
-	new_obj = objectFactory->CreateObject(OBJECT_ID_PLAYER);
-	if (!new_obj)
-		return -1;
-
-	objects.push_back(new_obj);
-	
-	// Follow the player object
-	camera_follow = new_obj;
-}*/
-
 //! MASTER LOAD FUNCTION:
 //! Load the simulation from data in an XML file
 int PhysSimulation::Load(XMLNode &xMode) {			
@@ -234,6 +196,46 @@ int PhysSimulation::LoadHeaderFromXML(XMLNode &xMode) {
 	return 0;
 }
 
+//! Helper function
+//! Loads Object Definitions from XML, puts them in an ObjectMapping
+int PhysSimulation::LoadObjectDefsFromXML(XMLNode &xObjs, 
+																					ObjectDefMapping &objectDefs) {
+	// Object definitions can take 2 forms in the XML file
+	// 1) an <objectDef> tag
+	// 2) an <include_xml_file> tag which we then open and get an <objectDef>
+	
+	int i, max, iterator;
+	XMLNode xObjectDef;
+	CString objName, file;
+	
+	// 1) handle <objectDef> tags
+	max = xObjs.nChildNode("objectDef");
+	iterator = 0;
+	for (i = iterator = 0; i < max; i++) {
+		xObjectDef = xObjs.getChildNode("objectDef", &iterator);
+		objName = xObjectDef.getAttribute("name");
+		objectDefs[objName] = xObjectDef;
+	}
+
+	// 2) handle <include_xml_file> tags
+	max = xObjs.nChildNode("include_xml_file");
+	
+	for (i = iterator = 0; i < max; i++) {
+					
+		// get the filename
+		file = xObjs.getChildNode("include_xml_file", &iterator).getText();
+		
+		// open that file, get the objectDef
+		xObjectDef = XMLNode::openFileHelper(file.c_str(), "objectDef");
+
+		// save it
+		objName = xObjectDef.getAttribute("name");
+		objectDefs[objName] = xObjectDef;
+	}
+
+	return 1;
+}
+
 //! Helper function for physSimulation to load objects from a map file
 //! Post: Objects vector populated with all objects from the map file
 int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
@@ -249,24 +251,17 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 	// 6) free hash table
 
   int i, max, iterator = 0;  
-	XMLNode xMap, xObject, xObjs, xObjectDef;		// various XML containers
+	XMLNode xMap, xObject, xObjs;	
 	Object* obj;
-	CString objDefName, objName;		
-	map<CString, XMLNode> objectDefs; 
+	CString objDefName;
+	ObjectDefMapping objectDefs; 
 	
 	camera_follow = NULL;
 
 	// 1) put all objectDefinitions from the XML into a hash table
 	xObjs = xMode.getChildNode("objectDefinitions");
-	max = xObjs.nChildNode("objectDef");
+	LoadObjectDefsFromXML(xObjs, objectDefs);
 
-	iterator = 0;
-	for (i=0; i < max; i++) {
-		xObjectDef = xObjs.getChildNode("objectDef", &iterator);
-		objName = xObjectDef.getAttribute("name");
-		objectDefs[objName] = xObjectDef;
-	}
-	
 	// 2) loop through each <object> we find under <map>
 	xMap = xMode.getChildNode("map");
 	max = xMap.nChildNode("object");

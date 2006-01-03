@@ -11,6 +11,8 @@ using namespace std;
 #include "xmlParser.h"
 #include "StdString.h"
 
+// Maps an string to an integer ID (e.g. "bad_guy_1" to BAD_GUY_1)
+// Used to keep track of stuff while parsing XML
 typedef map<const CString, uint> AnimationMapping;
 
 //! An animation frame.  Each animation is an array of these.
