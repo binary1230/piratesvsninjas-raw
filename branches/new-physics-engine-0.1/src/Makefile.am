@@ -19,7 +19,7 @@ objectPlayer.h objectRadiusBlock.h objectBackground.h objectController.h \
 vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
 platform.h basename.h resourceLoader.h \
-animation.h animations.h \
+animation.h animations.h sprite.h \
 StdString.h xmlParser.h 
 
 ninjas_SOURCES = \

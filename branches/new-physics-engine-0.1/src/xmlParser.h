@@ -25,6 +25,10 @@
  * 
  ****************************************************************************
  */
+
+/* MODIFIED BY binary1230@yahoo.com for ninjas-engine
+ * 1/3/06 - Added XMLNode::getInt(int i=0) and XMLNode::getFloat(int i=0)
+ */
 #ifndef __INCLUDE_XML_NODE__
 #define __INCLUDE_XML_NODE__
 
@@ -165,6 +169,9 @@ typedef struct XMLNode
 
     LPCTSTR getName();                                     // name of the node
     LPCTSTR getText(int i=0);                              // return ith text field
+		int getInt(int i=0);                                   // return ith text field cast to int
+		float getFloat(int i=0);                               // return ith text field cast to float
+		
     int nText();                                           // nbr of text field
     XMLNode getChildNode(int i);                           // return ith child node
     XMLNode getChildNode(LPCTSTR name, int i);             // return ith child node with specific name

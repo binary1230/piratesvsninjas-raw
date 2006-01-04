@@ -35,7 +35,7 @@ void Animation::DrawAt(int _x, int _y, bool flip_x) {
 	int x = _x + currentFrame->x_offset;
 	int y = _y + currentFrame->y_offset;
 	
-	if (flip_x) 
+	if (!flip_x) 
 		draw_sprite(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
 	else
 		draw_sprite_h_flip(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);

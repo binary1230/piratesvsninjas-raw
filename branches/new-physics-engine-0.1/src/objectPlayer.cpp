@@ -56,7 +56,7 @@ void PlayerObject::Update() {
 			vel *= drag;	
 			
 			// If on floor, do we draw the standing sprite?
-			if (/*fabs(accel.GetX()) > 0.0f &&*/ fabs(vel.GetX()) < min_velocity) {
+			if (accel.GetX() == 0.0f && fabs(vel.GetX()) < min_velocity) {
 				vel.SetX(0);
 				currentAnimation = animations[PLAYER_STANDING];
 			} else {
@@ -79,13 +79,13 @@ void PlayerObject::Update() {
 	// figure out whether to flip the sprite or not
 	if (accel.GetX() == 0.0f) {
 		if (vel.GetX() > 0.0f)
-			flip_x = true;
-		else if (vel.GetX() < 0.0f)
 			flip_x = false;
+		else if (vel.GetX() < 0.0f)
+			flip_x = true;
 	} else if (accel.GetX() > 0.0f) {
-		flip_x = true;
-	} else {
 		flip_x = false;
+	} else {
+		flip_x = true;
 	}
 }
 

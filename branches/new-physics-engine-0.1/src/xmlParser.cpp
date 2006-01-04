@@ -1831,3 +1831,16 @@ char         XMLNode::isDeclaration(     ) { if (!d) return 0;                 r
 char         XMLNode::isEmpty      (     ) { return (d==NULL); }
 int          XMLNode::nElement     (     ) { if (!d) return 0; return d->nChild+d->nText+d->nClear+d->nAttribute; }
 
+int XMLNode::getInt(int i) 
+{
+	int tmp;
+	sscanf(getText(i), "%i", &tmp);
+	return tmp;
+}
+
+float XMLNode::getFloat(int i) 
+{ 
+	float tmp;
+	sscanf(getText(i), "%f", &tmp);
+	return tmp;
+}

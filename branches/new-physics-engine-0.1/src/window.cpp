@@ -1,6 +1,21 @@
 #include "window.h"
 #include "gameState.h"
 #include "globals.h"
+#include "sprite.h"
+
+// Mainly a helper function that does clipping
+void Window::DrawBitmap(BITMAP* bmp, int x, int y, bool flip_x, bool flip_y) {
+/*	if (flip_x) 
+		draw_sprite(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
+	else
+		draw_sprite_h_flip(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
+*/
+}
+// private:
+// Draws the Bitmap, irregardless of clipping
+void Window::DrawBitmapAt(BITMAP* bmp, int x, int y, bool flip_x, bool flip_y) {
+	
+}
 
 int Window::Init(	GameState* _game_state, 
 									uint _width, uint _height, 

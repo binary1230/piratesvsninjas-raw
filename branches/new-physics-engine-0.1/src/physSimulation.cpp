@@ -188,10 +188,10 @@ int PhysSimulation::LoadHeaderFromXML(XMLNode &xMode) {
 	XMLNode xProps = xMode.getChildNode("properties");
 
 	// get width/height/camera xy
-	sscanf(xProps.getChildNode("width").getText(), "%i", &width);
-	sscanf(xProps.getChildNode("height").getText(), "%i", &height);
-	sscanf(xProps.getChildNode("camera_left").getText(), "%i", &camera_left);
-	sscanf(xProps.getChildNode("camera_top").getText(), "%i", &camera_top);
+	width 			=	xProps.getChildNode("width").getInt();
+	height 			= xProps.getChildNode("height").getInt();
+	camera_left = xProps.getChildNode("camera_left").getInt();
+	camera_top 	= xProps.getChildNode("camera_top").getInt();
 
 	return 0;
 }

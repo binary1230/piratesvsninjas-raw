@@ -43,6 +43,9 @@ class Window : public GameBase {
 		// For double buffering
 		BITMAP* backbuf;
 		
+		//! Draw a bitmap, minus the clipping.
+		void DrawBitmapAt(BITMAP* bmp, int x, int y, bool flip_x, bool flip_y);
+		
 	public:
 		int Init(	GameState* _game_state, 
 							uint _width, uint _height, bool _fullscreen = 0,
@@ -57,6 +60,9 @@ class Window : public GameBase {
 		inline uint Width() {return width;};
 		inline uint Height() {return height;};
 
+		//! Draw a bitmap at the specified coords, will clip the bitmap
+		void DrawBitmap(BITMAP* bmp, int x, int y, bool flip_x=0, bool flip_y=0);
+		
 		Window();
 		~Window();
 };
