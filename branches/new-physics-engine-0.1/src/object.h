@@ -33,10 +33,14 @@ struct ObjectProperties {
 	unsigned is_overlay : 1;				// is this object just an overlay?
 																	// e.g. not IN the world, but on top it,
 																	// like our status bar or health or something.
-	
-	unsigned tile_x : 1;						// whether to tile this sprite in X direction
-	unsigned tile_y : 1;								
 };
+
+inline void ClearProperties(struct ObjectProperties& p) {
+	p.feels_gravity = 0;
+	p.feels_user_input = 0;
+	p.feels_friction = 0;
+	p.is_overlay = 0;
+}
 
 //! Sets properties to sane values
 void ClearProperties(struct ObjectProperties&);

@@ -16,17 +16,17 @@ void BackgroundObject::Update() {
 
 // XXX NEEDS TO USE THE NEW DRAWING CODE.
 // THIS IS BROKEN. 
-/*void BackgroundObject::Draw() {
-	// We want to wrap the background around the level.  Compute the offset
+// We want to wrap the background around the level.  Compute the offset
+void BackgroundObject::Draw() {
 	int camera_left = simulation->GetCameraLeft();
 	int camera_top  = simulation->GetCameraTop();
 	int offset_x = (int(scroll_offset) - camera_left) % GetWidth();
 	int offset_y = -camera_top % GetHeight();
 	
 	// Draw it twice, repeating
-	//DrawAtOffset( offset_x , offset_y );
-	//DrawAtOffset( offset_x + GetWidth(), offset_y );
-}*/
+	DrawAtOffset( offset_x , offset_y );
+	DrawAtOffset( offset_x + GetWidth(), offset_y );
+}
 
 bool BackgroundObject::Init(GameState *_game_state) {
 		SetGameState(_game_state);
@@ -52,8 +52,6 @@ Object* BackgroundObject::New(GameState* gameState, XMLNode &xDef) {
 	props.feels_gravity = 0;
 	props.feels_friction = 0;
 	props.is_overlay = 1;
-	props.tile_x = 1;
-	props.tile_y = 1;
 	obj->SetProperties(props);
 
 	obj->SetXY(0, obj->game_state->ScreenHeight());

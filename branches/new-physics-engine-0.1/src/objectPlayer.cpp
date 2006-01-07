@@ -104,6 +104,7 @@ PlayerObject::PlayerObject() {
 	mass = 1.0f;
 	drag = DEFAULT_DRAG;
 }
+
 PlayerObject::~PlayerObject() {}
 
 //! Factory method, creates new PlayerObjects from XML files

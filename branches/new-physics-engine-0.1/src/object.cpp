@@ -9,15 +9,6 @@
 #include "physSimulation.h"
 #include "xmlParser.h"
 
-void ClearProperties(struct ObjectProperties& p) {
-	p.feels_gravity = 0;
-	p.feels_user_input = 0;
-	p.feels_friction = 0;
-	p.is_overlay = 0;
-	p.tile_x = 0;
-	p.tile_y = 0;
-}
-
 int Object::GetWidth() { return currentAnimation->GetWidth(); }
 int Object::GetHeight() {	return currentAnimation->GetHeight(); }
 
@@ -45,7 +36,7 @@ void Object::DrawAtOffset(int offset_x, int offset_y) {
 	int y = (int)pos.GetY() + offset_y;
 
 	// take into account the camera now.
-	// if (!properties.is_overlay)
+	if (!properties.is_overlay)
 		simulation->TransformWorldToView(x, y);
 	
 	// compute absolute x,y coordinates on the screen
