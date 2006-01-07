@@ -278,7 +278,7 @@ void GameState::Shutdown() {
 	}
 		
 	allegro_exit();
-	fprintf(stderr, "[Exiting]");	
+	fprintf(stderr, "[Exiting]\n");	
 }
 
 //! Exits the current mode and deletes it, free its memory

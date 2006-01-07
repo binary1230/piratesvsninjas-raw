@@ -19,7 +19,7 @@ class BackgroundObject : public Object {
 		bool Init(GameState* _game_state);
 
 		void Update();
-		void Draw();
+		// void Draw();
 
 		BackgroundObject(float _speed = 0.2);
 		~BackgroundObject();

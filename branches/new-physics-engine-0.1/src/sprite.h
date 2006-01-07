@@ -3,11 +3,14 @@
 
 #include <allegro.h>
 
-typedef struct {
-	BITMAP* bmp;	
+class Sprite {
+	public:
+		BITMAP* bmp;	
 	
-	int x_offset, y_offset;
-	bool flip_x, flip_y;
-} Sprite;
+		int x_offset, y_offset;
+		bool flip_x, flip_y;
+
+		bool bitmap_is_deleteable;
+};
 
 #endif // SPRITE_H

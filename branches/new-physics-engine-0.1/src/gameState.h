@@ -135,6 +135,8 @@ class GameState {
 		//! Returns the currently active physics simulation (if there is one)
 		PhysSimulation* GetPhysSimulation();
 
+		inline Window* GetWindow() {return window;};
+
 		GameState();
 		~GameState();
 };

@@ -87,6 +87,9 @@ void PlayerObject::Update() {
 	} else {
 		flip_x = true;
 	}
+
+	// set the current sprite to the current animation
+	currentSprite = currentAnimation->GetCurrentSprite();
 }
 
 bool PlayerObject::Init(GameState* _game_state) {

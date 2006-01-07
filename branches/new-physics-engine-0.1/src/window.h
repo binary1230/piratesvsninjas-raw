@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 class GameState;
+class Sprite;
 
 #include "gameBase.h"
 
@@ -60,9 +61,10 @@ class Window : public GameBase {
 		inline uint Width() {return width;};
 		inline uint Height() {return height;};
 
-		//! Draw a bitmap at the specified coords, will clip the bitmap
+		// Drawing functions
+		void DrawSprite(Sprite* sprite, int x, int y, bool flip_x=0, bool flip_y=0);
 		void DrawBitmap(BITMAP* bmp, int x, int y, bool flip_x=0, bool flip_y=0);
-		
+
 		Window();
 		~Window();
 };

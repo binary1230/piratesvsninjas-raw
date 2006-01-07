@@ -1,5 +1,7 @@
 #include "animation.h"
 #include "gameState.h"
+#include "sprite.h"
+#include "window.h"
 
 #include <map>
 using namespace std;
@@ -8,12 +10,14 @@ using namespace std;
 // XXX memory leak if Init fails, anim never gets freed
 // EVERYTHING allocated like this (and objects) need to be fixed
 
-Animation::Animation() {
-	currentFrame = NULL;
+int Animation::GetWidth() {
+	return frames[0]->sprite->bmp->w;
 }
-Animation::~Animation() {}
 
-//! Initialize the animation
+int Animation::GetHeight() {
+	return frames[0]->sprite->bmp->h;
+}
+
 bool Animation::Init(GameState* _gameState) {
 	SetGameState(_gameState);
 	frames.clear();
@@ -25,20 +29,9 @@ bool Animation::Init(GameState* _gameState) {
 }
 
 // Draw current frame at specified position, flipping if requested
-void Animation::DrawAt(int _x, int _y, bool flip_x) {
-	//if (!GetGameState())
-	// 	fprintf(stderr, "NO GAME STATE!\n");
-
+void Animation::DrawAt(int x, int y, bool flip_x, bool flip_y) {
 	assert(currentFrame != NULL);
-	assert(currentFrame->bmp != NULL);
-				
-	int x = _x + currentFrame->x_offset;
-	int y = _y + currentFrame->y_offset;
-	
-	if (!flip_x) 
-		draw_sprite(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
-	else
-		draw_sprite_h_flip(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
+	GetGameState()->GetWindow()->DrawSprite(currentFrame->sprite, x, y);
 }
 
 //! Update the animation, advancing to the next frame
@@ -73,27 +66,47 @@ void Animation::ResetAnimation() {
 //! Free memory associated with this animation
 void Animation::Shutdown() {
 	int i, max = frames.size();
-	for (i = 0; i < max; i++) 
-		if (frames[i]->bitmap_is_deleteable)
-			destroy_bitmap(frames[i]->bmp);
+
+	for (i = 0; i < max; i++) {
+		if (frames[i]) {
+			
+			if (frames[i]->sprite && frames[i]->sprite->bitmap_is_deleteable)
+				destroy_bitmap(frames[i]->sprite->bmp);
+			
+			if (frames[i]->sprite)
+				delete frames[i]->sprite;
+			frames[i]->sprite = NULL;
+
+			delete frames[i];
+			frames[i] = NULL;
+		}
+	}
 }
 
-//! Kind of wanky, add another frame to this animation
+//XXX kind of hack-ish, probably should be rewritten
+//! Add another frame to this animation
 //! Use for temporary loading routines, need to rethink this one.
 //! Returns false on error
 bool Animation::PushImage(const char* file, const int duration) {
 	AnimFrame *f = new AnimFrame();
+	assert(f != NULL);
 
-	f->bmp = load_bitmap(file, NULL);
-	if (!f->bmp) {
+	f->sprite = new Sprite();
+	assert(f->sprite != NULL);
+	
+	f->sprite->bmp = load_bitmap(file, NULL);
+
+	if (!f->sprite->bmp) {
 		fprintf(stderr, "Can't load file: '%s' - not adding to animation\n", file);
 		return false;
 	}
-	f->bitmap_is_deleteable = true;
-	f->duration = duration;
-	f->x_offset = 0;
-	f->y_offset = 0;
+
+	f->sprite->bitmap_is_deleteable = true;
+	f->sprite->x_offset = 0;
+	f->sprite->y_offset = 0;
 	f->nextFrame = NULL;
+	f->duration = duration;
+	
 	frames.push_back(f);
 
 	f->nextFrame = frames[0];
@@ -146,3 +159,9 @@ Animation* Animation::New(GameState* gameState, XMLNode &xAnim) {
 	
 	return anim;
 }
+
+Animation::Animation() {
+	currentFrame = NULL;
+}
+
+Animation::~Animation() {}

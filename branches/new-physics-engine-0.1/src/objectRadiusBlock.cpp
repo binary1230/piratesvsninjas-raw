@@ -6,10 +6,16 @@
 #include "physSimulation.h"
 
 void RadiusBlockObject::Update() {
-	if (currentAnimation) currentAnimation->Update();
+	if (currentAnimation) {
+		currentAnimation->Update();
+		currentSprite = currentAnimation->GetCurrentSprite();
+	}
 	theta += RADIUS_BLOCK_SPEED;
-	pos.SetX( int(sinf(theta) * radius) ); 
-	pos.SetY( int(cosf(theta) * radius) );
+	//pos.SetX( int(sinf(theta) * radius) ); 
+	//pos.SetY( int(cosf(theta) * radius) );
+	
+	pos.SetX(40);
+	pos.SetY(45);
 }
 
 bool RadiusBlockObject::Init(GameState *_game_state) {
@@ -35,10 +41,14 @@ Object* RadiusBlockObject::New(GameState* gameState, XMLNode &xDef) {
 	props.feels_friction = 0;
 	obj->SetProperties(props);
 
-	obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
+	/*obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
 							Rand(0, obj->simulation->GetHeight() ) );
 	obj->SetTheta(Rand(0,360));
-	obj->SetRadius(Rand(20,300));
+	obj->SetRadius(Rand(20,300));*/
+
+	obj->SetXY(40, 50);
+	obj->SetTheta(0.0f);
+	obj->SetRadius(0);
 
 	obj->animations.resize(1);
 	obj->animations[0] = new Animation();

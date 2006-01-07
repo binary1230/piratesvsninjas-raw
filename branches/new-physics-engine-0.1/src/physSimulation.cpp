@@ -36,6 +36,19 @@ int PhysSimulation::Init(GameState* gs, XMLNode xMode) {
 	return Load(xMode);
 }
 
+//! Transforms view coordinates into absolute screen coordinates
+//! e.g. flip the Y axis mostly.
+void PhysSimulation::TransformViewToScreen(int &x, int &y) {
+	y = game_state->ScreenHeight() - y;
+}
+
+//! Transforms an object's coordinates from its world coordinates
+//! Into "view" coordinates (e.g. x < screen.width, y < screen.height)
+void PhysSimulation::TransformWorldToView(int &x, int &y) {
+	x = x - GetCameraLeft();
+	y = y - GetCameraTop();
+}
+
 // camera threshold in pixels
 #define CAM_THRESHOLD 40
 

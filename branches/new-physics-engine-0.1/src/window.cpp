@@ -1,20 +1,41 @@
+#include <allegro.h>
+
 #include "window.h"
 #include "gameState.h"
 #include "globals.h"
 #include "sprite.h"
 
-// Mainly a helper function that does clipping
+// public function
 void Window::DrawBitmap(BITMAP* bmp, int x, int y, bool flip_x, bool flip_y) {
-/*	if (flip_x) 
-		draw_sprite(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
-	else
-		draw_sprite_h_flip(game_state->GetDrawingSurface(), currentFrame->bmp, x, y);
-*/
+
+	// if its position is offscreen, don't draw it.
+	if (x + bmp->w < 0 || x >= (int)width || 
+			y + bmp->h < 0 || y >= (int)height ) 
+			return;
+
+	// Draw the bitmap
+	DrawBitmapAt(bmp, x, y, flip_x, flip_y);
 }
-// private:
-// Draws the Bitmap, irregardless of clipping
+
+// private: only
 void Window::DrawBitmapAt(BITMAP* bmp, int x, int y, bool flip_x, bool flip_y) {
-	
+	if (!flip_x) 
+		draw_sprite(drawing_surface, bmp, x, y);
+	else
+		draw_sprite_h_flip(drawing_surface, bmp, x, y);
+}
+
+// public function
+// NOTE: two things can tell the sprite to flip itself, either
+// calling this function with flip_x/y true, or having the sprite
+// set its flip_x/y flag to true.  We may have to flip it twice (e.g.
+// NOT flip it at all) 
+//
+// Holy sweetness. Remember that '^' is XOR, and XOR rocks.
+void Window::DrawSprite(Sprite* sprite, int x, int y, bool flip_x, bool flip_y) {
+	DrawBitmap( sprite->bmp, 
+							x + sprite->x_offset, y + sprite->y_offset, 
+							sprite->flip_x ^ flip_x, sprite->flip_y ^ flip_y);
 }
 
 int Window::Init(	GameState* _game_state, 

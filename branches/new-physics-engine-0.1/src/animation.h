@@ -7,6 +7,8 @@
 #include <map>
 using namespace std;
 
+class Sprite;
+
 #include "gameBase.h"
 #include "xmlParser.h"
 #include "StdString.h"
@@ -17,14 +19,10 @@ typedef map<const CString, uint> AnimationMapping;
 
 //! An animation frame.  Each animation is an array of these.
 struct AnimFrame {
-	BITMAP* bmp;								//! Bitmap data for this frame
-	bool bitmap_is_deleteable;	//! If the bitmap data is deleteable
+	Sprite* sprite;				//! Sprite data
 	
 	int duration;					//! Number of frames to show before advancing to next
 	AnimFrame* nextFrame;	//! Pointer to next frame, or NULL if end of animation
-
-	int x_offset;					//! Offset to draw this frame in the X direction
-	int y_offset;					//! Offset to draw this frame in the Y direction
 };
 
 //! The animation class
@@ -49,7 +47,7 @@ class Animation : public GameBase {
 															//! speed by. (e.g 2 = 2x as slow)
 		
 	public:
-		void DrawAt(int _x, int _y, bool flip_x = false);	
+		void DrawAt(int _x, int _y, bool flip_x=0, bool flip_y=0);
 		void Update();
 
 		//! The speed multiplier can slow down the animation speed.
@@ -64,9 +62,11 @@ class Animation : public GameBase {
 		//! Used in constructing a new animation, pushes this image onto it.
 		bool PushImage(const char* filename, const int duration);
 
-		int Width() {return frames[0]->bmp->w;};
-		int Height() {return frames[0]->bmp->h;};
+		int GetWidth();
+		int GetHeight();
 		
+		inline Sprite* GetCurrentSprite() {return currentFrame->sprite;}
+
 		Animation();
 		~Animation();
 

@@ -70,9 +70,13 @@ class PhysSimulation : public GameMode {
 			int GetWidth() {return width;};
 			int GetHeight() {return height;};
 
+			void ComputeNewCamera();
+
 			int GetCameraLeft() {return camera_left;};
 			int GetCameraTop() {return camera_top;};
-			void ComputeNewCamera();
+			
+			void TransformWorldToView(int &x, int &y);
+			void TransformViewToScreen(int &x, int &y);
 
 			PhysSimulation();
 			~PhysSimulation();

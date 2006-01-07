@@ -10,6 +10,7 @@ class Object;
 class Force;
 class Animation;
 class PhysSimulation;
+class Sprite;
 
 #include <allegro.h>
 #include <stdio.h>
@@ -23,11 +24,22 @@ typedef vector<Object*> ObjectList;
 #include "xmlParser.h"
 
 //! A bit mask of various properties of an object
+//! NOTE: If you add anything here, update ClearProperties()
 struct ObjectProperties {
 	unsigned feels_gravity : 1;	
 	unsigned feels_user_input : 1;
 	unsigned feels_friction : 1;
+	
+	unsigned is_overlay : 1;				// is this object just an overlay?
+																	// e.g. not IN the world, but on top it,
+																	// like our status bar or health or something.
+	
+	unsigned tile_x : 1;						// whether to tile this sprite in X direction
+	unsigned tile_y : 1;								
 };
+
+//! Sets properties to sane values
+void ClearProperties(struct ObjectProperties&);
 
 //! An in-game object, can be affected by physical forces
 class Object : public GameBase {
@@ -63,6 +75,9 @@ class Object : public GameBase {
 
 		//! Array of all loaded animations
 		vector<Animation*> animations;
+
+		//! Points to the sprite we should draw on next Draw()
+		Sprite* currentSprite;
 
 		//! Whether to flip the sprite when drawing
 		bool flip_x;

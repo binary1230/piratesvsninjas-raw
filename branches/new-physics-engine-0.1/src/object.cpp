@@ -1,5 +1,6 @@
 #include "object.h"
 #include "gameState.h"
+#include "window.h"
 #include "force.h"
 #include "globals.h"
 #include "gameBase.h"
@@ -8,8 +9,17 @@
 #include "physSimulation.h"
 #include "xmlParser.h"
 
-int Object::GetWidth() { return currentAnimation->Width(); }
-int Object::GetHeight() {	return currentAnimation->Height(); }
+void ClearProperties(struct ObjectProperties& p) {
+	p.feels_gravity = 0;
+	p.feels_user_input = 0;
+	p.feels_friction = 0;
+	p.is_overlay = 0;
+	p.tile_x = 0;
+	p.tile_y = 0;
+}
+
+int Object::GetWidth() { return currentAnimation->GetWidth(); }
+int Object::GetHeight() {	return currentAnimation->GetHeight(); }
 
 //! Cache some commonly used stuff
 void Object::SetupCachedVariables() {
@@ -19,19 +29,32 @@ void Object::SetupCachedVariables() {
 }
 
 void Object::Draw() {
-	// takes into account the camera here
 	assert(simulation != NULL);
-	DrawAtOffset(-simulation->GetCameraLeft(), -simulation->GetCameraTop());
+	DrawAtOffset(0,0);
 }
 
-void Object::DrawAtOffset(int x, int y) {	
+//! This function does the real dirty work of drawing.
+// 
+//! Ultimately we need the actual, on-screen coordinates of where
+//! to draw the sprite.  To get to those from the object's "world" coordinates
+//! as computed by the physics engine, we need to take into account the 
+//! position of the camera, and we need to flip the Y axis.  These
+//! things are handled by the simulation->TransformXXX() methods.
+void Object::DrawAtOffset(int offset_x, int offset_y) {	
+	int x = (int)pos.GetX() + offset_x;
+	int y = (int)pos.GetY() + offset_y;
 
-	// have to take into account Y coords are flipped on the screen
-	int screen_y = game_state->ScreenHeight() - (int)pos.GetY() + y;
-	int screen_x = (int)pos.GetX() + x;
+	// take into account the camera now.
+	// if (!properties.is_overlay)
+		simulation->TransformWorldToView(x, y);
 	
-	if (currentAnimation)
-		currentAnimation->DrawAt(screen_x, screen_y, flip_x);
+	// compute absolute x,y coordinates on the screen
+	simulation->TransformViewToScreen(x, y);
+
+	// draw for real
+	if (currentSprite)
+		GetGameState()->GetWindow()->
+		DrawSprite(currentSprite, x, y, flip_x, flip_y);
 }
 
 void Object::ApplyForce(Force* force) {
@@ -69,13 +92,16 @@ void Object::Shutdown() {
 		animations.clear();
 	}
 	currentAnimation = NULL;
+	currentSprite = NULL;
 }
 
 Object::Object() {
+	currentSprite = NULL;
 	currentAnimation = NULL;
 	flip_x = false; 
 	mass = 1.0f;
 	simulation = NULL;
+	ClearProperties(properties);
 }
 
 // A static helper function to load animations
@@ -114,6 +140,9 @@ bool Object::LoadAnimations(XMLNode &xDef) {
 	default_name = xAnims.getAttribute("default");
 	default_index = animation_lookup[default_name];
 	currentAnimation = animations[default_index];
+
+	// set the current sprite to the first frame of the animation
+	currentSprite = currentAnimation->GetCurrentSprite();
 
 	//fprintf(stderr, "--- default_str = %s\n", xAnims.getAttribute("default"));
 	// fprintf(stderr, "--- def = %i, current = %x\n", default_index, currentAnimation);
