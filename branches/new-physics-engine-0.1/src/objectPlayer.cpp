@@ -94,8 +94,7 @@ void PlayerObject::Update() {
 
 bool PlayerObject::Init(GameState* _game_state) {
 	SetGameState(_game_state);
-	SetupCachedVariables();
-	return true;
+	return BaseInit();
 }
 
 PlayerObject::PlayerObject() {

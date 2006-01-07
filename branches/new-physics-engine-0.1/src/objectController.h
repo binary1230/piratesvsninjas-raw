@@ -5,22 +5,21 @@
 #include <vector>
 using namespace std;
 
-class ControllerObject;
 class GameState;
+class Sprite;
 
 #include "object.h"
 #include "xmlParser.h"
 
 struct Button {
 	bool active;
-	int x_offset, y_offset;
-	BITMAP* bmp;
+	Sprite* sprite;
 };
 
 class ControllerObject : public Object {
 	protected:
-		BITMAP* controller;
-		vector<Button> buttons;
+		Sprite* controller_sprite;
+		vector<struct Button> buttons;
 		
 	public:
 		bool Init(GameState*);

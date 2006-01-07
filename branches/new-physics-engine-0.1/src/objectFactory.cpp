@@ -6,6 +6,7 @@
 #include "objectPlayer.h"
 #include "objectRadiusBlock.h"
 #include "objectBackground.h"
+#include "objectController.h"
 #include "StdString.h"
 
 #include <map>
@@ -40,6 +41,7 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 	types["RadiusBlock"] 	= OBJECT_ID_RADIUS_BLOCK;
 	types["Background"] 		= OBJECT_ID_BACKGROUND;
 	types["Player"] 				= OBJECT_ID_PLAYER;
+	types["ControllerDisplay"] 				= OBJECT_ID_CONTROLLER;
 	
 	CString objType = xObjectDef.getAttribute("type");
 	
@@ -57,6 +59,10 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 			
 		case OBJECT_ID_RADIUS_BLOCK:
 			obj = RadiusBlockObject::New(GetGameState(), xObjectDef);
+			break;
+			
+		case OBJECT_ID_CONTROLLER:
+			obj = ControllerObject::New(GetGameState(), xObjectDef);
 			break;
 			
 		default:

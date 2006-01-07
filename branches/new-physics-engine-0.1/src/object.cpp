@@ -19,6 +19,12 @@ void Object::SetupCachedVariables() {
 	level_height = simulation->GetHeight();
 }
 
+bool Object::BaseInit() {
+	SetupCachedVariables();
+	ClearProperties(properties);
+	return true;
+}
+
 void Object::Draw() {
 	assert(simulation != NULL);
 	DrawAtOffset(0,0);
@@ -92,7 +98,6 @@ Object::Object() {
 	flip_x = false; 
 	mass = 1.0f;
 	simulation = NULL;
-	ClearProperties(properties);
 }
 
 // A static helper function to load animations

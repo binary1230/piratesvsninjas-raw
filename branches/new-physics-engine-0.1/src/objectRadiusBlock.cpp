@@ -11,17 +11,13 @@ void RadiusBlockObject::Update() {
 		currentSprite = currentAnimation->GetCurrentSprite();
 	}
 	theta += RADIUS_BLOCK_SPEED;
-	//pos.SetX( int(sinf(theta) * radius) ); 
-	//pos.SetY( int(cosf(theta) * radius) );
-	
-	pos.SetX(40);
-	pos.SetY(45);
+	pos.SetX( int(sinf(theta) * radius) ); 
+	pos.SetY( int(cosf(theta) * radius) );
 }
 
 bool RadiusBlockObject::Init(GameState *_game_state) {
 	SetGameState(_game_state);
-	SetupCachedVariables();
-	return true;
+	return BaseInit();
 }
 
 RadiusBlockObject::RadiusBlockObject() : theta(0.0f) {}
@@ -39,16 +35,13 @@ Object* RadiusBlockObject::New(GameState* gameState, XMLNode &xDef) {
 	props.feels_user_input = 0;
 	props.feels_gravity = 0;
 	props.feels_friction = 0;
+	props.is_overlay = 0;
 	obj->SetProperties(props);
 
-	/*obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
+	obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
 							Rand(0, obj->simulation->GetHeight() ) );
 	obj->SetTheta(Rand(0,360));
-	obj->SetRadius(Rand(20,300));*/
-
-	obj->SetXY(40, 50);
-	obj->SetTheta(0.0f);
-	obj->SetRadius(0);
+	obj->SetRadius(Rand(20,300));
 
 	obj->animations.resize(1);
 	obj->animations[0] = new Animation();

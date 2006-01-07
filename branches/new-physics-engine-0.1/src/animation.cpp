@@ -70,12 +70,11 @@ void Animation::Shutdown() {
 	for (i = 0; i < max; i++) {
 		if (frames[i]) {
 			
-			if (frames[i]->sprite && frames[i]->sprite->bitmap_is_deleteable)
-				destroy_bitmap(frames[i]->sprite->bmp);
-			
-			if (frames[i]->sprite)
+			if (frames[i]->sprite) {
+				frames[i]->sprite->Shutdown();
 				delete frames[i]->sprite;
-			frames[i]->sprite = NULL;
+				frames[i]->sprite = NULL;
+			}
 
 			delete frames[i];
 			frames[i] = NULL;

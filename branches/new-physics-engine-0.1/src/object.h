@@ -92,6 +92,9 @@ class Object : public GameBase {
 
 		//! Solve for the new position of this object
 		Vector2D Solve();
+
+		//! Base class initialization
+		bool BaseInit();	
 		
 	public:
 		virtual bool Init(GameState* _game_state) = 0;

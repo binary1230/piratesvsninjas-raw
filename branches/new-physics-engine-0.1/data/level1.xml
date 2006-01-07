@@ -20,10 +20,12 @@
 		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_tails.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
 	</objectDefinitions>
 
 	<!-- TODO: background layers and stuff -->
 	<map>
+		
 		<object objectDef="background" />
 	
 		<object objectDef="tails">
@@ -39,6 +41,7 @@
 			<cameraFollow />
 		</object>
 	
+		<object objectDef="controller" />
 	</map>
 
 </gameMode>

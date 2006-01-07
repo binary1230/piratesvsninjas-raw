@@ -30,8 +30,7 @@ void BackgroundObject::Draw() {
 
 bool BackgroundObject::Init(GameState *_game_state) {
 		SetGameState(_game_state);
-		SetupCachedVariables();
-		return true;
+		return BaseInit();
 }
 
 BackgroundObject::BackgroundObject(float _speed) {	

@@ -1,31 +1,145 @@
 #include "objectController.h"
-
-void ControllerObject::Update() {
-				
-}
+#include "window.h"
+#include "sprite.h"
+#include "xmlParser.h"
+#include "input.h"
+#include "gameState.h"
+#include "physSimulation.h"
+#include "StdString.h"
 
 void ControllerObject::Draw() {
-	
+	int x = (int)pos.GetX();
+	int y = (int)pos.GetY();
+
+	int bx, by;
+
+	// Draw the base controller
+	GetGameState()->GetWindow()->DrawSprite(controller_sprite, x, y);
+
+	// Draw each button if it is active
+	int i, max = buttons.size();
+	for (i = 0; i < max; i++) {
+		if (buttons[i].active) {
+			bx = buttons[i].sprite->x_offset + x;
+			by = buttons[i].sprite->y_offset + y;
+			GetGameState()->GetWindow()->DrawBitmap(buttons[i].sprite->bmp, bx, by);
+		}
+	}
+}
+
+void ControllerObject::Update() {
+
+	// keys, in the order shown on the controller
+	int keys[] = {
+		GAMEKEY_LEFT,
+		GAMEKEY_RIGHT,
+		GAMEKEY_UP,
+		GAMEKEY_DOWN,
+		GAMEKEY_JUMP,
+		-1
+	};				
+
+	int i, max = buttons.size();
+
+	for (i = 0; i < max && keys[i] != -1; i++) {
+		if (GetGameState()->GetKey(keys[i]))
+			buttons[i].active = 1;
+		else 
+			buttons[i].active = 0;
+	}
 }
 
 bool ControllerObject::Init(GameState* _game_state) {
 	SetGameState(_game_state);
-	SetupCachedVariables();
-	return true;
+	return BaseInit();
+	
+	buttons.clear();
+	controller_sprite = NULL;
 }
 
 void ControllerObject::Shutdown() {
+	int i, max = buttons.size();
+	
+	for (i = 0; i < max; i++) {
+		if (buttons[i].sprite) {
+			buttons[i].sprite->Shutdown();
+			delete buttons[i].sprite;
+			buttons[i].sprite = NULL;
+		}
+	}
 
+	if (controller_sprite) {
+		controller_sprite->Shutdown();
+		delete controller_sprite;
+		controller_sprite = NULL;
+	}
 }
 
 Object* ControllerObject::New(GameState* _game_state, XMLNode &xDef) {
-	Object* obj = new ControllerObject();
+	ControllerObject* obj = new ControllerObject();
+
+	if (!obj || !obj->Init(_game_state) )
+		return NULL;
+
+	ObjectProperties props;
+	props.is_overlay = 1;
+	obj->SetProperties(props);
+
+	int i, iterator, max;
+	CString filename;
+	XMLNode xImages, xBtn;
+	
+	xImages = xDef.getChildNode("images");
+	max = xImages.nChildNode("btn");
+
+	obj->buttons.clear();
+	obj->buttons.resize(max);
+
+	filename = xImages.getChildNode("base").getText();
+	obj->controller_sprite = new Sprite();
+	obj->controller_sprite->bmp = load_bitmap(filename, NULL);
+	obj->controller_sprite->bitmap_is_deleteable = true;
+		
+	if (!obj->controller_sprite->bmp) {
+	fprintf(stderr, "-- ERROR: Can't load file '%s'\n", filename.c_str() );
+		delete obj->controller_sprite;
+		delete obj;
+		return NULL;
+	}
+	
+	obj->controller_sprite->x_offset = 0;
+	obj->controller_sprite->y_offset = 0;
+	obj->pos.SetX(xImages.getChildNode("base").getChildNode("x").getInt());
+	obj->pos.SetY(xImages.getChildNode("base").getChildNode("y").getInt());
+
+	Button* b;
+	
+	// load each button
+	max = obj->buttons.size();
+	for (i=iterator=0; i < max; i++) {
+			xBtn = xImages.getChildNode("btn", &iterator);
+			b = &obj->buttons[i];
+			
+			filename = xBtn.getText();
+			b->sprite = new Sprite();
+			b->sprite->bmp = load_bitmap(filename, NULL);
+			b->sprite->bitmap_is_deleteable = true;
+			b->active = 0;
+		
+			if (!b->sprite->bmp) {
+				fprintf(stderr, "-- ERROR: Can't load file '%s'\n", filename.c_str() );
+				return NULL;
+			}
+
+			b->sprite->x_offset = xBtn.getChildNode("x").getInt();
+			b->sprite->y_offset = xBtn.getChildNode("y").getInt();
+	}
+
 	return obj;
 }
 
 ControllerObject::ControllerObject() {
-	buttons.clear();
-	controller = NULL;
+	controller_sprite = NULL;
 }
 
 ControllerObject::~ControllerObject() {}
