@@ -50,7 +50,7 @@ void PlayerObject::Update() {
 	if (pos.GetY() == floor_height) {
 					
 		// Then we can jump.
-		if (game_state->GetKey(GAMEKEY_JUMP)) {
+		if (game_state->GetKey(PLAYERKEY_JUMP, controller_num)) {
 			vel.SetY(jump_velocity);
 	  }	else {
 			vel *= drag;	
@@ -63,12 +63,13 @@ void PlayerObject::Update() {
 				currentAnimation = animations[PLAYER_WALKING];
 
 				// alter the speed of the animation based on the velocity
-				if (vel.GetX() < 2.0f)
-					currentAnimation->SetSpeedMultiplier(2);
-				else if (vel.GetX() < 0.5f)
-					currentAnimation->SetSpeedMultiplier(3);
-				else
-					currentAnimation->SetSpeedMultiplier(1);
+				// fprintf(stderr, "vel=%f\n", fabs(vel.GetX()));
+				if (fabs(vel.GetX()) < 3.0f)
+					currentAnimation->SetSpeedMultiplier(5);//slow
+				else if (fabs(vel.GetX()) < 7.0f)
+					currentAnimation->SetSpeedMultiplier(3);//med
+				else 
+					currentAnimation->SetSpeedMultiplier(1);//fast
 			}
 		}
 	} else {
@@ -94,6 +95,9 @@ void PlayerObject::Update() {
 
 bool PlayerObject::Init(GameState* _game_state) {
 	SetGameState(_game_state);
+	
+	controller_num = 1;
+
 	return BaseInit();
 }
 

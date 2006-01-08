@@ -118,6 +118,7 @@ class GameState {
 
 		//! Returns true if the key is being pressed, false otherwise
 		bool GetKey(uint which_key) const;
+		bool GetKey(uint which_key, uint which_controller) const;
 	
 		//! Return screen width
 		uint ScreenWidth()  const;

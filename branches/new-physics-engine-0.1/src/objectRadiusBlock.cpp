@@ -26,31 +26,16 @@ RadiusBlockObject::~RadiusBlockObject() {}
 // Factory method, creates new RadiusBlockObjects
 // XXX animation stuff needs to be abstracted
 Object* RadiusBlockObject::New(GameState* gameState, XMLNode &xDef) {
-	ObjectProperties props;
 	RadiusBlockObject* obj = new RadiusBlockObject();
 
 	if (!obj || !obj->Init(gameState) )
 		return NULL;
 
-	props.feels_user_input = 0;
-	props.feels_gravity = 0;
-	props.feels_friction = 0;
-	props.is_overlay = 0;
-	obj->SetProperties(props);
-
-	obj->SetXY( Rand(0, obj->simulation->GetWidth()  ), 
-							Rand(0, obj->simulation->GetHeight() ) );
 	obj->SetTheta(Rand(0,360));
 	obj->SetRadius(Rand(20,300));
 
-	obj->animations.resize(1);
-	obj->animations[0] = new Animation();
-	obj->currentAnimation = obj->animations[0];
-	obj->currentAnimation->Init(gameState);
-
-	int duration = 6;
-	obj->currentAnimation->PushImage("data/fly1.bmp", duration);
-	obj->currentAnimation->PushImage("data/fly2.bmp", duration);
+	if (!obj->LoadAnimations(xDef))
+		return NULL;
 
 	return obj;
 }

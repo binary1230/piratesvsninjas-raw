@@ -8,6 +8,8 @@
 
 #include <allegro.h>
 #include <stdio.h>
+#include <vector>
+using namespace std;
 
 class InputRecord;
 
@@ -23,7 +25,7 @@ class InputRecord : public BaseInput {
 		FILE* demofile;
 		
 		//! The last state of the keys
-		int old_key[GAMEKEY_COUNT];
+		vector<int> old_key;
 		
 		//! The frame count we are on [updated by Update()]
 		unsigned long frame_counter;

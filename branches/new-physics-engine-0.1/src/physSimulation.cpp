@@ -320,6 +320,11 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 				}
 			}
 			
+			if (xObject.nChildNode("inputController") == 1) {
+				int controller_num = xObject.getChildNode("inputController").getInt();
+				obj->SetControllerNum(controller_num);
+			}
+			
 			objects.push_back(obj);
 		}
 	}
@@ -348,6 +353,11 @@ int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {
 	else
 		return -1;
 
+	if ( (new_force = forceFactory->CreateForce(FORCE_INPUT2)) )
+		forces.push_back(new_force);
+	else
+		return -1;
+	
 	return 0;
 }
 

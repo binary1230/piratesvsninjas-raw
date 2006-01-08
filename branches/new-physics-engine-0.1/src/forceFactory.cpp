@@ -14,12 +14,18 @@ Force* ForceFactory::CreateForce(ForceType type) {
 	
 	switch (type) {
 		case FORCE_INPUT1:
-	
+		case FORCE_INPUT2:
+						
+			int controller_num;
+			if (type == FORCE_INPUT1)
+				controller_num = 1;
+			else if (type == FORCE_INPUT2)
+				controller_num = 2;
+							
 			inputForce = new ForceInput();
 			if ( inputForce && inputForce->Init(GetGameState()) ) {
-
-				// Initialize it here
-				// inputForce->SetSomething(...)
+				
+				inputForce->SetControllerNum(controller_num);
 			
 			} else {
 				fprintf(stderr, "ForceFactory: Failed to create new Input Force\n");

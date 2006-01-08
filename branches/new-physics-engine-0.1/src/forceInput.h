@@ -14,7 +14,11 @@ class Object;
 class ForceInput : public Force {
 	public:
 		Vector2D GetForce(Object*);
+		uint controller_num;
 
+		//! Set which controller we monitor
+		void SetControllerNum(uint _c) {controller_num = _c;};
+		
 		ForceInput();
 		virtual ~ForceInput();
 };

@@ -120,5 +120,7 @@ void InputRecord::EndRecording()	{
 	demofile = NULL;
 }
 
-InputRecord::InputRecord() : demofile(NULL) {}
+InputRecord::InputRecord() : demofile(NULL) {
+	old_key.resize(GAMEKEY_COUNT);
+}
 InputRecord::~InputRecord() {}

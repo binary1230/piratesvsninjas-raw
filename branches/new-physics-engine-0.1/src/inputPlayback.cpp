@@ -181,5 +181,7 @@ void InputPlayback::Shutdown() {
 	}
 }
 
-InputPlayback::InputPlayback() : demofile(NULL) {}
+InputPlayback::InputPlayback() : demofile(NULL) {
+	next_frame_data.resize(GAMEKEY_COUNT);
+}
 InputPlayback::~InputPlayback() {}

@@ -355,6 +355,10 @@ bool GameState::GetKey(uint which_key) const	{
 	return input->Key(which_key); 
 };
 
+bool GameState::GetKey(uint which_key, uint which_controller) const	{ 
+	return input->Key(which_key, which_controller); 
+};
+
 BITMAP* GameState::GetDrawingSurface() { 
 	return window->GetDrawingSurface(); 
 };

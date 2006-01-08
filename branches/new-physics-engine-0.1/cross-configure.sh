@@ -22,13 +22,13 @@
 # but weird things can happen if you don't)
 
 # should contain cross compiled 'allegro-config'
-WIN32_PATH=~/i586/bin
+WIN32_PATH=/usr/i586-mingw32msvc/bin
 
 # should contain cross compiled liballeg.a
-WIN32_LIBS=~/lib/i586-mingw32msvc
+WIN32_LIBS=/usr/i586-mingw32msvc/lib
 
 # should contain cross compiled allegro.h
-WIN32_INCLUDES=~/i586/include
+WIN32_INCLUDES=~/i
 
 # --------------------------------------------------------------
 # DON'T MESS WITH ANYTHING BELOW HERE UNLESS YOU ARE SUPER-SMART

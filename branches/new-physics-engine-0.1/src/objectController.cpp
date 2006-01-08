@@ -31,18 +31,18 @@ void ControllerObject::Update() {
 
 	// keys, in the order shown on the controller
 	int keys[] = {
-		GAMEKEY_LEFT,
-		GAMEKEY_RIGHT,
-		GAMEKEY_UP,
-		GAMEKEY_DOWN,
-		GAMEKEY_JUMP,
+		PLAYERKEY_LEFT,
+		PLAYERKEY_RIGHT,
+		PLAYERKEY_UP,
+		PLAYERKEY_DOWN,
+		PLAYERKEY_JUMP,
 		-1
 	};				
 
 	int i, max = buttons.size();
 
 	for (i = 0; i < max && keys[i] != -1; i++) {
-		if (GetGameState()->GetKey(keys[i]))
+		if (GetGameState()->GetKey(keys[i], controller_num))
 			buttons[i].active = 1;
 		else 
 			buttons[i].active = 0;
@@ -51,10 +51,12 @@ void ControllerObject::Update() {
 
 bool ControllerObject::Init(GameState* _game_state) {
 	SetGameState(_game_state);
-	return BaseInit();
 	
 	buttons.clear();
 	controller_sprite = NULL;
+	controller_num = 1; // we'll set this later
+	
+	return BaseInit();
 }
 
 void ControllerObject::Shutdown() {
@@ -84,6 +86,8 @@ Object* ControllerObject::New(GameState* _game_state, XMLNode &xDef) {
 	ObjectProperties props;
 	props.is_overlay = 1;
 	obj->SetProperties(props);
+
+	// XXX READ which controller we monitor from XML file, but not in this method
 
 	int i, iterator, max;
 	CString filename;

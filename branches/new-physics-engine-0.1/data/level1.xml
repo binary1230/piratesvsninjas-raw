@@ -26,8 +26,9 @@
 	<!-- TODO: background layers and stuff -->
 	<map>
 		
-		<object objectDef="background" />
-		<position type="fixed">	<x>0</x> <y>0</y> </position>
+		<object objectDef="background">
+			<position type="fixed">	<x>0</x> <y>0</y> </position>
+		</object>
 	
 		<object objectDef="tails">
 			<position type="random"> 
@@ -37,14 +38,20 @@
 		</object>	
 
 		<object objectDef="sonic">
-			<position type="fixed">	<x>20</x> <y>80</y> </position>
+			<position type="fixed">	<x>20</x> <y>200</y> </position>
 			<inputController>1</inputController>
 			<cameraFollow />
 		</object>
 	
+		<object objectDef="sonic">
+			<position type="fixed">	<x>90</x> <y>200</y> </position>
+			<inputController>2</inputController>
+		</object>
+	
+
 		<object objectDef="controller">
-			<position type="fixed">	<x>120</x> <y>10</y> </position>
-			<inputController>1</inputController>
+			<position type="fixed">	<x>125</x> <y>5</y> </position>
+			<inputController>2</inputController>
 		</object>
 	</map>
 

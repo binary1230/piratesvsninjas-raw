@@ -22,7 +22,6 @@ class Animation;
 class PlayerObject : public Object {
 	protected:
 		BaseInput* input;
-		// vector<Animation*> animations;
 
 		float jump_velocity;
 		float min_velocity;

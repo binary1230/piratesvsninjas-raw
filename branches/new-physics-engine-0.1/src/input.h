@@ -14,20 +14,47 @@
 #define INPUT_H
 
 #include <allegro.h>
+#include <vector>
+using namespace std;
 
 class BaseInput;
 
 #include "gameBase.h"
 
-//! The logical game keys (e.g. JUMP, FIRE, etc)
-#define GAMEKEY_JUMP 		0
-#define GAMEKEY_LEFT		1	
-#define GAMEKEY_RIGHT		2
-#define GAMEKEY_UP			3
-#define GAMEKEY_DOWN		4
-#define GAMEKEY_EXIT		5
+//! The max number of "player keys" (e.g. JUMP, LEFT, etc)
+#define PLAYERKEY_COUNT					5
 
-#define GAMEKEY_COUNT 	6
+//! The player keys (these are NOT indices into game_key[])
+#define PLAYERKEY_JUMP 					0
+#define PLAYERKEY_LEFT					1
+#define PLAYERKEY_RIGHT					2
+#define PLAYERKEY_UP						3
+#define PLAYERKEY_DOWN					4
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// The logical mapping of the keys
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+//! The logical game keys (e.g. JUMP, FIRE, etc)
+//! (this must reflect PLAYERKEY_COUNT)
+#define PLAYERKEY1_JUMP 				0
+#define PLAYERKEY1_LEFT					1
+#define PLAYERKEY1_RIGHT				2
+#define PLAYERKEY1_UP						3
+#define PLAYERKEY1_DOWN					4
+
+#define PLAYERKEY2_JUMP 				5
+#define PLAYERKEY2_LEFT					6
+#define PLAYERKEY2_RIGHT				7
+#define PLAYERKEY2_UP						8
+#define PLAYERKEY2_DOWN					9
+
+#define GAMEKEY_EXIT						10
+
+/* End of logical mapping */
+
+//! The max number of defined keys 
+#define GAMEKEY_COUNT						11
 
 //! Base input class
 
@@ -54,10 +81,10 @@ class BaseInput;
 class BaseInput : public GameBase {
 	protected:
 		//! The keys currently being pressed (e.g. GAMEKEY_JUMP)
-		int game_key[GAMEKEY_COUNT];
+		vector<int> game_key;
 
 		//! The mapping of real keys to gamekeys (e.g. SPACE to GAMEKEY_JUMP)
-		int gamekey_to_realkey[GAMEKEY_COUNT];
+		vector<int> gamekey_to_realkey;
 		
 		//! Load the default key mappings
 		void LoadDefaultKeyMappings();
@@ -66,7 +93,10 @@ class BaseInput : public GameBase {
 		bool LoadKeyMappings(char* filename);
 
 		//! Zero out the keyboard buffer
-		void ClearKeys(int *key_buffer = NULL);
+		void ClearKeys();
+
+		//! Zero out a keyboard buffer
+		void ClearKeys(vector<int> &key_buffer);
 		
 	public:
 		//! Init the input system
@@ -79,7 +109,21 @@ class BaseInput : public GameBase {
 		virtual void Update() = 0;
 		
 		//! Get the status of a key 
+		//
+		//! note: for player keys (e.g. player 1 JUMP), with this method 
+		//! you will need to say Key(PLAYERKEY1_JUMP).  
+		//!
+		//! Controller numbers start at 1.
+		//!
+		//! [See the other Key() method too.]
 		bool Key(uint gameKey);
+		
+		//! Get the status of a key on a specified controller
+		//! note: for player keys (e.g. player 1 JUMP), with this method you 
+		//! will need to say Key(PLAYERKEY_JUMP, 1)
+		//
+		//! Controller numbers start with 1.
+		bool Key(uint gameKey, uint controller_number);
 
 		//! Get the mouse X coordinate
 		// virtual int MouseX() = 0;

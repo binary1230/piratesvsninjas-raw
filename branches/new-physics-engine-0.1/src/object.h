@@ -50,6 +50,10 @@ void ClearProperties(struct ObjectProperties&);
 class Object : public GameBase {
 	protected:
 
+		//! Which controller (e.g. which joystick) use, if we are getting
+		//! input for this object
+		int controller_num;
+		
 		//! Width/height of this object
 		int width, height;
 
@@ -140,6 +144,12 @@ class Object : public GameBase {
 
 		//! Load animations from an XML object definition 
 		bool LoadAnimations(XMLNode &xDef, AnimationMapping* = NULL);
+		
+		//! Set which controller we monitor
+		void SetControllerNum(uint _c) {controller_num = _c;};
+		
+		//! Return which controller we monitor
+		uint GetControllerNum() {return controller_num;};
 		
 		Object();
 		virtual ~Object();

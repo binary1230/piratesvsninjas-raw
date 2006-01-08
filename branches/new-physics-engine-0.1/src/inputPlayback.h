@@ -29,7 +29,7 @@ class InputPlayback : public BaseInput {
 
 		//! The next frame for which we have data
 		unsigned long next_frame_num;
-		int next_frame_data[GAMEKEY_COUNT];
+		vector<int> next_frame_data;
 
 		//! True if we are at the end of this file
 		bool at_eof;
