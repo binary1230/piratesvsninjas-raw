@@ -37,9 +37,12 @@ void Object::Draw() {
 //! as computed by the physics engine, we need to take into account the 
 //! position of the camera, and we need to flip the Y axis.  These
 //! things are handled by the simulation->TransformXXX() methods.
-void Object::DrawAtOffset(int offset_x, int offset_y) {	
+void Object::DrawAtOffset(int offset_x, int offset_y, Sprite* sprite_to_draw) {	
 	int x = (int)pos.GetX() + offset_x;
 	int y = (int)pos.GetY() + offset_y;
+
+	if (!sprite_to_draw)
+		sprite_to_draw = currentSprite;
 
 	// take into account the camera now.
 	if (!properties.is_overlay)
@@ -49,9 +52,9 @@ void Object::DrawAtOffset(int offset_x, int offset_y) {
 	simulation->TransformViewToScreen(x, y);
 
 	// draw for real
-	if (currentSprite)
+	if (sprite_to_draw)
 		GetGameState()->GetWindow()->
-		DrawSprite(currentSprite, x, y, flip_x, flip_y);
+		DrawSprite(sprite_to_draw, x, y, flip_x, flip_y);
 }
 
 void Object::ApplyForce(Force* force) {

@@ -104,13 +104,10 @@ class Object : public GameBase {
 		virtual void Update() = 0;
 		virtual void Draw();
 		
-		void DrawAtOffset(int x, int y);	// Draw this object at its coordinates
-																			// plus this offset.
-		
-		// void SetBitmap(BITMAP* _bitmap);
-		
-		// void SetBitmapIsDeleteable(bool _is_deletable);
-		// bool GetBitmapIsDeleteable();
+		//! Draw this object at its coordinates plus specified offset
+		//! Optionally, you can pass in a specific sprite to draw, otherwise
+		//! It'll just use the current sprite (most cases)
+		void DrawAtOffset(int x, int y, Sprite* = NULL);	
 		
 		inline int GetX() 					{ return (int)pos.GetX(); }
 		inline int GetY() 					{ return (int)pos.GetY(); }
