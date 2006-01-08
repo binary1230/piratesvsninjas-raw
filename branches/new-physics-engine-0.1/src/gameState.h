@@ -127,7 +127,7 @@ class GameState {
 		inline ResourceLoader* GetResourceLoader() const {return resourceLoader;};
 
 		//! Unconditionally exit game
-		void SignalExit() { exit_game = true; };
+		void SignalExit();
 		
 		//! The current mode calls this to signal it wants to end
 		void SignalEndCurrentMode();

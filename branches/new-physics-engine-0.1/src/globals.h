@@ -18,8 +18,10 @@ typedef unsigned int uint;
 #define Rand(lower, upper) \
 ((rand() % (upper - lower + 1)) + lower)
 
-#define SCREEN_SIZE_X	320
-#define SCREEN_SIZE_Y 240
+//#define SCREEN_SIZE_X	320
+//#define SCREEN_SIZE_Y 240
+#define SCREEN_SIZE_X	640
+#define SCREEN_SIZE_Y 480
 
 // full version string 
 #define VERSION_STRING PACKAGE"-"VERSION

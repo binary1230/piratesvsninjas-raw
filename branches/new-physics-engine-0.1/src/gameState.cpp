@@ -217,28 +217,29 @@ void GameState::MainLoop() {
 		// We may need to update more than once on slower computers
 		// before we can draw, in order to keep the game the same speed
 		// no matter the speed of the computer
-		while (outstanding_updates > 0) {
+		while (outstanding_updates > 0 && !exit_game) {
 			Update();	// mode signals handled here
 			outstanding_updates--;
 		}
 		if (!exit_game) Draw();
 
 		// wait for 1/60th sec to elapse (if we're on a fast computer)
-		while (outstanding_updates <= 0);
+		while (outstanding_updates <= 0 && !exit_game);
   }
 }
 
 //! Update all game status
 void GameState::Update() {
-	input->Update();
-	currentMode->Update();
 
 	// see if we were signalled
 	if (end_current_mode) {
 		EndCurrentMode();
-		if (exit_game)
+		if (exit_game) 
 			return;
 	}
+	
+	input->Update();
+	currentMode->Update();
 }
 
 //! Draw the current mode
@@ -376,4 +377,9 @@ GameState::GameState() {
 	currentMode = NULL; 
 	physSimulation = NULL;
 }
+
+void GameState::SignalExit() {
+	exit_game = true; 
+}
+
 GameState::~GameState() {}
