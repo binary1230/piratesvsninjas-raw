@@ -120,7 +120,8 @@ Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
 		return NULL;
 
 	// load the animations
-	if (!obj->LoadAnimations(xDef))
+	AnimationMapping animation_map = GetPlayerAnimationMappings();
+	if (!obj->LoadAnimations(xDef, &animation_map))
 		return NULL;
 
 	// get the object properties

@@ -27,21 +27,25 @@
 	<map>
 		
 		<object objectDef="background" />
+		<position type="fixed">	<x>0</x> <y>0</y> </position>
 	
 		<object objectDef="tails">
-			<position type="random" />
+			<position type="random"> 
+				<xmin>0</xmin> <xmax>200</xmax>
+				<ymin>0</ymin> <ymax>200</ymax>
+			</position>
 		</object>	
 
 		<object objectDef="sonic">
-			<position type="fixed">
-				<x>20</x> 
-				<y>80</y> 
-			</position>
+			<position type="fixed">	<x>20</x> <y>80</y> </position>
 			<inputController>1</inputController>
 			<cameraFollow />
 		</object>
 	
-		<object objectDef="controller" />
+		<object objectDef="controller">
+			<position type="fixed">	<x>120</x> <y>10</y> </position>
+			<inputController>1</inputController>
+		</object>
 	</map>
 
 </gameMode>

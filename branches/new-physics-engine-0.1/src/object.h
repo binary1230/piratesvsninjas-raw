@@ -22,6 +22,7 @@ typedef vector<Object*> ObjectList;
 #include "gameBase.h"
 #include "vector2D.h"
 #include "xmlParser.h"
+#include "animations.h"
 
 //! A bit mask of various properties of an object
 //! NOTE: If you add anything here, update ClearProperties()
@@ -141,7 +142,7 @@ class Object : public GameBase {
 		void SetupCachedVariables();
 
 		//! Load animations from an XML object definition 
-		bool LoadAnimations(XMLNode &xDef);
+		bool LoadAnimations(XMLNode &xDef, AnimationMapping* = NULL);
 		
 		Object();
 		virtual ~Object();

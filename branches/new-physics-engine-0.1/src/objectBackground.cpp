@@ -14,14 +14,14 @@ void BackgroundObject::Update() {
 	}
 }
 
-// XXX NEEDS TO USE THE NEW DRAWING CODE.
-// THIS IS BROKEN. 
 // We want to wrap the background around the level.  Compute the offset
 void BackgroundObject::Draw() {
 	int camera_left = simulation->GetCameraLeft();
 	int camera_top  = simulation->GetCameraTop();
 	int offset_x = (int(scroll_offset) - camera_left) % GetWidth();
 	int offset_y = -camera_top % GetHeight();
+
+	simulation->TransformViewToScreen(offset_x, offset_y);
 	
 	// Draw it twice, repeating
 	DrawAtOffset( offset_x , offset_y );
@@ -47,24 +47,13 @@ Object* BackgroundObject::New(GameState* gameState, XMLNode &xDef) {
 	if (!obj || !obj->Init(gameState) )
 		return NULL;
 
-	props.feels_user_input = 0;
-	props.feels_gravity = 0;
-	props.feels_friction = 0;
 	props.is_overlay = 1;
 	obj->SetProperties(props);
 
-	obj->SetXY(0, obj->game_state->ScreenHeight());
+	// obj->SetXY(0, obj->game_state->ScreenHeight());
 	
-	obj->currentAnimation = NULL;
-	obj->animations.resize(1);
-	obj->animations[0] = new Animation();
-	obj->currentAnimation = obj->animations[0];
-	obj->currentAnimation->Init(gameState);
-
-	int duration = 60;
-	obj->currentAnimation->PushImage("data/back.bmp", duration);
-	
-	obj->currentSprite = obj->currentAnimation->GetCurrentSprite();
+	if (!obj->LoadAnimations(xDef) )
+		return NULL;
 	
 	return obj;
 }

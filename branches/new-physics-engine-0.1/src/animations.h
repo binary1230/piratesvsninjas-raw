@@ -11,5 +11,6 @@
 //! is the mapping of animation NAMES to ID's.  
 
 AnimationMapping GetPlayerAnimationMappings();
+AnimationMapping GetGenericAnimationMappings();
 
 #endif // ANIMATIONS_H

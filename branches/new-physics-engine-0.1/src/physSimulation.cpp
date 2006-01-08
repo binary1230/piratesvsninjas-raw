@@ -300,6 +300,25 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 					return -1;
 				}
 			}
+
+			if (xObject.nChildNode("position") == 1) {
+				XMLNode xPos = xObject.getChildNode("position");
+				CString type = xPos.getAttribute("type");
+				if (type == CString("fixed")) {
+					int x = xPos.getChildNode("x").getInt();
+					int y = xPos.getChildNode("y").getInt();
+					obj->SetXY(x,y);
+				} else if (type == CString("random")) {
+					int xmin = xPos.getChildNode("xmin").getInt();
+					int ymin = xPos.getChildNode("ymin").getInt();
+					int xmax = xPos.getChildNode("xmax").getInt();
+					int ymax = xPos.getChildNode("ymax").getInt();
+					obj->SetXY(Rand(xmin, xmax), Rand(ymin, ymax));
+				} else {
+					fprintf(stderr, "Unknown object position type: %s\n", type.c_str());
+					return -1;
+				}
+			}
 			
 			objects.push_back(obj);
 		}

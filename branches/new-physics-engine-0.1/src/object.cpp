@@ -79,15 +79,15 @@ Vector2D Object::Solve() {
 }
 
 void Object::Shutdown() {
-	if (animations.size() > 0) {
-		int i, max = animations.size();
-		for (i = 0; i < max; i++) {
-			animations[i]->Shutdown();
-			delete animations[i];
-			animations[i] = NULL;
-		}
-		animations.clear();
+				
+	int i, max = animations.size();
+	for (i = 0; i < max; i++) {
+		animations[i]->Shutdown();
+		delete animations[i];
+		animations[i] = NULL;
 	}
+	animations.clear();
+	
 	currentAnimation = NULL;
 	currentSprite = NULL;
 }
@@ -101,17 +101,17 @@ Object::Object() {
 }
 
 // A static helper function to load animations
-bool Object::LoadAnimations(XMLNode &xDef) {
+bool Object::LoadAnimations(XMLNode &xDef, AnimationMapping *animation_lookup) {
 	int i, iterator, max;
-	AnimationMapping animation_lookup = GetPlayerAnimationMappings();
+
 	Animation* anim = NULL;
 	CString anim_name;
 	XMLNode xAnim, xAnims;
 	
-	animations.resize(PLAYER_MAX_ANIMATIONS);
-
 	xAnims = xDef.getChildNode("animations");
 	max = xAnims.nChildNode("animation");
+	
+	animations.resize(max);
 
 	for (i=iterator=0; i<max; i++) {
 		xAnim = xAnims.getChildNode("animation", &iterator);
@@ -122,10 +122,17 @@ bool Object::LoadAnimations(XMLNode &xDef) {
 		if (!anim) {
 			return false;
 		} else {
-			animations[animation_lookup[anim_name]] = anim;
+			// if we have animation names (e.g. "walking") then use them to figure
+			// out which index we store this animation at
+			// if not, just put it in the next available index
+			int index;
 			
-			//fprintf(stderr, "--- animation '%s' is index #%i\n", anim_name.c_str(), 
-			//								animation_lookup[anim_name] );
+			if (animation_lookup)
+				index = (*animation_lookup)[anim_name];
+			else 
+				index = i;
+			
+			animations[index] = anim;
 		}
 	}
 
@@ -133,16 +140,17 @@ bool Object::LoadAnimations(XMLNode &xDef) {
 	CString default_name;
 	int default_index; 
 
-	default_name = xAnims.getAttribute("default");
-	default_index = animation_lookup[default_name];
-	currentAnimation = animations[default_index];
+	if (!animation_lookup) {
+		currentAnimation = animations[0];
+	} else { 
+		default_name = xAnims.getAttribute("default");
+		default_index = (*animation_lookup)[default_name];
+		currentAnimation = animations[default_index];
+	}
 
 	// set the current sprite to the first frame of the animation
 	currentSprite = currentAnimation->GetCurrentSprite();
 
-	//fprintf(stderr, "--- default_str = %s\n", xAnims.getAttribute("default"));
-	// fprintf(stderr, "--- def = %i, current = %x\n", default_index, currentAnimation);
-	// fprintf(stderr, " --- size = %i\n", animations.size());
 	return true;
 }
 

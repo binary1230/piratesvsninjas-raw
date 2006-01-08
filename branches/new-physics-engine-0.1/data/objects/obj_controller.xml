@@ -2,7 +2,7 @@
 
 <objectDef name="controller" type="ControllerDisplay">
 	<images>
-		<base>data/controller.bmp <x>10</x> <y>10</y> </base>
+		<base>data/controller.bmp <x>0</x> <y>0</y> </base>
 		
 		<btn>data/c_left.bmp	<x>13</x>	<y>37</y>	</btn>
 		<btn>data/c_right.bmp	<x>50</x>	<y>37</y> </btn>
