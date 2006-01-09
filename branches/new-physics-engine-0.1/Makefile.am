@@ -25,7 +25,7 @@ dist_win32: $(DISTFILES)
 	
 	zip -r dist/win32/ninjas-engine-$(VERSION).zip dist/win32/ninjas-engine-$(VERSION) -x \*.svn\*
 	
-	echo "Windows version packaged: dist/win32/ninjas-engine-$(VERSION).zip"
+	@echo -en "\n\nWindows version packaged: dist/win32/ninjas-engine-$(VERSION).zip\n\n"
 
 doc: src/Doxyfile
 	cd src && doxygen
