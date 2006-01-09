@@ -22,8 +22,7 @@ dist_win32: $(DISTFILES)
 	cp LICENSE README dist/win32/ninjas-engine-$(VERSION)
 	cp dist/win32/common/* dist/win32/ninjas-engine-$(VERSION)
 	cp -r $(DATA_DIR) dist/win32/ninjas-engine-$(VERSION)
-	
-	zip -r dist/win32/ninjas-engine-$(VERSION).zip dist/win32/ninjas-engine-$(VERSION) -x \*.svn\*
+	cd dist/win32/ && zip -r ninjas-engine-$(VERSION).zip ninjas-engine-$(VERSION) -x \*.svn\*
 	
 	@echo -en "\n\nWindows version packaged: dist/win32/ninjas-engine-$(VERSION).zip\n\n"
 
