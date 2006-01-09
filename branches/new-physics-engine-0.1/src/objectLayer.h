@@ -1,5 +1,5 @@
-#ifndef LAYER_H
-#define LAYER_H
+#ifndef OBJECTLAYER_H
+#define OBJECTLAYER_H
 
 #include <allegro.h>
 #include <vector>
@@ -33,8 +33,9 @@ class ObjectLayer : public GameBase {
 		void SetVisible(bool _visible) { visible = _visible; };
 
 		//! Return a pointer to a vector of objects in this layer
-		vector<Object*> * GetObjects() {return &objects; };
-		void SetObjects(const vector<Object*> &objs) {objects = objs; };
+		//vector<Object*> * GetObjects() {return &objects; };
+		//void SetObjects(const vector<Object*> &objs) {objects = objs; };
+		void Draw();
 		
 		//! Push an object onto this layer
 		void PushObject(Object*);
@@ -43,4 +44,4 @@ class ObjectLayer : public GameBase {
 		virtual ~ObjectLayer();
 };
 
-#endif // LAYER_H
+#endif // OBJECTLAYER_H

@@ -9,7 +9,7 @@ AC_INIT(src/main.cpp)
 VERSION_MAJOR="0"
 VERSION_MINOR="2"
 VERSION_FIX="0"
-VERSION_EXTRA="-alpha"
+VERSION_EXTRA="-beta1"
 
 VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_FIX$VERSION_EXTRA"
 
@@ -130,8 +130,8 @@ AC_EXEEXT
 
 AC_CHECK_HEADERS([allegro.h])
 
-# gen compiler args
 #AC_SUBST(SDL_LIBS)
 #AC_SUBST(SDL_DEFS)
 
+# These are the files which we create based on the info in THIS file.
 AC_OUTPUT(Makefile src/Makefile src/Doxyfile src/tests/Makefile)

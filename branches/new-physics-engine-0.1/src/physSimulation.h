@@ -11,6 +11,7 @@ class Force;
 class Object;
 class ObjectFactory;
 class ForceFactory;
+class ObjectLayer;
 
 #include "gameBase.h"
 #include "gameMode.h"
@@ -25,8 +26,11 @@ typedef map<const CString, XMLNode> ObjectDefMapping;
 //! Represents a physical simulation (the main game levels)
 class PhysSimulation : public GameMode {
 		protected:		
-			//! Collection of all drawable objects
+			//! ALL objects in the scene
 			vector<Object*> objects;
+
+			//! Layers, which hold pointers to objects.
+			vector<ObjectLayer*> layers;
 
 			//! Collection of forces
 			vector<Force*> forces;
@@ -59,6 +63,7 @@ class PhysSimulation : public GameMode {
 			int LoadObjectsFromXML(XMLNode&);
 			int LoadForcesFromXML(XMLNode&);
 			int LoadObjectDefsFromXML(XMLNode&, ObjectDefMapping&);
+			int LoadLayerFromXML(XMLNode &, ObjectLayer*, ObjectDefMapping&);
 
 		public:
 			int Init(GameState*, XMLNode);

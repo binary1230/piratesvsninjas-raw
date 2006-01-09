@@ -23,36 +23,41 @@
 		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
 	</objectDefinitions>
 
-	<!-- TODO: background layers and stuff -->
 	<map>
-		
-		<object objectDef="background">
-			<position type="fixed">	<x>0</x> <y>0</y> </position>
-		</object>
+		<layer scroll_speed="1.0f" name="background">
+			<object objectDef="background">
+				<position type="fixed">	<x>0</x> <y>0</y> </position>
+			</object>
+		</layer>
 	
-		<object objectDef="tails">
-			<position type="random"> 
-				<xmin>0</xmin> <xmax>200</xmax>
-				<ymin>0</ymin> <ymax>200</ymax>
-			</position>
-		</object>	
+		<layer scroll_speed="1.0f" name="bg_objects">	
+			<object objectDef="tails">
+				<position type="random"> 
+					<xmin>0</xmin> <xmax>200</xmax>
+					<ymin>0</ymin> <ymax>200</ymax>
+				</position>
+			</object>	
+		</layer>
 
-		<object objectDef="sonic">
-			<position type="fixed">	<x>20</x> <y>200</y> </position>
-			<inputController>1</inputController>
-			<cameraFollow />
-		</object>
+		<layer scroll_speed="1.0f" name="foreground">
+			<object objectDef="sonic">
+				<position type="fixed">	<x>20</x> <y>200</y> </position>
+				<inputController>1</inputController>
+				<cameraFollow />
+			</object>
 	
-		<object objectDef="sonic">
-			<position type="fixed">	<x>90</x> <y>200</y> </position>
-			<inputController>2</inputController>
-		</object>
-	
+			<object objectDef="sonic">
+				<position type="fixed">	<x>90</x> <y>200</y> </position>
+				<inputController>2</inputController>
+			</object>	
+		</layer>
 
-		<object objectDef="controller">
-			<position type="fixed">	<x>125</x> <y>5</y> </position>
-			<inputController>2</inputController>
-		</object>
+		<layer scroll_speed="1.0f" name="overlays">
+			<object objectDef="controller">
+				<position type="fixed">	<x>125</x> <y>5</y> </position>
+				<inputController>2</inputController>
+			</object>
+		</layer>
 	</map>
 
 </gameMode>

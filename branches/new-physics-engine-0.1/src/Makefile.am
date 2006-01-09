@@ -20,12 +20,12 @@ vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
 platform.h basename.h resourceLoader.h \
 animation.h animations.h sprite.h \
-StdString.h xmlParser.h layer.h
+StdString.h xmlParser.h objectLayer.h
 
 ninjas_SOURCES = \
 force.cpp forceGravity.cpp forceInput.cpp forceFactory.cpp \
 gameOptions.cpp gameState.cpp main.cpp gameBase.cpp \
-gameMode.cpp physSimulation.cpp layer.cpp \
+gameMode.cpp physSimulation.cpp objectLayer.cpp \
 input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp objectController.cpp \
