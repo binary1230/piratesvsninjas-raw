@@ -14,4 +14,5 @@
 		<btn>data/c_btn.bmp		<x>130</x>	<y>13</y>	</btn>
 		<btn>data/c_btn.bmp		<x>106</x>	<y>36</y>	</btn>
 	</images>
+	<showDuringDemoOnly>
 </objectDef>

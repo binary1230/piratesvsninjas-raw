@@ -18,6 +18,7 @@
 	
 	<objectDefinitions>
 		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_tails.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
@@ -46,8 +47,8 @@
 				<cameraFollow />
 			</object>
 	
-			<object objectDef="sonic">
-				<position type="fixed">	<x>90</x> <y>200</y> </position>
+			<object objectDef="sonicx">
+				<position type="fixed">	<x>50</x> <y>200</y> </position>
 				<inputController>2</inputController>
 			</object>	
 		</layer>
@@ -55,7 +56,7 @@
 		<layer scroll_speed="1.0f" name="overlays">
 			<object objectDef="controller">
 				<position type="fixed">	<x>125</x> <y>5</y> </position>
-				<inputController>2</inputController>
+				<inputController>1</inputController>
 			</object>
 		</layer>
 	</map>
