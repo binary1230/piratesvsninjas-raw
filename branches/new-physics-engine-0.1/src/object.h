@@ -19,6 +19,7 @@ using namespace std;
 
 typedef vector<Object*> ObjectList;
 
+#include "globals.h"
 #include "gameBase.h"
 #include "vector2D.h"
 #include "xmlParser.h"

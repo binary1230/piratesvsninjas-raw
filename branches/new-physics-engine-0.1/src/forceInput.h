@@ -10,6 +10,7 @@ class ForceInput;
 class Object;
 
 #include "force.h"
+#include "globals.h"
 
 class ForceInput : public Force {
 	public:

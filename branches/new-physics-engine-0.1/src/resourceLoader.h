@@ -13,6 +13,7 @@ using namespace std;
 
 #include "gameBase.h"
 #include "StdString.h"
+#include "globals.h"
 
 //! Resource loader class
 //! Resolves resource filenames to absolute paths

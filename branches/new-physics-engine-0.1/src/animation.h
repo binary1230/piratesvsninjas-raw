@@ -9,6 +9,7 @@ using namespace std;
 
 class Sprite;
 
+#include "globals.h"
 #include "gameBase.h"
 #include "xmlParser.h"
 #include "StdString.h"

@@ -45,7 +45,7 @@
  ****************************************************************************
  */
 #ifdef WIN32
-#include <Windows.h> // to have IsTextUnicode, MultiByteToWideChar, WideCharToMultiByte
+#include <windows.h> // to have IsTextUnicode, MultiByteToWideChar, WideCharToMultiByte
                      // to handle unicode files
 #endif
 

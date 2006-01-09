@@ -28,7 +28,7 @@ WIN32_PATH=/usr/i586-mingw32msvc/bin
 WIN32_LIBS=/usr/i586-mingw32msvc/lib
 
 # should contain cross compiled allegro.h
-WIN32_INCLUDES=~/i
+WIN32_INCLUDES=/usr/i586-mings32msvc/include
 
 # --------------------------------------------------------------
 # DON'T MESS WITH ANYTHING BELOW HERE UNLESS YOU ARE SUPER-SMART

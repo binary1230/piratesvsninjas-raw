@@ -9,6 +9,7 @@ class GameState;
 class Sprite;
 
 #include "gameBase.h"
+#include "globals.h"
 
 // Modes for creating the display
 // Listed in order from fastest, but nastier, to slowest, but nicest

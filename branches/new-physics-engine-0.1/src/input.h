@@ -21,6 +21,7 @@ using namespace std;
 class BaseInput;
 
 #include "gameBase.h"
+#include "globals.h"
 
 //! The max number of "player keys" (e.g. JUMP, LEFT, etc)
 #define PLAYERKEY_COUNT					5
