@@ -6,6 +6,9 @@ int InputPlayback::Init(GameState* _game_state, char* _demo_file) {
 	SetGameState(_game_state);
 				
 	LoadDefaultKeyMappings();
+	
+	install_mouse();
+	install_keyboard();
 
 	if (_demo_file)
 		if( InitPlayback(_demo_file) )
@@ -77,6 +80,13 @@ void InputPlayback::UseNextFrameData() {
 	for (i = 0; i < GAMEKEY_COUNT; i++) {
 		game_key[i] = next_frame_data[i];
 	}
+	
+	// SPECIAL EXCEPTION
+	// everything comes back from the demo file,
+	// but we still allow the user to press GAMEKEY_EXIT live
+	// so they can exit the demo themselves
+	if (key[gamekey_to_realkey[GAMEKEY_EXIT]])
+		game_key[GAMEKEY_EXIT] = 1;	
 }
 
 //! Reads the next frame from the demo file.  Closes the
@@ -179,6 +189,8 @@ void InputPlayback::Shutdown() {
 		fclose(demofile);
 		demofile = NULL;
 	}
+	remove_mouse();
+	remove_keyboard();
 }
 
 InputPlayback::InputPlayback() : demofile(NULL) {

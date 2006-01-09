@@ -20,6 +20,8 @@ class ControllerObject : public Object {
 	protected:
 		Sprite* controller_sprite;
 		vector<struct Button> buttons;
+
+		bool only_show_during_demo;
 		
 	public:
 		bool Init(GameState*);

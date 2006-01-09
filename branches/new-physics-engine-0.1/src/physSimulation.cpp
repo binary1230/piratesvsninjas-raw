@@ -303,6 +303,8 @@ int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
 		fprintf(stderr, "ERROR: No <cameraFollow> found, cannot proceed.\n");
 		return -1;
 	}
+
+	return 0;
 }
 
 //! Parse XML info from a <layer> block

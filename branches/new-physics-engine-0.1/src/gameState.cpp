@@ -89,6 +89,7 @@ int GameState::InitSystem() {
 		fprintf(stderr, "[Beginning Game Init]\n");
 				
 		exit_game = false;
+		is_playing_back_demo = false;
 		end_current_mode = false;
 
 		fprintf(stderr, "[init: allegro]\n");
@@ -145,13 +146,15 @@ int GameState::InitInput() {
 				
 	// init the right kind of class based on
 	// whether or not we are recording/playing back a demo
-	if ( options->RecordDemo() )
+	if ( options->RecordDemo() ) {
 		input = new InputRecord();	
-	else if ( options->PlaybackDemo() )
+	} else if ( options->PlaybackDemo() ) {
+		is_playing_back_demo = true;
 		input = new InputPlayback();
-	else
+	} else {
 		input = new InputLive();
-	
+	}
+		
 	if ( !input || !input->Init(this, options->GetDemoFilename()) < 0 ) {
 		return -1;
 	}
@@ -384,6 +387,7 @@ GameState::GameState() {
 
 void GameState::SignalExit() {
 	exit_game = true; 
+	is_playing_back_demo = false;
 }
 
 GameState::~GameState() {}

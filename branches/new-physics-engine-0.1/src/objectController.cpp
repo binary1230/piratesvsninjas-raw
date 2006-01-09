@@ -8,6 +8,11 @@
 #include "StdString.h"
 
 void ControllerObject::Draw() {
+
+	if (only_show_during_demo && !GetGameState()->IsPlayingBackDemo()) {
+		return;
+	}
+				
 	int x = (int)pos.GetX();
 	int y = (int)pos.GetY();
 
@@ -55,6 +60,8 @@ bool ControllerObject::Init(GameState* _game_state) {
 	buttons.clear();
 	controller_sprite = NULL;
 	controller_num = 1; // we'll set this later
+
+	only_show_during_demo = false;
 	
 	return BaseInit();
 }
@@ -139,6 +146,9 @@ Object* ControllerObject::New(GameState* _game_state, XMLNode &xDef) {
 			b->sprite->y_offset = xBtn.getChildNode("y").getInt();
 	}
 
+	if (xDef.nChildNode("showDuringDemoOnly") > 0)
+		obj->only_show_during_demo = true;
+	
 	return obj;
 }
 

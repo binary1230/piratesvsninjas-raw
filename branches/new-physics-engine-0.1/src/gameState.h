@@ -88,6 +88,9 @@ class GameState {
 	
 		//! Set to true to signal the end of the current mode
 		bool end_current_mode;
+
+		//! Set to true if we are playing back a demo
+		bool is_playing_back_demo;
 		
 		//! Exits the current mode and deletes it, free its memory
 		//! Exits the game if it is the last mode left.
@@ -108,9 +111,11 @@ class GameState {
 
 		//! Set the random seed value
  		void SetRandomSeed(int);
-
+		
 		//! Get the random seed value
 		int GetRandomSeed() const;
+
+		bool IsPlayingBackDemo() {return is_playing_back_demo;};
 
 		//! Return a surface which we can draw on
 		BITMAP* GetDrawingSurface();
