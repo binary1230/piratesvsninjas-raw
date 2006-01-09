@@ -15,6 +15,7 @@
 
 #include <allegro.h>
 #include <vector>
+#include <assert.h>
 using namespace std;
 
 class BaseInput;
