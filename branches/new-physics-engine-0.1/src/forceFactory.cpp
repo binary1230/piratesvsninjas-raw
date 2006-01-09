@@ -11,12 +11,12 @@ Force* ForceFactory::CreateForce(ForceType type) {
 	Force* force = NULL;
 	ForceInput* inputForce;
 	ForceGravity* gravityForce;
+	int controller_num = 0;
 	
 	switch (type) {
 		case FORCE_INPUT1:
 		case FORCE_INPUT2:
 						
-			int controller_num;
 			if (type == FORCE_INPUT1)
 				controller_num = 1;
 			else if (type == FORCE_INPUT2)

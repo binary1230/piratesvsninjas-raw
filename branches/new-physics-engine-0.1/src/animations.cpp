@@ -14,8 +14,3 @@ AnimationMapping GetPlayerAnimationMappings() {
 	animation["jumping"] = PLAYER_JUMPING;
 	return animation;
 }
-
-AnimationMapping GetGenericAnimationMappings() {
-	AnimationMapping animation;
-	animation["default"] = 0;
-}
