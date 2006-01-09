@@ -18,6 +18,7 @@ dist_win32: $(DISTFILES)
 	mkdir -p dist/win32/ninjas-engine-$(VERSION)/data
 	
 	cp src/ninjas.exe dist/win32/ninjas-engine-$(VERSION)
+	strip dist/win32/ninjas-engine-$(VERSION)/ninjas.exe
 	cp LICENSE README dist/win32/ninjas-engine-$(VERSION)
 	cp dist/win32/common/* dist/win32/ninjas-engine-$(VERSION)
 	cp -r $(DATA_DIR) dist/win32/ninjas-engine-$(VERSION)
