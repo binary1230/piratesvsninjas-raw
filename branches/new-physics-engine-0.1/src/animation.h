@@ -26,7 +26,6 @@ struct AnimFrame {
 	AnimFrame* nextFrame;	//! Pointer to next frame, or NULL if end of animation
 };
 
-//! The animation class
 //! Holds sprites and displays them in a preset order and timing
 //! 
 //! This class holds a specific series of images that an object can use.

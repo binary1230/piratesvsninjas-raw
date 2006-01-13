@@ -63,8 +63,9 @@ int Window::Init(	GameState* _game_state,
 
 	int depth = 16;
 	set_color_depth(depth);
-	if (get_color_depth() != depth)
-		fprintf(stderr, "window: Warning: Asked for %i-bit color mode, got %i-bit instead.\n", depth, get_color_depth());
+	/* This code doesn't work with allegro 4.0.x (no get_color_depth())
+	 * if (get_color_depth() != depth)
+		fprintf(stderr, "window: Warning: Asked for %i-bit color mode, got %i-bit instead.\n", depth, get_color_depth());*/
 									
 	if (set_gfx_mode(gfx_mode, width, height, 0, vheight) != 0) {
 		fprintf(stderr, 
