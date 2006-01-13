@@ -182,13 +182,12 @@ void PhysSimulation::Update() {
 //! Load the simulation from data in an XML file
 int PhysSimulation::Load(XMLNode &xMode) {			
 
-	LoadHeaderFromXML(xMode);
-	
 	objects.clear();
-	LoadObjectsFromXML(xMode);
-	
 	forces.clear();
-	LoadForcesFromXML(xMode);
+	if (LoadHeaderFromXML(xMode) == -1 ||
+			LoadObjectsFromXML(xMode) == -1 ||
+			LoadForcesFromXML(xMode) == -1 )
+		return -1;
 	
 	return 0;	
 }
@@ -348,6 +347,12 @@ int PhysSimulation::LoadLayerFromXML(
 				if (type == CString("fixed")) {
 					int x = xPos.getChildNode("x").getInt();
 					int y = xPos.getChildNode("y").getInt();
+
+					// if <alignBottom> is present, we do that.
+					if (xPos.nChildNode("alignBottom")>0) {
+						y += obj->GetHeight();
+					}
+					
 					obj->SetXY(x,y);
 				} else if (type == CString("random")) {
 					int xmin = xPos.getChildNode("xmin").getInt();
@@ -374,97 +379,6 @@ int PhysSimulation::LoadLayerFromXML(
 
 	return 0;
 }
-
-//! Helper function for physSimulation to load objects from a map file
-//! Post: Objects vector populated with all objects from the map file
-/*int PhysSimulation::LoadObjectsFromXML(XMLNode &xMode) {
-
-	// XXX this function needs to be split UP.
-
-	// How we read the map structure.
-	// 1) put all objectDefinitions into a hash table
-	// 2) look up the "map" node
-	// 3) foreach object we find there:
-	// 4) look up its "objectDefinition"
-	// 5) Create a new object with that objectDefinition
-	// 6) free hash table
-
-  int i, max, iterator = 0;  
-	XMLNode xMap, xObject, xObjs;	
-	Object* obj;
-	CString objDefName;
-	ObjectDefMapping objectDefs; 
-	
-	camera_follow = NULL;
-
-	// 1) put all objectDefinitions from the XML into a hash table
-	xObjs = xMode.getChildNode("objectDefinitions");
-	LoadObjectDefsFromXML(xObjs, objectDefs);
-
-	// 2) loop through each <object> we find under <map>
-	xMap = xMode.getChildNode("map");
-	max = xMap.nChildNode("object");
-	
-	// NEEDS TO BE IN LAYERS CODE NOW.
-	// foreach <object>
-	iterator = 0;
-  for (i=0; i < max; i++) {
-		xObject = xMap.getChildNode("object", &iterator);
-		objDefName = xObject.getAttribute("objectDef");
-
-		// create the object from the objectDefinition
-		obj = objectFactory->CreateObject(objectDefs[objDefName], xObject);
-
-		if (!obj) {
-			fprintf(stderr, "ERROR: Can't find objectDef '%s'\n", objDefName.c_str());
-			return -1;
-		} else {
-
-			if (xObject.nChildNode("cameraFollow") == 1) {
-				if (!camera_follow) {
-					camera_follow = obj;
-				} else {
-					fprintf(stderr, "ERROR: multiple camera targets in map\n");
-					return -1;
-				}
-			}
-
-			if (xObject.nChildNode("position") == 1) {
-				XMLNode xPos = xObject.getChildNode("position");
-				CString type = xPos.getAttribute("type");
-				if (type == CString("fixed")) {
-					int x = xPos.getChildNode("x").getInt();
-					int y = xPos.getChildNode("y").getInt();
-					obj->SetXY(x,y);
-				} else if (type == CString("random")) {
-					int xmin = xPos.getChildNode("xmin").getInt();
-					int ymin = xPos.getChildNode("ymin").getInt();
-					int xmax = xPos.getChildNode("xmax").getInt();
-					int ymax = xPos.getChildNode("ymax").getInt();
-					obj->SetXY(Rand(xmin, xmax), Rand(ymin, ymax));
-				} else {
-					fprintf(stderr, "Unknown object position type: %s\n", type.c_str());
-					return -1;
-				}
-			}
-			
-			if (xObject.nChildNode("inputController") == 1) {
-				int controller_num = xObject.getChildNode("inputController").getInt();
-				obj->SetControllerNum(controller_num);
-			}
-			
-			objects.push_back(obj);
-		}
-		// END OF LAYER CODE
-	}
-	
-	if (!camera_follow) {
-		fprintf(stderr, "ERROR: No <cameraFollow> found, cannot proceed.\n");
-		return -1;
-	}
-	
-	return 0;
-}*/
 
 // loads the forces from the XML file
 int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {

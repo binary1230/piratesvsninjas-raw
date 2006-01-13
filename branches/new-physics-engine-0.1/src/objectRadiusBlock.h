@@ -33,7 +33,7 @@ class RadiusBlockObject : public Object {
 		~RadiusBlockObject();
 			
 		//! Factory method to create a new radius block object
-		static Object* New(GameState* gameState, XMLNode &xDef);
+		static Object* New(GameState* gameState, XMLNode &xDef, XMLNode &xObj);
 };
 
 #endif // RadiusBlockObject_H   

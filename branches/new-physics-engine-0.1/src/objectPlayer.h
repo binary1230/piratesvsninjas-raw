@@ -34,7 +34,7 @@ class PlayerObject : public Object {
 		
 		void Update();
 			
-		static Object* New(GameState* gameState, XMLNode &xDef);
+		static Object* New(GameState* gameState, XMLNode &xDef, XMLNode &xObj);
 		
 		PlayerObject();
 		~PlayerObject();

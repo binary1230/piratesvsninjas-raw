@@ -17,11 +17,23 @@
 	</properties>
 	
 	<objectDefinitions>
+		<!-- the IMPORTANT game objects -->
 		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
 		<include_xml_file>data/objects/obj_tails.xml</include_xml_file>
+
+		<!-- level backgrounds/foregrounds -->
+		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_floor.xml</include_xml_file>
+		
+		<!-- shows a controler, used during demos -->
 		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
+	
+		<!-- various scenery -->
+		<include_xml_file>data/objects/obj_s_palm_tall.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_s_palm_small.xml</include_xml_file>
+		<include_xml_file>data/objects/flower1.xml</include_xml_file>
+		<include_xml_file>data/objects/flower2.xml</include_xml_file>
 	</objectDefinitions>
 
 	<map>
@@ -32,12 +44,37 @@
 		</layer>
 	
 		<layer scroll_speed="1.0f" name="bg_objects">	
+
+			<!-- oh, some palm trees and things -->
+			<!-- FYI, y = 21 is the floor height -->
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>40</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_small"><position type="fixed">
+			<x>100</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>200</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>400</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_small"><position type="fixed">
+			<x>430</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_small"><position type="fixed">
+			<x>600</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>1000</x><y>21</y><alignBottom></position></object>
+
+			<object objectDef="s_flower1"><position type="fixed">
+			<x>20</x><y>21</y><alignBottom></position></object>
+			<object objectDef="s_flower1"><position type="fixed">
+			<x>440</x><y>21</y><alignBottom></position></object>
+
+			<!-- tails flying around -->
 			<object objectDef="tails">
 				<position type="random"> 
 					<xmin>0</xmin> <xmax>200</xmax>
 					<ymin>0</ymin> <ymax>200</ymax>
 				</position>
-			</object>	
+			</object>
+
 		</layer>
 
 		<layer scroll_speed="1.0f" name="foreground">
@@ -50,7 +87,11 @@
 			<object objectDef="sonicx">
 				<position type="fixed">	<x>50</x> <y>200</y> </position>
 				<inputController>2</inputController>
-			</object>	
+			</object>
+
+			<object objectDef="floor">
+				<position type="fixed"> <x>0</x> <y>-215</y> </position>
+			</object>
 		</layer>
 
 		<layer scroll_speed="1.0f" name="overlays">

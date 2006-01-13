@@ -84,7 +84,9 @@ void ControllerObject::Shutdown() {
 	}
 }
 
-Object* ControllerObject::New(GameState* _game_state, XMLNode &xDef) {
+Object* ControllerObject::New(	GameState* _game_state, 
+																XMLNode &xDef,
+																XMLNode &xObj) {
 	ControllerObject* obj = new ControllerObject();
 
 	if (!obj || !obj->Init(_game_state) )

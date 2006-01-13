@@ -111,10 +111,10 @@ PlayerObject::PlayerObject() {
 PlayerObject::~PlayerObject() {}
 
 //! Factory method, creates new PlayerObjects from XML files
+//
 //! NOTE: this only takes an ObjectDefinition XML fragment,
-//! it does not take the Object XML fragment.
-//XXX memory leaks on failures here.
-Object* PlayerObject::New(GameState* gameState, XMLNode &xDef) {
+// memory leaks on failures here.. CLEAN IT.
+Object* PlayerObject::New(GameState* gameState, XMLNode &xDef, XMLNode &xObj) {
 	
 	// ObjectProperties props;
 	PlayerObject* obj = new PlayerObject();

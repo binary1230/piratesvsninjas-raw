@@ -16,6 +16,7 @@ gameMode.h physSimulation.h \
 input.h inputLiveHandler.h inputRecord.h inputPlayback.h \
 object.h objectFactory.h objectIDs.h \
 objectPlayer.h objectRadiusBlock.h objectBackground.h objectController.h \
+objectStatic.h \
 vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
 platform.h basename.h resourceLoader.h \
@@ -28,7 +29,7 @@ gameOptions.cpp gameState.cpp main.cpp gameBase.cpp \
 gameMode.cpp physSimulation.cpp objectLayer.cpp \
 input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
-objectBackground.cpp objectController.cpp \
+objectBackground.cpp objectController.cpp objectStatic.cpp \
 timer.cpp vector2D.cpp window.cpp \
 platform.cpp basename.cpp resourceLoader.cpp \
 animation.cpp animations.cpp \

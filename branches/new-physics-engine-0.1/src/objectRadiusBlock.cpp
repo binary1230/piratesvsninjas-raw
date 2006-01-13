@@ -25,7 +25,9 @@ RadiusBlockObject::~RadiusBlockObject() {}
 
 // Factory method, creates new RadiusBlockObjects
 // XXX animation stuff needs to be abstracted
-Object* RadiusBlockObject::New(GameState* gameState, XMLNode &xDef) {
+Object* RadiusBlockObject::New(	GameState* gameState, 
+																XMLNode &xDef, 
+																XMLNode &xObj) {
 	RadiusBlockObject* obj = new RadiusBlockObject();
 
 	if (!obj || !obj->Init(gameState) )

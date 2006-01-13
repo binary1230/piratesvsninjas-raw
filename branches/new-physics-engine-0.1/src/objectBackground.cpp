@@ -23,9 +23,10 @@ void BackgroundObject::Draw() {
 
 	simulation->TransformViewToScreen(offset_x, offset_y);
 	
-	// Draw it twice, repeating
-	DrawAtOffset( offset_x , offset_y );
-	DrawAtOffset( offset_x + GetWidth(), offset_y );
+	// Draw it across the screen, repeating it a few times if needed
+	for (int i = -GetWidth(); i < simulation->GetWidth(); i+=GetWidth()) {
+		DrawAtOffset( offset_x + i , offset_y );
+	}
 }
 
 bool BackgroundObject::Init(GameState *_game_state) {
@@ -40,7 +41,9 @@ BackgroundObject::BackgroundObject(float _speed) {
 
 BackgroundObject::~BackgroundObject() {}
 
-Object* BackgroundObject::New(GameState* gameState, XMLNode &xDef) {
+Object* BackgroundObject::New(	GameState* gameState, 
+																XMLNode &xDef, 
+																XMLNode &xObj) {
 	ObjectProperties props;
 	BackgroundObject* obj = new BackgroundObject(1.0f);
 	

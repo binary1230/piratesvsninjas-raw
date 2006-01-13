@@ -24,7 +24,7 @@ class BackgroundObject : public Object {
 		BackgroundObject(float _speed = 0.2);
 		~BackgroundObject();
 
-		static Object* New(GameState* gameState, XMLNode &xDef);
+		static Object* New(GameState* gameState, XMLNode &xDef, XMLNode &xObj);
 };
 
 #endif // BackgroundObject_H   

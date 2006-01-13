@@ -7,25 +7,12 @@
 #include "objectRadiusBlock.h"
 #include "objectBackground.h"
 #include "objectController.h"
+#include "objectStatic.h"
 #include "StdString.h"
 
 #include <map>
 
 using namespace std;
-
-/* XXX TODO:
- * - NASTY!! SO BADLY WRITTEN, CLEAN IT UP
- * - width/height autocalc
- * - read in all hardcoded stuff from DATA files.
- * - break this up into smaller functions
- * - For now it 'just works'
- *
- * This is the ugliest code.. EVAR, it ALL needs to be redone.
- * Soon this will all be replaced with a nice XML parser factory thing.
- *
- * UPDATE: some of the nastiness is now gone, replaced with XML
- * goodness. (some of it anyway.)
- */
 
 // Creates an object from an XML definition
 // in: xObjectDef - XML representation of an object's definition
@@ -35,13 +22,14 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 
 	Object* obj = NULL;
 
-	// XXX this shouldn't go here.
+	// XXX this shouldn't really be here...
 	// maps strings of object types to numeric ID's.
 	map<const CString, uint> types;
-	types["RadiusBlock"] 	= OBJECT_ID_RADIUS_BLOCK;
-	types["Background"] 		= OBJECT_ID_BACKGROUND;
-	types["Player"] 				= OBJECT_ID_PLAYER;
-	types["ControllerDisplay"] 				= OBJECT_ID_CONTROLLER;
+	types["RadiusBlock"] 				= OBJECT_ID_RADIUS_BLOCK;
+	types["Background"] 				= OBJECT_ID_BACKGROUND;
+	types["Player"] 						= OBJECT_ID_PLAYER;
+	types["ControllerDisplay"] 	= OBJECT_ID_CONTROLLER;
+	types["Static"] 						= OBJECT_ID_STATIC;
 	
 	CString objType = xObjectDef.getAttribute("type");
 	
@@ -50,19 +38,23 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 	switch(id) {
 					
 		case OBJECT_ID_BACKGROUND:
-			obj = BackgroundObject::New(GetGameState(), xObjectDef);
+			obj = BackgroundObject::New(GetGameState(), xObjectDef, xObject);
 			break;
 			
 		case OBJECT_ID_PLAYER:
-			obj = PlayerObject::New(GetGameState(), xObjectDef);
+			obj = PlayerObject::New(GetGameState(), xObjectDef, xObject);
 			break;
 			
 		case OBJECT_ID_RADIUS_BLOCK:
-			obj = RadiusBlockObject::New(GetGameState(), xObjectDef);
+			obj = RadiusBlockObject::New(GetGameState(), xObjectDef, xObject);
 			break;
 			
 		case OBJECT_ID_CONTROLLER:
-			obj = ControllerObject::New(GetGameState(), xObjectDef);
+			obj = ControllerObject::New(GetGameState(), xObjectDef, xObject);
+			break;
+
+		case OBJECT_ID_STATIC:
+			obj = StaticObject::New(GetGameState(), xObjectDef, xObject);
 			break;
 			
 		default:

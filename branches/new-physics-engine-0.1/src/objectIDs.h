@@ -9,6 +9,7 @@
 #define OBJECT_ID_PLAYER 2
 #define OBJECT_ID_BACKGROUND 3
 #define OBJECT_ID_CONTROLLER 4
+#define OBJECT_ID_STATIC 5
 
 // OBJECT animation ID's
 #define PLAYER_WALKING 0

@@ -33,7 +33,7 @@ class ControllerObject : public Object {
 		ControllerObject();
 		~ControllerObject();
 
-		static Object* New(GameState*, XMLNode &xDef);
+		static Object* New(GameState* gameState, XMLNode &xDef, XMLNode &xObj);
 };
 
 #endif // OBJ_CONTROLLER_H
