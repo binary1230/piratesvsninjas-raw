@@ -56,9 +56,14 @@ Object* ObjectFactory::CreateObject(XMLNode &xObjectDef, XMLNode &xObject) {
 		case OBJECT_ID_STATIC:
 			obj = StaticObject::New(GetGameState(), xObjectDef, xObject);
 			break;
+
+		case 0:
+			fprintf(stderr, "ERROR: Specified object doesn't exist - '%s'.\n",
+											objType.c_str());
+			break;
 			
 		default:
-			fprintf(stderr, "ObjectFactory: Unknown Object ID passed: %i\n", id);
+			fprintf(stderr, "ERROR: Unknown Object ID passed?? [%i]\n", id);
 	}
 
 	return obj;

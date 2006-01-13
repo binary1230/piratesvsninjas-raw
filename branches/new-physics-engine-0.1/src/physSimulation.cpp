@@ -311,10 +311,9 @@ int PhysSimulation::LoadLayerFromXML(
 								XMLNode &xLayer, 
 								ObjectLayer* layer, 
 								ObjectDefMapping &objectDefs) {
-				
+
 	int i, iterator, max;
 	XMLNode xObject;
-	Object* obj;
 	CString objDefName;
 
 	// How much do we scroll this layer by?
@@ -331,60 +330,74 @@ int PhysSimulation::LoadLayerFromXML(
 		objDefName = xObject.getAttribute("objectDef");
 
 		// create the object from the objectDefinition
-		obj = objectFactory->CreateObject(objectDefs[objDefName], xObject);
-
-		if (!obj) {
-			fprintf(stderr, "ERROR: Can't find objectDef '%s'\n", objDefName.c_str());
+		if (LoadObjectFromXML(objectDefs[objDefName], xObject, layer) == -1) {
+			fprintf(stderr, "ERROR: Unable To Load  '%s'\n", objDefName.c_str());
 			return -1;
-		} else {
-
-			if (xObject.nChildNode("cameraFollow") == 1) {
-				if (!camera_follow) {
-					camera_follow = obj;
-				} else {
-					fprintf(stderr, "ERROR: multiple camera targets in map\n");
-					return -1;
-				}
-			}
-
-			if (xObject.nChildNode("position") == 1) {
-				XMLNode xPos = xObject.getChildNode("position");
-				CString type = xPos.getAttribute("type");
-				if (type == CString("fixed")) {
-					int x = xPos.getChildNode("x").getInt();
-					int y = xPos.getChildNode("y").getInt();
-
-					// if <alignBottom> is present, we do that.
-					if (xPos.nChildNode("alignBottom")>0) {
-						y += obj->GetHeight();
-					}
-					
-					obj->SetXY(x,y);
-				} else if (type == CString("random")) {
-					int xmin = xPos.getChildNode("xmin").getInt();
-					int ymin = xPos.getChildNode("ymin").getInt();
-					int xmax = xPos.getChildNode("xmax").getInt();
-					int ymax = xPos.getChildNode("ymax").getInt();
-					obj->SetXY(Rand(xmin, xmax), Rand(ymin, ymax));
-				} else {
-					fprintf(stderr, "Unknown object position type: %s\n", type.c_str());
-					return -1;
-				}
-			}
-			
-			if (xObject.nChildNode("inputController") == 1) {
-				int controller_num = xObject.getChildNode("inputController").getInt();
-				obj->SetControllerNum(controller_num);
-			}
-		
-			// Everything loaded OK, now we add it to the simulation
-			objects.push_back(obj);
-			layer->PushObject(obj);
 		}
 	}
 
 	return 0;
 }
+
+// Do the REAL work of loading an object from XML
+int PhysSimulation::LoadObjectFromXML(
+								XMLNode &xObjectDef,
+								XMLNode &xObject,
+								ObjectLayer* layer) {
+
+	Object* obj  = objectFactory->CreateObject(xObjectDef, xObject);
+
+	if (!obj) {
+		return -1;
+	} else {
+
+		if (xObject.nChildNode("cameraFollow") == 1) {
+			if (!camera_follow) {
+				camera_follow = obj;
+			} else {
+				fprintf(stderr, "ERROR: multiple camera targets in map\n");
+				return -1;
+			}
+		}
+
+		if (xObject.nChildNode("position") == 1) {
+			XMLNode xPos = xObject.getChildNode("position");
+			CString type = xPos.getAttribute("type");
+			if (type == CString("fixed")) {
+				int x = xPos.getChildNode("x").getInt();
+				int y = xPos.getChildNode("y").getInt();
+
+				// if <alignBottom> is present, we do that.
+				if (xPos.nChildNode("alignBottom")>0) {
+					y += obj->GetHeight();
+				}
+					
+				obj->SetXY(x,y);
+			} else if (type == CString("random")) {
+				int xmin = xPos.getChildNode("xmin").getInt();
+				int ymin = xPos.getChildNode("ymin").getInt();
+				int xmax = xPos.getChildNode("xmax").getInt();
+				int ymax = xPos.getChildNode("ymax").getInt();
+				obj->SetXY(Rand(xmin, xmax), Rand(ymin, ymax));
+			} else {
+				fprintf(stderr, "Unknown object position type: %s\n", type.c_str());
+				return -1;
+			}
+		}
+			
+		if (xObject.nChildNode("inputController") == 1) {
+			int controller_num = xObject.getChildNode("inputController").getInt();
+			obj->SetControllerNum(controller_num);
+		}
+		
+		// Everything loaded OK, now we add it to the simulation
+		objects.push_back(obj);
+		layer->PushObject(obj);
+	}
+
+	return 0;
+}
+
 
 // loads the forces from the XML file
 int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {
