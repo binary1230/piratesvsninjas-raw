@@ -37,7 +37,7 @@
 	</objectDefinitions>
 
 	<map>
-		<layer scroll_speed="0.5f" name="background">
+		<layer scroll_speed="0.2f" name="background">
 			<object objectDef="background">
 				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom></position>
 				<alignBottom>
@@ -48,26 +48,16 @@
 
 			<!-- oh, some palm trees and things -->
 			<!-- FYI, y = 21 is the floor height -->
-			<object objectDef="s_palm_tall"><position type="fixed">
-			<x>40</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_small"><position type="fixed">
-			<x>100</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_tall"><position type="fixed">
-			<x>200</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_tall"><position type="fixed">
-			<x>400</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_small"><position type="fixed">
-			<x>430</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_small"><position type="fixed">
-			<x>600</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_palm_tall"><position type="fixed">
-			<x>1000</x><y>21</y><alignBottom></position></object>
-
-			<object objectDef="s_flower1"><position type="fixed">
-			<x>20</x><y>21</y><alignBottom></position></object>
-			<object objectDef="s_flower1"><position type="fixed">
-			<x>440</x><y>21</y><alignBottom></position></object>
-
+			<repeat>50
+				<object objectDef="s_palm_tall">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>-50</ymin><ymax>21</ymax>
+						<alignBottom>
+					</position>
+				</object>
+			</repeat>
+			
 			<!-- tails flying around -->
 			<object objectDef="tails">
 				<position type="random"> 
@@ -104,24 +94,27 @@
 			</object>
 		</layer>
 
-		<layer scroll_speed="2.0f" name="foreground_fast">
-			<object objectDef="s_flower2"><position type="fixed">
-			<x>100</x><y>40</y></position></object>
-			<object objectDef="s_flower2"><position type="fixed">
-			<x>80</x><y>30</y></position></object>
-			<object objectDef="s_flower1"><position type="fixed">
-			<x>80</x><y>60</y></position></object>
-			<object objectDef="s_palm_tall"><position type="fixed">
-			<x>400</x><y>100</y></position></object>
-
-			<repeat>100
-				<object objectDef="s_palm_tall">
+		<layer scroll_speed="1.5f" name="foreground_fast">
+			<repeat>20
+				<object objectDef="s_flower1">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
-						<ymin>20</ymin><ymax>150</ymax>
+						<ymin>-50</ymin><ymax>0</ymax>
+						<alignBottom>
 					</position>
 				</object>
 			</repeat>
+
+			<repeat>20
+				<object objectDef="s_flower2">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>-30</ymin><ymax>0</ymax>
+						<alignBottom>
+					</position>
+				</object>
+			</repeat>
+
 		</layer>
 			
 	</map>
