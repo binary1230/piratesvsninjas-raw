@@ -37,9 +37,10 @@
 	</objectDefinitions>
 
 	<map>
-		<layer scroll_speed="1.0f" name="background">
+		<layer scroll_speed="0.5f" name="background">
 			<object objectDef="background">
-				<position type="fixed">	<x>0</x> <y>0</y> </position>
+				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom></position>
+				<alignBottom>
 			</object>
 		</layer>
 	
@@ -90,7 +91,9 @@
 			</object>
 
 			<object objectDef="floor">
-				<position type="fixed"> <x>0</x> <y>-215</y> </position>
+				<position type="fixed"> 
+					<x>0</x> <y>26</y>
+				</position>
 			</object>
 		</layer>
 
@@ -100,6 +103,26 @@
 				<inputController>1</inputController>
 			</object>
 		</layer>
+
+		<layer scroll_speed="2.0f" name="foreground_fast">
+			<object objectDef="s_flower2"><position type="fixed">
+			<x>100</x><y>40</y></position></object>
+			<object objectDef="s_flower2"><position type="fixed">
+			<x>80</x><y>30</y></position></object>
+			<object objectDef="s_flower1"><position type="fixed">
+			<x>80</x><y>60</y></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>400</x><y>100</y></position></object>
+			
+			<object objectDef="s_palm_tall">
+				<position type="random">
+					<xmin>0</xmin><xmax>2500</xmax>
+					<ymin>20</ymin><ymax>70</ymax>
+					<repeat>20</repeat>
+				</position>
+			</object>
+		</layer>
+			
 	</map>
 
 </gameMode>

@@ -3,10 +3,11 @@
 #include "gameState.h"
 #include "animation.h"
 #include "physSimulation.h"
+#include "object.h"
+#include "window.h"
 
 void BackgroundObject::Update() {
-	// scroll_offset -= speed;
-	pos.SetX(0);
+	// pos.SetX(0);
 
 	if (currentAnimation) {
 		currentAnimation->Update();
@@ -16,17 +17,22 @@ void BackgroundObject::Update() {
 
 // We want to wrap the background around the level.  Compute the offset
 void BackgroundObject::Draw() {
-	int camera_left = simulation->GetCameraLeft();
-	int camera_top  = simulation->GetCameraTop();
-	int offset_x = (int(scroll_offset) - camera_left) % GetWidth();
-	int offset_y = -camera_top % GetHeight();
-
-	simulation->TransformViewToScreen(offset_x, offset_y);
+	int x,y, i = 0;
+				
+	// XXX THIS CAN DEFINITELY BE SIMPLIFIED
+	// Draw it a few times in case so we can "wrap" around
+	// the screen
+	do {
+		Transform(x,y);
+		x = - ( GetWidth() - ( x % GetWidth()) ) + i;
+		// fprintf(stderr, "x,y=(%i,%i) ", x ,y);
 	
-	// Draw it across the screen, repeating it a few times if needed
-	for (int i = -GetWidth(); i < simulation->GetWidth(); i+=GetWidth()) {
-		DrawAtOffset( offset_x + i , offset_y );
-	}
+		GetGameState()->GetWindow()->
+    DrawSprite(currentSprite, x, y, flip_x, flip_y);
+
+		i += GetWidth();
+		
+	} while ( x < (int)game_state->ScreenWidth() );
 }
 
 bool BackgroundObject::Init(GameState *_game_state) {
@@ -34,29 +40,22 @@ bool BackgroundObject::Init(GameState *_game_state) {
 		return BaseInit();
 }
 
-BackgroundObject::BackgroundObject(float _speed) {	
-	speed = _speed;
-	scroll_offset = 0.0f;
-}
-
-BackgroundObject::~BackgroundObject() {}
-
 Object* BackgroundObject::New(	GameState* gameState, 
 																XMLNode &xDef, 
 																XMLNode &xObj) {
-	ObjectProperties props;
-	BackgroundObject* obj = new BackgroundObject(1.0f);
+	
+	BackgroundObject* obj = new BackgroundObject();
 	
 	if (!obj || !obj->Init(gameState) )
 		return NULL;
 
-	props.is_overlay = 1;
-	obj->SetProperties(props);
+	obj->SetXY(0,0);
 
-	// obj->SetXY(0, obj->game_state->ScreenHeight());
-	
 	if (!obj->LoadAnimations(xDef) )
 		return NULL;
 	
 	return obj;
 }
+
+BackgroundObject::BackgroundObject() {}
+BackgroundObject::~BackgroundObject() {}

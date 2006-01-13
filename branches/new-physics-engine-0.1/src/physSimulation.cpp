@@ -46,7 +46,7 @@ void PhysSimulation::TransformViewToScreen(int &x, int &y) {
 //! Transforms an object's coordinates from its world coordinates
 //! Into "view" coordinates (e.g. x < screen.width, y < screen.height)
 void PhysSimulation::TransformWorldToView(int &x, int &y) {
-	x = x - GetCameraLeft();
+	x = int((x - GetCameraLeft() ) * camera_scroll_speed);
 	y = y - GetCameraTop();
 }
 
@@ -316,6 +316,12 @@ int PhysSimulation::LoadLayerFromXML(
 	XMLNode xObject;
 	Object* obj;
 	CString objDefName;
+
+	// How much do we scroll this layer by?
+	float scroll_speed;
+  sscanf(xLayer.getAttribute("scroll_speed"), "%f", &scroll_speed);
+	layer->SetScrollSpeed(scroll_speed);
+	
 	max = xLayer.nChildNode("object");
 	
 	// Foreach <object> we find, load it
@@ -404,5 +410,7 @@ int PhysSimulation::LoadForcesFromXML(XMLNode &xMode) {
 	return 0;
 }
 
-PhysSimulation::PhysSimulation() : objects(0), forces(0) {}
+PhysSimulation::PhysSimulation() : objects(0), forces(0) {
+	camera_scroll_speed = 1.0f;
+}
 PhysSimulation::~PhysSimulation() {}

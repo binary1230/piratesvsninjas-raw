@@ -3,17 +3,14 @@
 #include "xmlParser.h"
 #include "StdString.h"
 #include "object.h"
-
-ObjectLayer::ObjectLayer() {
-	scroll_speed = 1;
-	visible = true;	
-	objects.clear();
-}
-
-ObjectLayer::~ObjectLayer() {}
+#include "physSimulation.h"
 
 void ObjectLayer::Draw() {
 	int i, max = objects.size();
+
+	// set scroll speed for this layer
+	GetGameState()->GetPhysSimulation()->SetCameraScrollSpeed(scroll_speed);
+	
 	for (i=0; i<max; i++) {
 		objects[i]->Draw();
 	}
@@ -36,3 +33,12 @@ void ObjectLayer::Shutdown() {
 	objects.clear();	
 	SetGameState(NULL);
 }
+
+ObjectLayer::ObjectLayer() {
+	scroll_speed = 1.0f;
+	visible = true;	
+	objects.clear();
+}
+
+ObjectLayer::~ObjectLayer() {}
+

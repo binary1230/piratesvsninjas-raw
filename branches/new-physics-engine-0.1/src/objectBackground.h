@@ -12,8 +12,6 @@ class GameState;
 
 class BackgroundObject : public Object {
 	protected:
-		float scroll_offset;
-		float speed;
 				
 	public:
 		bool Init(GameState* _game_state);
@@ -21,7 +19,7 @@ class BackgroundObject : public Object {
 		void Update();
 		void Draw();
 
-		BackgroundObject(float _speed = 0.2);
+		BackgroundObject();
 		~BackgroundObject();
 
 		static Object* New(GameState* gameState, XMLNode &xDef, XMLNode &xObj);

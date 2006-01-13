@@ -51,6 +51,11 @@ class PhysSimulation : public GameMode {
 			//! Which object the camera should follow
 			Object* camera_follow;
 
+			//! How much to scale the X coordinate of the camera.
+			//! MOSTLY used for scrolling backgrounds at different speeds
+			//! on different layers
+			float camera_scroll_speed;
+
 			//! Physics functions
 			void ResetForNextFrame();
 			void Solve();
@@ -76,6 +81,7 @@ class PhysSimulation : public GameMode {
 			int GetHeight() {return height;};
 
 			void ComputeNewCamera();
+			void SetCameraScrollSpeed(float s) {camera_scroll_speed = s;};
 
 			int GetCameraLeft() {return camera_left;};
 			int GetCameraTop() {return camera_top;};

@@ -30,19 +30,17 @@ void Object::Draw() {
 	DrawAtOffset(0,0);
 }
 
-//! This function does the real dirty work of drawing.
-// 
 //! Ultimately we need the actual, on-screen coordinates of where
 //! to draw the sprite.  To get to those from the object's "world" coordinates
 //! as computed by the physics engine, we need to take into account the 
 //! position of the camera, and we need to flip the Y axis.  These
 //! things are handled by the simulation->TransformXXX() methods.
-void Object::DrawAtOffset(int offset_x, int offset_y, Sprite* sprite_to_draw) {	
-	int x = (int)pos.GetX() + offset_x;
-	int y = (int)pos.GetY() + offset_y;
-
-	if (!sprite_to_draw)
-		sprite_to_draw = currentSprite;
+//
+//! This function populates x,y (reference params) with the 
+//! correctly transformed coordinates.
+void Object::Transform(int &x, int &y, int offset_x, int offset_y) {
+	x = (int)pos.GetX() + offset_x;
+	y = (int)pos.GetY() + offset_y;
 
 	// take into account the camera now.
 	if (!properties.is_overlay)
@@ -50,8 +48,17 @@ void Object::DrawAtOffset(int offset_x, int offset_y, Sprite* sprite_to_draw) {
 	
 	// compute absolute x,y coordinates on the screen
 	simulation->TransformViewToScreen(x, y);
+}
 
+//! This function does the real dirty work of drawing.
+void Object::DrawAtOffset(int offset_x, int offset_y, Sprite* sprite_to_draw) {	
+	int x, y;
+	Transform(x, y, offset_x, offset_y);
+				
 	// draw for real
+	if (!sprite_to_draw)
+		sprite_to_draw = currentSprite;
+	
 	if (sprite_to_draw)
 		GetGameState()->GetWindow()->
 		DrawSprite(sprite_to_draw, x, y, flip_x, flip_y);
