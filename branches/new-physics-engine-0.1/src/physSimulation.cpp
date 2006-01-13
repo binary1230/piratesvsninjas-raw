@@ -321,9 +321,9 @@ int PhysSimulation::LoadLayerFromXML(
   sscanf(xLayer.getAttribute("scroll_speed"), "%f", &scroll_speed);
 	layer->SetScrollSpeed(scroll_speed);
 	
+	// for every <object> we find, load it
 	max = xLayer.nChildNode("object");
-	
-	// Foreach <object> we find, load it
+
   for (i=iterator=0; i < max; i++) {
 
 		xObject = xLayer.getChildNode("object", &iterator);
@@ -336,6 +336,35 @@ int PhysSimulation::LoadLayerFromXML(
 		}
 	}
 
+	// NEW: special case.  Because I, Dom, am LAZY as HELL, I have
+	// added a <REPEAT> tag which allows us to create, say, 50
+	// objects while only having to declare just one (combine this
+	// with random positions, and you have an interesting formula for
+	// random level generation!)
+	int times_to_repeat, j;
+	XMLNode xRepeater;
+	max = xLayer.nChildNode("repeat");
+
+	for (i=iterator=0; i < max; i++) {
+
+		xRepeater = xLayer.getChildNode("repeat", &iterator);
+		times_to_repeat = xRepeater.getInt();
+		
+		// Repeat the creation of this object the specified # of times.
+		// same exact object code as above...
+		for (j=0; j < times_to_repeat; j++) {
+
+			xObject = xRepeater.getChildNode("object");
+			objDefName = xObject.getAttribute("objectDef");
+
+			// create the object from the objectDefinition
+			if (LoadObjectFromXML(objectDefs[objDefName], xObject, layer) == -1) {
+				fprintf(stderr, "ERROR: Unable To Load  '%s'\n", objDefName.c_str());
+				return -1;
+			}
+		}	
+	}
+
 	return 0;
 }
 
@@ -345,6 +374,7 @@ int PhysSimulation::LoadObjectFromXML(
 								XMLNode &xObject,
 								ObjectLayer* layer) {
 
+	int x,y;
 	Object* obj  = objectFactory->CreateObject(xObjectDef, xObject);
 
 	if (!obj) {
@@ -361,28 +391,31 @@ int PhysSimulation::LoadObjectFromXML(
 		}
 
 		if (xObject.nChildNode("position") == 1) {
+
 			XMLNode xPos = xObject.getChildNode("position");
 			CString type = xPos.getAttribute("type");
 			if (type == CString("fixed")) {
-				int x = xPos.getChildNode("x").getInt();
-				int y = xPos.getChildNode("y").getInt();
-
-				// if <alignBottom> is present, we do that.
-				if (xPos.nChildNode("alignBottom")>0) {
-					y += obj->GetHeight();
-				}
-					
-				obj->SetXY(x,y);
+				x = xPos.getChildNode("x").getInt();
+				y = xPos.getChildNode("y").getInt();
+				
 			} else if (type == CString("random")) {
 				int xmin = xPos.getChildNode("xmin").getInt();
 				int ymin = xPos.getChildNode("ymin").getInt();
 				int xmax = xPos.getChildNode("xmax").getInt();
 				int ymax = xPos.getChildNode("ymax").getInt();
-				obj->SetXY(Rand(xmin, xmax), Rand(ymin, ymax));
+				x = Rand(xmin, xmax);
+				y = Rand(ymin, ymax);
+
 			} else {
 				fprintf(stderr, "Unknown object position type: %s\n", type.c_str());
 				return -1;
 			}
+				
+			// if <alignBottom> is present, we do that.
+			if (xPos.nChildNode("alignBottom")>0) {
+				y += obj->GetHeight();
+			}
+			obj->SetXY(x,y);
 		}
 			
 		if (xObject.nChildNode("inputController") == 1) {

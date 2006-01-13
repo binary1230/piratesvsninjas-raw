@@ -113,14 +113,15 @@
 			<x>80</x><y>60</y></position></object>
 			<object objectDef="s_palm_tall"><position type="fixed">
 			<x>400</x><y>100</y></position></object>
-			
-			<object objectDef="s_palm_tall">
-				<position type="random">
-					<xmin>0</xmin><xmax>2500</xmax>
-					<ymin>20</ymin><ymax>70</ymax>
-					<repeat>20</repeat>
-				</position>
-			</object>
+
+			<repeat>100
+				<object objectDef="s_palm_tall">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>20</ymin><ymax>150</ymax>
+					</position>
+				</object>
+			</repeat>
 		</layer>
 			
 	</map>
