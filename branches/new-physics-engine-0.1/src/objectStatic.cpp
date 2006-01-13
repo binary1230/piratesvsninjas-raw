@@ -9,6 +9,8 @@ void StaticObject::Update() {
 		currentAnimation->Update();
 		currentSprite = currentAnimation->GetCurrentSprite();
 	}
+
+	pos = Solve();
 }
 
 bool StaticObject::Init(GameState *_game_state) {

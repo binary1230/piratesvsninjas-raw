@@ -85,6 +85,9 @@ Vector2D Object::Solve() {
 	vel += accel;
 	pos += vel;
 
+	if (debug_flag)
+		fprintf(stderr, "vel=(%f,%f)\n", vel.GetX(), vel.GetY());
+
 	return pos;
 }
 
@@ -108,6 +111,10 @@ Object::Object() {
 	flip_x = false; 
 	mass = 1.0f;
 	simulation = NULL;
+	debug_flag = false;
+	pos.SetX(0); pos.SetY(0);
+	accel.SetX(0); accel.SetY(0);
+	vel.SetX(0); vel.SetY(0);
 }
 
 // A static helper function to load animations

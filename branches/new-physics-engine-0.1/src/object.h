@@ -101,6 +101,9 @@ class Object : public GameBase {
 
 		//! Base class initialization
 		bool BaseInit();	
+
+		//! If true, this object can print debug info out if it wants to.
+		bool debug_flag;
 		
 	public:
 		virtual bool Init(GameState* _game_state) = 0;
@@ -116,14 +119,24 @@ class Object : public GameBase {
 		//! It'll just use the current sprite (most cases)
 		void DrawAtOffset(int x, int y, Sprite* = NULL);	
 		
+		//! Functions to get/set position
 		inline int GetX() 					{ return (int)pos.GetX(); }
 		inline int GetY() 					{ return (int)pos.GetY(); }
 		inline void SetX(int _x) 		{ pos.SetX((float)_x); }
 		inline void SetY(int _y) 		{ pos.SetY((float)_y);	}
-		
 		inline void SetXY(int _x, int _y) {
 				pos.SetX((float)_x);	
 				pos.SetY((float)_y);
+		}
+
+		//! Functions to get/set velocity
+		inline float GetVelX() 					{ return vel.GetX(); }
+		inline float GetVelY() 					{ return vel.GetY(); }
+		inline void SetVelX(float _vx) 		{ vel.SetX(_vx); }
+		inline void SetVelY(float _vy) 		{ vel.SetY(_vy);	}
+		inline void SetVelXY(float _vx, float _vy) {
+				vel.SetX(_vx);
+				vel.SetY(_vy);
 		}
 		
 		//! Get width/height of this object
@@ -153,6 +166,9 @@ class Object : public GameBase {
 		
 		//! Return which controller we monitor
 		uint GetControllerNum() {return controller_num;};
+		
+		void SetDebugFlag(bool d) {debug_flag = d;};
+		bool GetDebugFlag() {return debug_flag;};
 		
 		Object();
 		virtual ~Object();

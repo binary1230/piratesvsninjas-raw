@@ -32,9 +32,7 @@ class ObjectLayer : public GameBase {
 		bool IsVisible() { return visible; };
 		void SetVisible(bool _visible) { visible = _visible; };
 
-		//! Return a pointer to a vector of objects in this layer
-		//vector<Object*> * GetObjects() {return &objects; };
-		//void SetObjects(const vector<Object*> &objs) {objects = objs; };
+		//! Draw this layer with camera scroll take into effect
 		void Draw();
 		
 		//! Push an object onto this layer

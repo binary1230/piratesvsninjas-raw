@@ -34,14 +34,26 @@
 		<include_xml_file>data/objects/obj_s_palm_small.xml</include_xml_file>
 		<include_xml_file>data/objects/flower1.xml</include_xml_file>
 		<include_xml_file>data/objects/flower2.xml</include_xml_file>
+		<include_xml_file>data/objects/plane.xml</include_xml_file>
+
 	</objectDefinitions>
 
 	<map>
 		<layer scroll_speed="0.2f" name="background">
+				
 			<object objectDef="background">
 				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom></position>
 				<alignBottom>
 			</object>
+
+			<!-- plane flying around in the back -->
+			<object objectDef="plane">
+				<position type="fixed"> 
+					<x>340</x><y>200</y>
+					<velx>-6.0f</velx><vely>0.0f</vely>
+				</position>
+			</object>
+	
 		</layer>
 	
 		<layer scroll_speed="1.0f" name="bg_objects">	
@@ -85,6 +97,7 @@
 					<x>0</x> <y>26</y>
 				</position>
 			</object>
+
 		</layer>
 
 		<layer scroll_speed="1.0f" name="overlays">

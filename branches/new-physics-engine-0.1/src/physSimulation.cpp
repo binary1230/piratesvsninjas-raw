@@ -381,6 +381,7 @@ int PhysSimulation::LoadObjectFromXML(
 		return -1;
 	} else {
 
+		// if we have a <cameraFollow>, then we follow this object
 		if (xObject.nChildNode("cameraFollow") == 1) {
 			if (!camera_follow) {
 				camera_follow = obj;
@@ -390,6 +391,12 @@ int PhysSimulation::LoadObjectFromXML(
 			}
 		}
 
+		// SPECIAL debug flag.  IF it is set, the object MAY print debug message
+		if (xObject.nChildNode("debug") == 1) {
+			fprintf(stderr, "-------------- Enabling debug mode. ----------\n");
+			obj->SetDebugFlag(true);
+		}
+		
 		if (xObject.nChildNode("position") == 1) {
 
 			XMLNode xPos = xObject.getChildNode("position");
@@ -415,7 +422,22 @@ int PhysSimulation::LoadObjectFromXML(
 			if (xPos.nChildNode("alignBottom")>0) {
 				y += obj->GetHeight();
 			}
+
+			// One last position calculation:
+			// We need to undo the offset of the background here
+			// So users don't have to compensate in their data files
+			if (layer->GetScrollSpeed() > 0.01f)
+				x /= layer->GetScrollSpeed();
+			
 			obj->SetXY(x,y);
+
+			// check for velocity - <velx> and <vely>
+			if (xPos.nChildNode("velx")>0) {
+				obj->SetVelX(xPos.getChildNode("velx").getFloat());
+			}
+			if (xPos.nChildNode("vely")>0) {
+				obj->SetVelY(xPos.getChildNode("vely").getFloat());
+			}
 		}
 			
 		if (xObject.nChildNode("inputController") == 1) {

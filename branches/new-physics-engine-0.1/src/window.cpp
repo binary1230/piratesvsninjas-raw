@@ -54,7 +54,7 @@ int Window::Init(	GameState* _game_state,
 	if (_fullscreen)
 			gfx_mode = GFX_AUTODETECT_FULLSCREEN;
 	else
-			gfx_mode = GFX_AUTODETECT;
+			gfx_mode = GFX_AUTODETECT_WINDOWED;
 
 	if (mode == MODE_PAGEFLIPPING || mode == MODE_TRIPLEBUFFERING)
 		vheight = height * 2;
