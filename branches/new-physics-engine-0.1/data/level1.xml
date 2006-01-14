@@ -42,8 +42,7 @@
 		<layer scroll_speed="0.2f" name="background">
 				
 			<object objectDef="background">
-				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom></position>
-				<alignBottom>
+				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom /></position>
 			</object>
 
 			<!-- plane flying around in the back -->
@@ -65,7 +64,7 @@
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>-50</ymin><ymax>21</ymax>
-						<alignBottom>
+						<alignBottom />
 					</position>
 				</object>
 			</repeat>
@@ -113,7 +112,7 @@
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>-50</ymin><ymax>0</ymax>
-						<alignBottom>
+						<alignBottom />
 					</position>
 				</object>
 			</repeat>
@@ -123,7 +122,7 @@
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>-30</ymin><ymax>0</ymax>
-						<alignBottom>
+						<alignBottom />
 					</position>
 				</object>
 			</repeat>
