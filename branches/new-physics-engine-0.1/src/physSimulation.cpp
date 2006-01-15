@@ -316,27 +316,12 @@ int PhysSimulation::LoadLayerFromXML(
 	XMLNode xObject;
 	CString objDefName;
 
-	// How much do we scroll this layer by?
+	// 1) How much do we scroll this layer by?
 	float scroll_speed;
   sscanf(xLayer.getAttribute("scroll_speed"), "%f", &scroll_speed);
 	layer->SetScrollSpeed(scroll_speed);
 	
-	// for every <object> we find, load it
-	max = xLayer.nChildNode("object");
-
-  for (i=iterator=0; i < max; i++) {
-
-		xObject = xLayer.getChildNode("object", &iterator);
-		objDefName = xObject.getAttribute("objectDef");
-
-		// create the object from the objectDefinition
-		if (LoadObjectFromXML(objectDefs[objDefName], xObject, layer) == -1) {
-			fprintf(stderr, "ERROR: Unable To Load  '%s'\n", objDefName.c_str());
-			return -1;
-		}
-	}
-
-	// NEW: special case.  Because I, Dom, am LAZY as HELL, I have
+	// 2) NEW: special case.  Because I, Dom, am LAZY as HELL, I have
 	// added a <REPEAT> tag which allows us to create, say, 50
 	// objects while only having to declare just one (combine this
 	// with random positions, and you have an interesting formula for
@@ -364,6 +349,22 @@ int PhysSimulation::LoadLayerFromXML(
 			}
 		}	
 	}
+
+	// 3) for every <object> we find, load it
+	max = xLayer.nChildNode("object");
+
+  for (i=iterator=0; i < max; i++) {
+
+		xObject = xLayer.getChildNode("object", &iterator);
+		objDefName = xObject.getAttribute("objectDef");
+
+		// create the object from the objectDefinition
+		if (LoadObjectFromXML(objectDefs[objDefName], xObject, layer) == -1) {
+			fprintf(stderr, "ERROR: Unable To Load  '%s'\n", objDefName.c_str());
+			return -1;
+		}
+	}
+
 
 	return 0;
 }

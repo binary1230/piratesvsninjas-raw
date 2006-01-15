@@ -37,6 +37,7 @@
 		<include_xml_file>data/objects/plane.xml</include_xml_file>
 		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
 		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-credits.xml</include_xml_file>
 		<include_xml_file>data/objects/totem1.xml</include_xml_file>
 
 	</objectDefinitions>
@@ -84,6 +85,8 @@
 			
 			<object objectDef="s_sign_haha"><position type="fixed">
 			<x>2380</x><y>21</y><alignBottom /></position></object>
+			<object objectDef="s_sign_credits"><position type="fixed">
+			<x>2450</x><y>21</y><alignBottom /></position></object>
 			
 			<object objectDef="s_totem1"><position type="fixed">
 			<x>2544</x><y>21</y><alignBottom /></position></object>
