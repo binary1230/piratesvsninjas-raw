@@ -16,6 +16,7 @@
 #include <allegro.h>
 #include <vector>
 #include <assert.h>
+#include <StdString.h>
 using namespace std;
 
 class BaseInput;
@@ -102,7 +103,7 @@ class BaseInput : public GameBase {
 		
 	public:
 		//! Init the input system
-		virtual int Init(GameState* _game_state, char* _demo_file = NULL) = 0;
+		virtual int Init(GameState* _game_state, CString _demo_file) = 0;
 
 		//! Shutdown the input system
 		virtual void Shutdown() = 0;

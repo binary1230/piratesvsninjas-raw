@@ -25,7 +25,7 @@ class InputPlayback : public BaseInput {
 		//! The frame count we are on [updated by Update()]
 		unsigned long frame_counter;
 
-		bool InitPlayback(char* filename);
+		bool InitPlayback(CString filename);
 
 		//! The next frame for which we have data
 		unsigned long next_frame_num;
@@ -41,7 +41,7 @@ class InputPlayback : public BaseInput {
 		void UseNextFrameData();
 
 	public:
-		int Init(GameState* _game_state, char* _demo_file = NULL);
+		int Init(GameState* _game_state, CString _demo_file);
 		void Shutdown();
 
 		void Update();

@@ -21,7 +21,7 @@ class InputLive : public BaseInput {
 	protected:
 	
 	public:
-		int Init(GameState* _game_state, char* _demo_file = NULL);
+		int Init(GameState* _game_state, CString _demo_file);
 		void Shutdown();
 
 		void Update();

@@ -35,11 +35,14 @@
 		<include_xml_file>data/objects/flower1.xml</include_xml_file>
 		<include_xml_file>data/objects/flower2.xml</include_xml_file>
 		<include_xml_file>data/objects/plane.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>data/objects/totem1.xml</include_xml_file>
 
 	</objectDefinitions>
 
 	<map>
-		<layer scroll_speed="0.2f" name="background">
+		<layer scroll_speed="0.15f" name="background">
 				
 			<object objectDef="background">
 				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom /></position>
@@ -68,6 +71,24 @@
 					</position>
 				</object>
 			</repeat>
+
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>30</x><y>21</y><alignBottom /></position></object>
+			
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1000</x><y>21</y><alignBottom /></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1100</x><y>21</y><alignBottom /></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1200</x><y>21</y><alignBottom /></position></object>
+			
+			<object objectDef="s_sign_haha"><position type="fixed">
+			<x>2380</x><y>21</y><alignBottom /></position></object>
+			
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>2544</x><y>21</y><alignBottom /></position></object>
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>2544</x><y>84</y><alignBottom /></position></object>
 			
 			<!-- tails flying around -->
 			<object objectDef="tails">

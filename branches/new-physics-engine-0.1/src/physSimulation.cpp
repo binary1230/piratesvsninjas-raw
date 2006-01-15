@@ -427,7 +427,7 @@ int PhysSimulation::LoadObjectFromXML(
 			// We need to undo the offset of the background here
 			// So users don't have to compensate in their data files
 			if (layer->GetScrollSpeed() > 0.01f)
-				x /= layer->GetScrollSpeed();
+				x = int( float(x) / layer->GetScrollSpeed() );
 			
 			obj->SetXY(x,y);
 

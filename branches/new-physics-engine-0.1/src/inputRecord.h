@@ -30,10 +30,10 @@ class InputRecord : public BaseInput {
 		//! The frame count we are on [updated by Update()]
 		unsigned long frame_counter;
 
-		bool InitRecorder(char* filename);
+		bool InitRecorder(CString filename);
 	
 	public:
-		int Init(GameState* _game_state, char* _demo_file = NULL);
+		int Init(GameState* _game_state, CString _demo_file);
 		void Shutdown();
 
 		void Update();
