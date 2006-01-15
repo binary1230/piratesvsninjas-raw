@@ -155,7 +155,7 @@ int GameState::InitInput() {
 		input = new InputLive();
 	}
 		
-	if ( !input || !input->Init(this, options->GetDemoFilename()) < 0 ) {
+	if ( !input || input->Init(this, options->GetDemoFilename()) == -1 ) {
 		return -1;
 	}
 
