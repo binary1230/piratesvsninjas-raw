@@ -2,6 +2,7 @@
 #include "gameState.h"
 #include "sprite.h"
 #include "window.h"
+#include "resourceLoader.h"
 
 #include <map>
 using namespace std;
@@ -86,17 +87,18 @@ void Animation::Shutdown() {
 //! Add another frame to this animation
 //! Use for temporary loading routines, need to rethink this one.
 //! Returns false on error
-bool Animation::PushImage(const char* file, const int duration) {
+bool Animation::PushImage(const char* _file, const int duration) {
 	AnimFrame *f = new AnimFrame();
 	assert(f != NULL);
 
 	f->sprite = new Sprite();
 	assert(f->sprite != NULL);
 	
+	CString file = GetGameState()->GetResourceLoader()->GetPathOf(_file);
 	f->sprite->bmp = load_bitmap(file, NULL);
 
 	if (!f->sprite->bmp) {
-		fprintf(stderr, "Can't load file: '%s' - not adding to animation\n", file);
+		fprintf(stderr, "Can't load file: '%s' - not adding to animation\n", file.c_str());
 		return false;
 	}
 

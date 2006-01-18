@@ -49,7 +49,7 @@ class ResourceLoader : public GameBase {
 		BITMAP* OpenBitmap(const char* file, PALETTE* pal) const;
 
 		//! Returns the current working directory
-		CString GetCurrentWorkingDir() const;
+		CString GetMacOSXCurrentWorkingDir() const;
 
 		ResourceLoader();
 		~ResourceLoader();

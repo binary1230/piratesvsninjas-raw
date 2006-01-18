@@ -22,7 +22,15 @@ void ResourceLoader::AppendToSearchPath(const char* path) {
 
 void ResourceLoader::ResetPaths() {
 	paths.clear();
-	paths.push_back(GetCurrentWorkingDir());
+	
+	// Only for MacOSX paths
+	CString MacOSXWorkingDir = GetMacOSXCurrentWorkingDir();
+	if (MacOSXWorkingDir != "") {
+		paths.push_back(MacOSXWorkingDir);
+	}
+	
+	// For everyone else..
+	paths.push_back("./");
 }
 
 //! Returns either the full path to a real file,
@@ -85,16 +93,16 @@ ResourceLoader::~ResourceLoader() {
 //! that fails, will just run the relative path way as fallback.
 
 //! Returns something like "/Applications/Ninjas.app/Resources" on Mac, 
-//! if not on Mac, it just returns "./"
-CString ResourceLoader::GetCurrentWorkingDir() const {
+//! if not on Mac, it just returns ""
+CString ResourceLoader::GetMacOSXCurrentWorkingDir() const {
 #ifdef PLATFORM_DARWIN 
-		CFBundleRef mainBundle = CFBundleGetMainBundle();
-		CFURLRef url = CFBundleCopyBundleURL(mainBundle);
-		CFStringRef cfStr = CFURLCopyPath(url);
-		CString path = CFStringGetCStringPtr(cfStr, CFStringGetSystemEncoding());
-		return CString(path + "Resources/");
+	CFBundleRef mainBundle = CFBundleGetMainBundle();
+	CFURLRef url = CFBundleCopyBundleURL(mainBundle);
+	CFStringRef cfStr = CFURLCopyPath(url);
+	CString path = CFStringGetCStringPtr(cfStr, CFStringGetSystemEncoding());
+	return CString(path + "Resources/");
 #else
-		return "./";
+	return "";
 #endif // PLATFORM_DARWIN
 }
 
