@@ -11,6 +11,7 @@ dist_macosx: $(DISTFILES)
 	mkdir dist/darwin/ninjas.app/Resources
 	cp src/ninjas dist/darwin/ninjas.app/Contents/MacOS
 	cp -r $(DATA_DIR) dist/darwin/ninjas.app/Resources
+	hdiutil create -fs HFS+ -volname PiratesVersusNinjas-$(VERSION) -srcfolder dist/darwin/ PiratesVersusNinjas-$(VERSION)
 
 # create the windows .zip file
 dist_win32: $(DISTFILES) 
