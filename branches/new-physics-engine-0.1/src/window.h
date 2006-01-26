@@ -28,6 +28,7 @@ class Sprite;
 // see flickering or tearing.
 #define MODE_TRIPLEBUFFERING	3
 
+//! The onscreen window
 class Window : public GameBase {
 	protected:
 		bool initialized;

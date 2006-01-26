@@ -18,9 +18,9 @@ class ObjectLayer;
 #include "StdString.h"
 #include "xmlParser.h"
 
-// Maps an object definition name to an XMLNode 
-// (e.g. maps "bad_guy_1" to its corresponding XML data)
-// only used for parsing XML
+//! Maps an object definition name to an XMLNode 
+//! (e.g. maps "bad_guy_1" to its corresponding XML data)
+//! only used for parsing XML
 typedef map<const CString, XMLNode> ObjectDefMapping;
 
 //! Represents a physical simulation (the main game levels)

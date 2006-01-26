@@ -11,11 +11,13 @@ class Sprite;
 #include "object.h"
 #include "xmlParser.h"
 
+//! A button on the Controller and its associated sprite
 struct Button {
 	bool active;
 	Sprite* sprite;
 };
 
+//! A drawable on-screen joystick Object that is shown during demo playback
 class ControllerObject : public Object {
 	protected:
 		Sprite* controller_sprite;

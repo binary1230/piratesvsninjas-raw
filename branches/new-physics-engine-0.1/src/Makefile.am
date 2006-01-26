@@ -19,7 +19,7 @@ objectPlayer.h objectRadiusBlock.h objectBackground.h objectController.h \
 objectStatic.h \
 vector2D.h force.h forceFactory.h \
 forceGravity.h forceInput.h \
-platform.h basename.h resourceLoader.h \
+basename.h resourceLoader.h \
 animation.h animations.h sprite.h \
 StdString.h xmlParser.h objectLayer.h
 
@@ -31,7 +31,7 @@ input.cpp inputLiveHandler.cpp inputRecord.cpp inputPlayback.cpp \
 object.cpp objectFactory.cpp objectPlayer.cpp objectRadiusBlock.cpp \
 objectBackground.cpp objectController.cpp objectStatic.cpp \
 timer.cpp vector2D.cpp window.cpp \
-platform.cpp basename.cpp resourceLoader.cpp \
+basename.cpp resourceLoader.cpp \
 animation.cpp animations.cpp \
 xmlParser.cpp \
 $(headers)

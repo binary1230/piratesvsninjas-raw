@@ -15,8 +15,7 @@ class ResourceLoader;
 #include "xmlParser.h"
 #include "StdString.h"
 
-// THIS CLASS IS BAD.
-// It will be rewritten, for now it JUST WORKS.
+//! A class which creates Object classes from integer ID's
 class ObjectFactory : GameBase {
 	protected:
 		Object* CreatePlayerObject();

@@ -3,7 +3,6 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-// include master config.h from ./configure script
 #include <config.h>
 #include <assert.h>
 #include <stdio.h>
@@ -23,7 +22,6 @@ typedef unsigned int uint;
 //#define SCREEN_SIZE_X	640
 // #define SCREEN_SIZE_Y 480
 
-// full version string 
 #define VERSION_STRING PACKAGE"-"VERSION
 
 // the fps (not ever changed)

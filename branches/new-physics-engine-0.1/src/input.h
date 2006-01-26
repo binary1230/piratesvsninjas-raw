@@ -1,15 +1,3 @@
-/* Input Base Class
- *
- * The only reason for having a base class is
- * to make derived classes - one which can do 
- * real input live from keyboard, mouse, or joystick
- * and the other class to be able to record the input
- * and play it back for the sake of a demo game.
- *
- * The underlying game should not notice the difference
- * between live and recorded stuff.
- */
-
 #ifndef INPUT_H
 #define INPUT_H
 
@@ -59,7 +47,18 @@ class BaseInput;
 //! The max number of defined keys 
 #define GAMEKEY_COUNT						11
 
-//! Base input class
+//! Input Base Class
+ 
+//! The only reason for having a base class is
+//! to make derived classes - one which can do 
+//! real input live from keyboard, mouse, or joystick
+//! and the other class to be able to record the input
+//! and play it back for the sake of a demo game.
+//!
+//! The underlying game should not notice the difference
+//! between live and recorded stuff.
+
+//! Common input subsystem
 
 //! The base input class is used for 3 classes:
 //! The LiveInput class, the RecordInput class, and
@@ -68,10 +67,10 @@ class BaseInput;
 //! Every frame, Update() MUST be called.  This freezes the
 //! current state of the buttons/mouse for this frame.  This is
 //! extremely important, especially for the demos, to make sure 
-//! input values do NOT change between frames.  
+//! input values do NOT change DURING Update()'s.  
 //! -
-//! If the derived class is LiveInput then the input Live from the 
-//! input devices will be show
+//! If the derived class is LiveInput then input received live
+//! from the input devices will be used
 //! -
 //! If the derived class is RecordInput, it will save the state of
 //! the input devices at EVERY frame on Update() to a file.
@@ -79,8 +78,8 @@ class BaseInput;
 //! If the derived class is PlaybackInput, it will load the state
 //! of the keys from a file each frame on Update().
 //! -
-//! Don't forget to save the random seed in this class, otherwise demos
-//! will not play back correctly.
+//! The class also saves random seed during recording to make playback
+//! be deterministic
 class BaseInput : public GameBase {
 	protected:
 		//! The keys currently being pressed (e.g. GAMEKEY_JUMP)
@@ -95,10 +94,10 @@ class BaseInput : public GameBase {
 		//! Load key mappings from a file
 		bool LoadKeyMappings(char* filename);
 
-		//! Zero out the keyboard buffer
+		//! Clear the default keyboard buffer
 		void ClearKeys();
 
-		//! Zero out a keyboard buffer
+		//! Clear a specific keyboard buffer
 		void ClearKeys(vector<int> &key_buffer);
 		
 	public:
@@ -112,7 +111,6 @@ class BaseInput : public GameBase {
 		virtual void Update() = 0;
 		
 		//! Get the status of a key 
-		//
 		//! note: for player keys (e.g. player 1 JUMP), with this method 
 		//! you will need to say Key(PLAYERKEY1_JUMP).  
 		//!

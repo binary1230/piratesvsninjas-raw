@@ -14,6 +14,9 @@ class GameState;
 #include "object.h"
 #include "xmlParser.h"
 
+//! An object that moves around in a circle
+
+//! \deprecated This thing was originally just a test Object
 class RadiusBlockObject : public Object {
 	protected:
 		float theta;

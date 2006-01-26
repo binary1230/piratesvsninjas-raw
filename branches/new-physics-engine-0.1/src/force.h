@@ -1,7 +1,3 @@
-/* A force vector
- * all time increments are 1/60th of a second
- */
-
 #ifndef FORCE_H
 #define FORCE_H
 
@@ -17,15 +13,21 @@ typedef vector<Force*> ForceList;
 #include "gameBase.h"
 #include "vector2D.h"
 
+//! All the different types of forces.
+//! \bug Some of these we don't need.
 enum ForceType {
 	FORCE_GRAVITY,
 	FORCE_INPUT,
-	FORCE_INPUT1,
-	FORCE_INPUT2,
+	FORCE_INPUT1,	
+	FORCE_INPUT2,	
 	FORCE_SIMPLE_CIRCLE,
 	FORCE_FRICTION
 };
 
+//! A 'force', part of a physics simulation. It generates an acceleration.
+
+//! A newtonian force that acts on an object.  It computes a vector representing
+//! the acceleration of a given phenomena (gravity, input, etc) on an object.
 class Force : public GameBase {
 	protected:
 		ForceType type;
@@ -34,11 +36,11 @@ class Force : public GameBase {
 		bool Init(GameState* _game_state);
 		void Shutdown();
 		
-		//! Compute the vector of the force that this Force creates
+		//! Compute the force vector that is created
 		virtual Vector2D GetForce(Object* obj) = 0;
 		
+		//! Get the type of force this instance is
 		inline ForceType GetType() {return type;};
-		// inline void SetType(ForceType t) {type = t;};
 
 		Force();
 		virtual ~Force();

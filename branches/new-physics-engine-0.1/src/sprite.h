@@ -3,7 +3,7 @@
 
 #include <allegro.h>
 
-//! More of a struct with some fanciness than a full-fledged class
+//! Drawable data with possible transparency and X,Y offsets
 class Sprite {
 	public:
 		BITMAP* bmp;	

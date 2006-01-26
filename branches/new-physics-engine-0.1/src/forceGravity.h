@@ -1,6 +1,3 @@
-/* Forces: Gravity
- * all time increments are 1/60th of a second */
-
 #ifndef FORCEGRAV_H
 #define FORCEGRAV_H
 
@@ -10,8 +7,11 @@ class Object;
 
 #include "force.h"
 
+//! A Force based on gravity
 class ForceGravity : public Force {
 	protected:
+
+		//! The gravitational constant, 'g' (usually -9.81m/s^2)
 		float gravitational_constant;
 		
 	public:
@@ -21,4 +21,4 @@ class ForceGravity : public Force {
 		virtual ~ForceGravity();
 };
 
-#endif // FORCEGRAB_H
+#endif // FORCEGRAV_H

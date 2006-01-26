@@ -19,10 +19,11 @@ class Animation;
 #include "object.h"
 #include "xmlParser.h"
 
+//! The Player object, represents our HERO on screen
+
+//! Quite possibly the most important class in the game
 class PlayerObject : public Object {
 	protected:
-		BaseInput* input;
-
 		float jump_velocity;
 		float min_velocity;
 		float drag;

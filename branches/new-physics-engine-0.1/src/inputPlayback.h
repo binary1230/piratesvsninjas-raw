@@ -1,10 +1,5 @@
-/* Live Input 
- *
- * Repsonsible for handling 'live' input (keyboard, mouse, etc)
- */
-
-#ifndef InputPlaybackHANDLER_H
-#define InputPlaybackHANDLER_H
+#ifndef INPUT_PLAYBACK_kHANDLER_H
+#define INPUT_PLAYBACK_kHANDLER_H
 
 #include <allegro.h>
 #include <stdio.h>
@@ -13,9 +8,7 @@ class GameState;
 
 #include "input.h"
 
-//! Playback recorded input
-
-//! Reads input devices in realtime (used for normal game play)
+//! Play back recorded input from a file (used for playing back demos)
 class InputPlayback : public BaseInput {
 	
 	protected:

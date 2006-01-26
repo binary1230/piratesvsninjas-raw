@@ -50,7 +50,7 @@ if test "$WHICH_UNAME"; then
 	fi
 fi
 
-AM_INIT_AUTOMAKE([ninja-engine], ${VERSION})
+AM_INIT_AUTOMAKE([ninjas-engine], ${VERSION})
 
 case $target_alias in
 	*mingw*)

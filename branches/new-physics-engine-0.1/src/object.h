@@ -1,8 +1,4 @@
-// Object
-// Base class for all objects displayable on the screen
-// 
-// TODO: Replace BITMAP* sprite with animation class
-// TODO: Free all animations that are loaded.
+// \todo Free all animations that are loaded.
 #ifndef OBJECT_H
 #define OBJECT_H
 
@@ -25,18 +21,21 @@ typedef vector<Object*> ObjectList;
 #include "xmlParser.h"
 #include "animations.h"
 
-//! A bit mask of various properties of an object
-//! NOTE: If you add anything here, update ClearProperties()
+//! Various properties of an Object
 struct ObjectProperties {
+	
+	// NOTE: If you add anything here, update ClearProperties()
 	unsigned feels_gravity : 1;	
 	unsigned feels_user_input : 1;
 	unsigned feels_friction : 1;
 	
-	unsigned is_overlay : 1;				// is this object just an overlay?
-																	// e.g. not IN the world, but on top it,
-																	// like our status bar or health or something.
+	//! true if this object is an overlay
+	//! e.g. not IN the world, but on top it,
+	//! like our status bar or health or something.
+	unsigned is_overlay : 1;				
 };
 
+//! Clears property masks
 inline void ClearProperties(struct ObjectProperties& p) {
 	p.feels_gravity = 0;
 	p.feels_user_input = 0;
@@ -44,10 +43,10 @@ inline void ClearProperties(struct ObjectProperties& p) {
 	p.is_overlay = 0;
 }
 
-//! Sets properties to sane values
-void ClearProperties(struct ObjectProperties&);
+//! A drawable entity in the physics simulation
 
-//! An in-game object, can be affected by physical forces
+//! Objects have physical properties associated with them, but do
+//! not always have to take part in the physics simulation.
 class Object : public GameBase {
 	protected:
 

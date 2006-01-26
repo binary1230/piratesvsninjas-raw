@@ -1,8 +1,3 @@
-/* Live Input 
- *
- * Repsonsible for handling 'live' input (keyboard, mouse, etc)
- */
-
 #ifndef INPUTLIVEHANDLER_H
 #define INPUTLIVEHANDLER_H
 
@@ -13,9 +8,7 @@ class InputLive;
 
 #include "input.h"
 
-//! Live input 
-
-//! Reads input devices in realtime (used for normal game play)
+//! Reads input devices in realtime (used for normal game play, not demos)
 class InputLive : public BaseInput {
 	
 	protected:

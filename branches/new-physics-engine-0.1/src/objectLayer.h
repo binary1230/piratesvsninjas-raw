@@ -6,14 +6,13 @@
 using namespace std;
 
 #include "gameBase.h"
-// #include "xmlParser.h"
 
 class Object;
 
-//! Basically a container class representing "layers" 
-//! (e.g. background, foreground, etc).  A layer holds
-//! the objects on it.
+//! A container class representing "layers" (e.g. background, foreground, etc)
 
+//! A layer holds the objects on it. Its main purpose is to allow Object's
+//! to be drawn in the correct order on-screen
 class ObjectLayer : public GameBase {
 	protected:
 		vector<Object*> objects;

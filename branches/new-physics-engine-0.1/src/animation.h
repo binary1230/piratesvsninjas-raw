@@ -14,11 +14,10 @@ class Sprite;
 #include "xmlParser.h"
 #include "StdString.h"
 
-// Maps an string to an integer ID (e.g. "bad_guy_1" to BAD_GUY_1)
-// Used to keep track of stuff while parsing XML
+//! Maps an animation name to an integer ID (e.g. "bad_guy_1" to BAD_GUY_1)
 typedef map<const CString, uint> AnimationMapping;
 
-//! An animation frame.  Each animation is an array of these.
+//! An animation frame.  Each Animation is an array of these.
 struct AnimFrame {
 	Sprite* sprite;				//! Sprite data
 	
@@ -27,19 +26,21 @@ struct AnimFrame {
 };
 
 //! Holds sprites and displays them in a preset order and timing
-//! 
+
 //! This class holds a specific series of images that an object can use.
 //! Typically, objects have a few different 'animations', for example,
 //! a player object might have 2 animations - a walking and jumping animation
 //! EACH of these would be seperate instances of the animation class.
 class Animation : public GameBase {
 	protected:
-		vector<struct AnimFrame*> frames;	//! Collection of frames in this animation
-		AnimFrame* currentFrame;	//! Points to the current frame we are drawing
+		//! Collection of frames in this animation
+		vector<struct AnimFrame*> frames;	
+		
+		//! Points to the current frame we are drawing
+		AnimFrame* currentFrame;	
 
-		int elapsed_time;					//! The elapsed amount of game frames that 
-															//! our current animation frame
-															//! has been up 
+		//! The number of times that our current frame has been 
+		int elapsed_time;
 	
 		bool freeze_animation;		//! True if we do not advance the animation
 

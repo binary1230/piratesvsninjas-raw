@@ -15,9 +15,7 @@ using namespace std;
 #include "StdString.h"
 #include "globals.h"
 
-//! Resource loader class
-//! Resolves resource filenames to absolute paths
-
+//! Converts game data's filenames to absolute paths
 class ResourceLoader : public GameBase {
 	protected:
 		vector<CString> paths;

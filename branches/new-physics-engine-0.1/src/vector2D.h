@@ -15,9 +15,7 @@ class Vector2D;
 //! 'equal'
 #define TOLERANCE 0.00001
 
-// #include "globals.h"
-// #include "force.h"
-
+//! A 2 Dimensional Vector
 class Vector2D {
 	protected:
 		float x, y;

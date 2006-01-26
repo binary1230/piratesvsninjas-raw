@@ -8,7 +8,7 @@ class GameState;
 #include "object.h"
 #include "xmlParser.h"
 
-//! A "static" object, like scenery: no collisions
+//! A "simple" Object (e.g. scenery) - No collisions
 class StaticObject : public Object {
 	protected:
 				

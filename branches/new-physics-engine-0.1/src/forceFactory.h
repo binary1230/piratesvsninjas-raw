@@ -10,8 +10,7 @@ class GameState;
 #include "gameBase.h"
 #include "force.h"
 
-// THIS CLASS IS BAD.
-// It will be rewritten, for now it JUST WORKS.
+//! A class which produces new Force objects from ID's
 class ForceFactory : public GameBase {
 	protected:
 

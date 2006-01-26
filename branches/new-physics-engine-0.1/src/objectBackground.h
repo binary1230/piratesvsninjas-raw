@@ -10,6 +10,7 @@ class GameState;
 #include "object.h"
 #include "xmlParser.h"
 
+//! An Object which repeats itself, usually used for backgrounds
 class BackgroundObject : public Object {
 	protected:
 				
