@@ -1,0 +1,9 @@
+Pirates Versus Ninjas Engine Branches
+- - - - - - - - - - - - - - - - - - - 
+
+If you checked out this file, unless you actually know what 
+you are looking for, you probably grabbed the wrong thing.
+
+These branches are seperate versions of the main source code which
+PVN devvers use to do insane things to the code without screwing
+up the main codebase (the 'trunk') e.g. what YOU probably want.
