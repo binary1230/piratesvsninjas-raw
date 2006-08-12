@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<objectDef name="fan" type="Fan">
+	<animations default="default">
+		<animation name="default">
+			<frames>
+				<img name="data/fan0.bmp" duration="1" />
+				<img name="data/fan1.bmp" duration="1" />
+				<img name="data/fan2.bmp" duration="1" />
+				<img name="data/fan3.bmp" duration="1" />
+				<img name="data/fan4.bmp" duration="1" />
+				<img name="data/fan5.bmp" duration="1" />
+				<img name="data/fan6.bmp" duration="1" />
+				<img name="data/fan7.bmp" duration="1" />
+				<img name="data/fan8.bmp" duration="1" />
+				<img name="data/fan9.bmp" duration="1" />
+				<img name="data/fanA.bmp" duration="1" />
+				<img name="data/fanB.bmp" duration="1" />
+				<img name="data/fanC.bmp" duration="1" />
+				<img name="data/fanD.bmp" duration="1" />
+				<img name="data/fanE.bmp" duration="1" />
+				<img name="data/fanF.bmp" duration="1" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+	</animations>
+	<properties>
+	</properties>
+</objectDef>
