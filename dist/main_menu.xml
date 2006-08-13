@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!-- best viewed with tabs set to 2 spaces -->
+
+
+<!-- 
+
+JUST A MOCKUP - USE menu.xml INSTEAD 
+
+DO NOT USE   DO NOT USE   DO NOT USE
+DO NOT USE   DO NOT USE   DO NOT USE
+DO NOT USE   DO NOT USE   DO NOT USE
+DO NOT USE   DO NOT USE   DO NOT USE
+DO NOT USE   DO NOT USE   DO NOT USE
+
+-->
+
+<gameMode type="menu" name="Main Menu">
+
+	<menu name="root">
+		<background>data/menu/bg.png</background>
+		<items>
+			<item action="start">New Game</item>
+			<item action="quit">Quit</item>
+			<item action="options">Options</item>
+		</items>
+	</menu>
+
+	<menu name="options">
+		<background>data/menu/bg.png</background>
+		<items>
+			<item action="dummy">Stuff</item>
+			<item action="back">BACK</item>
+		</items>
+	</menu>
+
+</gameMode>

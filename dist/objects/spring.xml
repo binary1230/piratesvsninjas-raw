@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<objectDef name="spring" type="Spring">
+	<animations default="default">
+		<animation name="default">
+			<frames>
+				<img name="data/spring1.png" duration="1" pause="1" />
+				<img name="data/spring2.png" duration="6" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+	</animations>
+	<sounds>
+		<sound name="spring">data/sounds/spring.wav</sound>
+	</sounds>
+	<properties>
+		<springStrength>30</springStrength>
+		<solidObject />
+	</properties>
+</objectDef>

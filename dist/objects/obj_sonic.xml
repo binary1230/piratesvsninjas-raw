@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 	Sonic Object Definition 
+			To be included from another XML file -->
+
+<objectDef name="sonic" type="Player">
+	<animations default="standing">
+	
+		<animation name="walking">
+			<frames>
+				<img name="data/newguy/run1.png" duration="2" />
+				<img name="data/newguy/run2.png" duration="2" />
+				<img name="data/newguy/run3.png" duration="2" />
+				<img name="data/newguy/run4.png" duration="2" />
+				<img name="data/newguy/run5.png" duration="2" />
+				<img name="data/newguy/run6.png" duration="2" />
+				<img name="data/newguy/run7.png" duration="2" />
+				<img name="data/newguy/run8.png" duration="2" />
+				<img name="data/newguy/run9.png" duration="2" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+				
+		<animation name="standing">
+			<frames>
+			<img name="data/newguy/stand.png" duration="64" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+
+		<animation name="jumping">
+			<frames>
+				<img name="data/newguy/jump.png" duration="3" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+	</animations>
+	
+	<sounds>
+		<sound name="jump">data/sounds/jump.wav</sound>
+	</sounds>
+	
+	<properties>
+		<affectedByGravity />
+		<affectedByInput1 />
+		<affectedByFriction />
+ 		<jumpVelocity>	18.0f	</jumpVelocity>
+		<drag>					0.92f	</drag>
+		<minVelocity>		4.0f	</minVelocity>
+		<mass>					1.0f	</mass>
+	</properties>
+</objectDef>
+

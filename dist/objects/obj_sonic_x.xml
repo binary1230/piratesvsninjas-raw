@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 	Sonic Object Definition
+			To be included from another XML file -->
+
+<objectDef name="sonicx" type="Player">
+	<animations default="standing">
+	
+		<animation name="walking">
+			<frames>
+				<img name="data/xrun1.png" duration="2" />
+				<img name="data/xrun2.png" duration="2" />
+				<img name="data/xrun3.png" duration="2" />
+				<img name="data/xrun4.png" duration="2" />
+				<img name="data/xrun5.png" duration="2" />
+				<img name="data/xrun6.png" duration="2" />
+				<img name="data/xrun7.png" duration="2" />
+				<img name="data/xrun8.png" duration="2" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+				
+		<animation name="standing">
+			<frames>
+				<img name="data/xwait1.png" duration="4" />
+				<img name="data/xwait2.png" duration="4" />
+				<img name="data/xwait1.png" duration="4" />
+				<img name="data/xwait2.png" duration="4" />
+				<img name="data/xwait1.png" duration="4" />
+				<img name="data/xwait2.png" duration="64" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+
+		<animation name="jumping">
+			<frames>
+				<img name="data/xspin1.png" duration="3" />
+				<img name="data/xspin2.png" duration="3" />
+				<img name="data/xspin3.png" duration="3" />
+				<img name="data/xspin4.png" duration="3" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+	</animations>
+	<properties>
+		<affectedByGravity />
+		<affectedByInput1 />
+		<affectedByFriction />
+ 		<jumpVelocity>	8.0f	</jumpVelocity>
+		<drag>					0.97f	</drag>
+		<minVelocity>		1.0f	</minVelocity>
+		<mass>					1.0f	</mass>
+		
+		<floorHeight>21</floorHeight>
+	</properties>
+</objectDef>
+

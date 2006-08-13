@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- best viewed with tabs set to 2 spaces -->
+
+<game>
+	<info>
+		Pirates Versus Ninjas (Sonic Mod)
+		<requires_engine_version>0.2-beta</requires_engine_version>
+		<game_version>0.6</game_version>
+		<author>Dominic Cerquetti</author>
+	</info>
+
+	<!-- the default mode is the first one, unless overriden on the command
+	     line (e.g. ninjas.exe -m 1) -->
+	<!-- ID's must be > 0 -->
+
+	<mode_file>data/menu.xml</mode_file>
+	<mode_file>data/level1.xml</mode_file>
+	<mode_file>data/credits.xml</mode_file>
+	
+	<!--<mode_file id=2>data/modes/level_test.xml</mode_file>
+	<mode_file id=3>data/modes/level2.xml</mode_file>
+	<mode_file id=4>data/modes/level3.xml</mode_file>-->
+</game>
