@@ -3,6 +3,6 @@
 
 <gameMode type="credits" name="Game Credits">
 	<scrollSpeed>1</scrollSpeed>
-	<scrollPic>data/credits.png</scrollPic>
-	<music>data/credits.ogg</music>
+	<scrollPic>credits.png</scrollPic>
+	<music>credits.ogg</music>
 </gameMode>

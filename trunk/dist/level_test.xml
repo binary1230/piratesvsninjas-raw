@@ -16,8 +16,8 @@
 	</properties>
 	
 	<objectDefinitions>
-		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>data/objects/block3.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/block3.xml</include_xml_file>
 	</objectDefinitions>
 
 	<map>

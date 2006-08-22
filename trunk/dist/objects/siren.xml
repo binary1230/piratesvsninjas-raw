@@ -4,11 +4,11 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/siren1.png" duration="8" />
-				<img name="data/siren2.png" duration="2" />
-				<img name="data/siren3.png" duration="2" />
-				<img name="data/siren2.png" duration="2" />
-				<img name="data/siren3.png" duration="2" />
+				<img name="siren1.png" duration="8" />
+				<img name="siren2.png" duration="2" />
+				<img name="siren3.png" duration="2" />
+				<img name="siren2.png" duration="2" />
+				<img name="siren3.png" duration="2" />
 			</frames>
 			<show_in_order />
 			<repeat />

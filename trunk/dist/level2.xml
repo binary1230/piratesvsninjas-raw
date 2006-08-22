@@ -10,45 +10,70 @@
 	</info>
 
 	<properties>
-		<width>2560</width>
-		<height>240</height>
+		<width>1000</width>
+		<height>6000</height>
 		<camera_x>0</camera_x>
 		<camera_y>0</camera_y>
 	</properties>
 	
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
-		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_tails.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
+		<include_xml_file>objects/obj_tails.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
-		<include_xml_file>data/objects/obj_bg_lava.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_bg_lava2.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_lava.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_lava2.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/obj_floor.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_floor2.xml</include_xml_file>
+		<include_xml_file>objects/obj_floor.xml</include_xml_file>
+		<include_xml_file>objects/obj_floor2.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos --> 
-		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
+		<include_xml_file>objects/obj_controller.xml</include_xml_file>
 	
 		<!-- various scenery -->
-		<include_xml_file>data/objects/obj_s_palm_tall.xml</include_xml_file>
-		<include_xml_file>data/objects/flower1.xml</include_xml_file>
-		<include_xml_file>data/objects/flower2.xml</include_xml_file>
-		<include_xml_file>data/objects/plane.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-credits.xml</include_xml_file>
-		<include_xml_file>data/objects/totem1.xml</include_xml_file>
+		<include_xml_file>objects/obj_s_palm_tall.xml</include_xml_file>
+		<include_xml_file>objects/flower1.xml</include_xml_file>
+		<include_xml_file>objects/flower2.xml</include_xml_file>
+		<include_xml_file>objects/plane.xml</include_xml_file>
+		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>objects/sign-credits.xml</include_xml_file>
+		<include_xml_file>objects/totem1.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/siren.xml</include_xml_file>
+		<include_xml_file>objects/siren.xml</include_xml_file>
 
 	</objectDefinitions>
 
 	<map>
 		<layer scroll_speed="0.15f" name="background">
-				
+			
+			<object objectDef="block3"><position type="fixed">
+			<x>200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>400</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>600</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>800</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1000</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1400</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1600</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1800</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2000</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2400</x><y>0</y></position></object>
+
 			<object objectDef="background-lava">
 				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom /></position>
 			</object>

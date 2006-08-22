@@ -17,7 +17,7 @@ DO NOT USE   DO NOT USE   DO NOT USE
 <gameMode type="menu" name="Main Menu">
 
 	<menu name="root">
-		<background>data/menu/bg.png</background>
+		<background>menu/bg.png</background>
 		<items>
 			<item action="start">New Game</item>
 			<item action="quit">Quit</item>
@@ -26,7 +26,7 @@ DO NOT USE   DO NOT USE   DO NOT USE
 	</menu>
 
 	<menu name="options">
-		<background>data/menu/bg.png</background>
+		<background>menu/bg.png</background>
 		<items>
 			<item action="dummy">Stuff</item>
 			<item action="back">BACK</item>

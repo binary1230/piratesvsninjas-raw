@@ -4,17 +4,17 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/ring1.png" duration="2" />
-				<img name="data/ring2.png" duration="2" />
-				<img name="data/ring3.png" duration="2" />
-				<img name="data/ring4.png" duration="2" />
+				<img name="ring1.png" duration="2" />
+				<img name="ring2.png" duration="2" />
+				<img name="ring3.png" duration="2" />
+				<img name="ring4.png" duration="2" />
 			</frames>
 			<show_in_order />
 			<repeat />
 		</animation>
 	</animations>
 	<sounds>
-		<sound name="ring">data/sounds/ring.wav</sound>
+		<sound name="ring">sounds/ring.wav</sound>
 	</sounds>
 	<properties>
 		<collectable type="ring" />

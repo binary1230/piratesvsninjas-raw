@@ -5,8 +5,8 @@
 
 <gameMode type="menu" name="Main Menu">
 
-	<bgPic>data/menu/bg.png</bgPic>
-	<selectorPic>data/menu/selector.png</selectorPic>
+	<bgPic>menu/bg.png</bgPic>
+	<selectorPic>menu/selector.png</selectorPic>
 
 	<xpos>25</xpos>
 
@@ -16,7 +16,7 @@
 		<ypos>193<action>Quit</action></ypos>
 	</ypositions>
 
-	<moveSound>data/menu/move.wav</moveSound>
-	<selectSound>data/menu/select.wav</selectSound>
+	<moveSound>menu/move.wav</moveSound>
+	<selectSound>menu/select.wav</selectSound>
 
 </gameMode>

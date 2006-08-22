@@ -4,7 +4,7 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/small-block.png" duration="1" />
+				<img name="small-block.png" duration="1" />
 			</frames>
 			<show_in_order />
 			<repeat />

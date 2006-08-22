@@ -4,7 +4,7 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/opener_left.png" duration="3" />
+				<img name="opener_left.png" duration="3" />
 			</frames>
 			<show_in_order />
 			<repeat />

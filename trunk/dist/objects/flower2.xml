@@ -4,7 +4,7 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/s_flower2.png" duration="1" />
+				<img name="s_flower2.png" duration="1" />
 			</frames>
 			<show_in_order />
 			<repeat />

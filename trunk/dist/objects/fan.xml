@@ -4,22 +4,22 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="data/fan0.png" duration="1" />
-				<img name="data/fan1.png" duration="1" />
-				<img name="data/fan2.png" duration="1" />
-				<img name="data/fan3.png" duration="1" />
-				<img name="data/fan4.png" duration="1" />
-				<img name="data/fan5.png" duration="1" />
-				<img name="data/fan6.png" duration="1" />
-				<img name="data/fan7.png" duration="1" />
-				<img name="data/fan8.png" duration="1" />
-				<img name="data/fan9.png" duration="1" />
-				<img name="data/fanA.png" duration="1" />
-				<img name="data/fanB.png" duration="1" />
-				<img name="data/fanC.png" duration="1" />
-				<img name="data/fanD.png" duration="1" />
-				<img name="data/fanE.png" duration="1" />
-				<img name="data/fanF.png" duration="1" />
+				<img name="fan0.png" duration="1" />
+				<img name="fan1.png" duration="1" />
+				<img name="fan2.png" duration="1" />
+				<img name="fan3.png" duration="1" />
+				<img name="fan4.png" duration="1" />
+				<img name="fan5.png" duration="1" />
+				<img name="fan6.png" duration="1" />
+				<img name="fan7.png" duration="1" />
+				<img name="fan8.png" duration="1" />
+				<img name="fan9.png" duration="1" />
+				<img name="fanA.png" duration="1" />
+				<img name="fanB.png" duration="1" />
+				<img name="fanC.png" duration="1" />
+				<img name="fanD.png" duration="1" />
+				<img name="fanE.png" duration="1" />
+				<img name="fanF.png" duration="1" />
 			</frames>
 			<show_in_order />
 			<repeat />

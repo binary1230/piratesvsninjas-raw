@@ -18,33 +18,33 @@
 	
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
-		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_tails.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
+		<include_xml_file>objects/obj_tails.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
-		<include_xml_file>data/objects/obj_bg_city1.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_bg_city2.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_bg_city3.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_bg_city4.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_city1.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_city2.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_city3.xml</include_xml_file>
+		<include_xml_file>objects/obj_bg_city4.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/obj_floor.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_floor2.xml</include_xml_file>
+		<include_xml_file>objects/obj_floor.xml</include_xml_file>
+		<include_xml_file>objects/obj_floor2.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos -->
-		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
+		<include_xml_file>objects/obj_controller.xml</include_xml_file>
 	
 		<!-- various scenery -->
-		<include_xml_file>data/objects/obj_s_palm_tall.xml</include_xml_file>
-		<include_xml_file>data/objects/flower1.xml</include_xml_file>
-		<include_xml_file>data/objects/flower2.xml</include_xml_file>
-		<include_xml_file>data/objects/plane.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-credits.xml</include_xml_file>
-		<include_xml_file>data/objects/totem1.xml</include_xml_file>
+		<include_xml_file>objects/obj_s_palm_tall.xml</include_xml_file>
+		<include_xml_file>objects/flower1.xml</include_xml_file>
+		<include_xml_file>objects/flower2.xml</include_xml_file>
+		<include_xml_file>objects/plane.xml</include_xml_file>
+		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>objects/sign-credits.xml</include_xml_file>
+		<include_xml_file>objects/totem1.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/siren.xml</include_xml_file>
+		<include_xml_file>objects/siren.xml</include_xml_file>
 
 	</objectDefinitions>
 

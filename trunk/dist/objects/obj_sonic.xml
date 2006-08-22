@@ -7,15 +7,15 @@
 	
 		<animation name="walking">
 			<frames>
-				<img name="data/newguy/run1.png" duration="2" />
-				<img name="data/newguy/run2.png" duration="2" />
-				<img name="data/newguy/run3.png" duration="2" />
-				<img name="data/newguy/run4.png" duration="2" />
-				<img name="data/newguy/run5.png" duration="2" />
-				<img name="data/newguy/run6.png" duration="2" />
-				<img name="data/newguy/run7.png" duration="2" />
-				<img name="data/newguy/run8.png" duration="2" />
-				<img name="data/newguy/run9.png" duration="2" />
+				<img name="newguy/run1.png" duration="2" />
+				<img name="newguy/run2.png" duration="2" />
+				<img name="newguy/run3.png" duration="2" />
+				<img name="newguy/run4.png" duration="2" />
+				<img name="newguy/run5.png" duration="2" />
+				<img name="newguy/run6.png" duration="2" />
+				<img name="newguy/run7.png" duration="2" />
+				<img name="newguy/run8.png" duration="2" />
+				<img name="newguy/run9.png" duration="2" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -23,7 +23,7 @@
 				
 		<animation name="standing">
 			<frames>
-			<img name="data/newguy/stand.png" duration="64" />
+			<img name="newguy/stand.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -31,7 +31,7 @@
 
 		<animation name="jumping">
 			<frames>
-				<img name="data/newguy/jump.png" duration="3" />
+				<img name="newguy/jump.png" duration="3" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -39,7 +39,7 @@
 	</animations>
 	
 	<sounds>
-		<sound name="jump">data/sounds/jump.wav</sound>
+		<sound name="jump">sounds/jump.wav</sound>
 	</sounds>
 	
 	<properties>

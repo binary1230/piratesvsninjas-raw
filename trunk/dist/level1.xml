@@ -3,7 +3,7 @@
 
 <gameMode type="simulation" name="Level 1 - Sonic Desert Run">
 
-	<music>data/level1.ogg</music>
+	<music>level1.ogg</music>
 	<info>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
@@ -24,40 +24,40 @@
 	
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
-		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
-		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
+		<include_xml_file>objects/obj_background.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/obj_floor.xml</include_xml_file>
+		<include_xml_file>objects/obj_floor.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos -->
-		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
+		<include_xml_file>objects/obj_controller.xml</include_xml_file>
 	
 		<!-- various scenery -->
-		<include_xml_file>data/objects/greenblock.xml</include_xml_file>
-		<include_xml_file>data/objects/smallblock.xml</include_xml_file>
-		<include_xml_file>data/objects/block3.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_s_palm_tall.xml</include_xml_file>
-		<include_xml_file>data/objects/obj_s_palm_small.xml</include_xml_file>
-		<include_xml_file>data/objects/flower1.xml</include_xml_file>
-		<include_xml_file>data/objects/flower2.xml</include_xml_file>
-		<include_xml_file>data/objects/fan.xml</include_xml_file>
-		<include_xml_file>data/objects/door.xml</include_xml_file>
-		<include_xml_file>data/objects/plane.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
-		<include_xml_file>data/objects/sign-credits.xml</include_xml_file>
-		<include_xml_file>data/objects/totem1.xml</include_xml_file>
+		<include_xml_file>objects/greenblock.xml</include_xml_file>
+		<include_xml_file>objects/smallblock.xml</include_xml_file>
+		<include_xml_file>objects/block3.xml</include_xml_file>
+		<include_xml_file>objects/obj_s_palm_tall.xml</include_xml_file>
+		<include_xml_file>objects/obj_s_palm_small.xml</include_xml_file>
+		<include_xml_file>objects/flower1.xml</include_xml_file>
+		<include_xml_file>objects/flower2.xml</include_xml_file>
+		<include_xml_file>objects/fan.xml</include_xml_file>
+		<include_xml_file>objects/door.xml</include_xml_file>
+		<include_xml_file>objects/plane.xml</include_xml_file>
+		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>objects/sign-credits.xml</include_xml_file>
+		<include_xml_file>objects/totem1.xml</include_xml_file>
 		
-		<include_xml_file>data/objects/opener1.xml</include_xml_file>
-		<include_xml_file>data/objects/opener2.xml</include_xml_file>
+		<include_xml_file>objects/opener1.xml</include_xml_file>
+		<include_xml_file>objects/opener2.xml</include_xml_file>
 
 		<!-- interactive things -->
-		<include_xml_file>data/objects/spring.xml</include_xml_file>
-		<include_xml_file>data/objects/spring-crazy.xml</include_xml_file>
-		<include_xml_file>data/objects/ring.xml</include_xml_file>
+		<include_xml_file>objects/spring.xml</include_xml_file>
+		<include_xml_file>objects/spring-crazy.xml</include_xml_file>
+		<include_xml_file>objects/ring.xml</include_xml_file>
 	</objectDefinitions>
 
 	<map>
@@ -188,11 +188,15 @@
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>1200</x><y>400</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">
+			<x>1150</x><y>400</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
 			<x>1200</x><y>400</y><alignTop/></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>1100</x><y>400</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">
 			<x>1100</x><y>400</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1050</x><y>400</y><alignTop/></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>1000</x><y>400</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">

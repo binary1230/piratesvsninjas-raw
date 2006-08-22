@@ -4,8 +4,8 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-<!--				<img name="data/plane1.png" duration="5" />-->
-				<img name="data/plane1.png" duration="3" />
+<!--				<img name="plane1.png" duration="5" />-->
+				<img name="plane1.png" duration="3" />
 			</frames>
 			<show_in_order />
 			<repeat />
