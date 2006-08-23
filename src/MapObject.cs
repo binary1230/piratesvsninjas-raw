@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using System.Drawing;
 using System.Xml;
@@ -8,23 +8,15 @@ namespace Ninjeditor
 {
     class MapObject : IMapObject
     {
+        #region "Private vars"
+
         // The object definition (e.g. 'red-flower' 'wall3' 'palm-tree' etc)
         private MapObjectDefinition objectDefinition;
         private int m_x, m_y;
 
-        private Graphics graphics = null;
+        #endregion
 
-        public Graphics TargetGraphics
-        {
-            get
-            {
-                return graphics;
-            }
-            set
-            {
-                graphics = value;
-            }
-        }
+        #region "Properties"
 
         public MapObjectDefinition ObjectDefinition
         {
@@ -66,10 +58,6 @@ namespace Ninjeditor
             {
                 return objectDefinition.Width;
             }
-            set
-            {
-                objectDefinition.Width = value;
-            }
         }
         public uint Height
         {
@@ -77,12 +65,10 @@ namespace Ninjeditor
             {
                 return objectDefinition.Height;
             }
-            set
-            {
-                objectDefinition.Height = value;
-            }
         }
+#endregion
 
+        #region "Public Methods"
         public void Clear()
         {
             m_x = m_y = 0;
@@ -90,14 +76,57 @@ namespace Ninjeditor
 
         public void New()
         {
-            m_x = 0;
-            m_y = 0;
+            Clear();
         }
 
         // Draw this MapObject in it's current location
-        public void Draw()
+        public void Draw(Graphics g, int scroll_x, int scroll_y, int screen_w, int screen_h)
         {
-            
+            int x = m_x - scroll_x;
+            int y = m_y - scroll_y;
+
+            y = screen_h - y - (int)Height;
+
+            g.DrawImage(objectDefinition.Image, x, y);
+        }
+
+        #endregion
+
+        // Load this object from XML
+        // xObject - the <object> tag in XML
+        // objectDefinitions - a list of loaded object Definitions (NOT TO BE MODIFIED)
+        public void LoadFromXML(XmlNode xObject, MapObjectDefinitionList objectDefinitions)
+        {
+            //<object objectDef="s_sign_arrow">
+            //  <position type="fixed">
+			//      <x>30</x>
+            //      <y>20</y>
+            //  </position>
+            //</object>
+
+            string objectDefName;
+
+            try
+            {
+                New();
+
+                objectDefName = xObject.Attributes["objectDef"].Value;
+                objectDefinition = objectDefinitions.FindByName(objectDefName);
+
+                if (objectDefinition == null)
+                    throw new Exception("Object definition '" + objectDefName + "' not loaded (try including it in the XML).");
+
+                XmlNode xPos = xObject.SelectSingleNode("position");
+                if (xPos.Attributes["type"].Value != "fixed")
+                    throw new Exception("Error: Map editor only supports <position type=\"fixed\">");
+
+                X = Int32.Parse(xPos.SelectSingleNode("x").InnerText);
+                Y = Int32.Parse(xPos.SelectSingleNode("y").InnerText);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error loading object.", ex);
+            }
         }
     }
 }

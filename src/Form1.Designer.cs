@@ -53,7 +53,9 @@ namespace Ninjeditor
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ninjeditDocumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.menuBtnNew = new System.Windows.Forms.ToolStripButton();
+            this.btn_new = new System.Windows.Forms.ToolStripButton();
+            this.btn_open = new System.Windows.Forms.ToolStripButton();
+            this.btn_save = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lbLayers = new System.Windows.Forms.ListBox();
@@ -62,11 +64,11 @@ namespace Ninjeditor
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tlstObjects = new System.Windows.Forms.TreeView();
             this.tableDrawingArea = new System.Windows.Forms.TableLayoutPanel();
             this.hscrollMap = new System.Windows.Forms.HScrollBar();
             this.vscrollMap = new System.Windows.Forms.VScrollBar();
             this.pbxLevelDisplay = new System.Windows.Forms.PictureBox();
+            this.lbObjects = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -124,32 +126,33 @@ namespace Ninjeditor
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "&New";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem1.Text = "&Save";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(100, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -254,22 +257,43 @@ namespace Ninjeditor
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuBtnNew});
+            this.btn_new,
+            this.btn_open,
+            this.btn_save});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(818, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // menuBtnNew
+            // btn_new
             // 
-            this.menuBtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.menuBtnNew.Image = ((System.Drawing.Image)(resources.GetObject("menuBtnNew.Image")));
-            this.menuBtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.menuBtnNew.Name = "menuBtnNew";
-            this.menuBtnNew.Size = new System.Drawing.Size(23, 22);
-            this.menuBtnNew.Text = "New";
-            this.menuBtnNew.Click += new System.EventHandler(this.menuBtnNew_Click);
+            this.btn_new.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_new.Image = ((System.Drawing.Image)(resources.GetObject("btn_new.Image")));
+            this.btn_new.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_new.Name = "btn_new";
+            this.btn_new.Size = new System.Drawing.Size(23, 22);
+            this.btn_new.Text = "New";
+            this.btn_new.Click += new System.EventHandler(this.menuBtnNew_Click);
+            // 
+            // btn_open
+            // 
+            this.btn_open.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_open.Image = ((System.Drawing.Image)(resources.GetObject("btn_open.Image")));
+            this.btn_open.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_open.Name = "btn_open";
+            this.btn_open.Size = new System.Drawing.Size(23, 22);
+            this.btn_open.Text = "Open";
+            this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
+            // 
+            // btn_save
+            // 
+            this.btn_save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_save.Image")));
+            this.btn_save.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(23, 22);
+            this.btn_save.Text = "Save";
             // 
             // splitContainer1
             // 
@@ -307,8 +331,8 @@ namespace Ninjeditor
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.lbObjects);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Panel2.Controls.Add(this.tlstObjects);
             this.splitContainer2.Size = new System.Drawing.Size(175, 510);
             this.splitContainer2.SplitterDistance = 176;
             this.splitContainer2.TabIndex = 0;
@@ -367,14 +391,6 @@ namespace Ninjeditor
             this.label2.TabIndex = 1;
             this.label2.Text = "Objects";
             // 
-            // tlstObjects
-            // 
-            this.tlstObjects.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tlstObjects.Location = new System.Drawing.Point(0, 16);
-            this.tlstObjects.Name = "tlstObjects";
-            this.tlstObjects.Size = new System.Drawing.Size(173, 312);
-            this.tlstObjects.TabIndex = 0;
-            // 
             // tableDrawingArea
             // 
             this.tableDrawingArea.ColumnCount = 2;
@@ -402,6 +418,7 @@ namespace Ninjeditor
             this.hscrollMap.Name = "hscrollMap";
             this.hscrollMap.Size = new System.Drawing.Size(622, 15);
             this.hscrollMap.TabIndex = 1;
+            this.hscrollMap.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hscrollMap_Scroll);
             // 
             // vscrollMap
             // 
@@ -414,6 +431,7 @@ namespace Ninjeditor
             this.vscrollMap.Size = new System.Drawing.Size(15, 493);
             this.vscrollMap.TabIndex = 2;
             this.vscrollMap.Value = 102;
+            this.vscrollMap.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vscrollMap_Scroll);
             // 
             // pbxLevelDisplay
             // 
@@ -424,7 +442,16 @@ namespace Ninjeditor
             this.pbxLevelDisplay.Size = new System.Drawing.Size(616, 487);
             this.pbxLevelDisplay.TabIndex = 3;
             this.pbxLevelDisplay.TabStop = false;
-            this.pbxLevelDisplay.Paint += new System.Windows.Forms.PaintEventHandler(this.pbxLevelDisplay_Paint);
+            this.pbxLevelDisplay.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
+            // 
+            // lbObjects
+            // 
+            this.lbObjects.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbObjects.FormattingEnabled = true;
+            this.lbObjects.Location = new System.Drawing.Point(0, 25);
+            this.lbObjects.Name = "lbObjects";
+            this.lbObjects.Size = new System.Drawing.Size(173, 303);
+            this.lbObjects.TabIndex = 2;
             // 
             // frmLevelEditor
             // 
@@ -438,7 +465,6 @@ namespace Ninjeditor
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmLevelEditor";
             this.Text = "NinjEditor";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmLevelEditor_Paint);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -485,7 +511,6 @@ namespace Ninjeditor
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TreeView tlstObjects;
         private System.Windows.Forms.HScrollBar hscrollMap;
         private System.Windows.Forms.TableLayoutPanel tableDrawingArea;
         private System.Windows.Forms.VScrollBar vscrollMap;
@@ -495,11 +520,14 @@ namespace Ninjeditor
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ninjeditDocumentationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton menuBtnNew;
+        private System.Windows.Forms.ToolStripButton btn_new;
         private System.Windows.Forms.ListBox lbLayers;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnMoveUp;
+        private System.Windows.Forms.ToolStripButton btn_open;
+        private System.Windows.Forms.ToolStripButton btn_save;
+        private System.Windows.Forms.ListBox lbObjects;
     }
 }
 

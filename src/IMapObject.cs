@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Ninjeditor
 {
@@ -12,10 +14,10 @@ namespace Ninjeditor
         // Position and width/height of this object
         int X {get; set;}
         int Y {get; set;}
-        uint Width { get; set;}
-        uint Height { get; set;}
+        uint Width {get;}
+        uint Height {get;}
         
         // Draw the object in its current position
-        void Draw();
+        void Draw(Graphics g, int scroll_x, int scroll_y, int screen_w, int screen_h);
     }
 }

@@ -9,18 +9,23 @@ namespace Ninjeditor
 {
     class Map
     {
-        private ArrayList layers = null;
-        private ArrayList objectDefinitions = null;
-        private RGBValue bgColor;
-        private Graphics graphics = null;
+        #region "Private vars"
 
-        private string filename;    // full filename
-        private string dirname;     // directory name (from filename)
-        private string mapfile;     // map name (from filename)
+        protected ArrayList layers = null;
+        protected MapObjectDefinitionList objectDefinitions = null;
+        protected RGBValue bgColor;
 
-        private string mapName;
+        protected string filename;    // full filename
+        protected string dirname;     // directory name (from filename)
+        protected string mapfile;     // map name (from filename)
+
+        protected string mapName;
 
         private uint width, height;
+
+        #endregion
+
+        #region "Properties"
 
         public uint Width
         {
@@ -33,6 +38,7 @@ namespace Ninjeditor
                 width = value;
             }
         }
+
         public uint Height
         {
             get
@@ -45,6 +51,13 @@ namespace Ninjeditor
             }
         }
 
+        public MapObjectDefinitionList ObjectDefinitions
+        {
+            get
+            {
+                return objectDefinitions;
+            }
+        }
 
         public ArrayList Layers 
         {
@@ -55,27 +68,6 @@ namespace Ninjeditor
             set 
             {
                 layers = value;
-            }
-        }
-
-        public Graphics TargetGraphics
-        {
-            get
-            {
-                return graphics;
-            }
-            set
-            {
-                graphics = value;
-
-                if (layers != null)
-                {
-                    foreach (MapLayer layer in layers)
-                    {
-                        if (layer != null)
-                            layer.TargetGraphics = graphics;
-                    }
-                }
             }
         }
 
@@ -91,7 +83,13 @@ namespace Ninjeditor
             }
         }
 
-        public Map() {}
+        #endregion
+
+        #region "Public Members"
+
+        public Map() 
+        {
+        }
 
         public void Clear()
         {
@@ -109,7 +107,7 @@ namespace Ninjeditor
 
             if (objectDefinitions != null)
             {
-                foreach (MapLayer objectDefinition in objectDefinitions)
+                foreach (MapObjectDefinition objectDefinition in objectDefinitions)
                 {
                     if (objectDefinition != null)
                         objectDefinition.Clear();
@@ -120,6 +118,7 @@ namespace Ninjeditor
             }
 
             bgColor = null;
+            filename = "";
         }
 
         public void New()
@@ -129,7 +128,7 @@ namespace Ninjeditor
             layers = new ArrayList();
             layers.Add(new MapLayer("Default Layer"));
 
-            objectDefinitions = new ArrayList();
+            objectDefinitions = new MapObjectDefinitionList();
 
             bgColor = new RGBValue();
             bgColor.SetColor(0, 0, 0);
@@ -147,21 +146,15 @@ namespace Ninjeditor
             layers.Add(new MapLayer(name));
         }
 
-        public void Draw()
-        {
-            if (layers == null)
-                return;
+        #endregion
 
-            foreach (MapLayer layer in layers)
-                if (layer != null)
-                    layer.Draw();
-        }
+        #region "XML Loading Stuff"
 
         public void LoadLevel(string full_filename)
         {
             filename = full_filename;
-            mapfile = full_filename.Substring(full_filename.LastIndexOf("\\") + 1);
-            dirname = full_filename.Substring(0, full_filename.LastIndexOf("\\") + 1);
+            mapfile = Map.GetFilePart(full_filename);
+            dirname = Map.GetDirPart(full_filename);
 
             XmlDocument xml = new XmlDocument();
 
@@ -174,7 +167,7 @@ namespace Ninjeditor
             LoadGameMode(xGameMode);
         }
 
-        void LoadGameMode(XmlNode xGameMode)
+        protected void LoadGameMode(XmlNode xGameMode)
         {
             string modeType = "";
 
@@ -192,9 +185,21 @@ namespace Ninjeditor
 
             LoadProperties(xGameMode.SelectSingleNode("properties").ChildNodes);
             LoadObjectDefinitions(xGameMode.SelectSingleNode("objectDefinitions").SelectNodes("include_xml_file"));
+            LoadLayers(xGameMode.SelectSingleNode("map").SelectNodes("layer"));
         }
 
-        void LoadProperties(XmlNodeList xProperties)
+        protected void LoadLayers(XmlNodeList xLayers)
+        {
+            foreach (XmlNode xLayer in xLayers)
+            {
+                MapLayer layer = new MapLayer();
+
+                layer.LoadFromXml(xLayer, objectDefinitions);
+                layers.Add(layer);
+            }
+        }
+
+        protected void LoadProperties(XmlNodeList xProperties)
         {
             foreach (XmlNode xProperty in xProperties)
             {
@@ -213,17 +218,59 @@ namespace Ninjeditor
             }
         }
 
-        void LoadObjectDefinitions(XmlNodeList xIncludes)
+        protected void LoadObjectDefinitions(XmlNodeList xIncludes)
         {
+            string objectDefFilename;
+
             // find all the <include_xml_file>'s and include them
             foreach (XmlNode xInclude in xIncludes)
             {
                 if (xInclude.Name != "include_xml_file")
                     throw new Exception("Expected <include_xml_file>");
 
+                objectDefFilename = xInclude.InnerText;
+
+                // This will skip certain kinds of objects we can't deal with now.
+                if (SleazyObjectLoadingHack(objectDefFilename))
+                    continue;
+
                 MapObjectDefinition objectDef = new MapObjectDefinition();
-                objectDef.LoadFromFile(dirname + xInclude.InnerText);
+                objectDef.LoadFromFile(objectDefFilename, dirname);
+                objectDefinitions.Add(objectDef);
             }
         }
+#endregion
+
+        #region "Static Helpers"
+
+        // Gets the directory name from a full pathname
+        static public string GetDirPart(string full_filename)
+        {
+            return full_filename.Substring(0, full_filename.LastIndexOf("\\") + 1);
+        }
+
+        // Gets just the filename from a full pathname
+        static public string GetFilePart(string full_filename)
+        {
+            return full_filename.Substring(full_filename.LastIndexOf("\\") + 1);
+        }
+
+        #region "Don't look - it's a Seriously Sleazy Hack"
+        // XXX  SERIOUSLY SLEAZY HACK TIME XXX XXX XXX XXX XXX XXX XXX XXX
+        // This map editor cannot currently handle certain types of objects
+        // If we get them, we will just ignore them. [sigh]
+        // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+        static public bool SleazyObjectLoadingHack(string name)
+        {
+            string o = name.ToLower();
+            if (o.Contains("controller") || o.Contains("opener"))
+                return true;
+
+            return false;
+        }
+        // XXX END OF SERIOUSLY SLEAZY HACK XXX
+        #endregion
+
+        #endregion
     }
 }

@@ -43,10 +43,12 @@
       <DependentUpon>frmLevelEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
+    <Compile Include="MapDrawableMap.cs" />
     <Compile Include="Maplayer.cs" />
     <Compile Include="IMapObject.cs" />
     <Compile Include="MapObject.cs" />
     <Compile Include="MapObjectDefinition.cs" />
+    <Compile Include="MapObjectDefinitionList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLevelEditor.resx">

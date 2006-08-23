@@ -11,19 +11,14 @@ namespace Ninjeditor
 {
     public partial class frmLevelEditor : Form
     {
-        private Map map;
+        private MapDrawableMap map;
         
         public frmLevelEditor()
         {
             InitializeComponent();
-            map = new Map();
+            map = new MapDrawableMap();
             map.New();
             UpdateLayerList();
-        }
-
-        private void frmLevelEditor_Paint(object sender, EventArgs e)
-        {
-            map.Draw();
         }
 
         private void menuBtnNew_Click(object sender, EventArgs e)
@@ -43,10 +38,8 @@ namespace Ninjeditor
         private void New()
         {
             map.New();
-            map.TargetGraphics = pbxLevelDisplay.CreateGraphics();
             UpdateLayerList();
-
-            // "C:\\Program Files\\Pirates Vs Ninjas\\data\\level1.xml"
+            Draw(pbxLevelDisplay.CreateGraphics());
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,35 +52,73 @@ namespace Ninjeditor
             New();
         }
 
-        private void pbxLevelDisplay_Paint(object sender, PaintEventArgs e)
-        {
-            if (map != null)
-                map.Draw();
-        }
-
         private void LoadMap(string filename)
         {
-            /*try
+            try
             {
-                map.Open(filename);
+                map.Layers.Clear();
+                map.LoadLevel(filename);
             }
             catch (Exception ex)
             {
-                statusBar.Text = "Failed to load: " + filename + " : ex.Message;
-            }*/
-            map.LoadLevel(filename);
+                New();
+                statusBar.Text = "Failed to load: " + filename + " : " + ex.Message;
+            }
+
+            UpdateLayerList();
+            UpdateObjectDefinitionList();
+            UpdateLevelSize();
+
+            hscrollMap.Value = 0;
+            vscrollMap.Value = vscrollMap.Maximum;
+
+            Draw(pbxLevelDisplay.CreateGraphics());
+
+            statusBar.Text = "Loaded map: " + filename;
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UpdateLevelSize()
+        {
+            hscrollMap.Minimum = 0;
+            hscrollMap.Maximum = (int)map.Width;
+            
+            vscrollMap.Minimum = 0;
+            vscrollMap.Maximum = (int)map.Height;
+        }
+
+        private void UpdateObjectDefinitionList()
+        {
+            lbObjects.Items.Clear();
+            if (map.ObjectDefinitions != null) {
+                foreach (MapObjectDefinition def in map.ObjectDefinitions)
+                {
+                    lbObjects.Items.Add(def.Name);
+                }
+            }
+        }
+
+        private void Draw(Graphics g)
+        {
+            Color c = new Color();
+            g.Clear(Color.Black);
+            map.Draw(g, hscrollMap.Value, vscrollMap.Maximum - vscrollMap.Value, pbxLevelDisplay.Width, pbxLevelDisplay.Height);
+        }
+
+        private void OnPaint(object sender, PaintEventArgs e)
+        {
+            Draw(e.Graphics);
+        }
+
+        private void DoOpen()
         {
             OpenFileDialog openDialog = new OpenFileDialog();
 
             openDialog.DefaultExt = "xml";
             openDialog.Filter = "XML Level Files (*.xml)|*.xml";
-            
+
             // openDialog.InitialDirectory = "C:\\Program Files\\Pirates Vs Ninjas\\Data\\";
             openDialog.InitialDirectory = "C:\\dom\\ninjas\\data\\";
-            
+
             DialogResult result = (DialogResult)openDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -95,6 +126,26 @@ namespace Ninjeditor
             }
 
             openDialog.Dispose();
+        }
+
+        private void btn_open_Click(object sender, EventArgs e)
+        {
+            DoOpen();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoOpen();
+        }
+
+        private void hscrollMap_Scroll(object sender, ScrollEventArgs e)
+        {
+            Draw(pbxLevelDisplay.CreateGraphics());
+        }
+
+        private void vscrollMap_Scroll(object sender, ScrollEventArgs e)
+        {
+            Draw(pbxLevelDisplay.CreateGraphics());
         }
     }
 }
