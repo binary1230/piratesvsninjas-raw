@@ -442,7 +442,10 @@ namespace Ninjeditor
             this.pbxLevelDisplay.Size = new System.Drawing.Size(616, 487);
             this.pbxLevelDisplay.TabIndex = 3;
             this.pbxLevelDisplay.TabStop = false;
+            this.pbxLevelDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.pbxLevelDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove);
             this.pbxLevelDisplay.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
+            this.pbxLevelDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
             // 
             // lbObjects
             // 

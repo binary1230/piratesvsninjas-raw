@@ -53,6 +53,11 @@ namespace Ninjeditor
             B = Byte.Parse(xColor.SelectSingleNode("b").InnerText);
         }
 
+        public Color GetSystemColor()
+        {
+            return Color.FromArgb(R, G, B);
+        }
+
         public void SetColor(Byte r, Byte g, Byte b)
         {
             R = r; G = g; B = b;

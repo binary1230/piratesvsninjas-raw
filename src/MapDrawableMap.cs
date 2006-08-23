@@ -11,6 +11,8 @@ namespace Ninjeditor
     {
         public void Draw(Graphics g, int scroll_x, int scroll_y, int screen_w, int screen_h)
         {
+            g.Clear(bgColor.GetSystemColor());
+
             if (layers == null)
                 return;
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Xml;
 
 namespace Ninjeditor
@@ -87,7 +88,18 @@ namespace Ninjeditor
 
             y = screen_h - y - (int)Height;
 
-            g.DrawImage(objectDefinition.Image, x, y);
+            ImageAttributes ia = new ImageAttributes();
+            Bitmap image = objectDefinition.Image;
+
+            Color c = Color.FromArgb(255, 255, 0, 255);
+            ia.SetColorKey(c, c);
+
+            // Bitmap compatible = new Bitmap(Width, Height);
+
+            g.DrawImage(image, new Rectangle(x, y, (int)Width, (int)Height),
+            0, 0,
+            Width, Height,
+            GraphicsUnit.Pixel, ia);
         }
 
         #endregion
@@ -122,6 +134,13 @@ namespace Ninjeditor
 
                 X = Int32.Parse(xPos.SelectSingleNode("x").InnerText);
                 Y = Int32.Parse(xPos.SelectSingleNode("y").InnerText);
+
+                // handle some special cases
+                if (xPos.SelectSingleNode("alignTop") != null)
+                    Y = Y - (int)Height;
+
+                if (xPos.SelectSingleNode("alignRight") != null)
+                    X = X - (int)Width;
             }
             catch (Exception ex)
             {

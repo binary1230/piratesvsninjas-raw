@@ -97,10 +97,9 @@ namespace Ninjeditor
             }
         }
 
+        // The real drawing function
         private void Draw(Graphics g)
         {
-            Color c = new Color();
-            g.Clear(Color.Black);
             map.Draw(g, hscrollMap.Value, vscrollMap.Maximum - vscrollMap.Value, pbxLevelDisplay.Width, pbxLevelDisplay.Height);
         }
 
@@ -146,6 +145,54 @@ namespace Ninjeditor
         private void vscrollMap_Scroll(object sender, ScrollEventArgs e)
         {
             Draw(pbxLevelDisplay.CreateGraphics());
+        }
+
+        private bool middle_mouse_down = false;
+        private int mouse_down_x = 0;
+        private int mouse_down_y = 0;
+        private int mouse_scroll_x = 0;
+        private int mouse_scroll_y = 0;
+
+        new private void MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                middle_mouse_down = true;
+                mouse_down_x = e.X;
+                mouse_down_y = e.Y;
+                mouse_scroll_x = hscrollMap.Value;
+                mouse_scroll_y = vscrollMap.Value;
+            }
+        }
+
+        new private void MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                middle_mouse_down = false;
+            }
+        }
+
+        new private void MouseMove(object sender, MouseEventArgs e)
+        {
+            const int mouse_scroll_speed = 5;
+
+            if (middle_mouse_down == true)
+            {
+                SafeSetScrollX(mouse_scroll_x + ((e.X - mouse_down_x)*mouse_scroll_speed));
+                SafeSetScrollY(mouse_scroll_y + ((e.Y - mouse_down_y)*mouse_scroll_speed));
+                Draw(pbxLevelDisplay.CreateGraphics());
+            }
+        }
+
+        private void SafeSetScrollX(int val)
+        {
+            hscrollMap.Value = Math.Max(Math.Min(val, hscrollMap.Maximum), 0);
+        }
+
+        private void SafeSetScrollY(int val)
+        {
+            vscrollMap.Value = Math.Max(Math.Min(val, vscrollMap.Maximum), 0);
         }
     }
 }
