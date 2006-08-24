@@ -25,12 +25,9 @@
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
 		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_background.xml</include_xml_file>
-		
-		<include_xml_file>objects/obj_floor.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos -->
 		<include_xml_file>objects/obj_controller.xml</include_xml_file>
@@ -40,7 +37,6 @@
 		<include_xml_file>objects/smallblock.xml</include_xml_file>
 		<include_xml_file>objects/block3.xml</include_xml_file>
 		<include_xml_file>objects/obj_s_palm_tall.xml</include_xml_file>
-		<include_xml_file>objects/obj_s_palm_small.xml</include_xml_file>
 		<include_xml_file>objects/flower1.xml</include_xml_file>
 		<include_xml_file>objects/flower2.xml</include_xml_file>
 		<include_xml_file>objects/fan.xml</include_xml_file>
@@ -61,7 +57,7 @@
 	</objectDefinitions>
 
 	<map>
-		<layer scroll_speed="0.15f" name="background">
+		<layer scroll_speed="0.15" name="background">
 				
 			<object objectDef="background">
 				<position type="fixed">	<x>0</x> <y>0</y></position>
@@ -77,7 +73,7 @@
 	
 		</layer>
 
-		<layer scroll_speed="1.0f" name="bg_objects">	
+		<layer scroll_speed="1.0" name="bg_objects">	
 
 			<!-- oh, some palm trees and things -->
 			<repeat times="50">
@@ -425,7 +421,7 @@
 			<x>1705</x><y>3400</y></position></object>
 		</layer>
 
-		<layer scroll_speed="1.0f" name="foreground">
+		<layer scroll_speed="1.0" name="foreground">
 			<object objectDef="sonic">
 				<position type="fixed">	
 					<x>2500</x> <y>50</y>
@@ -452,7 +448,7 @@
 
 		</layer>
 
-		<layer scroll_speed="1.5f" name="foreground_fast">
+		<layer scroll_speed="1.5" name="foreground_fast">
 			<repeat times="20">
 				<object objectDef="s_flower1">
 					<position type="random">
@@ -475,7 +471,7 @@
 
 		</layer>
 
-		<layer scroll_speed="1.0f" name="overlays">
+		<layer scroll_speed="1.0" name="overlays">
 			<object objectDef="controller">
 				<position type="fixed">	<x>125</x> <y>5</y> </position>
 				<inputController>1</inputController>

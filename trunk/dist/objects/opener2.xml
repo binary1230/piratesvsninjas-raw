@@ -11,6 +11,6 @@
 		</animation>
 	</animations>
 	<properties>
-		<isOverlay>
+		<isOverlay/>
 	</properties>
 </objectDef>
