@@ -190,11 +190,20 @@ namespace Ninjeditor
 
         protected void LoadLayers(XmlNodeList xLayers)
         {
+            bool foundDefaultLayer = false;
+
             foreach (XmlNode xLayer in xLayers)
             {
                 MapLayer layer = new MapLayer();
 
                 layer.LoadFromXml(xLayer, objectDefinitions);
+
+                if (!foundDefaultLayer)
+                {
+                    foundDefaultLayer = true;
+                    layer.Selected = true;
+                }
+
                 layers.Add(layer);
             }
         }
@@ -239,9 +248,46 @@ namespace Ninjeditor
                 objectDefinitions.Add(objectDef);
             }
         }
-#endregion
+        #endregion
 
         #region "Static Helpers"
+
+        // Transform coordinates from Screen coordinates (e.g. mouse clicking on the picturebox)
+        // To world coordinates (e.g. the XY of an object IN THE WORLD)
+        // The transformed coordinates are stored in out_x and out_y
+        static public void TransformFromWorldToScreen
+            (   int world_x, int world_y, 
+                int object_w, int object_h,
+                int scroll_x, int scroll_y, 
+                int screen_w, int screen_h,
+                ref int out_x, ref int out_y)
+        {
+            out_x = world_x - scroll_x;
+            out_y = screen_h - (world_y - scroll_y) - (int)object_h;
+        }
+
+        static public void TransformFromWorldToScreen
+            (   MapObject obj, Graphics g,
+                int scroll_x, int scroll_y,
+                int screen_w, int screen_h,
+                ref int out_x, ref int out_y)
+        {
+            TransformFromWorldToScreen(
+                obj.X, obj.Y, (int)obj.Width, (int)obj.Height, 
+                scroll_x, scroll_y, screen_w, screen_h,
+                ref out_x, ref out_y);
+        }
+
+        // Transform screen coordinates (e.g. mouse clicks) to world coordinates (e.g. XY in the world)
+        static public void TransformFromScreenToWorld
+            (   int screen_x, int screen_y,
+                int screen_w, int screen_h,
+                int scroll_x, int scroll_y,
+                ref int out_x, ref int out_y) 
+        {
+            out_x = screen_x + scroll_x;
+            out_y = screen_h + scroll_y - screen_y;
+        }
 
         // Gets the directory name from a full pathname
         static public string GetDirPart(string full_filename)
@@ -256,6 +302,7 @@ namespace Ninjeditor
         }
 
         #region "Don't look - it's a Seriously Sleazy Hack"
+
         // XXX  SERIOUSLY SLEAZY HACK TIME XXX XXX XXX XXX XXX XXX XXX XXX
         // This map editor cannot currently handle certain types of objects
         // If we get them, we will just ignore them. [sigh]

@@ -31,7 +31,9 @@ namespace Ninjeditor
             lbLayers.Items.Clear();
             foreach (MapLayer layer in map.Layers)
             {
-                lbLayers.Items.Add(layer.Name);
+                int i = lbLayers.Items.Add(layer.Name);
+                if (layer.Selected)
+                    lbLayers.SelectedIndex = i;
             }
         }
 
@@ -39,6 +41,7 @@ namespace Ninjeditor
         {
             map.New();
             UpdateLayerList();
+            UpdateObjectDefinitionList();
             Draw(pbxLevelDisplay.CreateGraphics());
         }
 
@@ -52,6 +55,11 @@ namespace Ninjeditor
             New();
         }
 
+        private void SetStatusBarText(string text)
+        {
+            statusBar.Text = text;
+        }
+
         private void LoadMap(string filename)
         {
             try
@@ -62,7 +70,7 @@ namespace Ninjeditor
             catch (Exception ex)
             {
                 New();
-                statusBar.Text = "Failed to load: " + filename + " : " + ex.Message;
+                SetStatusBarText("Failed to load: " + filename + " : " + ex.Message);
             }
 
             UpdateLayerList();
@@ -74,16 +82,26 @@ namespace Ninjeditor
 
             Draw(pbxLevelDisplay.CreateGraphics());
 
-            statusBar.Text = "Loaded map: " + filename;
+            SetStatusBarText("Loaded map: " + filename);
         }
 
         private void UpdateLevelSize()
         {
+            int xmax = (int)map.Width - pbxLevelDisplay.Width;
+            int ymax = (int)map.Height - pbxLevelDisplay.Height;
+
             hscrollMap.Minimum = 0;
-            hscrollMap.Maximum = (int)map.Width;
-            
             vscrollMap.Minimum = 0;
-            vscrollMap.Maximum = (int)map.Height;
+
+            if (xmax > 0)
+                hscrollMap.Maximum = xmax;
+            else
+                hscrollMap.Enabled = false;
+
+            if (ymax > 0)
+                vscrollMap.Maximum = ymax;
+            else
+                vscrollMap.Enabled = false;
         }
 
         private void UpdateObjectDefinitionList()
@@ -100,7 +118,7 @@ namespace Ninjeditor
         // The real drawing function
         private void Draw(Graphics g)
         {
-            map.Draw(g, hscrollMap.Value, vscrollMap.Maximum - vscrollMap.Value, pbxLevelDisplay.Width, pbxLevelDisplay.Height);
+            map.Draw(g, GetScrollX(), GetScrollY(), pbxLevelDisplay.Width, pbxLevelDisplay.Height);
         }
 
         private void OnPaint(object sender, PaintEventArgs e)
@@ -147,7 +165,7 @@ namespace Ninjeditor
             Draw(pbxLevelDisplay.CreateGraphics());
         }
 
-        private bool middle_mouse_down = false;
+        private bool right_mouse_down = false;
         private int mouse_down_x = 0;
         private int mouse_down_y = 0;
         private int mouse_scroll_x = 0;
@@ -157,19 +175,41 @@ namespace Ninjeditor
         {
             if (e.Button == MouseButtons.Right)
             {
-                middle_mouse_down = true;
+                right_mouse_down = true;
                 mouse_down_x = e.X;
                 mouse_down_y = e.Y;
                 mouse_scroll_x = hscrollMap.Value;
                 mouse_scroll_y = vscrollMap.Value;
+            } else if (e.Button == MouseButtons.Left) {
+                bool selectedNewObject = SelectObjectAtPosition(e.X, e.Y);
+
+                if (selectedNewObject)
+                    Draw(pbxLevelDisplay.CreateGraphics());
             }
+        }
+
+        private int GetScrollX()
+        {
+            return hscrollMap.Value;
+        }
+
+        private int GetScrollY()
+        {
+            return vscrollMap.Maximum - vscrollMap.Value;
+        }
+
+        // returns true if we selected a new object
+        private bool SelectObjectAtPosition(int x, int y)
+        {
+            return map.SelectObjectAtPosition(x, y, GetScrollX(), GetScrollY(), 
+                                              pbxLevelDisplay.Width, pbxLevelDisplay.Height   );
         }
 
         new private void MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                middle_mouse_down = false;
+                right_mouse_down = false;
             }
         }
 
@@ -177,7 +217,7 @@ namespace Ninjeditor
         {
             const int mouse_scroll_speed = 5;
 
-            if (middle_mouse_down == true)
+            if (right_mouse_down == true)
             {
                 SafeSetScrollX(mouse_scroll_x + ((e.X - mouse_down_x)*mouse_scroll_speed));
                 SafeSetScrollY(mouse_scroll_y + ((e.Y - mouse_down_y)*mouse_scroll_speed));
@@ -193,6 +233,17 @@ namespace Ninjeditor
         private void SafeSetScrollY(int val)
         {
             vscrollMap.Value = Math.Max(Math.Min(val, vscrollMap.Maximum), 0);
+        }
+
+        private void OnPbxSizeChange(object sender, EventArgs e)
+        {
+            UpdateLevelSize();
+        }
+
+        private void OnLayerChanged(object sender, EventArgs e)
+        {
+            map.SelectedLayer = (MapLayer)map.Layers[lbLayers.SelectedIndex];
+            Draw(pbxLevelDisplay.CreateGraphics());
         }
     }
 }

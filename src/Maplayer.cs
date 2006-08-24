@@ -12,9 +12,11 @@ namespace Ninjeditor
     {
         #region "Private vars"
 
-        private ArrayList mapObjects = null;
-        private float scroll_speed = 1.0f;
-        private string name = "Unnamed Layer";
+        protected ArrayList mapObjects = null;
+        protected float scroll_speed = 1.0f;
+        protected string name = "Unnamed Layer";
+
+        protected bool isSelected = false;
 
         #endregion
 
@@ -55,7 +57,46 @@ namespace Ninjeditor
                 scroll_speed = value;
             }
         }
-#endregion
+
+        public bool Selected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+            }
+        }
+
+        // Returns the selected MapObject or NULL if nothing is selected
+        public MapObject SelectedObject
+        {
+            get
+            {
+                if (mapObjects == null)
+                    return null;
+
+                foreach (MapObject obj in mapObjects)
+                    if (obj != null && obj.Selected)
+                        return obj;
+
+                return null;
+            }
+            set
+            {
+                // unselect current object
+                MapObject selectedObj = (MapObject)SelectedObject;
+                if (selectedObj != null)
+                    selectedObj.Selected = false;
+
+                // select new one
+                value.Selected = true;
+            }
+        }
+
+        #endregion
 
         #region "Public Methods"
         public void Clear()
@@ -128,5 +169,32 @@ namespace Ninjeditor
         }
 
         #endregion
+
+        public bool SelectObjectAtPosition
+            (   int mouse_x, int mouse_y, 
+                int scroll_x, int scroll_y, 
+                int screen_w, int screen_h)
+        {
+            int world_x = 0, world_y = 0;
+
+            // Get the world coordinates, store in world_x, world_y
+            Map.TransformFromScreenToWorld(
+                mouse_x, mouse_y,
+                screen_w, screen_h,
+                scroll_x, scroll_y,
+                ref world_x, ref world_y    );
+
+            // See if this point matches an object
+            foreach (MapObject obj in mapObjects)
+            {
+                if (obj.ContainsPoint(world_x, world_y))
+                {
+                    SelectedObject = obj;
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

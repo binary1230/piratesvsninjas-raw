@@ -12,8 +12,10 @@ namespace Ninjeditor
         #region "Private vars"
 
         // The object definition (e.g. 'red-flower' 'wall3' 'palm-tree' etc)
-        private MapObjectDefinition objectDefinition;
-        private int m_x, m_y;
+        protected MapObjectDefinition objectDefinition = null;
+
+        protected int m_x = 0, m_y = 0;
+        protected bool isSelected = false;
 
         #endregion
 
@@ -67,12 +69,28 @@ namespace Ninjeditor
                 return objectDefinition.Height;
             }
         }
-#endregion
+
+        public bool Selected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+            }
+        }
+
+        #endregion
 
         #region "Public Methods"
+
         public void Clear()
         {
             m_x = m_y = 0;
+            isSelected = false;
+            objectDefinition = null;
         }
 
         public void New()
@@ -80,26 +98,53 @@ namespace Ninjeditor
             Clear();
         }
 
+        // Returns true if this object contains the specified point
+        public bool ContainsPoint(int x, int y)
+        {
+            return (m_x < x && x < m_x + Width &&
+                    m_y < y && y < m_y + Height);
+        }
+
+        public void DrawRect(Graphics g, int scroll_x, int scroll_y, int screen_w, int screen_h)
+        {
+            // Will hold the final transformed coordinates
+            int transformed_x = 0, transformed_y = 0;
+
+            // Compute the screen coordinates from the world coordinates
+            Map.TransformFromWorldToScreen
+                (   this, g,
+                    scroll_x, scroll_y,
+                    screen_w, screen_h,
+                    ref transformed_x, ref transformed_y);
+
+            Pen pen = new Pen(Color.White);
+
+            g.DrawRectangle(pen, new Rectangle(transformed_x, transformed_y, (int)Width, (int)Height));
+        }
+
         // Draw this MapObject in it's current location
         public void Draw(Graphics g, int scroll_x, int scroll_y, int screen_w, int screen_h)
         {
-            int x = m_x - scroll_x;
-            int y = m_y - scroll_y;
+            // Will hold the final transformed coordinates
+            int transformed_x = 0, transformed_y = 0;
 
-            y = screen_h - y - (int)Height;
+            // Compute the screen coordinates from the world coordinates
+            Map.TransformFromWorldToScreen
+                (   this, g, 
+                    scroll_x, scroll_y, 
+                    screen_w, screen_h,
+                    ref transformed_x, ref transformed_y);
 
+            // Setup color key to make pink (0xff00ff) a transparent color
             ImageAttributes ia = new ImageAttributes();
             Bitmap image = objectDefinition.Image;
-
             Color c = Color.FromArgb(255, 255, 0, 255);
             ia.SetColorKey(c, c);
 
-            // Bitmap compatible = new Bitmap(Width, Height);
-
-            g.DrawImage(image, new Rectangle(x, y, (int)Width, (int)Height),
-            0, 0,
-            Width, Height,
-            GraphicsUnit.Pixel, ia);
+            // Draw the image
+            g.DrawImage(    image, new Rectangle(transformed_x, transformed_y, 
+                            (int)Width, (int)Height), 0, 0, 
+                            Width, Height, GraphicsUnit.Pixel, ia               );
         }
 
         #endregion
@@ -109,13 +154,6 @@ namespace Ninjeditor
         // objectDefinitions - a list of loaded object Definitions (NOT TO BE MODIFIED)
         public void LoadFromXML(XmlNode xObject, MapObjectDefinitionList objectDefinitions)
         {
-            //<object objectDef="s_sign_arrow">
-            //  <position type="fixed">
-			//      <x>30</x>
-            //      <y>20</y>
-            //  </position>
-            //</object>
-
             string objectDefName;
 
             try
