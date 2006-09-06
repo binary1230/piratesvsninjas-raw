@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<objectDef name="floor2" type="Background">
+<objectDef name="floor2" type="Static">
 	<animations default="default">
 		<animation name="default">
 			<frames>
@@ -11,6 +11,6 @@
 		</animation>
 	</animations>
 	<properties>
-		<!-- <scroll /> -->
+		<solidObject />
 	</properties>
 </objectDef>

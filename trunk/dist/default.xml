@@ -15,6 +15,7 @@
 
 	<mode_file>menu.xml</mode_file>
 	<mode_file>level1.xml</mode_file>
+	<mode_file>level2.xml</mode_file>
 	<mode_file>credits.xml</mode_file>
 	
 	<!--<mode_file id=2>modes/level_test.xml</mode_file>

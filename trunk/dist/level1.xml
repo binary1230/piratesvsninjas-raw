@@ -208,9 +208,18 @@
 			<x>1350</x><y>475</y></position></object>
 			<object objectDef="ring"><position type="fixed">
 			<x>1400</x><y>450</y></position></object>
-
-
 			
+			<!-- random rings, EVERYWHERE -->
+			<!--<repeat times="500">
+				<object objectDef="ring">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>0</ymin><ymax>1100</ymax>
+					</position>
+				</object>
+			</repeat>
+			-->
+
 			<!-- midlevel stuff -->			
 			<object objectDef="ring"><position type="fixed">
 			<x>1750</x><y>400</y></position></object>

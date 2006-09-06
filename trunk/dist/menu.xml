@@ -12,7 +12,7 @@
 
 	<ypositions>
 		<ypos>142<action>NewGame</action></ypos>
-		<ypos>167<disabled></ypos>
+		<ypos>167<disabled /></ypos>
 		<ypos>193<action>Quit</action></ypos>
 	</ypositions>
 

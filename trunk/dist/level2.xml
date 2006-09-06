@@ -3,6 +3,7 @@
 
 <gameMode type="simulation" name="Level 2 - Sonic Desert Run">
 
+	<music>level2.ogg</music>
 	<info>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
@@ -10,7 +11,7 @@
 	</info>
 
 	<properties>
-		<width>1000</width>
+		<width>1500</width>
 		<height>6000</height>
 		<camera_x>0</camera_x>
 		<camera_y>0</camera_y>
@@ -19,20 +20,18 @@
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
 		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
-		<include_xml_file>objects/obj_tails.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_bg_lava.xml</include_xml_file>
 		<include_xml_file>objects/obj_bg_lava2.xml</include_xml_file>
 		
-		<include_xml_file>objects/obj_floor.xml</include_xml_file>
 		<include_xml_file>objects/obj_floor2.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos --> 
 		<include_xml_file>objects/obj_controller.xml</include_xml_file>
 	
 		<!-- various scenery -->
+		<include_xml_file>objects/door.xml</include_xml_file>
 		<include_xml_file>objects/obj_s_palm_tall.xml</include_xml_file>
 		<include_xml_file>objects/flower1.xml</include_xml_file>
 		<include_xml_file>objects/flower2.xml</include_xml_file>
@@ -48,34 +47,8 @@
 
 	<map>
 		<layer scroll_speed="0.15f" name="background">
-			
-			<object objectDef="block3"><position type="fixed">
-			<x>200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>400</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>600</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>800</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1000</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1400</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1600</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1800</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2000</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2400</x><y>0</y></position></object>
-
 			<object objectDef="background-lava">
-				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom /></position>
+				<position type="fixed">	<x>0</x> <y>0</y> </position>
 			</object>
 
 			<!-- plane flying around in the back -->
@@ -91,75 +64,83 @@
 		<layer scroll_speed="0.65f" name="background">
 				
 			<object objectDef="background-lava2">
-				<position type="fixed">	<x>0</x> <y>0</y> <alignBottom /></position>
+				<position type="fixed">	<x>0</x> <y>0</y> </position>
 			</object>
 
 		</layer>
 
 		<layer scroll_speed="1.0f" name="bg_objects">	
 
-			<!-- FYI, y = 42 is the floor height -->
-			<repeat>10
+			<object objectDef="floor2"><position type="fixed">
+			<x>0  </x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>129</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>258</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>387</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>516</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>645</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>774</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>903</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>1032</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>1161</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>1290</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>1419</x><alignTop/><y>30</y></position></object>
+			<object objectDef="floor2"><position type="fixed">
+			<x>1548</x><alignTop/><y>30</y></position></object>
+
+			<repeat times=10>
 				<object objectDef="s_siren">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
-						<ymin>20</ymin><ymax>20</ymax>
-						<alignBottom />
+						<ymin>30</ymin><ymax>30</ymax>
+						
 					</position>
 				</object>
 			</repeat>
 
 			<object objectDef="s_sign_arrow"><position type="fixed">
-			<x>30</x><y>20</y><alignBottom /></position></object>
+			<x>30</x><y>30</y></position></object>
 			
+			<object objectDef="door"><position type="fixed">
+			<x>1300</x><y>30</y></position></object>
+
 			<object objectDef="s_sign_arrow"><position type="fixed">
-			<x>1000</x><y>20</y><alignBottom /></position></object>
+			<x>1000</x><y>30</y></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
-			<x>1100</x><y>20</y><alignBottom /></position></object>
+			<x>1100</x><y>30</y></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
-			<x>1200</x><y>20</y><alignBottom /></position></object>
+			<x>1200</x><y>30</y></position></object>	
 			
 			<object objectDef="s_sign_haha"><position type="fixed">
-			<x>2380</x><y>20</y><alignBottom /></position></object>
+			<x>2380</x><y>30</y></position></object>
 			<object objectDef="s_sign_credits"><position type="fixed">
-			<x>2442</x><y>20</y><alignBottom /></position></object>
+			<x>2442</x><y>30</y></position></object>
 			
 			<object objectDef="s_totem1"><position type="fixed">
-			<x>2544</x><y>20</y><alignBottom /></position></object>
+			<x>2544</x><y>30</y></position></object>
 			<object objectDef="s_totem1"><position type="fixed">
-			<x>2544</x><y>84</y><alignBottom /></position></object>
+			<x>2544</x><y>94</y></position></object>
 			
-			<!-- tails flying around -->
-			<object objectDef="tails">
-				<position type="random"> 
-					<xmin>0</xmin> <xmax>200</xmax>
-					<ymin>0</ymin> <ymax>200</ymax>
-				</position>
-			</object>
-
 		</layer>
 
 		<layer scroll_speed="1.0f" name="foreground">
 			<object objectDef="sonic">
 				<position type="fixed">	
-					<x>20</x> <y>20</y>
+					<x>20</x> <y>200</y>
 				</position>
-
 				<inputController>1</inputController>
 				<cameraFollow />
 			</object>
-	
-			<object objectDef="sonicx">
-				<position type="fixed">	<x>42</x> <y>300</y> </position>
-				<inputController>2</inputController>
-			</object>
-
-			<object objectDef="floor2">
-				<position type="fixed"> 
-					<x>0</x> <y>29</y>
-				</position>
-			</object>
-
 		</layer>
 
 		<layer scroll_speed="1.0f" name="overlays">
@@ -173,22 +154,22 @@
 		</layer>
 
 		<!--<layer scroll_speed="1.5f" name="foreground_fast">
-			<repeat>20
+			<repeat times=20>
 				<object objectDef="s_flower1">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>-42</ymin><ymax>0</ymax>
-						<alignBottom />
+						
 					</position>
 				</object>
 			</repeat>
 
-			<repeat>20
+			<repeat times=20>
 				<object objectDef="s_flower2">
 					<position type="random">
 						<xmin>0</xmin><xmax>25000</xmax>
 						<ymin>-30</ymin><ymax>0</ymax>
-						<alignBottom />
+						
 					</position>
 				</object>
 			</repeat>
