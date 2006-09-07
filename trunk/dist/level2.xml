@@ -11,10 +11,16 @@
 	</info>
 
 	<properties>
-		<width>1500</width>
+		<width>10000</width>
 		<height>6000</height>
 		<camera_x>0</camera_x>
 		<camera_y>0</camera_y>
+		<bgcolor>
+			<r>91</r>
+			<g>29</g>
+			<b>39</b>
+		</bgcolor>
+
 	</properties>
 	
 	<objectDefinitions>
@@ -26,6 +32,7 @@
 		<include_xml_file>objects/obj_bg_lava2.xml</include_xml_file>
 		
 		<include_xml_file>objects/obj_floor2.xml</include_xml_file>
+		<include_xml_file>objects/floor3_a.xml</include_xml_file>
 		
 		<!-- shows a controler, used during demos --> 
 		<include_xml_file>objects/obj_controller.xml</include_xml_file>
@@ -71,49 +78,34 @@
 
 		<layer scroll_speed="1.0f" name="bg_objects">	
 
-			<object objectDef="floor2"><position type="fixed">
-			<x>0  </x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>129</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>258</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>387</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>516</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>645</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>774</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>903</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>1032</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>1161</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>1290</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>1419</x><alignTop/><y>30</y></position></object>
-			<object objectDef="floor2"><position type="fixed">
-			<x>1548</x><alignTop/><y>30</y></position></object>
+			<repeat times="200">
+				<starting_x>0</starting_x>
+				<starting_y>30</starting_y>
+				
+				<object objectDef="floor2">
+					<position type="offset">
+						<x_offset>129	</x_offset>
+						<y_offset>0	</y_offset>
+						<alignTop/>
+					</position>
+				</object>
+			</repeat>
 
 			<repeat times=10>
 				<object objectDef="s_siren">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>30</ymin><ymax>30</ymax>
-						
 					</position>
 				</object>
 			</repeat>
 
+			<object objectDef="floor3_a"><position type="fixed">
+			<x>0</x><y>5000</y><alignTop/></position></object>
+			
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>30</x><y>30</y></position></object>
 			
-			<object objectDef="door"><position type="fixed">
-			<x>1300</x><y>30</y></position></object>
-
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>1000</x><y>30</y></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
@@ -136,7 +128,8 @@
 		<layer scroll_speed="1.0f" name="foreground">
 			<object objectDef="sonic">
 				<position type="fixed">	
-					<x>20</x> <y>200</y>
+					<x>22</x> <y>5000</y>
+					<vely>20</vely>
 				</position>
 				<inputController>1</inputController>
 				<cameraFollow />
@@ -146,7 +139,6 @@
 		<layer scroll_speed="1.0f" name="overlays">
 			<object objectDef="controller">
 				<position type="fixed">	<x>5</x> <y>5</y> 
-						<!--<alignScreenRight />-->
 						<alignScreenRight />
 				</position>
 				<inputController>1</inputController>
