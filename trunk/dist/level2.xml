@@ -104,6 +104,13 @@
 			<x>0</x><y>5000</y><alignTop/></position></object>
 			
 			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>4930</x><y>30</y></position></object>
+			<object objectDef="door"><position type="fixed">
+			<x>5000</x><y>30</y></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<flipx/><x>5070</x><y>30</y></position></object>
+			
+			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>30</x><y>30</y></position></object>
 			
 			<object objectDef="s_sign_arrow"><position type="fixed">
