@@ -40,6 +40,7 @@
 		<include_xml_file>objects/flower1.xml</include_xml_file>
 		<include_xml_file>objects/flower2.xml</include_xml_file>
 		<include_xml_file>objects/fan.xml</include_xml_file>
+		<include_xml_file>objects/cloud.xml</include_xml_file>
 		<include_xml_file>objects/door.xml</include_xml_file>
 		<include_xml_file>objects/plane.xml</include_xml_file>
 		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
@@ -210,7 +211,7 @@
 			<x>1400</x><y>450</y></position></object>
 			
 			<!-- random rings, EVERYWHERE -->
-			<!--<repeat times="500">
+			<repeat times="1000">
 				<object objectDef="ring">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
@@ -218,7 +219,6 @@
 					</position>
 				</object>
 			</repeat>
-			-->
 
 			<!-- midlevel stuff -->			
 			<object objectDef="ring"><position type="fixed">
@@ -478,6 +478,31 @@
 				</object>
 			</repeat>
 
+			<repeat times="120">
+				<object objectDef="cloud">
+					<position type="random">
+						<xmin>0</xmin><xmax>3000</xmax>
+						<ymin>1000</ymin><ymax>6000</ymax>
+					</position>
+					<alpha>128</alpha>
+				</object>
+			</repeat>
+			
+			<repeat times="30">
+				<object objectDef="cloud">
+					<position type="random">
+						<xmin>0</xmin><xmax>3000</xmax>
+						<ymin>1000</ymin><ymax>2000</ymax>
+					</position>
+					<alpha>128</alpha>
+				</object>
+			</repeat>
+
+			<object objectDef="cloud">
+				<position type="fixed">	<x>3500</x> <y>50</y> </position>
+					<alpha>128</alpha>
+				</object>
+
 		</layer>
 
 		<layer scroll_speed="1.0" name="overlays">
@@ -490,9 +515,9 @@
 				<position type="fixed">
 					<x>0</x><y>-160</y> 
 					<velx>0.0f</velx><vely>7.0f</vely>
-					<fadeout>60</fadeout>
 				</position>
 			</object>
+			
 			<object objectDef="opener2">
 				<position type="fixed">
 					<x>200</x><y>0</y> 
