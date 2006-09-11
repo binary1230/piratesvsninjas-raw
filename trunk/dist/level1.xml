@@ -46,6 +46,9 @@
 		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
 		<include_xml_file>objects/sign-haha.xml</include_xml_file>
 		<include_xml_file>objects/sign-credits.xml</include_xml_file>
+		<include_xml_file>objects/sign-up.xml</include_xml_file>
+		<include_xml_file>objects/sign-leftright.xml</include_xml_file>
+		<include_xml_file>objects/sign-jump.xml</include_xml_file>
 		<include_xml_file>objects/totem1.xml</include_xml_file>
 		
 		<include_xml_file>objects/opener1.xml</include_xml_file>
@@ -376,9 +379,6 @@
 			<object objectDef="s_totem1"><position type="fixed">
 			<x>1800</x><y>3400</y></position></object>
 
-			<object objectDef="s_sign_credits"><position type="fixed">
-			<x>1840</x><y>3400</y></position></object>
-
 			<object objectDef="greenblock"><position type="fixed">
 			<x>1550</x><y>3300</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">
@@ -425,9 +425,20 @@
 			
 			<object objectDef="greenblock"><position type="fixed">
 			<x>1700</x><y>3500</y></position></object>
+
+			<object objectDef="s_sign_credits"><position type="fixed">
+			<x>1840</x><y>3400</y></position></object>
+			<object objectDef="sign_up"><position type="fixed">
+			<x>1600</x><y>3400</y></position></object>
 			
 			<object objectDef="door"><position type="fixed">
 			<x>1705</x><y>3400</y></position></object>
+
+			<object objectDef="sign_left_right"><position type="fixed">
+			<x>2400</x><y>20</y></position></object>
+			
+			<object objectDef="sign_jump"><position type="fixed">
+			<x>500</x><y>20</y></position></object>
 		</layer>
 
 		<layer scroll_speed="1.0" name="foreground">
@@ -484,7 +495,7 @@
 						<xmin>0</xmin><xmax>3000</xmax>
 						<ymin>1000</ymin><ymax>6000</ymax>
 					</position>
-					<alpha>128</alpha>
+					<!--<alpha>128</alpha>-->
 				</object>
 			</repeat>
 			
@@ -494,15 +505,9 @@
 						<xmin>0</xmin><xmax>3000</xmax>
 						<ymin>1000</ymin><ymax>2000</ymax>
 					</position>
-					<alpha>128</alpha>
+					<!--<alpha>128</alpha>-->
 				</object>
 			</repeat>
-
-			<object objectDef="cloud">
-				<position type="fixed">	<x>3500</x> <y>50</y> </position>
-					<alpha>128</alpha>
-				</object>
-
 		</layer>
 
 		<layer scroll_speed="1.0" name="overlays">
