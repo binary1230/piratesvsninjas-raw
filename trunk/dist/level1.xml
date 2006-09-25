@@ -50,6 +50,7 @@
 		<include_xml_file>objects/sign-leftright.xml</include_xml_file>
 		<include_xml_file>objects/sign-jump.xml</include_xml_file>
 		<include_xml_file>objects/totem1.xml</include_xml_file>
+		<include_xml_file>objects/skid.xml</include_xml_file>
 		
 		<include_xml_file>objects/opener1.xml</include_xml_file>
 		<include_xml_file>objects/opener2.xml</include_xml_file>
@@ -214,14 +215,14 @@
 			<x>1400</x><y>450</y></position></object>
 			
 			<!-- random rings, EVERYWHERE -->
-			<repeat times="1000">
+			<!--<repeat times="1000">
 				<object objectDef="ring">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>0</ymin><ymax>1100</ymax>
 					</position>
 				</object>
-			</repeat>
+			</repeat>-->
 
 			<!-- midlevel stuff -->			
 			<object objectDef="ring"><position type="fixed">
@@ -512,7 +513,11 @@
 
 		<layer scroll_speed="1.0" name="overlays">
 			<object objectDef="controller">
-				<position type="fixed">	<x>125</x> <y>5</y> </position>
+				<position type="fixed">	
+					<alignRight/>
+					<x>5</x> 
+					<y>5</y> 
+				</position>
 				<inputController>1</inputController>
 			</object>
 

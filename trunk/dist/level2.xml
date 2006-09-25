@@ -47,6 +47,7 @@
 		<include_xml_file>objects/sign-haha.xml</include_xml_file>
 		<include_xml_file>objects/sign-credits.xml</include_xml_file>
 		<include_xml_file>objects/totem1.xml</include_xml_file>
+		<include_xml_file>objects/skid.xml</include_xml_file>
 		
 		<include_xml_file>objects/siren.xml</include_xml_file>
 
@@ -145,8 +146,9 @@
 
 		<layer scroll_speed="1.0f" name="overlays">
 			<object objectDef="controller">
-				<position type="fixed">	<x>5</x> <y>5</y> 
-						<alignScreenRight />
+				<position type="fixed">	
+						<x>5</x> <y>5</y> 
+						<alignRight />
 				</position>
 				<inputController>1</inputController>
 			</object>
