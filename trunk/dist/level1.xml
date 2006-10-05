@@ -55,6 +55,7 @@
 		
 		<include_xml_file>objects/opener1.xml</include_xml_file>
 		<include_xml_file>objects/opener2.xml</include_xml_file>
+		<include_xml_file>objects/txt_test.xml</include_xml_file>
 
 		<!-- interactive things -->
 		<include_xml_file>objects/spring.xml</include_xml_file>
@@ -453,11 +454,12 @@
 				<inputController>1</inputController>
 				<cameraFollow />
 			</object>
-	
-			<!--<object objectDef="sonicx">
+
+			<!--<object objectDef="sonic">
 				<position type="fixed">	
-					<x>0</x> <y>0</y> 
-					<velx>10</velx>
+					<x>2400</x> <y>50</y>
+					<velx>0</velx>
+					<vely>0</vely>
 				</position>
 				<inputController>2</inputController>
 			</object>-->
@@ -534,6 +536,14 @@
 					<x>200</x><y>0</y> 
 					<velx>-7.0f</velx><vely>0.0f</vely>
 					<fadeout>60</fadeout>
+				</position>
+			</object>
+
+			<!--
+			-->
+			<object objectDef="txt_test">
+				<position type="fixed">
+					<x>0</x><y>0</y>
 				</position>
 			</object>
 
