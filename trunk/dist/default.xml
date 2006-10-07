@@ -13,6 +13,8 @@
 	     line (e.g. ninjas.exe -m 1) -->
 	<!-- ID's must be > 0 -->
 
+	<!--
+	-->
 	<mode_file>menu.xml</mode_file>
 	<mode_file>level1.xml</mode_file>
 	<mode_file>level2.xml</mode_file>

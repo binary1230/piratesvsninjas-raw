@@ -51,6 +51,7 @@
 		<include_xml_file>objects/ball.xml</include_xml_file>
 		
 		<include_xml_file>objects/siren.xml</include_xml_file>
+		<include_xml_file>objects/txt_test.xml</include_xml_file>
 
 	</objectDefinitions>
 
@@ -153,6 +154,15 @@
 				</position>
 				<inputController>1</inputController>
 			</object>
+
+			<object objectDef="txt_test">
+				<position type="fixed">
+					<x>0</x><y>0</y>
+				</position>
+				<text>Yea...|Level2 doesn't really|do much yet...| |Press C to start.</text>
+				<avatar>alien.png</avatar>
+			</object>
+
 		</layer>
 
 		<!--<layer scroll_speed="1.5f" name="foreground_fast">

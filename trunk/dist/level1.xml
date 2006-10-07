@@ -539,12 +539,12 @@
 				</position>
 			</object>
 
-			<!--
-			-->
 			<object objectDef="txt_test">
 				<position type="fixed">
 					<x>0</x><y>0</y>
 				</position>
+				<text>Dom says||Welcome to|Pirates VS Ninjas.| |Woo! Tangent!|Press C to start.</text>
+				<avatar>alien.png</avatar>
 			</object>
 
 		</layer>
