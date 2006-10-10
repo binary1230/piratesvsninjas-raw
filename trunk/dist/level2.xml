@@ -13,7 +13,7 @@
 	<properties>
 		<width>10000</width>
 		<height>6000</height>
-		<camera_x>0</camera_x>
+		<camera_x>10000</camera_x>
 		<camera_y>0</camera_y>
 		<bgcolor>
 			<r>91</r>
@@ -49,6 +49,7 @@
 		<include_xml_file>objects/totem1.xml</include_xml_file>
 		<include_xml_file>objects/skid.xml</include_xml_file>
 		<include_xml_file>objects/ball.xml</include_xml_file>
+		<include_xml_file>objects/cloud.xml</include_xml_file>
 		
 		<include_xml_file>objects/siren.xml</include_xml_file>
 		<include_xml_file>objects/txt_test.xml</include_xml_file>
@@ -159,9 +160,20 @@
 				<position type="fixed">
 					<x>0</x><y>0</y>
 				</position>
-				<text>Yea...|Level2 doesn't really|do much yet...| |Press C to start.</text>
+				<text>You found the cosmic|door, nice.~Not exactly sure|where we are now.~Way to go.| | |Anyway something else..~Woo, tangent~Yea...|Level2 doesn't really|do much yet...| |Press C to start.~And what exactly is|that you're standing|in?</text>
 				<avatar>alien.png</avatar>
 			</object>
+
+			<repeat times="1200">
+				<object objectDef="cloud">
+					<position type="random">
+						<xmin>0</xmin><xmax>10000</xmax>
+						<ymin>1000</ymin><ymax>6000</ymax>
+					</position>
+					<!--<alpha>128</alpha>-->
+				</object>
+			</repeat>
+
 
 		</layer>
 
