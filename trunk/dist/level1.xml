@@ -44,6 +44,7 @@
 		<include_xml_file>objects/door.xml</include_xml_file>
 		<include_xml_file>objects/plane.xml</include_xml_file>
 		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>objects/sign-arrow-up.xml</include_xml_file>
 		<include_xml_file>objects/sign-haha.xml</include_xml_file>
 		<include_xml_file>objects/sign-credits.xml</include_xml_file>
 		<include_xml_file>objects/sign-up.xml</include_xml_file>
@@ -58,8 +59,8 @@
 		<include_xml_file>objects/txt_test.xml</include_xml_file>
 
 		<!-- interactive things -->
-		<include_xml_file>objects/spring.xml</include_xml_file>
-		<include_xml_file>objects/spring-crazy.xml</include_xml_file>
+		<include_xml_file>objects/spring-up.xml</include_xml_file>
+		<include_xml_file>objects/spring-right.xml</include_xml_file>
 		<include_xml_file>objects/ring.xml</include_xml_file>
 	</objectDefinitions>
 
@@ -105,6 +106,9 @@
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>30</x><y>20</y></position></object>
 			
+			<object objectDef="s_sign_arrow_up"><position type="fixed">
+			<x>600</x><y>20</y></position></object>
+			
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<flipx/><x>1000</x><y>20</y></position></object>
 			<object objectDef="s_sign_arrow"><position type="fixed">
@@ -131,33 +135,17 @@
 			<object objectDef="smallblock"><position type="fixed">
 			<x>200</x><y>20</y></position></object>
 			
-			<object objectDef="block3"><position type="fixed">
-			<x>0</x><y>0</y></position></object>
-
-			<object objectDef="block3"><position type="fixed">
-			<x>200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>400</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>600</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>800</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1000</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1400</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1600</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>1800</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2000</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2200</x><y>0</y></position></object>
-			<object objectDef="block3"><position type="fixed">
-			<x>2400</x><y>0</y></position></object>
+			<!-- the level floor -->
+			<repeat times=13>
+				<starting_x>0</starting_x>
+				<starting_y>0</starting_y>
+				<object objectDef="block3">
+					<position type="offset">
+						<x_offset>200</x_offset>
+						<y_offset>0</y_offset>
+					</position>
+				</object>
+			</repeat>
 			
 			<object objectDef="greenblock"><position type="fixed">
 			<x>300</x><y>20</y></position></object>
@@ -228,6 +216,21 @@
 			</repeat>
 			-->
 
+			<repeat times=7>
+				<starting_x>1250</starting_x>
+				<starting_y>290</starting_y>
+				<object objectDef="spring-up">
+					<position type="offset">
+						<x_offset>50</x_offset>
+						<y_offset>0</y_offset>
+					</position>
+					<springDirection><x>0</x><y>20</y></springDirection>
+				</object>
+			</repeat>
+			<!--
+			-->
+
+
 			<!-- midlevel stuff -->			
 			<object objectDef="ring"><position type="fixed">
 			<x>1750</x><y>400</y></position></object>
@@ -250,13 +253,16 @@
 			<x>1990</x><y>350</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">
 			<x>2190</x><y>350</y></position></object>
+			<object objectDef="spring-up"><position type="fixed">
+			<x>2200</x><y>400</y></position>
+			<springDirection><x>0</x><y>40</y></springDirection>
+			</object>
 			
-			<object objectDef="spring"><position type="fixed">
-			<x>2200</x><y>400</y></position></object>
-
 			<!-- really high -->
-			<object objectDef="spring-crazy"><position type="fixed">
-			<x>2500</x><y>640</y></position></object>
+			<object objectDef="spring-up"><position type="fixed">
+			<x>2500</x><y>640</y></position>
+			<springDirection><x>0</x><y>72</y></springDirection>
+			</object>
 			<object objectDef="block3"><position type="fixed">
 			<x>2300</x><y>600</y></position></object>
 			<object objectDef="greenblock"><position type="fixed">
@@ -327,7 +333,7 @@
 			<object objectDef="greenblock"><position type="fixed">
 			<x>1700</x><y>2050</y></position></object>
 			
-			<object objectDef="spring-crazy"><position type="fixed">
+			<object objectDef="spring-up"><position type="fixed">
 			<x>1700</x><y>2100</y></position>
 			<springDirection><x>0</x><y>90</y></springDirection></object>
 
@@ -383,21 +389,25 @@
 			</repeat>
 			
 			<!-- working -->
-			<object objectDef="spring-crazy">
-			<position type="fixed"><x>1700</x><y>3800</y></position>
+			<object objectDef="spring-up">
+			<position type="fixed"><x>1720</x><y>3800</y></position>
 			<springDirection><x>0</x><y>70</y></springDirection>
 			</object>
 			
-			<object objectDef="spring-crazy">
+			<object objectDef="spring-right">
 			<position type="fixed"><x>1700</x><y>5000</y></position>
 			<springDirection><x>50</x><y>2</y></springDirection>
 			</object>
 
-			<object objectDef="spring-crazy">
-			<position type="fixed"><x>2500</x><y>4500</y></position>
+			<object objectDef="spring-up">
+			<position type="fixed"><x>2500</x><y>4500</y><flipy/></position>
 			<springDirection><x>0</x><y>-50</y></springDirection>
 			</object>
 
+			<object objectDef="spring-right">
+			<position type="fixed"><x>2550</x><y>3600</y><flipx/></position>
+			<springDirection><x>-28</x><y>9</y></springDirection>
+			</object>
 			<!-- end working -->
 
 			<object objectDef="s_totem1"><position type="fixed">
