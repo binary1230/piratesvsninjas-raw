@@ -217,14 +217,16 @@
 			<x>1400</x><y>450</y></position></object>
 			
 			<!-- random rings, EVERYWHERE -->
-			<!--<repeat times="1000">
+			<!--
+			<repeat times="100">
 				<object objectDef="ring">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
 						<ymin>0</ymin><ymax>1100</ymax>
 					</position>
 				</object>
-			</repeat>-->
+			</repeat>
+			-->
 
 			<!-- midlevel stuff -->			
 			<object objectDef="ring"><position type="fixed">
@@ -526,14 +528,14 @@
 
 			<object objectDef="opener1">
 				<position type="fixed">
-					<x>0</x><y>-160</y> 
+					<x>0</x><y>-240</y> 
 					<velx>0.0f</velx><vely>7.0f</vely>
 				</position>
 			</object>
 			
 			<object objectDef="opener2">
 				<position type="fixed">
-					<x>200</x><y>0</y> 
+					<x>320</x><y>0</y> 
 					<velx>-7.0f</velx><vely>0.0f</vely>
 					<fadeout>60</fadeout>
 				</position>
