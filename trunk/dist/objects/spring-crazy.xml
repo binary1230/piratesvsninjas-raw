@@ -14,8 +14,7 @@
 	<sounds>
 		<sound name="spring">sounds/spring.wav</sound>
 	</sounds>
-	<properties>
-		<springStrength>70</springStrength>
-		<solidObject />
-	</properties>
+	<springDirection>
+		<x>0.0</x> <y>70.0</y>
+	</springDirection>
 </objectDef>

@@ -12,7 +12,7 @@
 
 	<properties>
 		<width>2560</width>
-		<height>5000</height>
+		<height>8000</height>
 		<camera_x>0</camera_x>
 		<camera_y>0</camera_y>
 		<bgcolor>
@@ -326,8 +326,11 @@
 
 			<object objectDef="greenblock"><position type="fixed">
 			<x>1700</x><y>2050</y></position></object>
+			
 			<object objectDef="spring-crazy"><position type="fixed">
-			<x>1700</x><y>2100</y></position></object>
+			<x>1700</x><y>2100</y></position>
+			<springDirection><x>0</x><y>90</y></springDirection></object>
+
 			<object objectDef="ring"><position type="fixed">
 			<x>1720</x><y>2400</y></position></object>
 			<object objectDef="ring"><position type="fixed">
@@ -378,6 +381,24 @@
 					<ymin>3300</ymin> <ymax>3350</ymax>
 				</position></object>
 			</repeat>
+			
+			<!-- working -->
+			<object objectDef="spring-crazy">
+			<position type="fixed"><x>1700</x><y>3800</y></position>
+			<springDirection><x>0</x><y>70</y></springDirection>
+			</object>
+			
+			<object objectDef="spring-crazy">
+			<position type="fixed"><x>1700</x><y>5000</y></position>
+			<springDirection><x>50</x><y>2</y></springDirection>
+			</object>
+
+			<object objectDef="spring-crazy">
+			<position type="fixed"><x>2500</x><y>4500</y></position>
+			<springDirection><x>0</x><y>-50</y></springDirection>
+			</object>
+
+			<!-- end working -->
 
 			<object objectDef="s_totem1"><position type="fixed">
 			<x>1610</x><y>3400</y></position></object>
