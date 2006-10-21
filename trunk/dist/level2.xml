@@ -26,6 +26,7 @@
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
 		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_bg_lava.xml</include_xml_file>
@@ -145,6 +146,15 @@
 				<inputController>1</inputController>
 				<cameraFollow />
 			</object>
+
+			<object objectDef="sonic_x">
+				<position type="fixed">	
+					<x>32</x> <y>5400</y>
+					<vely>0</vely>
+				</position>
+				<inputController>2</inputController>
+			</object>
+
 		</layer>
 
 		<layer scroll_speed="1.0f" name="overlays">

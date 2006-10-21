@@ -25,6 +25,7 @@
 	<objectDefinitions>
 		<!-- the IMPORTANT game objects -->
 		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_background.xml</include_xml_file>
@@ -478,6 +479,15 @@
 		</layer>
 
 		<layer scroll_speed="1.0" name="foreground">
+			<object objectDef="sonic_x">
+				<position type="fixed">	
+					<x>2400</x> <y>60</y>
+					<velx>0</velx>
+					<vely>0</vely>
+				</position>
+				<inputController>2</inputController>
+			</object>
+
 			<object objectDef="sonic">
 				<position type="fixed">	
 					<x>2500</x> <y>50</y>
