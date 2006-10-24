@@ -171,7 +171,7 @@
 					<x>0</x><y>0</y>
 				</position>
 				<text>You found the cosmic|door, nice.~Not exactly sure|where we are now.~Way to go.| | |Anyway something else..~Woo, tangent~Yea...|Level2 doesn't really|do much yet...| |Press C to start.~And what exactly is|that you're standing|in?</text>
-				<avatar>alien.png</avatar>
+				<avatar>amaya_avatar.png</avatar>
 			</object>
 
 			<repeat times="1200">
