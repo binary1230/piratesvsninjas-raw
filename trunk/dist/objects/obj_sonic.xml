@@ -7,15 +7,15 @@
 	
 		<animation name="walking">
 			<frames>
-				<img name="newguy/run1.png" duration="2" />
-				<img name="newguy/run2.png" duration="2" />
-				<img name="newguy/run3.png" duration="2" />
-				<img name="newguy/run4.png" duration="2" />
-				<img name="newguy/run5.png" duration="2" />
-				<img name="newguy/run6.png" duration="2" />
-				<img name="newguy/run7.png" duration="2" />
-				<img name="newguy/run8.png" duration="2" />
-				<img name="newguy/run9.png" duration="2" />
+				<img name="jouten/run1.png" duration="2" />
+				<img name="jouten/run2.png" duration="2" />
+				<img name="jouten/run3.png" duration="2" />
+				<img name="jouten/run4.png" duration="2" />
+				<img name="jouten/run5.png" duration="2" />
+				<img name="jouten/run6.png" duration="2" />
+				<img name="jouten/run7.png" duration="2" />
+				<img name="jouten/run8.png" duration="2" />
+				<img name="jouten/run9.png" duration="2" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -23,7 +23,7 @@
 				
 		<animation name="standing">
 			<frames>
-			<img name="newguy/stand.png" duration="64" />
+			<img name="jouten/stand.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -31,7 +31,7 @@
 
 		<animation name="jumping">
 			<frames>
-				<img name="newguy/jump.png" duration="3" />
+				<img name="jouten/jump.png" duration="3" />
 			</frames>
 			<show_in_order />
 			<repeat />

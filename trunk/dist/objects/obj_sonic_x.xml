@@ -7,15 +7,15 @@
 	
 		<animation name="walking">
 			<frames>
-				<img name="newguy2/run1.png" duration="2" />
-				<img name="newguy2/run2.png" duration="2" />
-				<img name="newguy2/run3.png" duration="2" />
-				<img name="newguy2/run4.png" duration="2" />
-				<img name="newguy2/run5.png" duration="2" />
-				<img name="newguy2/run6.png" duration="2" />
-				<img name="newguy2/run7.png" duration="2" />
-				<img name="newguy2/run8.png" duration="2" />
-				<img name="newguy2/run9.png" duration="2" />
+				<img name="toneriko/run1.png" duration="2" />
+				<img name="toneriko/run2.png" duration="2" />
+				<img name="toneriko/run3.png" duration="2" />
+				<img name="toneriko/run4.png" duration="2" />
+				<img name="toneriko/run5.png" duration="2" />
+				<img name="toneriko/run6.png" duration="2" />
+				<img name="toneriko/run7.png" duration="2" />
+				<img name="toneriko/run8.png" duration="2" />
+				<img name="toneriko/run9.png" duration="2" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -23,7 +23,7 @@
 				
 		<animation name="standing">
 			<frames>
-			<img name="newguy2/stand.png" duration="64" />
+			<img name="toneriko/stand.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />
@@ -31,7 +31,7 @@
 
 		<animation name="jumping">
 			<frames>
-				<img name="newguy2/jump.png" duration="3" />
+				<img name="toneriko/jump.png" duration="3" />
 			</frames>
 			<show_in_order />
 			<repeat />
