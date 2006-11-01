@@ -170,8 +170,8 @@
 				<position type="fixed">
 					<x>0</x><y>0</y>
 				</position>
-				<text>You found the cosmic|door, nice.~Not exactly sure|where we are now.~Way to go.| | |Anyway something else..~Woo, tangent~Yea...|Level2 doesn't really|do much yet...| |Press C to start.~And what exactly is|that you're standing|in?</text>
-				<avatar>amaya_avatar.png</avatar>
+				<text>You found the|"cosmic door".| |Huzzah.~As a reward, I'll|tell you a little|secret.  If you press|the "D" key,|you will drop little|airballs.~Don't ask me why|Jouten can do it.|He's just a|tech guy.~I mean, Toneriko|is understandable,|since she's...| |Oops.|No plot for you yet!~Anyway, press "C"|to start.  Try and|find that "cosmic|door" again.</text>
+				<avatar>amaya-icon.png</avatar>
 			</object>
 
 			<repeat times="1200">
