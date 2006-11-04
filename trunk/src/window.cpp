@@ -67,14 +67,16 @@ void GameWindow::DrawRect(	int x1, int y1,
 // HACK HACK HACK - get this from somewhere!!
 #define FONT_HEIGHT 10
 
-void GameWindow::DrawText(int x, int y, CString text) {
+void GameWindow::DrawText(int x, int y, CString text, int col) {
 	vector<CString> lines;
 	StringSplit(text, OBJECT_TXT_LINE_DELIM, lines);
 	int i, max = lines.size();
 
 	int _x = x;
 	int _y = y;
-	int col = makecol(255,255,255);	// white text color
+
+	if (col == -1)
+		col = makecol(255,255,255);	
 
 	glLoadIdentity();
 	for (i = 0; i < max; i++) {

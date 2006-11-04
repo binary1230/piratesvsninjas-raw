@@ -59,7 +59,7 @@ class GameWindow {
 											GLuint alpha=255);
 	
 		//! Draw text at specified XY
-		void DrawText(int x, int y, CString text);
+		void DrawText(int x, int y, CString text, int col=-1);
 
 		void DrawRect(int x1, int y1, int x2, int y2, int color, bool filled=false);
 

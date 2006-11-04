@@ -17,8 +17,8 @@ typedef unsigned int uint;
 #define Rand(lower, upper) \
 ((rand() % (upper - lower + 1)) + lower)
 
-#define DEFAULT_SCREEN_SIZE_X	320
-#define DEFAULT_SCREEN_SIZE_Y 240
+#define DEFAULT_SCREEN_SIZE_X	640
+#define DEFAULT_SCREEN_SIZE_Y 480
 
 // PACKAGE and VERSION come from autotools (config.h)
 #ifdef HAVE_CONFIG_H
