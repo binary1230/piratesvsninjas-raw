@@ -5,6 +5,7 @@
 		<animation name="default">
 			<frames>
 				<img name="fan0.png" duration="1" />
+				<!--
 				<img name="fan1.png" duration="1" />
 				<img name="fan2.png" duration="1" />
 				<img name="fan3.png" duration="1" />
@@ -20,6 +21,7 @@
 				<img name="fanD.png" duration="1" />
 				<img name="fanE.png" duration="1" />
 				<img name="fanF.png" duration="1" />
+				-->
 			</frames>
 			<show_in_order />
 			<repeat />

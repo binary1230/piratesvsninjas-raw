@@ -51,6 +51,7 @@
 		<include_xml_file>objects/skid.xml</include_xml_file>
 		<include_xml_file>objects/ball.xml</include_xml_file>
 		<include_xml_file>objects/cloud.xml</include_xml_file>
+		<include_xml_file>objects/gear1.xml</include_xml_file>
 		
 		<include_xml_file>objects/siren.xml</include_xml_file>
 		<include_xml_file>objects/txt_test.xml</include_xml_file>
@@ -73,8 +74,27 @@
 	
 		</layer>
 	
-		<layer scroll_speed="0.65f" name="background">
-				
+		<layer scroll_speed="0.45f" name="background">
+	
+			<object objectDef="gear1">
+				<position type="fixed">
+					<x>230</x><y>80</y>
+					<vel_rotate>1.0</vel_rotate>
+				</position>
+			</object>
+			<object objectDef="gear1">
+				<position type="fixed">
+					<x>400</x><y>50</y>
+					<vel_rotate>-2.0</vel_rotate>
+				</position>
+			</object>
+			<object objectDef="gear1">
+				<position type="fixed">
+					<x>580</x><y>70</y>
+					<vel_rotate>4.0</vel_rotate>
+				</position>
+			</object>
+
 			<object objectDef="background-lava2">
 				<position type="fixed">	<x>0</x> <y>0</y> </position>
 			</object>
@@ -140,7 +160,10 @@
 		<layer scroll_speed="1.0f" name="foreground">
 			<object objectDef="sonic">
 				<position type="fixed">	
+					<!--			
 					<x>22</x> <y>5000</y>
+					-->
+					<x>500</x> <y>50</y>
 					<vely>20</vely>
 				</position>
 				<inputController>1</inputController>

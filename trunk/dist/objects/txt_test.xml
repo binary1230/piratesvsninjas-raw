@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<objectDef name="txt_test" type="TextOverlay">
-</objectDef>
+<objectDef name="txt_test" type="TextOverlay" />

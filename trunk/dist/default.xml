@@ -20,7 +20,7 @@
 	<mode_file>level2.xml</mode_file>
 	<mode_file>credits.xml</mode_file>
 	
-	<!--<mode_file id=2>modes/level_test.xml</mode_file>
-	<mode_file id=3>modes/level2.xml</mode_file>
-	<mode_file id=4>modes/level3.xml</mode_file>-->
+	<!--
+	<mode_file id=2>level_test.xml</mode_file>
+	-->
 </game>

@@ -94,7 +94,7 @@
 				</object>
 			</repeat>
 
-			<repeat times="25">
+			<repeat times="25"> 
 				<object objectDef="fan">
 					<position type="random">
 						<xmin>0</xmin><xmax>2500</xmax>
@@ -103,10 +103,9 @@
 				</object>
 			</repeat>
 
-
 			<object objectDef="s_sign_arrow"><position type="fixed">
 			<x>30</x><y>20</y></position></object>
-			
+						
 			<object objectDef="s_sign_arrow_up"><position type="fixed">
 			<x>600</x><y>20</y></position></object>
 			
@@ -542,7 +541,6 @@
 						<xmin>0</xmin><xmax>3000</xmax>
 						<ymin>1000</ymin><ymax>6000</ymax>
 					</position>
-					<!--<alpha>128</alpha>-->
 				</object>
 			</repeat>
 			
@@ -552,7 +550,6 @@
 						<xmin>0</xmin><xmax>3000</xmax>
 						<ymin>1000</ymin><ymax>2000</ymax>
 					</position>
-					<!--<alpha>128</alpha>-->
 				</object>
 			</repeat>
 		</layer>
@@ -587,7 +584,7 @@
 					<x>0</x><y>0</y>
 				</position>
 				<text>Welcome to the|PIRATES VS NINJAS|Pre-alpha demo!| |http://avastmateys.|livejournal.com| |Press C to continue...~Dom told me to|tell you that this|game isn't even|close to finished yet.~BEWARE!|Pirates roam these|islands!~Er.. Well..~That's what my|barber said..~| |   BEWARE!~You should be looking|for the cosmic door.| |Pick up some rings|along the way.</text>
-				<avatar>alien.png</avatar>
+				<avatar>amaya-icon.png</avatar>
 			</object>
 
 		</layer>

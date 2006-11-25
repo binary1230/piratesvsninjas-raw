@@ -9,10 +9,10 @@
 	</info>
 
 	<properties>
-		<width>320</width>
-		<height>240</height>
-		<camera_left>0</camera_left>
-		<camera_top>0</camera_top>
+		<width>3200</width>
+		<height>2400</height>
+		<camera_x>0</camera_x>
+		<camera_y>0</camera_y>
 	</properties>
 	
 	<objectDefinitions>
@@ -23,20 +23,26 @@
 	<map>
 		<layer scroll_speed="1.0f" name="bg_objects">	
 
-			<object objectDef="block3">
-				<position type="fixed">
-					<x>0</x><y>0</y>
-				</position>
-			</object>
+			<repeat times="50">
+				<starting_x>0</starting_x>
+				<starting_y>0</starting_y>
+				<object objectDef="block3">
+					<position type="offset">
+						<x_offset>200</x_offset>
+						<y_offset>0</y_offset>
+					</position>
+				</object>
+			</repeat>
 			
 			<object objectDef="sonic">
 				<position type="fixed">	
 					<x>5</x> <y>200</y> 
-					<velx>5</velx>
-					<vely>3</vely>
+					<velx>0</velx>
+					<vely>0</vely>
 				</position>
 				<inputController>1</inputController>
 				<cameraFollow />
 			</object>
+		</layer>
 	</map>
 </gameMode>

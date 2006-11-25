@@ -16,4 +16,7 @@
 	<properties>
 		<affectedByGravity />
 	</properties>
+	<sounds>
+		<sound name="ball_hit">sounds/ball_hit.wav</sound>
+	</sounds>
 </objectDef>
