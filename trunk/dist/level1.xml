@@ -23,9 +23,9 @@
 	</properties>
 	
 	<objectDefinitions>
-		<!-- the IMPORTANT game objects -->
-		<include_xml_file>objects/obj_sonic.xml</include_xml_file>
-		<include_xml_file>objects/obj_sonic_x.xml</include_xml_file>
+		<!-- main characters (jouten=the guy, toneriko=the girl) -->
+		<include_xml_file>objects/jouten.xml</include_xml_file>
+		<include_xml_file>objects/toneriko.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_background.xml</include_xml_file>
@@ -478,18 +478,9 @@
 		</layer>
 
 		<layer scroll_speed="1.0" name="foreground">
-			<object objectDef="sonic_x">
+			<object objectDef="toneriko">
 				<position type="fixed">	
 					<x>2400</x> <y>60</y>
-					<velx>0</velx>
-					<vely>0</vely>
-				</position>
-				<inputController>2</inputController>
-			</object>
-
-			<object objectDef="sonic">
-				<position type="fixed">	
-					<x>2500</x> <y>50</y>
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
@@ -497,21 +488,14 @@
 				<cameraFollow />
 			</object>
 
-			<!--<object objectDef="sonic">
+			<object objectDef="jouten">
 				<position type="fixed">	
-					<x>2400</x> <y>50</y>
+					<x>2500</x> <y>50</y>
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
 				<inputController>2</inputController>
-			</object>-->
-
-			<!--<object objectDef="floor">
-				<position type="fixed"> 
-					<x>0</x> <y>26</y>
-				</position>
-			</object>-->
-
+			</object>
 		</layer>
 
 		<layer scroll_speed="1.5" name="foreground_fast">
