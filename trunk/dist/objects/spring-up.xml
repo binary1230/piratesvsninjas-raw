@@ -4,8 +4,9 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="spring1-up.png" duration="1" pause="1" />
-				<img name="spring2-up.png" duration="6" />
+				<frame type="sprite" name="spring1-up.png" duration="1" pause="1" />
+				<frame type="sound" data="spring" /> 
+				<frame type="sprite" name="spring2-up.png" duration="6" />
 			</frames>
 			<show_in_order />
 			<repeat />

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<objectDef name="door" type="Door">
+<objectDef name="door-slide" type="Door">
 	<animations default="closed">
 		<animation name="closed">
 			<frames>
-				<frame name="door1.png" duration="1" />
+				<frame name="door3-open1.png" duration=1 />
 			</frames>
 			<show_in_order />
 			<repeat />
 		</animation>
 		<animation name="opening">
 			<frames>
-				<frame name="door1-open1.png" duration=4 />
-				<frame name="door1-open2.png" duration=3 />
-				<frame name="door1-open3.png" duration=3 />
-				<frame name="door1-open4.png" duration=3 pause=1 />
+				<frame name="door3-open2.png" duration=3 />
+				<frame name="door3-open3.png" duration=3 />
+				<frame name="door3-open4.png" duration=3 />
+				<frame name="door3-open5.png" duration=3 />
 			</frames>
 			<show_in_order />
 			<repeat />

@@ -4,7 +4,7 @@
 	<animations default="default">
 		<animation name="default">
 			<frames>
-				<img name="s_totem1.png" duration="1" />
+				<frame name="s_totem1.png" duration="1" />
 			</frames>
 			<show_in_order />
 			<repeat />

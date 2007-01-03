@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <!-- best viewed with tabs set to 2 spaces -->
 
-<gameMode type="simulation" name="Level 1 - Sonic Desert Run">
+<gameMode type="simulation">
 
 	<music>level1.ogg</music>
 	<info>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
-		<description>Sonic Desert Run</description>
+		<description>Treasure Island</description>
 	</info>
 
 	<properties>
@@ -21,7 +21,7 @@
 			<b>255</b>
 		</bgcolor>
 	</properties>
-	
+
 	<objectDefinitions>
 		<!-- main characters (jouten=the guy, toneriko=the girl) -->
 		<include_xml_file>objects/jouten.xml</include_xml_file>
@@ -55,8 +55,8 @@
 		<include_xml_file>objects/skid.xml</include_xml_file>
 		<include_xml_file>objects/ball.xml</include_xml_file>
 		
-		<include_xml_file>objects/opener1.xml</include_xml_file>
-		<include_xml_file>objects/opener2.xml</include_xml_file>
+		<!--<include_xml_file>objects/opener1.xml</include_xml_file>
+		<include_xml_file>objects/opener2.xml</include_xml_file>-->
 		<include_xml_file>objects/txt_test.xml</include_xml_file>
 
 		<!-- interactive things -->
@@ -121,8 +121,12 @@
 			<object objectDef="s_totem1"><position type="fixed">
 			<x>2544</x><y>83</y></position></object>
 			
-			<object objectDef="smallblock"><position type="fixed">
-			<x>10</x><y>175</y></position></object>
+			<object objectDef="smallblock">
+				<position type="fixed">
+					<x>10</x><y>175</y>
+				</position>
+			</object>
+
 			<object objectDef="smallblock"><position type="fixed">
 			<x>40</x><y>175</y></position></object>
 			<object objectDef="smallblock"><position type="fixed">
@@ -146,6 +150,12 @@
 					</position>
 				</object>
 			</repeat>
+
+			<!--
+			<object objectDef="door" name="joutenShop" type="switchToNewMode" modeToTrigger="jouten-shop.xml">
+				<position type="fixed"><x>2000</x><y>20</y></position>
+			</object>
+			-->
 			
 			<object objectDef="greenblock"><position type="fixed">
 			<x>300</x><y>20</y></position></object>
@@ -467,8 +477,9 @@
 			<object objectDef="sign_up"><position type="fixed">
 			<x>1600</x><y>3400</y></position></object>
 			
-			<object objectDef="door"><position type="fixed">
-			<x>1705</x><y>3400</y></position></object>
+			<object objectDef="door" name="levelExit" type="exit">
+				<position type="fixed"><x>1705</x><y>3400</y></position>
+			</object>
 
 			<object objectDef="sign_left_right"><position type="fixed">
 			<x>2400</x><y>20</y></position></object>
@@ -548,6 +559,7 @@
 				<inputController>1</inputController>
 			</object>
 
+			<!--
 			<object objectDef="opener1">
 				<position type="fixed">
 					<x>0</x><y>-240</y> 
@@ -562,6 +574,7 @@
 					<fadeout>60</fadeout>
 				</position>
 			</object>
+			-->
 
 			<object objectDef="txt_test">
 				<position type="fixed">
