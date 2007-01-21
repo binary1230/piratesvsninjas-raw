@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
+<objectDefinitions>
+
 <objectDef name="greenblock" type="Static">
 	<animations default="default">
 		<animation name="default">
@@ -14,3 +16,5 @@
 		<solidObject />
 	</properties>
 </objectDef>
+
+</objectDefinitions>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
+<objectDefinitions>
 <objectDef name="background-lava" type="Background">
 	<animations default="still_background">
 		<animation name="still_background">
@@ -12,3 +14,5 @@
 	<properties>
 	</properties>
 </objectDef>
+
+</objectDefinitions>

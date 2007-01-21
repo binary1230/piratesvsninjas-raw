@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- 	Sonic Object Definition 
-			To be included from another XML file -->
+
+<objectDefinitions>
 
 <objectDef name="toneriko" type="Player">
 	<animations default="standing">
@@ -48,3 +48,5 @@
 	</properties>
 </objectDef>
 
+
+</objectDefinitions>

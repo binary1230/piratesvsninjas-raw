@@ -12,19 +12,18 @@
 	<properties>
 		<width>640</width>
 		<height>480</height>
-		<camera_x>0</camera_x>
-		<camera_y>0</camera_y>
 	</properties>
 	
 	<objectDefinitions>
-		<include_xml_file>objects/toneriko.xml</include_xml_file>
-		<include_xml_file>objects/jouten.xml</include_xml_file>
+		<include_xml_file>common-objects.xml</include_xml_file>
 		<include_xml_file>objects/door2.xml</include_xml_file>
 		<include_xml_file>objects/jouten-shop.xml</include_xml_file>
 		<include_xml_file>objects/block3.xml</include_xml_file>
-		<include_xml_file>objects/skid.xml</include_xml_file>
-		<include_xml_file>objects/ball.xml</include_xml_file>
 	</objectDefinitions>
+
+	<effects>
+		<include_xml_file>common-effects.xml</include_xml_file>
+	</effects>
 
 	<map>
 		<layer scroll_speed="1.0f" name="bg_objects">	
@@ -68,6 +67,15 @@
 				</position>
 				<inputController>2</inputController>
 			</object>
+		</layer>
+
+		<layer scroll_speed="1.0f" name="overlays">
+
+			<object objectDef="CutBars">
+				<position type="fixed"><x>0</x><y>0</y></position>
+				<text>Pirates VS Ninjas|Jouten's Shop</text>
+			</object>
+
 		</layer>
 
 	</map>

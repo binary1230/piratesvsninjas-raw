@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
+<objectDefinitions>
+
 <objectDef name="door-bright" type="Door">
 	<animations default="closed">
 		<animation name="closed">
@@ -20,3 +22,5 @@
 	<properties>
 	</properties>
 </objectDef>
+
+</objectDefinitions>

@@ -13,8 +13,6 @@
 	<properties>
 		<width>2560</width>
 		<height>8000</height>
-		<camera_x>0</camera_x>
-		<camera_y>0</camera_y>
 		<bgcolor>
 			<r>71</r>
 			<g>101</g>
@@ -23,16 +21,12 @@
 	</properties>
 
 	<objectDefinitions>
-		<!-- main characters (jouten=the guy, toneriko=the girl) -->
-		<include_xml_file>objects/jouten.xml</include_xml_file>
-		<include_xml_file>objects/toneriko.xml</include_xml_file>
+		<!-- include the standard stuff -->
+		<include_xml_file>common-objects.xml</include_xml_file>
 
 		<!-- level backgrounds/foregrounds -->
 		<include_xml_file>objects/obj_background.xml</include_xml_file>
 		
-		<!-- shows a controler, used during demos -->
-		<include_xml_file>objects/obj_controller.xml</include_xml_file>
-	
 		<!-- various scenery -->
 		<include_xml_file>objects/greenblock.xml</include_xml_file>
 		<include_xml_file>objects/smallblock.xml</include_xml_file>
@@ -52,18 +46,15 @@
 		<include_xml_file>objects/sign-leftright.xml</include_xml_file>
 		<include_xml_file>objects/sign-jump.xml</include_xml_file>
 		<include_xml_file>objects/totem1.xml</include_xml_file>
-		<include_xml_file>objects/skid.xml</include_xml_file>
-		<include_xml_file>objects/ball.xml</include_xml_file>
 		
-		<!--<include_xml_file>objects/opener1.xml</include_xml_file>
-		<include_xml_file>objects/opener2.xml</include_xml_file>-->
-		<include_xml_file>objects/txt_test.xml</include_xml_file>
-
 		<!-- interactive things -->
 		<include_xml_file>objects/spring-up.xml</include_xml_file>
 		<include_xml_file>objects/spring-right.xml</include_xml_file>
-		<include_xml_file>objects/ring.xml</include_xml_file>
 	</objectDefinitions>
+
+	<effects>
+		<include_xml_file>common-effects.xml</include_xml_file>
+	</effects>
 
 	<map>
 		<layer scroll_speed="0.15" name="background">
@@ -582,6 +573,11 @@
 				</position>
 				<text>Welcome to the|PIRATES VS NINJAS|Pre-alpha demo!| |http://avastmateys.|livejournal.com| |Press C to continue...~Dom told me to|tell you that this|game isn't even|close to finished yet.~BEWARE!|Pirates roam these|islands!~Er.. Well..~That's what my|barber said..~| |   BEWARE!~You should be looking|for the cosmic door.| |Pick up some rings|along the way.</text>
 				<avatar>amaya-icon.png</avatar>
+			</object>
+
+			<object objectDef="CutBars">
+				<position type="fixed"><x>0</x><y>0</y></position>
+				<text>Pirates VS Ninjas|Level 1 - Treasure Island</text>
 			</object>
 
 		</layer>
