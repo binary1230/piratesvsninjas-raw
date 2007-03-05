@@ -486,8 +486,7 @@
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
-				<inputController>1</inputController>
-				<cameraFollow />
+				<inputController>2</inputController>
 			</object>
 
 			<object objectDef="jouten">
@@ -496,7 +495,8 @@
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
-				<inputController>2</inputController>
+				<inputController>1</inputController>
+				<cameraFollow />
 			</object>
 		</layer>
 

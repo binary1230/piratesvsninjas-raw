@@ -2,13 +2,13 @@
 <!-- best viewed with tabs set to 2 spaces -->
 
 <gameMode type="simulation">
-
 	<music>level1.ogg</music>
 	<info>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
 		<description>Treasure Island</description>
 	</info>
+	<luaScript>scripts/level1.lua</luaScript>
 
 	<properties>
 		<width>2560</width>
@@ -480,7 +480,7 @@
 		</layer>
 
 		<layer scroll_speed="1.0" name="foreground">
-			<object objectDef="toneriko">
+			<object objectDef="amaya">
 				<position type="fixed">	
 					<x>2400</x> <y>60</y>
 					<velx>0</velx>
@@ -566,14 +566,6 @@
 				</position>
 			</object>
 			-->
-
-			<object objectDef="txt_test">
-				<position type="fixed">
-					<x>0</x><y>0</y>
-				</position>
-				<text>Welcome to the|PIRATES VS NINJAS|Pre-alpha demo!| |http://avastmateys.|livejournal.com| |Press C to continue...~Dom told me to|tell you that this|game isn't even|close to finished yet.~BEWARE!|Pirates roam these|islands!~Er.. Well..~That's what my|barber said..~| |   BEWARE!~You should be looking|for the cosmic door.| |Pick up some rings|along the way.</text>
-				<avatar>amaya-icon.png</avatar>
-			</object>
 
 			<object objectDef="CutBars">
 				<position type="fixed"><x>0</x><y>0</y></position>

@@ -7,6 +7,7 @@
 	<!-- main characters (jouten=the guy, toneriko=the girl) -->
 	<include_xml_file>objects/jouten.xml</include_xml_file>
 	<include_xml_file>objects/toneriko.xml</include_xml_file>
+	<include_xml_file>objects/amaya.xml</include_xml_file>
 
 	<!-- shows a controler, used during demos -->
 	<include_xml_file>objects/obj_controller.xml</include_xml_file>

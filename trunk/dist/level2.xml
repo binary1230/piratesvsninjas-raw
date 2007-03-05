@@ -9,6 +9,7 @@
 		<author>Dominic Cerquetti</author>
 		<description>Jouten's Lab</description>
 	</info>
+	<luaScript>scripts/level2.lua</luaScript>
 
 	<properties>
 		<width>10000</width>
@@ -195,7 +196,7 @@
 				<inputController>2</inputController>
 			</object>
 
-			<object objectDef="toneriko">
+			<object objectDef="amaya">
 				<position type="fixed">	
 					<x>600</x> <y>50</y>
 					<vely>20</vely>
@@ -213,14 +214,6 @@
 						<alignRight />
 				</position>
 				<inputController>1</inputController>
-			</object>
-
-			<object objectDef="txt_test">
-				<position type="fixed">
-					<x>0</x><y>0</y>
-				</position>
-				<text>You found the|"cosmic door".| |Huzzah.~As a reward, I'll|tell you a little|secret.  If you press|the "D" key,|you will drop little|airballs.~Don't ask me why|Jouten can do it.|He's just a|tech guy.~I mean, Toneriko|is understandable,|since she's...| |Oops.|No plot for you yet!~Anyway, press "C"|to start.  Try and|find that "cosmic|door" again.</text>
-				<avatar>amaya-icon.png</avatar>
 			</object>
 
 			<!--
