@@ -52,8 +52,11 @@
 			<object objectDef="door-bright" name="joutenShop2" type="return">
 				<position type="fixed"><x>50</x><y>20</y></position>
 			</object>
-			
+
+			<!--
 			<object objectDef="toneriko">
+			-->
+			<object objectDef="amaya">
 				<position type="fixed">	
 					<x>15</x> <y>20</y> 
 				</position>

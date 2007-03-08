@@ -190,7 +190,7 @@
 		<layer scroll_speed="1.0f" name="foreground">
 			<object objectDef="jouten">
 				<position type="fixed">	
-					<x>500</x> <y>50</y>
+					<x>500</x> <y>30</y>
 					<vely>20</vely>
 				</position>
 				<inputController>2</inputController>
@@ -198,7 +198,7 @@
 
 			<object objectDef="amaya">
 				<position type="fixed">	
-					<x>600</x> <y>50</y>
+					<x>600</x> <y>30</y>
 					<vely>20</vely>
 				</position>
 				<inputController>1</inputController>

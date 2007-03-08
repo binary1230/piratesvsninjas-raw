@@ -2,13 +2,14 @@
 <!-- best viewed with tabs set to 2 spaces -->
 
 <gameMode type="simulation">
-	<music>level1.ogg</music>
 	<info>
 		<map_version>0.2-beta</map_version>
 		<author>Dominic Cerquetti</author>
 		<description>Treasure Island</description>
 	</info>
 	<luaScript>scripts/level1.lua</luaScript>
+	<!--
+	-->
 
 	<properties>
 		<width>2560</width>
@@ -131,7 +132,7 @@
 			<x>200</x><y>20</y></position></object>
 			
 			<!-- the level floor -->
-			<repeat times=13>
+			<repeat times=14>
 				<starting_x>0</starting_x>
 				<starting_y>0</starting_y>
 				<object objectDef="block3">
@@ -482,7 +483,7 @@
 		<layer scroll_speed="1.0" name="foreground">
 			<object objectDef="amaya">
 				<position type="fixed">	
-					<x>2400</x> <y>60</y>
+					<x>2570</x> <y>60</y>
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
@@ -492,7 +493,7 @@
 
 			<object objectDef="jouten">
 				<position type="fixed">	
-					<x>2500</x> <y>50</y>
+					<x>1700</x> <y>50</y>
 					<velx>0</velx>
 					<vely>0</vely>
 				</position>
@@ -541,6 +542,8 @@
 		</layer>
 
 		<layer scroll_speed="1.0" name="overlays">
+
+			<!-- FOR DEMOS ONLY.
 			<object objectDef="controller">
 				<position type="fixed">	
 					<alignRight/>
@@ -549,6 +552,7 @@
 				</position>
 				<inputController>1</inputController>
 			</object>
+			-->
 
 			<!--
 			<object objectDef="opener1">
@@ -567,10 +571,12 @@
 			</object>
 			-->
 
+			<!--
 			<object objectDef="CutBars">
 				<position type="fixed"><x>0</x><y>0</y></position>
 				<text>Pirates VS Ninjas|Level 1 - Treasure Island</text>
 			</object>
+			-->
 
 		</layer>
 			
