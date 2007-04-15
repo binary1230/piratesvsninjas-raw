@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<GUILayout>
+	<Window Type="DefaultWindow" Name="root">
+		<Window Type="TaharezLook/FrameWindow" Name="testWindow">
+			<Property Name="UnifiedPosition" Value="{{0.0,0},{0.0,0}}" />
+			<Property Name="UnifiedSize" Value="{{1.0,0},{0.4,0}}" />
+			<Property Name="Text" Value="TAALLY HOOO!" />
+			<Window Type="TaharezLook/Button" Name="lua_powered_button">
+				<Property Name="UnifiedPosition" Value="{{0.0,10},{0.0,30}}" />
+				<Property Name="UnifiedSize" Value="{{0.0,160},{0.0,20}}" />
+				<Property Name="Text" Value="This is a button." />
+				<Event Name="Clicked" Function="luabtn_clicked" />
+			</Window>
+		</Window>
+	</Window>
+</GUILayout>
