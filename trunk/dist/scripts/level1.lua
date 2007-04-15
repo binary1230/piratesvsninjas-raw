@@ -1,10 +1,10 @@
 -- Level 1 - Treasure Island
 
 introState = 1;
-maxIntroStates = 9;
+done_intro = false;
 
 function UpdateIntroState() 
-	if introState > maxIntroStates then
+	if done_intro then
 		return;
 	end
 
@@ -15,7 +15,7 @@ function UpdateIntroState()
 
 	elseif introState == 2 then
 
-		world_textbox("Amaya: Jouten!| |(Press C to continue)~Amaya: ...~Amaya: Jouten!!!!~Amaya: Where the hell..|Where could he be?", "amaya-icon.png");
+		world_textbox("Amaya: Jouten!| |(Press C to continue)~Amaya: ...~Amaya: Jouten!!!!~Amaya: Hm....|Where could he be?", "amaya-icon.png");
 		
 	elseif introState == 3 then
 
@@ -35,7 +35,7 @@ function UpdateIntroState()
 	
 	elseif introState == 7 then
 		
-		world_textbox("Jouten: No prob. It should|be a quick climb|from here.", "jouten-icon.png");
+		world_textbox("Jouten: No prob. It should|be a quick climb|from here.~Just head straight up.", "jouten-icon.png");
 	
 	elseif introState == 8 then
 		
@@ -49,8 +49,8 @@ function UpdateIntroState()
 		world_allow_player_offscreen(0);
 
 		-- start the game for real.
+		done_intro = true;
 		music_play("level1.ogg");
-
 	end
 	
 	introState = introState+1;
