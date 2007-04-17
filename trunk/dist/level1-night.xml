@@ -18,6 +18,11 @@
 			<g>45</g>
 			<b>135</b>
 		</bgcolor>
+		<bgcolor_top>
+			<r>255</r>
+			<g>255</g>
+			<b>255</b>
+		</bgcolor_top>
 	</properties>
 
 	<objectDefinitions>
