@@ -49,7 +49,7 @@
 		</layer>
 
 		<layer scroll_speed="1.0f" name="fg">	
-			<object objectDef="door-bright" name="joutenShop2" type="return">
+			<object objectDef="door-bright" name="joutenShop" type="return">
 				<position type="fixed"><x>50</x><y>20</y></position>
 			</object>
 
