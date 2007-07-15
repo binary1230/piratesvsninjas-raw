@@ -57,7 +57,12 @@ function UpdateIntroState()
 end
 
 function Level_OnLoad() 
-		
+	
+	if jumped_back_from_a_door() == 1 then
+		done_intro = true;
+		return
+	end
+
 	window_fadein(6);
 
 	-- until the cinematic is over, they can go offscreen

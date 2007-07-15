@@ -228,11 +228,6 @@
 			</repeat>
 			-->
 
-			<object objectDef="CutBars">
-				<position type="fixed"><x>0</x><y>0</y></position>
-				<text>Pirates VS Ninjas|Level 2 - Jouten's Lair</text>
-			</object>
-
 		</layer>
 
 		<!--<layer scroll_speed="1.5f" name="foreground_fast">
