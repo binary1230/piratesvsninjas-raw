@@ -43,7 +43,10 @@
 	</sounds>
 	
 	<properties>
+		<!--
 		<onSkateboard />
+		-->
+
 		<affectedByGravity />
 		<affectedByInput1 />
 		<affectedByFriction />
