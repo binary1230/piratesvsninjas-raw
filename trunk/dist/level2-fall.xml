@@ -1,0 +1,2400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gameMode type="simulation">
+	<music>
+		
+	</music>
+	<info/>
+	<properties>
+		<width>1200</width>
+		<height>6500</height>
+		<bgcolor>
+			<r>127</r>
+			<g>30</g>
+			<b>10</b>
+		</bgcolor>
+		<bgcolor_top>
+			<r>60</r>
+			<g>90</g>
+			<b>90</b>
+		</bgcolor_top>
+	</properties>
+	<objectDefinitions>
+		<include_xml_file>
+			common-objects.xml
+		</include_xml_file>
+		<!-- level backgrounds/foregrounds -->
+		<include_xml_file>
+			objects/obj_bg_lava.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/obj_bg_lava2.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/obj_floor2.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/floor3_a.xml
+		</include_xml_file>
+		<!-- various scenery -->
+		<include_xml_file>
+			objects/jouten-sign-rocket.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/jouten-house.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/door.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/door3.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/obj_s_palm_tall.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/plane.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/sign-arrow.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/sign-haha.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/sign-credits.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/totem1.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/cloud.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/gear1.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/siren.xml
+		</include_xml_file>
+	</objectDefinitions>
+	<map>
+		<layer scroll_speed="0.750000" name="background-slow">
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						251.000000
+					</x>
+					<y>
+						79079.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						122.000000
+					</x>
+					<y>
+						79079.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						7.000000
+					</x>
+					<y>
+						79079.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						487.000000
+					</x>
+					<y>
+						79016.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						545.000000
+					</x>
+					<y>
+						78783.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						674.000000
+					</x>
+					<y>
+						78783.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						803.000000
+					</x>
+					<y>
+						78783.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						173.000000
+					</x>
+					<y>
+						64152.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						656.000000
+					</x>
+					<y>
+						64691.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						805.000000
+					</x>
+					<y>
+						65387.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						263.000000
+					</x>
+					<y>
+						66099.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						173.000000
+					</x>
+					<y>
+						66888.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						753.000000
+					</x>
+					<y>
+						67642.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						913.000000
+					</x>
+					<y>
+						68471.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						624.000000
+					</x>
+					<y>
+						69168.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						525.000000
+					</x>
+					<y>
+						69636.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						214.000000
+					</x>
+					<y>
+						69801.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						708.000000
+					</x>
+					<y>
+						70581.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						1055.000000
+					</x>
+					<y>
+						71231.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						302.000000
+					</x>
+					<y>
+						71859.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						107.000000
+					</x>
+					<y>
+						72589.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						906.000000
+					</x>
+					<y>
+						73468.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						319.000000
+					</x>
+					<y>
+						74376.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						751.000000
+					</x>
+					<y>
+						74695.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						681.000000
+					</x>
+					<y>
+						75190.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						147.000000
+					</x>
+					<y>
+						75627.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						335.000000
+					</x>
+					<y>
+						76177.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						792.000000
+					</x>
+					<y>
+						76572.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						861.000000
+					</x>
+					<y>
+						76962.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						458.000000
+					</x>
+					<y>
+						77520.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						386.000000
+					</x>
+					<y>
+						78245.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						207.000000
+					</x>
+					<y>
+						78604.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						728.000000
+					</x>
+					<y>
+						78993.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						522.000000
+					</x>
+					<y>
+						79649.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						213.000000
+					</x>
+					<y>
+						79176.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						200.000000
+					</x>
+					<y>
+						59360.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						840.000000
+					</x>
+					<y>
+						58997.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						935.000000
+					</x>
+					<y>
+						58335.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						400.000000
+					</x>
+					<y>
+						57614.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						230.000000
+					</x>
+					<y>
+						56924.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						904.000000
+					</x>
+					<y>
+						56178.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						322.000000
+					</x>
+					<y>
+						55692.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						275.000000
+					</x>
+					<y>
+						55383.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						842.000000
+					</x>
+					<y>
+						55026.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						881.000000
+					</x>
+					<y>
+						54523.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						183.000000
+					</x>
+					<y>
+						53993.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						84.000000
+					</x>
+					<y>
+						53539.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						442.000000
+					</x>
+					<y>
+						53156.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						811.000000
+					</x>
+					<y>
+						52825.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						565.000000
+					</x>
+					<y>
+						52139.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						153.000000
+					</x>
+					<y>
+						51654.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						689.000000
+					</x>
+					<y>
+						51146.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						368.000000
+					</x>
+					<y>
+						50508.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						427.000000
+					</x>
+					<y>
+						49681.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						733.000000
+					</x>
+					<y>
+						49253.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						296.000000
+					</x>
+					<y>
+						48914.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						528.000000
+					</x>
+					<y>
+						48630.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						822.000000
+					</x>
+					<y>
+						48292.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						148.000000
+					</x>
+					<y>
+						47620.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						130.000000
+					</x>
+					<y>
+						47495.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						132.000000
+					</x>
+					<y>
+						47364.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						503.000000
+					</x>
+					<y>
+						46903.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						1015.000000
+					</x>
+					<y>
+						46334.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						408.000000
+					</x>
+					<y>
+						45722.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						0.000000
+					</x>
+					<y>
+						44796.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						169.000000
+					</x>
+					<y>
+						44555.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						602.000000
+					</x>
+					<y>
+						44779.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						370.000000
+					</x>
+					<y>
+						44678.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						76.000000
+					</x>
+					<y>
+						44396.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						300.000000
+					</x>
+					<y>
+						44102.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						520.000000
+					</x>
+					<y>
+						44473.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						815.000000
+					</x>
+					<y>
+						44625.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						729.000000
+					</x>
+					<y>
+						45058.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						942.000000
+					</x>
+					<y>
+						44854.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1089.000000
+					</x>
+					<y>
+						45242.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						857.000000
+					</x>
+					<y>
+						25263.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						242.000000
+					</x>
+					<y>
+						24746.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						440.000000
+					</x>
+					<y>
+						24192.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						910.000000
+					</x>
+					<y>
+						23710.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						910.000000
+					</x>
+					<y>
+						23500.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						910.000000
+					</x>
+					<y>
+						23500.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						281.000000
+					</x>
+					<y>
+						23157.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						477.000000
+					</x>
+					<y>
+						22677.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						797.000000
+					</x>
+					<y>
+						22540.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						833.000000
+					</x>
+					<y>
+						22531.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						899.000000
+					</x>
+					<y>
+						22558.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						184.000000
+					</x>
+					<y>
+						21606.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						519.000000
+					</x>
+					<y>
+						21097.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						896.000000
+					</x>
+					<y>
+						20467.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						516.000000
+					</x>
+					<y>
+						19817.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						242.000000
+					</x>
+					<y>
+						19158.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						372.000000
+					</x>
+					<y>
+						18616.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						837.000000
+					</x>
+					<y>
+						18170.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						858.000000
+					</x>
+					<y>
+						17720.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						299.000000
+					</x>
+					<y>
+						17209.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						596.000000
+					</x>
+					<y>
+						16829.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						931.000000
+					</x>
+					<y>
+						16439.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						1052.000000
+					</x>
+					<y>
+						15814.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						940.000000
+					</x>
+					<y>
+						15348.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						325.000000
+					</x>
+					<y>
+						14870.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						187.000000
+					</x>
+					<y>
+						14324.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						488.000000
+					</x>
+					<y>
+						13780.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						936.000000
+					</x>
+					<y>
+						13390.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						995.000000
+					</x>
+					<y>
+						12760.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						184.000000
+					</x>
+					<y>
+						11853.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						224.000000
+					</x>
+					<y>
+						11249.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						914.000000
+					</x>
+					<y>
+						9449.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						389.000000
+					</x>
+					<y>
+						8325.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						921.000000
+					</x>
+					<y>
+						7039.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						461.000000
+					</x>
+					<y>
+						6065.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						153.000000
+					</x>
+					<y>
+						5436.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						305.000000
+					</x>
+					<y>
+						4836.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						899.000000
+					</x>
+					<y>
+						4275.000000
+					</y>
+				</position>
+			</object>
+		</layer>
+		<layer scroll_speed="0.450000" name="background">
+			<object objectDef="s_sign_haha">
+				<position type="fixed">
+					<x>
+						546.000000
+					</x>
+					<y>
+						41971.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_sign_haha">
+				<position type="fixed">
+					<x>
+						546.000000
+					</x>
+					<y>
+						42020.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_siren">
+				<position type="fixed">
+					<x>
+						552.000000
+					</x>
+					<y>
+						41902.000000
+					</y>
+				</position>
+			</object>
+		</layer>
+		<layer scroll_speed="1.000000" name="bg_objects">
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						420.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						549.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						678.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						806.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						1071.000000
+					</x>
+					<y>
+						64144.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1029.000000
+					</x>
+					<y>
+						64123.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1132.000000
+					</x>
+					<y>
+						64123.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						806.000000
+					</x>
+					<y>
+						64124.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						291.000000
+					</x>
+					<y>
+						64175.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						162.000000
+					</x>
+					<y>
+						64163.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						33.000000
+					</x>
+					<y>
+						64153.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						0.000000
+					</x>
+					<y>
+						64133.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						120.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						246.000000
+					</x>
+					<y>
+						64156.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						374.000000
+					</x>
+					<y>
+						64162.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						502.000000
+					</x>
+					<y>
+						64162.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						258.000000
+					</x>
+					<y>
+						64159.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						132.000000
+					</x>
+					<y>
+						64150.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						17.000000
+					</x>
+					<y>
+						64145.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						292.000000
+					</x>
+					<y>
+						64189.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						163.000000
+					</x>
+					<y>
+						64189.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_siren">
+				<position type="fixed">
+					<x>
+						741.000000
+					</x>
+					<y>
+						64209.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_siren">
+				<position type="fixed">
+					<x>
+						158.000000
+					</x>
+					<y>
+						64209.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="jouten-sign-rocket">
+				<position type="fixed">
+					<x>
+						276.000000
+					</x>
+					<y>
+						44699.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						611.000000
+					</x>
+					<y>
+						44818.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						699.000000
+					</x>
+					<y>
+						44818.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						829.000000
+					</x>
+					<y>
+						44668.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						907.000000
+					</x>
+					<y>
+						44668.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						956.000000
+					</x>
+					<y>
+						44899.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						1041.000000
+					</x>
+					<y>
+						44899.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						310.000000
+					</x>
+					<y>
+						44150.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						388.000000
+					</x>
+					<y>
+						44151.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						472.000000
+					</x>
+					<y>
+						44113.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						532.000000
+					</x>
+					<y>
+						44003.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						556.000000
+					</x>
+					<y>
+						43825.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						560.000000
+					</x>
+					<y>
+						43397.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						561.000000
+					</x>
+					<y>
+						42703.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						561.000000
+					</x>
+					<y>
+						42163.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						499.000000
+					</x>
+					<y>
+						41834.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						285.000000
+					</x>
+					<y>
+						40718.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						881.000000
+					</x>
+					<y>
+						39688.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						418.000000
+					</x>
+					<y>
+						39143.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						176.000000
+					</x>
+					<y>
+						38483.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						532.000000
+					</x>
+					<y>
+						37823.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						153.000000
+					</x>
+					<y>
+						35587.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						940.000000
+					</x>
+					<y>
+						34724.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						500.000000
+					</x>
+					<y>
+						33918.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						171.000000
+					</x>
+					<y>
+						33643.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						91.000000
+					</x>
+					<y>
+						33373.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						560.000000
+					</x>
+					<y>
+						32960.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						358.000000
+					</x>
+					<y>
+						31183.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						107.000000
+					</x>
+					<y>
+						30105.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						240.000000
+					</x>
+					<y>
+						29124.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						240.000000
+					</x>
+					<y>
+						28704.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						240.000000
+					</x>
+					<y>
+						28254.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1078.000000
+					</x>
+					<y>
+						25551.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						950.000000
+					</x>
+					<y>
+						25551.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						821.000000
+					</x>
+					<y>
+						25551.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						692.000000
+					</x>
+					<y>
+						25551.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						580.000000
+					</x>
+					<y>
+						25530.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						531.000000
+					</x>
+					<y>
+						25510.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						510.000000
+					</x>
+					<y>
+						25489.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						708.000000
+					</x>
+					<y>
+						25530.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						0.000000
+					</x>
+					<y>
+						25291.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						128.000000
+					</x>
+					<y>
+						25291.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						257.000000
+					</x>
+					<y>
+						25291.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						385.000000
+					</x>
+					<y>
+						25291.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						513.000000
+					</x>
+					<y>
+						25291.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						568.000000
+					</x>
+					<y>
+						25271.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						605.000000
+					</x>
+					<y>
+						25252.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						694.000000
+					</x>
+					<y>
+						25232.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						575.000000
+					</x>
+					<y>
+						25319.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						664.000000
+					</x>
+					<y>
+						25307.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						711.000000
+					</x>
+					<y>
+						25288.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						754.000000
+					</x>
+					<y>
+						25275.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						807.000000
+					</x>
+					<y>
+						25273.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="ring">
+				<position type="fixed">
+					<x>
+						436.000000
+					</x>
+					<y>
+						25320.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_palm_tall">
+				<position type="fixed">
+					<x>
+						763.000000
+					</x>
+					<y>
+						25251.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_sign_arrow">
+				<position type="fixed">
+					<x>
+						118.000000
+					</x>
+					<y>
+						25311.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						0.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						129.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						257.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						386.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						516.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						514.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						645.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						774.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						903.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						1030.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor2">
+				<position type="fixed">
+					<x>
+						1093.000000
+					</x>
+					<y>
+						1.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1036.000000
+					</x>
+					<y>
+						65.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1074.000000
+					</x>
+					<y>
+						366.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						945.000000
+					</x>
+					<y>
+						366.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						816.000000
+					</x>
+					<y>
+						366.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						688.000000
+					</x>
+					<y>
+						366.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						909.000000
+					</x>
+					<y>
+						65.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="floor3_a">
+				<position type="fixed">
+					<x>
+						1028.000000
+					</x>
+					<y>
+						85.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_palm_tall">
+				<position type="fixed">
+					<x>
+						1112.000000
+					</x>
+					<y>
+						105.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_sign_arrow">
+				<position type="fixed">
+					<x>
+						43.000000
+					</x>
+					<y>
+						66.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_siren">
+				<position type="fixed">
+					<x>
+						909.000000
+					</x>
+					<y>
+						86.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="s_totem1">
+				<position type="fixed">
+					<x>
+						683.000000
+					</x>
+					<y>
+						386.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="door-slide" type>
+				<position type="fixed">
+					<x>
+						1088.000000
+					</x>
+					<y>
+						105.000000
+					</y>
+				</position>
+			</object>
+		</layer>
+		<layer scroll_speed="1.000000" name="foreground">
+			<object objectDef="amaya">
+				<position type="fixed">
+					<x>
+						300.000000
+					</x>
+					<y>
+						6500.000000
+					</y>
+				</position>
+				<cameraFollow/>
+				<inputController>
+					1
+				</inputController>
+			</object>
+		</layer>
+		<layer scroll_speed="1.000000" name="foreground-fast">
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						991.000000
+					</x>
+					<y>
+						4033.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						498.000000
+					</x>
+					<y>
+						3962.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						244.000000
+					</x>
+					<y>
+						3427.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						521.000000
+					</x>
+					<y>
+						3011.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						977.000000
+					</x>
+					<y>
+						2618.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						597.000000
+					</x>
+					<y>
+						1971.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						69.000000
+					</x>
+					<y>
+						1322.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						27.000000
+					</x>
+					<y>
+						705.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						697.000000
+					</x>
+					<y>
+						61.000000
+					</y>
+				</position>
+			</object>
+			<object objectDef="cloud">
+				<position type="fixed">
+					<x>
+						983.000000
+					</x>
+					<y>
+						182.000000
+					</y>
+				</position>
+			</object>
+		</layer>
+		<layer scroll_speed="1.000000" name="overlays">
+			<object objectDef="controller">
+				<position type="fixed">
+					<x>
+						5.000000
+					</x>
+					<y>
+						5.000000
+					</y>
+				</position>
+				<inputController>
+					1
+				</inputController>
+			</object>
+		</layer>
+	</map>
+</gameMode>
