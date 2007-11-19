@@ -37,6 +37,7 @@
 		<include_xml_file>objects/flower2.xml</include_xml_file>
 		<include_xml_file>objects/fan.xml</include_xml_file>
 		<include_xml_file>objects/cloud.xml</include_xml_file>
+		<include_xml_file>objects/cloud2.xml</include_xml_file>
 		<include_xml_file>objects/door.xml</include_xml_file>
 		<include_xml_file>objects/plane.xml</include_xml_file>
 		<include_xml_file>objects/sign-arrow.xml</include_xml_file>
@@ -522,7 +523,7 @@
 				</object>
 			</repeat>
 
-			<repeat times="120">
+			<repeat times="60">
 				<object objectDef="cloud">
 					<position type="random">
 						<xmin>0</xmin><xmax>3000</xmax>
@@ -530,6 +531,15 @@
 					</position>
 				</object>
 			</repeat>
+			<repeat times="60">
+				<object objectDef="cloud2">
+					<position type="random">
+						<xmin>0</xmin><xmax>3000</xmax>
+						<ymin>1000</ymin><ymax>6000</ymax>
+					</position>
+				</object>
+			</repeat>
+
 			
 			<repeat times="30">
 				<object objectDef="cloud">

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <objectDefinitions>
-<objectDef name="background-lava" type="Background">
-	<animations default="still_background">
-		<animation name="still_background">
+
+<objectDef name="cloud2" type="Static">
+	<animations default="default">
+		<animation name="default">
 			<frames>
-				<frame name="lava_back.png" duration="1" /> 
+				<frame name="cloud2.png" duration="3" alpha_enabled="true" />
 			</frames>
 			<show_in_order />
 			<repeat />
