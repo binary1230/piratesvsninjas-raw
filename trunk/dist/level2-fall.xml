@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <gameMode type="simulation">
-	<music>
-		
-	</music>
+	<music>PVN-I_lost_my_glasses.ogg</music>
 	<info/>
 	<properties>
 		<width>1200</width>
@@ -13,9 +11,9 @@
 			<b>10</b>
 		</bgcolor>
 		<bgcolor_top>
-			<r>60</r>
-			<g>90</g>
-			<b>90</b>
+			<r>00</r>
+			<g>00</g>
+			<b>00</b>
 		</bgcolor_top>
 	</properties>
 	<objectDefinitions>
