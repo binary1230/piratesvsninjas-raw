@@ -54,7 +54,7 @@
 					<default_spring_reset_time>6</default_spring_reset_time>
 
 					<sound_use_variable_pitch>1</sound_use_variable_pitch>
-					<sound_freq_range>800</sound_freq_range>
+					<sound_freq_range>200</sound_freq_range>
 
 					<camera_side_margins>40</camera_side_margins>
 					<camera_snap_rate>3.0</camera_snap_rate>
