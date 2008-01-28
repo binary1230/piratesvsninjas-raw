@@ -74,6 +74,9 @@
 			objects/siren.xml
 		</include_xml_file>
 	</objectDefinitions>
+	<effects>
+		<include_xml_file>common-effects.xml</include_xml_file>
+	</effects>
 	<map>
 		<layer scroll_speed="0.750000" name="background-slow">
 			<object objectDef="floor3_a">

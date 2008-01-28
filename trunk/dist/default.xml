@@ -38,8 +38,7 @@
 					<cutbar_time_to_show>80</cutbar_time_to_show>
 
 					<!-- player variables -->
-					<player_acceleration>40.0</player_acceleration>
-					<max_player_velocity>10.0</max_player_velocity>
+					<player_acceleration>50.0</player_acceleration>
 					<player_jump_velocity>8.0</player_jump_velocity>
 					<player_drag_multiplier>0.95</player_drag_multiplier>
 					<player_min_moving_velocity>0.3</player_min_moving_velocity>

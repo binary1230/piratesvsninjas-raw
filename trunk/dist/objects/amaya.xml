@@ -50,8 +50,8 @@
 		<affectedByGravity />
 		<affectedByInput1 />
 		<affectedByFriction />
- 		<jumpVelocity>	24.0f	</jumpVelocity>
-		<drag>					0.90f	</drag>
+ 		<jumpVelocity>	30.0f	</jumpVelocity>
+		<drag>					0.92f	</drag>
 		<minVelocity>		4.0f	</minVelocity>
 		<mass>					1.0f	</mass>
 	</properties>
