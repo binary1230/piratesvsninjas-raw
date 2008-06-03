@@ -6,14 +6,14 @@
 		<width>1200</width>
 		<height>6500</height>
 		<bgcolor>
-			<r>127</r>
-			<g>30</g>
-			<b>10</b>
-		</bgcolor>
-		<bgcolor_top>
 			<r>00</r>
 			<g>00</g>
 			<b>00</b>
+		</bgcolor>
+		<bgcolor_top>
+			<r>0</r>
+			<g>0</g>
+			<b>30</b>
 		</bgcolor_top>
 	</properties>
 	<objectDefinitions>

@@ -34,6 +34,12 @@
 			objects/greenblock.xml
 		</include_xml_file>
 		<include_xml_file>
+			objects/spawner.xml
+		</include_xml_file>
+		<include_xml_file>
+			objects/enemy1.xml
+		</include_xml_file>
+		<include_xml_file>
 			objects/smallblock.xml
 		</include_xml_file>
 		<include_xml_file>
@@ -1451,7 +1457,7 @@
 					</y>
 				</position>
 			</object>
-			<object objectDef="greenblock">
+			<object objectDef="spawner">
 				<position type="fixed">
 					<x>
 						350.000000
