@@ -23,7 +23,7 @@
 
 		<animation name="sliding">
 			<frames>
-				<frame name="amaya/slide-on-wall-tmpDOM.png" duration="64" alpha_enabled="true" />
+				<frame name="amaya/slide-on-wall-tmpDOM.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />
