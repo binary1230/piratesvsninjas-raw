@@ -20,10 +20,18 @@
 			<show_in_order />
 			<repeat />
 		</animation>
+
+		<animation name="sliding">
+			<frames>
+				<frame name="amaya/slide-on-wall-tmpDOM.png" duration="64" alpha_enabled="true" />
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
 				
 		<animation name="standing">
 			<frames>
-			<frame name="amaya/stand.png" duration="64" />
+				<frame name="amaya/stand.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />
