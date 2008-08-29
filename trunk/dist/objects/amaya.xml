@@ -5,6 +5,27 @@
 <objectDef name="amaya" type="Player">
 	<animations default="standing">
 	
+		<animation name="standing">
+			<frames>
+				<frame name="amaya2/ninjagirl-idle1.png" duration="20" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle7.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle1.png" duration="30" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle7.png" duration="2" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle1.png" duration="40" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle7.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle1.png" duration="50" alpha_enabled="true" />
+				
+				<frame name="amaya2/ninjagirl-idle2.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle3.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle4.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle5.png" duration="1" alpha_enabled="true" />
+				<frame name="amaya2/ninjagirl-idle6.png" duration="1" alpha_enabled="true" />
+				
+			</frames>
+			<show_in_order />
+			<repeat />
+		</animation>
+	
 		<animation name="walking">
 			<frames>
 				<frame name="amaya/run1.png" duration="2" />
@@ -24,14 +45,6 @@
 		<animation name="sliding">
 			<frames>
 				<frame name="amaya/slide-on-wall-tmpDOM.png" duration="64" />
-			</frames>
-			<show_in_order />
-			<repeat />
-		</animation>
-				
-		<animation name="standing">
-			<frames>
-				<frame name="amaya/stand.png" duration="64" />
 			</frames>
 			<show_in_order />
 			<repeat />

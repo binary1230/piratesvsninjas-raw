@@ -5,7 +5,6 @@
 		<spawn_object>bomb</spawn_object>
 		<center_x_on_target />
 		<center_y_on_target />
-		<display_time>45</display_time>
 	</effect>
 	<effect name="explosion1">
 		<spawn_object>explosion</spawn_object>
