@@ -63,13 +63,14 @@
 				<inputController>1</inputController>
 				<cameraFollow />
 			</object>
-
+<!--
 			<object objectDef="jouten">
 				<position type="fixed">	
 					<x>15</x> <y>20</y> 
 				</position>
 				<inputController>2</inputController>
 			</object>
+-->
 		</layer>
 
 		<layer scroll_speed="1.0f" name="overlays">

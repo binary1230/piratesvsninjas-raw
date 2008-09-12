@@ -74,19 +74,19 @@
 			<object objectDef="gear1">
 				<position type="fixed">
 					<x>230</x><y>80</y>
-					<vel_rotate>1.0</vel_rotate>
+					<vel_rotate>0.5</vel_rotate>
 				</position>
 			</object>
 			<object objectDef="gear1">
 				<position type="fixed">
 					<x>400</x><y>50</y>
-					<vel_rotate>-2.0</vel_rotate>
+					<vel_rotate>-1.0</vel_rotate>
 				</position>
 			</object>
 			<object objectDef="gear1">
 				<position type="fixed">
 					<x>580</x><y>70</y>
-					<vel_rotate>4.0</vel_rotate>
+					<vel_rotate>2.0</vel_rotate>
 				</position>
 			</object>
 
@@ -98,7 +98,7 @@
 
 		<layer scroll_speed="1.0f" name="bg_objects">	
 
-			<repeat times="200">
+			<repeat times="77">
 				<starting_x>0</starting_x>
 				<starting_y>30</starting_y>
 				
@@ -188,6 +188,7 @@
 		</layer>
 
 		<layer scroll_speed="1.0f" name="foreground">
+<!--
 			<object objectDef="jouten">
 				<position type="fixed">	
 					<x>500</x> <y>30</y>
@@ -195,7 +196,7 @@
 				</position>
 				<inputController>2</inputController>
 			</object>
-
+-->
 			<object objectDef="amaya">
 				<position type="fixed">	
 					<x>600</x> <y>30</y>

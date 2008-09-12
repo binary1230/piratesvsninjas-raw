@@ -1,6 +1,6 @@
 -- Level 1 - Treasure Island
 
-introState = 9; // HACK, change back to 1
+introState = 9;
 done_intro = false;
 
 function UpdateIntroState() 
@@ -66,9 +66,9 @@ function Level_OnLoad()
 	window_fadein(6);
 
 	-- until the cinematic is over, they can go offscreen
-	world_allow_player_offscreen(1);
+	-- world_allow_player_offscreen(1);
 
-	introState = 1;
+	introState = 9;
 	UpdateIntroState();
 
 end
