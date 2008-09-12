@@ -1,6 +1,6 @@
 -- Level 1 - Treasure Island
 
-introState = 1;
+introState = 9; // HACK, change back to 1
 done_intro = false;
 
 function UpdateIntroState() 
