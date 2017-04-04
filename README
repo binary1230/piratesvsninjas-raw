@@ -1,8 +1,3 @@
-The toplevel subversion repository for pirates VS ninjas.
-http://piratesvsninjas.sf.net
-
-Repository Folders
-engine/ - The game engine source code
-gamedata/ - The game's data
-
-You want the sourceode in trunk/ on all occasions
+don't use this repo.  it's just raw data that was used to build the following 2 repos:
+https://github.com/binary1230/ninjas-gamedata
+https://github.com/binary1230/ninjas-engine
