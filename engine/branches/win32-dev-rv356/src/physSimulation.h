@@ -1,0 +1,116 @@
+#ifndef PHYS_SYSTEM_H
+#define PHYS_SYSTEM_H
+
+#include "stl_wrapper.h"
+
+class PhysSimulation;
+class GameState;
+class Force;
+class Object;
+class ObjectFactory;
+class ForceFactory;
+class ObjectLayer;
+class OGGFILE;
+
+#include "gameBase.h"
+#include "gameMode.h"
+#include "StdString.h"
+#include "xmlParser.h"
+
+//! Maps an object definition name to an XMLNode 
+//! (e.g. maps "bad_guy_1" to its corresponding XML data)
+//! only used for parsing XML
+typedef std::map<const CString, XMLNode> ObjectDefMapping;
+typedef std::map<const CString, XMLNode>::iterator ObjectDefMappingIter;
+
+typedef std::list<Object*> ObjectList;
+typedef std::list<Object*>::iterator ObjectListIter;
+typedef std::list<Object*>::reverse_iterator ObjectListReverseIter;
+
+//! Represents a physical simulation (the main game levels)
+class PhysSimulation : public GameMode {
+		protected:		
+			//! ALL objects in the scene
+			// note: list is STL's doubly linked list
+			std::list<Object*> objects;
+
+			//! Layers, which hold pointers to objects.
+			std::vector<ObjectLayer*> layers;
+
+			//! Collection of forces
+			std::vector<Force*> forces;
+		
+			//! Creates new objects
+			ObjectFactory *objectFactory;
+
+			//! Creates new forces
+			ForceFactory *forceFactory;
+
+			//! Temporary. Belongs in GameMusic
+			OGGFILE* music;
+
+			//! Width and height of the entire level
+			//! (usually much bigger than screen width/height)
+			int width, height;
+
+			int camera_x, camera_y;
+
+			//! Which object the camera should follow
+			Object* camera_follow;
+
+			//! How much to scale the X coordinate of the camera.
+			//! MOSTLY used for scrolling backgrounds at different speeds
+			//! on different layers
+			float camera_scroll_speed;
+
+			//! Physics functions
+			void ResetForNextFrame();
+			void Solve();
+
+			//! Game update functions
+			void UpdateObjects();
+
+			//! Update an object, return false if we need to delete it
+			bool UpdateObject(Object* obj);
+		
+			//! Sets up simulation from an XML file
+			//XXX should be moved into a friend factory class, or something.
+			int Load(XMLNode&);
+			int LoadHeaderFromXML(XMLNode&);
+			int LoadObjectsFromXML(XMLNode&);
+			int LoadObjectFromXML(XMLNode&,	XMLNode&, ObjectLayer*);
+			int LoadForcesFromXML(XMLNode&);
+			int LoadObjectDefsFromXML(XMLNode&, ObjectDefMapping&);
+			int LoadLayerFromXML(XMLNode&, ObjectLayer*, ObjectDefMapping&);
+			int CreateObject(	XMLNode &xObject, 
+												ObjectLayer *layer, 
+												ObjectDefMapping &objectDefs);
+
+		public:
+			int Init(GameState*, XMLNode);
+			void Shutdown();
+
+			void Draw();
+			void Update();
+
+			int GetWidth() {return width;};
+			int GetHeight() {return height;};
+
+			void ComputeNewCamera();
+			void SetCameraScrollSpeed(float s) {camera_scroll_speed = s;};
+
+			int GetCameraX() {return camera_x;};
+			int GetCameraY() {return camera_y;};
+			
+			void TransformWorldToView(int &x, int &y);
+			void TransformViewToScreen(int &x, int &y);
+
+			void MoveObjectsToNewPositions();
+			void CheckForCollisions();
+			void GetCollideableObjects(std::vector<Object*> &objs);
+
+			PhysSimulation();
+			~PhysSimulation();
+};
+
+#endif

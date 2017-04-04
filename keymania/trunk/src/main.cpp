@@ -1,0 +1,61 @@
+#include "stdafx.h"
+#include "gameState.h"
+#include "gameOptions.h"
+#include "globals.h"
+
+// #define REDIRECT_STDERR 1
+#define REDIRECT_STDERR_FILENAME "/Users/dcerquetti/game.log"
+
+int start_game_instance(const int argc, const char* argv[]) {
+
+	int ret_val = 0;
+	
+	// see if our command line args are OK
+	GameOptions* options = new GameOptions();
+	options->PrintBanner();
+	options->ParseArguments(argc, argv);
+	options->PrintOptions(argv[0]);
+
+	if (!options->IsValid())	{
+		delete options;
+		options = NULL;
+		return -1;
+	} else {
+		
+		// if OK, run the actual game
+
+		GAMESTATE->CreateInstance();
+
+		if (GAMESTATE)
+			ret_val = GAMESTATE->RunGame(options);
+
+		GAMESTATE->FreeInstance();
+
+		delete options;
+		options = NULL;
+
+		return ret_val;
+	}
+}
+
+/// The main function
+/// IT ROCKS
+int main(const int argc, const char* argv[]) {
+
+	// InitDebugHackLog();
+
+#	ifdef REDIRECT_STDERR
+	fprintf(stderr, "Redirecting stderr output to '" REDIRECT_STDERR_FILENAME "'\n");
+
+	if (!freopen(REDIRECT_STDERR_FILENAME, "wt", stderr)) {
+		printf("Couldn't redirect stderr to "REDIRECT_STDERR_FILENAME "!");
+	}
+	
+	fprintf(stderr, "Main: redirected output.\n");
+# endif
+
+	return start_game_instance(argc, argv);
+
+	// ShutdownDebugHackLog();
+
+} END_OF_MAIN();

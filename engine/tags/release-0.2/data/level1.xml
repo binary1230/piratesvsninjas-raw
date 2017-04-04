@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!-- best viewed with tabs set to 2 spaces -->
+
+<gameMode type="simulation" name="Level 1 - Sonic Desert Run">
+
+	<music>data/level1.ogg</music>
+	<info>
+		<map_version>0.2-beta</map_version>
+		<author>Dominic Cerquetti</author>
+		<description>Sonic Desert Run</description>
+	</info>
+
+	<properties>
+		<width>2560</width>
+		<height>5000</height>
+		<camera_x>0</camera_x>
+		<camera_y>0</camera_y>
+		<bgcolor>
+			<r>71</r>
+			<g>101</g>
+			<b>255</b>
+		</bgcolor>
+	</properties>
+	
+	<objectDefinitions>
+		<!-- the IMPORTANT game objects -->
+		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_sonic_x.xml</include_xml_file>
+
+		<!-- level backgrounds/foregrounds -->
+		<include_xml_file>data/objects/obj_background.xml</include_xml_file>
+		
+		<include_xml_file>data/objects/obj_floor.xml</include_xml_file>
+		
+		<!-- shows a controler, used during demos -->
+		<include_xml_file>data/objects/obj_controller.xml</include_xml_file>
+	
+		<!-- various scenery -->
+		<include_xml_file>data/objects/greenblock.xml</include_xml_file>
+		<include_xml_file>data/objects/smallblock.xml</include_xml_file>
+		<include_xml_file>data/objects/block3.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_s_palm_tall.xml</include_xml_file>
+		<include_xml_file>data/objects/obj_s_palm_small.xml</include_xml_file>
+		<include_xml_file>data/objects/flower1.xml</include_xml_file>
+		<include_xml_file>data/objects/flower2.xml</include_xml_file>
+		<include_xml_file>data/objects/fan.xml</include_xml_file>
+		<include_xml_file>data/objects/door.xml</include_xml_file>
+		<include_xml_file>data/objects/plane.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-arrow.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-haha.xml</include_xml_file>
+		<include_xml_file>data/objects/sign-credits.xml</include_xml_file>
+		<include_xml_file>data/objects/totem1.xml</include_xml_file>
+		
+		<include_xml_file>data/objects/opener1.xml</include_xml_file>
+		<include_xml_file>data/objects/opener2.xml</include_xml_file>
+
+		<!-- interactive things -->
+		<include_xml_file>data/objects/spring.xml</include_xml_file>
+		<include_xml_file>data/objects/spring-crazy.xml</include_xml_file>
+		<include_xml_file>data/objects/ring.xml</include_xml_file>
+	</objectDefinitions>
+
+	<map>
+		<layer scroll_speed="0.15f" name="background">
+				
+			<object objectDef="background">
+				<position type="fixed">	<x>0</x> <y>0</y></position>
+			</object>
+
+			<!-- plane flying around in the back -->
+			<object objectDef="plane">
+				<position type="fixed"> 
+					<x>340</x><y>200</y>
+					<velx>-6.0f</velx><vely>0.0f</vely>
+				</position>
+			</object>
+	
+		</layer>
+
+		<layer scroll_speed="1.0f" name="bg_objects">	
+
+			<!-- oh, some palm trees and things -->
+			<repeat times="50">
+				<object objectDef="s_palm_tall">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>-50</ymin><ymax>21</ymax>
+					</position>
+				</object>
+			</repeat>
+
+			<repeat times="25">
+				<object objectDef="fan">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>20</ymin><ymax>50</ymax>
+					</position>
+				</object>
+			</repeat>
+
+
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>30</x><y>20</y></position></object>
+			
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<flipx/><x>1000</x><y>20</y></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<flipx/><x>1100</x><y>20</y></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<flipx/><x>1200</x><y>20</y></position></object>
+				
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>2544</x><y>20</y></position></object>
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>2544</x><y>83</y></position></object>
+			
+			<object objectDef="smallblock"><position type="fixed">
+			<x>10</x><y>175</y></position></object>
+			<object objectDef="smallblock"><position type="fixed">
+			<x>40</x><y>175</y></position></object>
+			<object objectDef="smallblock"><position type="fixed">
+			<x>70</x><y>175</y></position></object>
+			<object objectDef="smallblock"><position type="fixed">
+			<x>100</x><y>175</y></position></object>
+			<object objectDef="smallblock"><position type="fixed">
+			<x>130</x><y>175</y></position></object>
+			
+			<object objectDef="smallblock"><position type="fixed">
+			<x>200</x><y>20</y></position></object>
+			
+			<object objectDef="block3"><position type="fixed">
+			<x>0</x><y>0</y></position></object>
+
+			<object objectDef="block3"><position type="fixed">
+			<x>200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>400</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>600</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>800</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1000</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1400</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1600</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1800</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2000</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2200</x><y>0</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2400</x><y>0</y></position></object>
+			
+			<object objectDef="greenblock"><position type="fixed">
+			<x>300</x><y>20</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>350</x><y>20</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>400</x><y>20</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>325</x><y>70</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>375</x><y>70</y></position></object>
+			
+			<object objectDef="greenblock"><position type="fixed">
+			<x>350</x><y>120</y></position></object>
+			
+			<!-- REALLY NEW STUFF 1 -->
+			<object objectDef="block3"><position type="fixed">
+			<x>580</x><y>200</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>550</x><y>200</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>750</x><y>200</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>800</x><y>250</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>850</x><y>300</y><alignTop/></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>900</x><y>350</y><alignTop/></position></object>
+			
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1200</x><y>400</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1200</x><y>400</y><alignTop/></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1100</x><y>400</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1100</x><y>400</y><alignTop/></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1000</x><y>400</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1000</x><y>400</y><alignTop/></position></object>
+
+			<object objectDef="ring"><position type="fixed">
+			<x>1200</x><y>450</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1250</x><y>475</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1300</x><y>500</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1350</x><y>475</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1400</x><y>450</y></position></object>
+
+
+			
+			<!-- midlevel stuff -->			
+			<object objectDef="ring"><position type="fixed">
+			<x>1750</x><y>400</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1800</x><y>400</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1850</x><y>400</y></position></object>
+
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>1690</x><y>350</y></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>1710</x><y>340</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1600</x><y>300</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1650</x><y>330</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1710</x><y>350</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>1990</x><y>350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>2190</x><y>350</y></position></object>
+			
+			<object objectDef="spring"><position type="fixed">
+			<x>2200</x><y>400</y></position></object>
+
+			<!-- really high -->
+			<object objectDef="spring-crazy"><position type="fixed">
+			<x>2500</x><y>640</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<x>2300</x><y>600</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>2250</x><y>600</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>2500</x><y>600</y></position></object>
+			
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>2300</x><y>620</y></position></object>
+				
+			<!--<repeat times="50">
+				<object objectDef="ring">
+				<position type="random">
+					<xmin>2200</xmin> <xmax>2400</xmax>
+					<ymin>1000</ymin> <ymax>1800</ymax>
+				</position></object>
+			</repeat>
+			-->
+			
+			<!-- WAY HIGH -->	
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>1000</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>1300</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>1900</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>2200</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>2500</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>2530</x><y>2800</y></position></object>
+
+			<repeat times="7">
+				<object objectDef="fan">
+					<position type="random">
+						<xmin>1850</xmin><xmax>2200</xmax>
+						<ymin>2020</ymin><ymax>2020</ymax>
+					</position>
+				</object>
+			</repeat>
+
+			<object objectDef="s_sign_arrow"><position type="fixed">
+			<x>1500</x><y>2000</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<alignTop/><x>1500</x><y>2000</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<alignTop/><x>1700</x><y>2000</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<alignTop/><x>1900</x><y>2000</y></position></object>
+			<object objectDef="block3"><position type="fixed">
+			<alignTop/><x>2100</x><y>2000</y></position></object>
+			<object objectDef="s_sign_arrow"><position type="fixed"><flipx/>
+			<x>2200</x><y>2000</y></position></object>
+
+			<!-- pre-pyramid more high -->
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1800</x><y>2000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1750</x><y>2000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1700</x><y>2000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1650</x><y>2000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1600</x><y>2000</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1700</x><y>2050</y></position></object>
+			<object objectDef="spring-crazy"><position type="fixed">
+			<x>1700</x><y>2100</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2400</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2450</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2500</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2550</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2600</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2650</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2700</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2750</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2800</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2850</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2900</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>2950</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>3000</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>3050</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>3100</y></position></object>
+			<object objectDef="ring"><position type="fixed">
+			<x>1720</x><y>3150</y></position></object>		
+
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>1840</x><y>3000</y></position></object>
+			<object objectDef="s_palm_tall"><position type="fixed">
+			<x>1540</x><y>3000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1550</x><y>3000</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1850</x><y>3000</y></position></object>
+		
+			<!-- SUPER RIDICULOUSLY HIGH END 3 -->
+			<repeat times="10">
+				<object objectDef="s_palm_tall">
+				<position type="random">
+					<xmin>1570</xmin> <xmax>1830</xmax>
+					<ymin>3300</ymin> <ymax>3350</ymax>
+				</position></object>
+			</repeat>
+
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>1610</x><y>3400</y></position></object>
+			<object objectDef="s_totem1"><position type="fixed">
+			<x>1800</x><y>3400</y></position></object>
+
+			<object objectDef="s_sign_credits"><position type="fixed">
+			<x>1840</x><y>3400</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1550</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1600</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1650</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1700</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1750</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1800</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1850</x><y>3300</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1900</x><y>3300</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1575</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1625</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1675</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1725</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1775</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1825</x><y>3350</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1875</x><y>3350</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1650</x><y>3400</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1700</x><y>3400</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1750</x><y>3400</y></position></object>
+
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1675</x><y>3450</y></position></object>
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1725</x><y>3450</y></position></object>
+			
+			<object objectDef="greenblock"><position type="fixed">
+			<x>1700</x><y>3500</y></position></object>
+			
+			<object objectDef="door"><position type="fixed">
+			<x>1705</x><y>3400</y></position></object>
+		</layer>
+
+		<layer scroll_speed="1.0f" name="foreground">
+			<object objectDef="sonic">
+				<position type="fixed">	
+					<x>2500</x> <y>50</y>
+					<velx>0</velx>
+					<vely>0</vely>
+				</position>
+				<inputController>1</inputController>
+				<cameraFollow />
+			</object>
+	
+			<!--<object objectDef="sonicx">
+				<position type="fixed">	
+					<x>0</x> <y>0</y> 
+					<velx>10</velx>
+				</position>
+				<inputController>2</inputController>
+			</object>-->
+
+			<!--<object objectDef="floor">
+				<position type="fixed"> 
+					<x>0</x> <y>26</y>
+				</position>
+			</object>-->
+
+		</layer>
+
+		<layer scroll_speed="1.5f" name="foreground_fast">
+			<repeat times="20">
+				<object objectDef="s_flower1">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>-50</ymin><ymax>0</ymax>
+						
+					</position>
+				</object>
+			</repeat>
+
+			<repeat times="20">
+				<object objectDef="s_flower2">
+					<position type="random">
+						<xmin>0</xmin><xmax>2500</xmax>
+						<ymin>-30</ymin><ymax>0</ymax>
+						
+					</position>
+				</object>
+			</repeat>
+
+		</layer>
+
+		<layer scroll_speed="1.0f" name="overlays">
+			<object objectDef="controller">
+				<position type="fixed">	<x>125</x> <y>5</y> </position>
+				<inputController>1</inputController>
+			</object>
+
+			<object objectDef="opener1">
+				<position type="fixed">
+					<x>0</x><y>-160</y> 
+					<velx>0.0f</velx><vely>7.0f</vely>
+					<fadeout>60</fadeout>
+				</position>
+			</object>
+			<object objectDef="opener2">
+				<position type="fixed">
+					<x>200</x><y>0</y> 
+					<velx>-7.0f</velx><vely>0.0f</vely>
+					<fadeout>60</fadeout>
+				</position>
+			</object>
+
+		</layer>
+			
+	</map>
+
+</gameMode>

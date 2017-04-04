@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+
+<gameMode type="simulation" name="TEST MAP">
+
+	<info>
+		<map_version>0.2-beta</map_version>
+		<author>Dominic Cerquetti</author>
+		<description>Sonic Desert Run</description>
+	</info>
+
+	<properties>
+		<width>320</width>
+		<height>240</height>
+		<camera_left>0</camera_left>
+		<camera_top>0</camera_top>
+	</properties>
+	
+	<objectDefinitions>
+		<include_xml_file>data/objects/obj_sonic.xml</include_xml_file>
+		<include_xml_file>data/objects/block3.xml</include_xml_file>
+	</objectDefinitions>
+
+	<map>
+		<layer scroll_speed="1.0f" name="bg_objects">	
+
+			<object objectDef="block3">
+				<position type="fixed">
+					<x>0</x><y>0</y>
+				</position>
+			</object>
+			
+			<object objectDef="sonic">
+				<position type="fixed">	
+					<x>5</x> <y>200</y> 
+					<velx>5</velx>
+					<vely>3</vely>
+				</position>
+				<inputController>1</inputController>
+				<cameraFollow />
+			</object>
+	</map>
+</gameMode>

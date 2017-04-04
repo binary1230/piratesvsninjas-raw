@@ -1,0 +1,161 @@
+dnl CROSS COMPILING - if you are looking in here to mess with cross
+dnl compiling stuff, scroll down to where it says XXXX CROSS COMPILING
+dnl see BUILD or the Wiki for more info 
+
+dnl LARGE PARTS of this configure.in stolen from Clanlib configure.ac
+
+dnl This is still a MESS.
+
+AC_INIT(src/main.cpp)
+AC_PREFIX_DEFAULT(/usr/local/)
+
+VERSION_MAJOR="0"
+VERSION_MINOR="2"
+VERSION_FIX="1"
+VERSION_EXTRA="-beta1"
+
+VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_FIX$VERSION_EXTRA"
+
+AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_INSTALL
+
+AC_LANG(C++)
+
+dnl --------------------------------
+dnl ./configure command line options
+dnl --------------------------------
+AC_ARG_WITH([extra-includes], AC_HELP_STRING([--with-extra-includes=DIR],[Add extra include paths]),
+  use_extra_includes="$withval",
+  use_extra_includes=NO
+)
+if test -n "$use_extra_includes" && test "$use_extra_includes" != "NO"; then
+  for dir in $use_extra_includes; do
+    extra_includes="$extra_includes -I$dir"
+  done
+fi
+
+AC_ARG_WITH([extra-libs], AC_HELP_STRING([--with-extra-libs=DIR],[Add extra library paths]), 
+  use_extra_libs="$withval",
+  use_extra_libs=NO
+)
+if test -n "$use_extra_libs" && test "$use_extra_libs" != "NO"; then
+   for dir in $use_extra_libs; do
+     extra_libraries="$extra_libraries -L$dir"
+   done
+fi
+
+CXXFLAGS="$CXXFLAGS $extra_includes"
+CFLAGS="$CFLAGS $extra_includes"
+LDFLAGS="$LDFLAGS $extra_libraries"
+
+dnl AC_ARG_WITH(ogg,
+dnl [  --with-ogg=DIR         Set where the Ogg library is located]) 
+dnl AC_ARG_WITH(vorbis,
+dnl [   --with-vorbis=DIR      Set where the Vorbis library is located])
+
+dnl --------------------------------
+dnl Test for subversion presence
+dnl if so, include the revision number
+dnl --------------------------------
+if test -e ".svn"; then
+	AC_PATH_PROG(WHICH_SVN, svn, no)
+	if test "$WHICH_SVN" != "no"; then
+		SVN_VERSION=`svn info | grep Revision | cut -f2 -d ' '`
+		VERSION="$VERSION-svn$SVN_VERSION"
+		AC_DEFINE([SUBVERSION_BUILD], [], [Defined if we are building from subversion])
+	fi
+fi
+
+dnl ----------------------------------------------------------------
+dnl Test if we're running on Mac, if we are, we need a tiny bit
+dnl of MAC carbon code for the package.  
+dnl
+dnl NEEDS FIXING - 'uname -s' tests the platform we are RUNNING on,
+dnl  NOT the platform we are building for.  Most of the time these are
+dnl  the same, but during cross compiles they are not.
+dnl
+dnl For example, cross compiling from Mac->Linux would currently make
+dnl our script think that we are building FOR MacOSX.
+dnl ----------------------------------------------------------------
+AC_PATH_PROG(WHICH_UNAME, uname, no)
+if test "$WHICH_UNAME"; then
+	OUR_PLATFORM=`uname -s`
+	if test "$OUR_PLATFORM" = "Darwin"; then
+		AC_DEFINE([PLATFORM_DARWIN], [], [Defined if building for Darwin])
+	fi
+fi
+
+AM_INIT_AUTOMAKE([ninjeditor], ${VERSION})
+
+dnl --------------------
+dnl Cross compile stuff
+dnl --------------------
+case $target_alias in
+	*mingw*)
+		WIN32="yes"
+	;;
+	*)
+		WIN32="no"
+	;;
+esac
+
+if test "$WIN32" = "yes"; then
+	dnl you can try editing these 2 lines if cross compile stuff isn't working
+	dnl DON'T FORGET to re-run ./autogen.sh when you are done editing here
+	dnl also, double check your cross-configure.sh
+	ALLEGRO_LIBS="`allegro-config --libs --static` -lmingw32 -lwsock32"
+	ninjeditor_CFLAGS="-mwindows"
+else
+	ALLEGRO_LIBS="`allegro-config --libs`"
+fi
+
+AM_CONDITIONAL([WIN32], [test $WIN32 = "yes"])
+
+dnl -------------------------
+dnl Check for libpng
+dnl -------------------------
+AC_CHECK_HEADERS([png.h])
+AC_MSG_CHECKING(libpng)
+AC_TRY_COMPILE([#include <png.h>], 
+[png_structp png_ptr;], 
+LIBPNG='-lpng'; echo yes;
+AC_DEFINE(HAVE_PNG_H), LIBPNG=''; echo no)
+
+dnl -------------------------
+dnl Check for zlib
+dnl -------------------------
+AC_CHECK_HEADERS([zlib.h])
+AC_CHECK_LIB(z, deflate, ZLIB='-lz';AC_DEFINE(HAVE_ZLIB_H),ZLIB='')
+
+dnl --------------------------
+dnl Check for various things
+dnl --------------------------
+AC_CHECK_HEADERS([allegro.h])
+AC_CHECK_HEADERS([vector])
+AC_CHECK_HEADERS([list])
+
+dnl -----------------
+dnl Set it all up
+dnl -----------------
+ninjeditor_CXXFLAGS="$ninjeditor_CXXFLAGS $extra_includes -Iexternal -Iobjects"
+ninjeditor_LDFLGAS="$ninjeditor_LDFLAGS $extra_libraries"
+
+LDFLAGS="$extra_libraries $LDFLAGS"
+LIBS="$LIBS $ALLEGRO_LIBS $LIBPNG $ZLIB"
+
+AC_SUBST(ninjeditor_CXXFLAGS)
+AC_SUBST(ninjeditor_LDFLAGS)
+
+AC_SUBST(extra_libraries)
+
+dnl DOES NOT WORK RIGHT NOW
+DATA_DIR="${prefix}/data"
+AC_DEFINE_UNQUOTED([DATA_DIR], "${DATA_DIR}", [The installer prefix e.g. /usr/local])
+
+AM_CONFIG_HEADER(config.h)
+
+AC_OBJEXT
+AC_EXEEXT
+
+AC_OUTPUT(Makefile src/Makefile src/Doxyfile)

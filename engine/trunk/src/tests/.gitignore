@@ -1,0 +1,9 @@
+/Makefile.in
+/.deps
+/Makefile
+/*.Po
+/vector2D
+/rect
+/assetManager
+/gmon.out
+/report

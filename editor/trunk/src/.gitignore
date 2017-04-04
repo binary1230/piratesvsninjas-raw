@@ -1,0 +1,7 @@
+/Makefile.in
+/Doxyfile
+/.deps
+/Makefile
+/ninjeditor
+/*.dll
+/*.exe
